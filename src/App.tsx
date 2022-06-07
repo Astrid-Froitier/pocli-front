@@ -1,16 +1,18 @@
 import './App.scss';
+
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
-import AddressList from './components/AddressList';
-import Home from './components/Home';
+
 import About from './components/About';
-import Events from './components/Events';
-import Contact from './components/Contact';
-import Login from './components/Login';
-import Family from './components/Family';
 import Activities from './components/Activities';
-import Prevention from './components/Prevention';
 import Animation from './components/Animation';
+import Contact from './components/Contact';
+import Events from './components/Events';
+import Family from './components/Family';
+// import AddressList from './components/AddressList';
+import Home from './components/Home';
+import Login from './components/Login';
+import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
 import { CurrentTestContextProvider } from './contexts/CurrentTest';
 import CurrentUserContext from './contexts/CurrentUser';
@@ -23,12 +25,12 @@ function App() {
       <Router>
         <nav>
           <div>
-            <Link to="/">Home</Link>
+            {/* <Link to="/">Home</Link> */}
             <Link to="/about">Qui sommes nous ?</Link>
             <Link to="/events">Évènements</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/address">Adresses</Link>
-            <Link to="/click">Click</Link>
+            {/* <Link to="/click">Click</Link> */}
             {admin === true && <a href="http://localhost:3001/">Admin panel</a>}
             {id === 0 ? (
               <Link to="/login">Se connecter</Link>
@@ -54,7 +56,7 @@ function App() {
               <Route path="/events" element={<Events />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/click" element={<TestContext />} />
-              <Route path="/address" element={<AddressList onlyMine={id != 0} />} />
+              {/* <Route path="/address" element={<AddressList onlyMine={id != 0} />} /> */}
               <Route path="/login" element={<Login />} />
               <Route path="/family" element={<Family />} />
               <Route path="/activities" element={<Activities />} />
