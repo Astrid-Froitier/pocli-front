@@ -19,11 +19,11 @@
     &__linksTop {
       display: flex;
       justify-content: end;
-      margin: auto 0 auto 22rem;
+      margin: 1rem 0 auto 22rem;
       padding-bottom: 2rem;
-      gap: 2rem;
       border-bottom: solid;
       border-color: #3d79af;
+      gap: 2rem;
 
       &__a {
         text-decoration: none;
@@ -37,6 +37,7 @@
         }
       }
     }
+
     &__linksBottom {
       display: flex;
       justify-content: end;
