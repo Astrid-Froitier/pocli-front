@@ -16,6 +16,7 @@ import NavBar from './components/NavBar';
 import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
 import { CurrentTestContextProvider } from './contexts/CurrentTest';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Router>
         {/* <main> */}
         <NavBar />
+        <Footer />
         <CurrentTestContextProvider>
           <Routes>
             {/* <Route path="*" element={<Home />} /> */}
