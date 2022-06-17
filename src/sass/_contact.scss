@@ -1,0 +1,33 @@
+.contactContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 2rem;
+  justify-content: space-around;
+  height: 200vh;
+  color: #3d79af;
+  &__header {
+    &__firstSentence {
+      font-size: 24px;
+      margin: 1.5rem 0 1.5rem;
+    }
+    &__textContact {
+      &__title {
+        font-size: 24px;
+        margin: 1.5rem 0 0.5rem;
+      }
+    }
+    &__textAddress {
+      &__title {
+        font-size: 24px;
+        margin: 1.5rem 0 0.5rem;
+      }
+    }
+    &__goback {
+      margin-left: 45vw;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+}
