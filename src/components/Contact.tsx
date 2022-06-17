@@ -1,10 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import ContactForm from './ContactForm';
+import Icon from './Icon';
 
 const Contact = () => {
   return (
     <div className="contactContainer">
-      <div className="contactContainer__header__firstSentence">
+      <div className="contactContainer__header">
         <h1 className="contactContainer__header__firstSentence">
           Vous pouvez nous adresser un message en remplissant le formulaire de contact
           ci-dessous.
@@ -13,27 +15,49 @@ const Contact = () => {
           <h1 className="contactContainer__header__textContact__title">
             Vous pouvez également nous joindre par mail ou par téléphone :
           </h1>
-          <p className="contactContainer__header__textContact__email">
-            pocli.asso@gmail.com
-          </p>
-          <p className="contactContainer__header__textContact__phoneNumber">
-            07 64 15 27 11
-          </p>
+          <div className="contactContainer__header__textContact__email">
+            <div className="contactContainer__header__textContact__email__icon">
+              <Icon name={'at'} />
+            </div>
+            <p className="contactContainer__header__textContact__email__text">
+              pocli.asso@gmail.com
+            </p>
+          </div>
+          <div className="contactContainer__header__textContact__phoneNumber">
+            <div className="contactContainer__header__textContact__phoneNumber__icon">
+              <Icon name={'square-phone'} />
+            </div>
+            <p className="contactContainer__header__textContact__phoneNumber__text">
+              07 64 15 27 11
+            </p>
+          </div>
         </div>
         <div className="contactContainer__header__textAddress">
           <h1 className="contactContainer__header__textAddress__title">
             Accueil du public au bureau :
           </h1>
-          <p className="contactContainer__header__textAddress__days">
-            Lundi, mardi, jeudi, vendredi - de 9h à 12h30 et de 14h à 16h30
-          </p>
-          <p className="contactContainer__header__textAddress__address">
-            4 Ribeyreau, 33420 Espiet
-          </p>
+          <div className="contactContainer__header__textAddress__days">
+            <div className="contactContainer__header__textAddress__days__icon">
+              <Icon name={'house'} />
+            </div>
+            <p className="contactContainer__header__textAddress__days__text">
+              Lundi, mardi, jeudi, vendredi - de 9h à 12h30 et de 14h à 16h30
+            </p>
+          </div>
+          <div className="contactContainer__header__textAddress__address">
+            <div className="contactContainer__header__textAddress__address__icon">
+              <Icon name={'location'} />
+            </div>
+            <p className="contactContainer__header__textAddress__address__text">
+              4 Ribeyreau, 33420 Espiet
+            </p>
+          </div>
         </div>
       </div>
       <ContactForm />
-      <h1 className="contactContainer__header__goback">Revenir à la page d’accueil</h1>
+      <NavLink to="/home">
+        <h1 className="contactContainer__goback">Revenir à la page d’accueil</h1>
+      </NavLink>
     </div>
   );
 };

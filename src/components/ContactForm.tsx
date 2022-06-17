@@ -69,9 +69,9 @@ const ContactForm = () => {
   return (
     <div className="contactFormContainer">
       <div className="contactFormContainer__civility">
-        <h1 className="contactFormContainer__civility__title">
+        <label className="contactFormContainer__civility__title">
           Civilité <span>*</span>
-        </h1>
+        </label>
         <div className="contactFormContainer__civility__checkbox">
           <div className="contactFormContainer__civility__checkbox__madam">
             <input
@@ -149,9 +149,9 @@ const ContactForm = () => {
           value={message}></input>
       </div>
       <div className="contactFormContainer__data">
-        <p className="contactFormContainer__data__title">
+        <h1 className="contactFormContainer__data__title">
           Protection des données personnelles <span>*</span>
-        </p>
+        </h1>
         <div className="contactFormContainer__data__checkbox">
           <input
             className="contactFormContainer__data__checkbox__input"
@@ -161,7 +161,7 @@ const ContactForm = () => {
           <label className="contactFormContainer__data__checkbox__label">
             J'ai lu et j'accepte la Politique de confidentialité de PoCLi.
           </label>
-          <p className="contactFormContainer__data__checkbox__consult">Consulter</p>
+          <h2 className="contactFormContainer__data__checkbox__consult">Consulter</h2>
         </div>
       </div>
       <button type="submit" className="contactFormContainer__submit">
