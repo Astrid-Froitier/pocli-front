@@ -19,7 +19,7 @@ import { CurrentTestContextProvider } from './contexts/CurrentTest';
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Router>
         {/* <main> */}
         <NavBar />
