@@ -1,0 +1,14 @@
+.app{
+    p{
+        font-family: $fontFamily;
+        font-size: $textSize;
+        color: $colorText-2;
+        font-weight: $fontRegular;
+    }
+    h1{
+        font-family: $fontFamily;
+        font-size: $titleSize;
+        color: $colorText-2;
+        font-weight: $fontExtraBold;
+    }
+}

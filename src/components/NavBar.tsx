@@ -12,7 +12,7 @@ const NavBar = () => {
       <div className="alert">Message d&apos;alerte</div>
       <div className="navBar">
         <NavLink to="/">
-          <img width={200} src="../../public/pocli.png" alt="pocli's logo" />
+          <img width={200} src="./assets/pocli.png" alt="pocli's logo" />
         </NavLink>
         <div className="navBar__links">
           <div className="navBar__links__linksTop">
@@ -29,7 +29,7 @@ const NavBar = () => {
             ))}
             <img
               width={20}
-              src="../../public/icone_connexion.png"
+              src="./assets/icone_connexion.png"
               alt="icone's connexion"
             />
           </div>
