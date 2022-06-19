@@ -7,9 +7,57 @@
   width: 100%;
   height: 400px;
   background-image: url('/assets/banner-multicolor.png');
+  h1 {
+    margin-top: 30px;
+    max-width: 400px;
+    text-align: center;
+  }
+  .box {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .icon {
+      width: 100px;
+      fill: $colorText-2;
+    }
+    &__about{
+      font-size: $titleSize;
+      font-weight: $fontExtraBold;
+      &__blue-pocli-text{
+        color: $bluePocli;
+      }
+      &__green-pocli-text{
+        color: $greenPocli;
+      }
+      &__red-pocli-text{
+        color: $redPocli;
+      }
+    }
+    &__event{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      img{
+        max-width: 450px;
+      }
+      span{
+        font-size: 16px;
+      }
+      p{
+        font-size: $titleSize;
+      }
+      .event-card{
+        flex-direction: row-reverse;
+      }
+    }
+  }
 
-//   FOR ACTIVITIES
-  &.activity { 
+  // FOR ACTIVITIES
+  &.activity {
     background-image: url('/assets/banner-grey.png');
     ::before {
       content: '';
@@ -22,54 +70,38 @@
       opacity: 0.4;
     }
     h1 {
-        color: $colorText-3;
+      color: $colorText-3;
+    }
+    .box {
+      .icon {
+        fill: $colorText-3;
       }
-      .box {
-        .icon {
-          fill: $colorText-3;
-        }
-      }
+    }
 
     // ACTIVITY FAMILY
-    &.family{
-        ::before {
-            background-color: $bluePocli;
-          }
+    &.family {
+      ::before {
+        background-color: $bluePocli;
+      }
     }
     // ACTIVITY SPORT
-    &.sport{
-        ::before {
-            background-color: $greenPocli;
-          }
+    &.sport {
+      ::before {
+        background-color: $greenPocli;
+      }
     }
     // ACTIVITY SOCIAL
-    &.social{
-        ::before {
-            background-color: $redPocli;
-          }
+    &.social {
+      ::before {
+        background-color: $redPocli;
+      }
     }
     // ACTIVITY ANIMATION
-    &.animation{
-        ::before {
-            background-color: $yellowPocli;
-          }
+    &.animation {
+      ::before {
+        background-color: $yellowPocli;
+      }
     }
   }
-//   END ACTIVITIES////////////////
-  
-  h1 {
-    margin-top: 30px;
-  }
-  .box {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .icon {
-      width: 100px;
-      height: 100px;
-      fill: $redPocli;
-    }
-  }
+  //   END ACTIVITIES////////////////
 }

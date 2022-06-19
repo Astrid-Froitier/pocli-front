@@ -42,6 +42,7 @@ function App() {
         </CurrentTestContextProvider>
         <Footer />
         {/* </main> */}
+        <Footer />
       </Router>
     </div>
   );
