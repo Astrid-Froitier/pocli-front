@@ -1,9 +1,9 @@
 export default interface IBanner {
-  activity: string;
+  nameBannerActivity?: string;
   title: string;
-  nameIcon: string;
-  bannerContact: boolean;
-  bannerEvent: boolean;
-  bannerMember: boolean;
-  memberFilter: boolean;
+  nameIcon?: string;
+  bannerAbout?: boolean;
+  bannerEvent?: boolean;
+  bannerMember?: boolean;
+  memberFilter?: boolean;
 }

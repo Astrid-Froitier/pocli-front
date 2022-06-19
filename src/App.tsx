@@ -43,6 +43,7 @@ function App() {
         <Footer />
 
         {/* </main> */}
+        <Footer />
       </Router>
     </div>
   );

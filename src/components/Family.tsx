@@ -6,11 +6,11 @@ const Family = () => {
   return (
     <div className="familyContainer">
       <Banner
-        activity="activity family"
+        nameBannerActivity="activity family"
         title="Famille - Parentalité"
         nameIcon="users"
         memberFilter={false}
-        bannerContact={false}
+        bannerAbout={false}
         bannerEvent={false}
         bannerMember={false}
       />
@@ -32,14 +32,14 @@ const Family = () => {
         <h1 className="familyContainer__workshop__title">Les Ateliers Part’Ages</h1>
         <div className="familyContainer__workshop__description">
           <div className="familyContainer__workshop__description__firstPoint">
-            <Icon name="arrow-right" />
+            <Icon name="arrow-right" width="20px" height="20px" />
             <p className="familyContainer__workshop__description__firstPoint__text">
               Moment convivial autour d’une activité partagée : découverte sensorielle,
               motricité, éveil musical, contes, activité manuelle, sortie nature, …
             </p>
           </div>
           <div className="familyContainer__workshop__description__secondPoint">
-            <Icon name="arrow-right" />
+            <Icon name="arrow-right" width="20px" height="20px" />
             <p className="familyContainer__workshop__description__secondPoint__text">
               Temps de rencontres intergénérationnelles pour les enfants de 0 à 12 ans et
               leurs parents et/ou grands parents.
