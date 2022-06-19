@@ -24,7 +24,6 @@ function App() {
       <Router>
         {/* <main> */}
         <NavBar />
-        <Footer />
         <CurrentTestContextProvider>
           <Routes>
             {/* <Route path="*" element={<Home />} /> */}
@@ -42,6 +41,7 @@ function App() {
           </Routes>
         </CurrentTestContextProvider>
         {/* </main> */}
+        <Footer />
       </Router>
     </div>
   );
