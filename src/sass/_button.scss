@@ -1,0 +1,12 @@
+.buttonContainer {
+  padding: 1rem;
+  width: 15rem;
+  color: white;
+  border-radius: 1rem;
+  text-align: center;
+  background-color: $bluePocli;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
