@@ -14,7 +14,7 @@
   }
   .box {
     width: 80%;
-    height: 100%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,10 +23,8 @@
       fill: $colorText-2;
     }
     &__about{
-      font-family: $fontFamily;
       font-size: $titleSize;
       font-weight: $fontExtraBold;
-      color: $colorText-2;
       &__blue-pocli-text{
         color: $bluePocli;
       }
@@ -35,6 +33,25 @@
       }
       &__red-pocli-text{
         color: $redPocli;
+      }
+    }
+    &__event{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      img{
+        max-width: 450px;
+      }
+      span{
+        font-size: 16px;
+      }
+      p{
+        font-size: $titleSize;
+      }
+      .event-card{
+        flex-direction: row-reverse;
       }
     }
   }
