@@ -1,0 +1,22 @@
+.comeBackHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1rem;
+  width: 90%;
+  text-decoration: none;
+  h1 {
+    font-size: $textSize;
+    color: $colorText-2;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__arrow {
+    padding: 0.75rem;
+    background-color: $arrow;
+    border-radius: 100%;
+  }
+}
