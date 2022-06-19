@@ -40,7 +40,6 @@ function App() {
             <Route path="/animation" element={<Animation />} />
           </Routes>
         </CurrentTestContextProvider>
-        <Footer />
         {/* </main> */}
         <Footer />
       </Router>

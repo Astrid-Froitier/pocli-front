@@ -1,11 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Banner from './Banner';
+import ComeBackHome from './ComeBackHome';
 import ContactForm from './ContactForm';
 import Icon from './Icon';
 
 const Contact = () => {
   return (
     <div>
+      <Banner
+        nameBannerActivity=""
+        title="Contact"
+        nameIcon="paper-plane"
+        memberFilter={false}
+        bannerAbout={false}
+        bannerEvent={false}
+        bannerMember={false}
+      />
       <div className="contactContainer">
         <div className="contactContainer__header">
           <h1 className="contactContainer__header__firstSentence">
@@ -56,10 +66,8 @@ const Contact = () => {
           </div>
         </div>
         <ContactForm />
-        <NavLink to="/home">
-          <h1 className="contactContainer__goback">Revenir à la page d’accueil</h1>
-        </NavLink>
       </div>
+      <ComeBackHome />
     </div>
   );
 };
