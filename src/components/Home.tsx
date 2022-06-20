@@ -1,26 +1,29 @@
-import React, { useContext } from 'react';
-
-import CurrentTestContext from '../contexts/CurrentTest';
-import CurrentUserContext from '../contexts/CurrentUser';
+import React from 'react';
+import Banner from './Banner';
+import EventCard from './EventCard';
+import events from '../../data/Xevents';
 
 const Home = () => {
-  const { firstname } = useContext(CurrentUserContext);
-  const { numberClick } = useContext(CurrentTestContext);
-
   return (
     <div className="home">
-      {firstname && <h2>Bienvenue, {firstname}</h2>}
-      {numberClick > 0 && <h3>Vous avez cliqué {numberClick} fois</h3>}
-      <p>Ce projet front doit être exécuté en parallèle du projet back et admin.</p>
-      Il vous permettra d&apos;avoir un modèle d&apos;exemple pour tous ces sujets :
-      <ul>
-        <li>React</li>
-        <li>Context</li>
-        <li>Cookie</li>
-        <li>TypeScript</li>
-        <li>Login/Logout</li>
-        <li>Lien avec React Admin</li>
-      </ul>
+      <Banner
+        // nameBannerActivity={''}
+        title={''}
+        // nameIcon={'users'}
+        // bannerContact={false}
+        // bannerMember={false}
+        bannerEvent={true}
+        // memberFilter={false}
+      />
+      <div className="home__events">
+        <div className="home__events__list">
+          {events.map((event, index) => ( index > 0 && index < 5 &&
+            <div className="home__events__list__card">
+              <EventCard key={index} event={event} />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

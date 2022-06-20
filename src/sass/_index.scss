@@ -1,32 +1,18 @@
-.App {
-  display: flex;
-  flex-direction: column;
-}
-
-li {
-  list-style: none;
-}
-
-main {
-  display: flex;
-  justify-content: center;
-}
-
-.active {
-  color: green;
-}
-
-.body {
-  margin: 20px 0 10px;
-  font-size: 0.9rem;
-}
-
-.home {
-  font-size: 16px;
-  margin-top: 30px;
-}
-
-.home > ul > li {
-  display: block;
-  padding: 5px;
+.app {
+  p {
+    font-family: $fontFamily;
+    font-size: $textSize;
+    color: $colorText-2;
+    font-weight: $fontRegular;
+  }
+  h1 {
+    font-family: $fontFamily;
+    font-size: $titleSize;
+    color: $colorText-2;
+    font-weight: $fontExtraBold;
+  }
+  span {
+    font-family: $fontFamily;
+    color: $colorText-2;
+  }
 }
