@@ -1,0 +1,79 @@
+.loginCardContainer {
+  width: 30%;
+  margin: 2rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: $fontFamily;
+  background-color: $backGround-1;
+  border-radius: 1rem;
+  h1 {
+    font-size: $titleSize;
+    padding: 2rem;
+    color: white;
+  }
+  &__email,
+  &__password {
+    width: 70%;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    &__title {
+      color: white;
+      font-weight: $fontBold;
+      font-size: $textSize;
+    }
+    &__input {
+      width: 100%;
+      margin-bottom: 1rem;
+
+      font-size: 14px;
+      border-radius: 1rem;
+      padding: 0.5rem;
+      background-color: $backGround-2;
+      color: $colorText-2;
+      border: 1px solid $colorText-2;
+      border-radius: 0.25rem;
+    }
+  }
+  &__email {
+    &__input {
+      margin-bottom: 1rem;
+    }
+  }
+  &__stayConnected {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
+    &__title {
+      color: white;
+      font-size: 0.75rem;
+    }
+  }
+  p {
+    color: white;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__submit {
+    margin: 1rem 0 1rem 15rem;
+    background-color: $bluePocli;
+    padding: 0.5rem;
+    border-radius: 100%;
+    &:hover {
+      cursor: pointer;
+      background-color: $colorText-2;
+    }
+  }
+  &__message {
+    color: red;
+  }
+}
