@@ -1,0 +1,60 @@
+.contactContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 2rem;
+  justify-content: space-around;
+  width: 100%;
+  color: $colorText-2;
+  h1 {
+    font-size: $textSize;
+    margin: 1.5rem 0 1.5rem;
+  }
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 80%;
+    h1 {
+      font-size: $textSize;
+      margin: 1.5rem 0 1.5rem;
+    }
+    &__textContact {
+      &__email,
+      &__phoneNumber {
+        display: flex;
+        gap: 1rem;
+        &__text {
+          margin: 0.25rem;
+        }
+        &__icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    &__textAddress {
+      &__days,
+      &__address {
+        display: flex;
+        gap: 1rem;
+        &__text {
+          margin: 0.25rem;
+        }
+        &__icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+  &__goback {
+    margin-left: 80%;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
