@@ -7,7 +7,7 @@ const navLinks_bottom = [
   {
     id: 2,
     path: '/activities',
-    title: 'Activités sportivies et Bien-être',
+    title: 'Activités sportives et Bien-être',
   },
   {
     id: 3,

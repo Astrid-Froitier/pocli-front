@@ -1,18 +1,24 @@
-.form {
-  width: 70%;
-  margin-top: 50px;
+.loginContainer {
   display: flex;
-  flex-direction: column;
-  &__input {
-    margin-bottom: 20px;
-    font-size: 14px;
-    border-radius: 10px;
-    text-align: center;
-    padding: 5px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1rem 0 3rem;
+  &__card {
+    width: 100%;
   }
-
-  &__message {
-    color: red;
+  &__line {
+    border: 1px solid black;
+    height: 400px;
+    margin: 0 5rem;
+  }
+  &__text {
+    width: 30%;
+    p {
+      margin: 1rem 0;
+    }
+    h1 {
+      font-size: $titleSize;
+    }
   }
 }
