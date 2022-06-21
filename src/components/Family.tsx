@@ -90,8 +90,10 @@ const Family = () => {
             <img src="/assets/parentsTheme3.png" alt="ParentsThemeImage3" />
           </div>
         </div>
+        <div className="familyContainer__comeBackHome">
+          <ComeBackHome />
+        </div>
       </div>
-      <ComeBackHome />
     </div>
   );
 };

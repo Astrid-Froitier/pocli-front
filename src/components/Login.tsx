@@ -17,10 +17,13 @@ const Login = () => {
         bannerMember={false}
       />
       <div className="loginContainer">
-        <LoginCard />
-        <div className="loginContainer__line"></div>
-        <div className="loginContainer__text">
-          <h1 className="loginContainer__text__title">Devenez adhérent PoCLi</h1>
+        <div className="loginContainer__left">
+          <div className="loginContainer__left__form">
+            <LoginCard />
+          </div>
+        </div>
+        <div className="loginContainer__right">
+          <h1>Devenez adhérent PoCLi</h1>
           <p>Vous souhaitez vous inscrire à l’association, rien de plus simple ! </p>
           <p>Envoyez-nous votre demande via notre formulaire de contact.</p>
           <p>

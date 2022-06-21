@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
 import navLinks_bottom from '../../data/navLinks_bottom';
 import navLinks_top from '../../data/navLinks_top';
 

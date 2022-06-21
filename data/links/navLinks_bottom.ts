@@ -2,17 +2,17 @@ const navLinks_bottom = [
   {
     id: 1,
     path: '/family',
-    title: 'Famille et parentalité',
+    title: 'Famille - Parentalité',
   },
   {
     id: 2,
     path: '/activities',
-    title: 'Activités sportives et Bien-être',
+    title: 'Activités sportives et de Bien-être',
   },
   {
     id: 3,
     path: '/prevention',
-    title: 'Prévention - Action sociale',
+    title: 'Prévention - Action Sociale',
   },
   {
     id: 4,
