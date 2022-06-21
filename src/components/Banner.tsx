@@ -1,8 +1,9 @@
 import React from 'react';
-import IBanner from '../interfaces/IBanner';
-import Icon from './Icon';
-import EventCard from './EventCard';
+
 import events from '../../data/Xevents';
+import IBanner from '../interfaces/IBanner';
+import EventCard from './EventCard';
+import Icon from './Icon';
 
 const Banner = ({
   nameBannerActivity = '',
@@ -17,7 +18,7 @@ const Banner = ({
     <div className={`banner ${nameBannerActivity}`}>
       <h1>{title}</h1>
       <div className="box">
-        {!bannerAbout && !bannerEvent && !bannerMember && <Icon name={nameIcon} />}
+        {!bannerAbout && !bannerEvent && !bannerMember && !memberFilter && <Icon name={nameIcon} />}
         {bannerAbout && (
           <div className="box__about">
             <span>PoCLi,&nbsp;</span>
@@ -30,9 +31,11 @@ const Banner = ({
             <span>en</span>
           </div>
         )}
-        {bannerEvent && <div className="box__event">
-          <EventCard event={events[0]} bannerEvent={bannerEvent} />
-          </div>}
+        {bannerEvent && (
+          <div className="box__event">
+            <EventCard event={events[0]} bannerEvent={bannerEvent} />
+          </div>
+        )}
       </div>
     </div>
   );

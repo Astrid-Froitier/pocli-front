@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 import Icon from './Icon';
@@ -67,8 +68,10 @@ const Prevention = () => {
           <img src="/assets/prevention1.png" alt="Prevention1" />
           <img src="/assets/prevention2.png" alt="Prevention2" />
         </div>
+        <div className="preventionContainer__comeBackHome">
+          <ComeBackHome />
+        </div>
       </div>
-      <ComeBackHome />
     </div>
   );
 };
