@@ -2,7 +2,7 @@ const navLinks_top = [
   {
     id: 1,
     path: '/about',
-    title: 'Qui sommes nous ?',
+    title: 'Qui sommes-nous ?',
     img: '',
   },
   {
@@ -21,7 +21,6 @@ const navLinks_top = [
     id: 4,
     path: '/login',
     title: 'Connexion',
-    // img: '././public/icone_connexion.png',
   },
 ];
 

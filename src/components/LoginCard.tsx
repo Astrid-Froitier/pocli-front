@@ -57,12 +57,15 @@ const LoginCard = () => {
       <form
         className="loginCardContainer"
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => login(e)}>
-        <h1>S'identifier</h1>
+        <h1>S&apos;identifier</h1>
         <div className="loginCardContainer__email">
-          <label className="loginCardContainer__email__title">Email</label>
+          <label htmlFor="email" className="loginCardContainer__email__title">
+            Email
+          </label>
           <input
             className="loginCardContainer__email__input"
             type="text"
+            id="email"
             placeholder="Email"
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               setEmail(e.currentTarget.value)
@@ -71,10 +74,13 @@ const LoginCard = () => {
           />
         </div>
         <div className="loginCardContainer__password">
-          <label className="loginCardContainer__password__title">Mot de passe</label>
+          <label htmlFor="password" className="loginCardContainer__password__title">
+            Mot de passe
+          </label>
           <input
             className="loginCardContainer__password__input"
             type="password"
+            id="password"
             placeholder="Mot de passe"
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               setPassword(e.currentTarget.value)
@@ -83,8 +89,10 @@ const LoginCard = () => {
           />
         </div>
         <div className="loginCardContainer__stayConnected">
-          <input type="checkbox"></input>
-          <label className="loginCardContainer__stayConnected__title">
+          <input id="stayConnected" type="checkbox"></input>
+          <label
+            htmlFor="stayConnected"
+            className="loginCardContainer__stayConnected__title">
             Rester connecté
           </label>
         </div>
