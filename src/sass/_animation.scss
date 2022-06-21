@@ -2,24 +2,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: $marginBoxTopAndBottom;
   width: 100%;
   &__sentenceList {
-    width: 80%;
+    width: $pageContentWidth;
     font-size: $textSize;
     font-weight: $fontBold;
     font-style: italic;
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
   }
   &__list {
     margin: 1rem;
-    width: 80%;
+    width: $pageContentWidth;
     display: flex;
     gap: 1rem;
   }
   &__pictures {
-    width: 80%;
+    width: $pageContentWidth;
     margin: 4rem 0;
     display: flex;
     justify-content: space-between;
+  }
+  &__comeBackHome {
+    display: flex;
+    width: $pageContentWidth;
+    justify-content: flex-end;
   }
 }

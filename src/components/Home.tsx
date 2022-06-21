@@ -2,6 +2,7 @@ import React from 'react';
 
 import events from '../../data/Xevents';
 import Banner from './Banner';
+import Button from './Button';
 import EventCard from './EventCard';
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
           )}
         </div>
       </div>
+      <Button text="TOUS LES EVENEMENTS" />
     </div>
   );
 };

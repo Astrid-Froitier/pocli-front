@@ -1,0 +1,58 @@
+.messagingTitle {
+  font-size: $titleSize;
+  font-weight: $fontExtraBold;
+  margin-bottom: 2rem;
+  color: $colorText-2;
+}
+
+.messagingContainer {
+  background-color: $backGround-2;
+  display: flex;
+  margin: 1rem 3rem;
+  border-radius: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 92.5%;
+  &__left {
+    display: flex;
+    border-right: 3px solid black;
+    width: 20%;
+    flex-direction: column;
+    &__newMessage {
+      text-align: center;
+      padding: 1rem;
+      color: $colorText-2;
+      font-size: $categorySize;
+      font-weight: $fontBold;
+      background-color: white;
+      border-radius: 1rem;
+      margin: 1rem;
+    }
+    &__menu {
+      p {
+        margin: 3rem 1rem;
+        font-weight: $fontBold;
+        color: $colorText-2;
+      }
+    }
+  }
+  &__familyMember {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .icon {
+        cursor: pointer;
+        &:hover {
+          fill: white;
+        }
+      }
+      p {
+        color: $colorText-2;
+      }
+    }
+  }
+}

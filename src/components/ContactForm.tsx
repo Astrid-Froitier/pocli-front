@@ -1,4 +1,5 @@
-import axios from 'axios';
+// import axios from 'axios';
+
 import React, { useState } from 'react';
 
 const ContactForm = () => {
@@ -16,6 +17,7 @@ const ContactForm = () => {
     setCheckedOne(true);
     setCheckedTwo(false);
     setCivility('Monsieur');
+    civility;
   };
 
   const handleChangeTwo = () => {
@@ -48,28 +50,28 @@ const ContactForm = () => {
     setMessage(word);
   };
 
-  const handleSubmitMail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    axios.post('http://localhost:3000/', {
-      civility: civility,
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
-      object: object,
-      message: message,
-    });
-    setCivility('');
-    setFirstname('');
-    setLastname('');
-    setEmail('');
-    setObject('');
-    setMessage('');
-  };
+  // const handleSubmitMail = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   axios.post('http://localhost:3000/', {
+  //     civility: civility,
+  //     firstname: firstname,
+  //     lastname: lastname,
+  //     email: email,
+  //     object: object,
+  //     message: message,
+  //   });
+  //   setCivility('');
+  //   setFirstname('');
+  //   setLastname('');
+  //   setEmail('');
+  //   setObject('');
+  //   setMessage('');
+  // };
 
   return (
     <div className="contactFormContainer">
       <div className="contactFormContainer__civility">
-        <label className="contactFormContainer__civility__title">
+        <label htmlFor="civility" className="contactFormContainer__civility__title">
           Civilité <span>*</span>
         </label>
         <div className="contactFormContainer__civility__checkbox">
@@ -77,9 +79,12 @@ const ContactForm = () => {
             <input
               className="contactFormContainer__civility__checkbox__madam__input"
               type="radio"
+              key="madam"
               checked={checkedOne}
               onChange={handleChangeOne}></input>
-            <label className="contactFormContainer__civility__checkbox__madam__label">
+            <label
+              htmlFor="madam"
+              className="contactFormContainer__civility__checkbox__madam__label">
               Madame
             </label>
           </div>
@@ -88,9 +93,12 @@ const ContactForm = () => {
               className="contactFormContainer__civility__checkbox__mister__input"
               type="radio"
               checked={checkedTwo}
+              key="monsieur"
               value="Monsieur"
               onChange={handleChangeTwo}></input>
-            <label className="contactFormContainer__civility__checkbox__mister__label">
+            <label
+              htmlFor="monsieur"
+              className="contactFormContainer__civility__checkbox__mister__label">
               Monsieur
             </label>
           </div>
@@ -98,53 +106,60 @@ const ContactForm = () => {
       </div>
       <div className="contactFormContainer__name">
         <div className="contactFormContainer__name__lastname">
-          <label className="contactFormContainer__name__lastname__label">
+          <label htmlFor="name" className="contactFormContainer__name__lastname__label">
             Nom <span>*</span>
           </label>
           <input
             className="contactFormContainer__name__lastname__input"
             type="text"
+            key="name"
             onChange={(e) => handleLastname(e.target.value)}
             value={lastname}></input>
         </div>
         <div className="contactFormContainer__name__firstname">
-          <label className="contactFormContainer__name__firstname__label">
+          <label
+            htmlFor="firstname"
+            className="contactFormContainer__name__firstname__label">
             Prénom <span>*</span>
           </label>
           <input
             className="contactFormContainer__name__firstname__input"
             type="text"
+            key="firsname"
             onChange={(e) => handleFirstname(e.target.value)}
             value={firstname}></input>
         </div>
       </div>
       <div className="contactFormContainer__email">
-        <label className="contactFormContainer__email__label">
+        <label htmlFor="email" className="contactFormContainer__email__label">
           Adresse e-mail <span>*</span>
         </label>
         <input
           className="contactFormContainer__email__input"
           type={email}
+          key="email"
           onChange={(e) => handleEmail(e.target.value)}
           value={email}></input>
       </div>
       <div className="contactFormContainer__object">
-        <label className="contactFormContainer__object__label">
+        <label htmlFor="object" className="contactFormContainer__object__label">
           Objet <span>*</span>
         </label>
         <input
           className="contactFormContainer__object__input"
           type="text"
+          key="object"
           onChange={(e) => handleObject(e.target.value)}
           value={object}></input>
       </div>
       <div className="contactFormContainer__message">
-        <label className="contactFormContainer__message__label">
+        <label htmlFor="message" className="contactFormContainer__message__label">
           Message <span>*</span>
         </label>
         <input
           className="contactFormContainer__message__input"
           type="text"
+          key="message"
           onChange={(e) => handleMessage(e.target.value)}
           value={message}></input>
       </div>
@@ -157,9 +172,10 @@ const ContactForm = () => {
             className="contactFormContainer__data__checkbox__input"
             type="checkbox"
             value="rgpd"
+            key="rgpd"
             onChange={() => handlePolicy}></input>
-          <label className="contactFormContainer__data__checkbox__label">
-            J'ai lu et j'accepte la Politique de confidentialité de PoCLi.
+          <label htmlFor="rgpd" className="contactFormContainer__data__checkbox__label">
+            J&apos;ai lu et j&apos;accepte la Politique de confidentialité de PoCLi.
           </label>
           <h2 className="contactFormContainer__data__checkbox__consult">Consulter</h2>
         </div>
