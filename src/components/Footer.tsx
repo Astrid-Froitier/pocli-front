@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import navLinks_bottom from '../../data/navLinks_bottom';
-import navLinks_top from '../../data/navLinks_top';
+import {navLinks_top , navLinks_bottom} from '../../data/links'
 
 const Footer = () => {
   return (
@@ -17,7 +16,6 @@ const Footer = () => {
                 to={link.path}>
                 <li className="footerContainer__footerLinks__footerLinksTop__a__li">
                   {link.title}
-                  {link.img}
                 </li>
               </NavLink>
             ))}
