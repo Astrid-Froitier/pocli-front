@@ -1,3 +1,26 @@
+const navLinks_top = [
+  {
+    id: 1,
+    path: '/about',
+    title: 'Qui sommes-nous ?',
+  },
+  {
+    id: 2,
+    path: '/events',
+    title: 'Evènements',
+  },
+  {
+    id: 3,
+    path: '/contact',
+    title: 'Contact',
+  },
+  {
+    id: 4,
+    path: '/login',
+    title: 'Connexion',
+  },
+];
+
 const navLinks_bottom = [
   {
     id: 1,
@@ -21,4 +44,4 @@ const navLinks_bottom = [
   },
 ];
 
-export default navLinks_bottom;
+export  {navLinks_bottom , navLinks_top};
