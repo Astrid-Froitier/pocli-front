@@ -27,11 +27,7 @@ const NavBar = () => {
                 </li>
               </NavLink>
             ))}
-            <img
-              width={20}
-              src="./assets/icone_connexion.png"
-              alt="icone's connexion"
-            />
+            <img width={20} src="./assets/icone_connexion.png" alt="icone's connexion" />
           </div>
 
           <div className="navBar__links__linksBottom">

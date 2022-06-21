@@ -4,15 +4,16 @@
     align-items: center;
     width: 100%;
     &__events{
-        width: 80%;
+        width: 1028px;
         margin: $marginBoxTopAndBottom;
         &__list{
+            width: 100%;
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
             gap: 40px;
-            justify-content: center;
             &__card{
-                width: 450px;
+                width: 430px;
             }
         }
     }

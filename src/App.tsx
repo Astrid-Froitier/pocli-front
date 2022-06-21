@@ -9,6 +9,7 @@ import Animation from './components/Animation';
 import Contact from './components/Contact';
 import Events from './components/Events';
 import Family from './components/Family';
+import Footer from './components/Footer';
 // import AddressList from './components/AddressList';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -16,7 +17,6 @@ import NavBar from './components/NavBar';
 import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
 import { CurrentTestContextProvider } from './contexts/CurrentTest';
-import Footer from './components/Footer';
 
 function App() {
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
-import Icon from './Icon';
 import { NavLink } from 'react-router-dom';
+
+import Icon from './Icon';
 
 const ComeBackHome = () => {
   return (
