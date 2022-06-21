@@ -55,8 +55,7 @@ const events = [
     id: 5,
     numberParticipantsMax: 10,
     date: '12/12/12',
-    description:
-      'Hello man',
+    description: 'Hello man',
     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis libero ipsa Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis libero ipsa Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis libero ipsa Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis libero ipsa Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis libero ipsa Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis libero ipsa',
     podcastLink: '',
     reservedAdherent: true,

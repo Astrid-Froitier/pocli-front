@@ -1,4 +1,5 @@
 import React from 'react';
+
 import IButton from '../interfaces/IButton';
 
 const Button = ({ text }: IButton) => {

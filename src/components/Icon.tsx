@@ -1,4 +1,5 @@
 import React from 'react';
+
 import IIcon from '../interfaces/IIcon';
 
 const Icon = ({ name, width = '100px', height, color }: IIcon) => {
