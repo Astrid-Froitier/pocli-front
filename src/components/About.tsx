@@ -6,8 +6,8 @@ import ComeBackHome from './ComeBackHome';
 
 const about = () => {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Banner
