@@ -2,34 +2,33 @@ const theCrew = [
   {
     id: 1,
     name: 'Sandrine LARMET',
-    image: '../public/associationMembers/Sandrine.jpg',
+    image: '/associationMembers/Sandrine.jpg',
   },
   {
     id: 2,
     name: 'Marie-Françoise PARENTEAU',
-    image: '../public/associationMembers/Marie Françoise.jpg',
+    image: '/associationMembers/Marie Françoise.jpg',
   },
   {
     id: 3,
     name: 'Amandine SOLER',
-    image: '../public/associationMembers/Amandine.jpg',
+    image: '/associationMembers/Amandine.jpg',
     status: 'Secrétaire',
   },
   {
     id: 4,
     name: 'Sylvie POMMIER',
-    image: '../public/associationMembers/Sylvie1.jpg',
+    image: '/associationMembers/Sylvie1.jpg',
     status: '',
   },
   {
     id: 5,
     name: 'Alexia DHELIN',
-    status: '',
   },
   {
     id: 6,
     name: 'Michaël HOUSSIER',
-    image: '../public/associationMembers/Mika.JPG',
+    image: '/associationMembers/Mika.JPG',
     status: 'Président',
   },
   {
@@ -74,22 +73,22 @@ const partners = [
   {
     id: 8,
     name: 'St Quentin de Baron',
-    image: '../public/assets/Mairie de St Quentin de B.png',
+    image: '/assets/Mairie de St Quentin de B.png',
   },
   {
     id: 9,
     name: 'Espiet',
-    image: '../public/assets/Mairie Espiet.png',
+    image: '/assets/Mairie Espiet.png',
   },
   {
     id: 10,
     name: 'Nerigean',
-    image: '../public/assets/Nérigean.jpg',
+    image: '/assets/Nérigean.jpg',
   },
   {
     id: 11,
     name: 'Ville de Branne',
-    image: '../public/assets/Branne.png',
+    image: '/assets/Branne.png',
   },
 ];
 

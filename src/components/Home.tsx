@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import events from '../../data/Xevents';
+
 import aboutNumbers from '../../data/aboutNumbers';
+import { navLinks_bottom } from '../../data/links';
+import events from '../../data/Xevents';
+import ActivityCard from './ActivityCard';
 import Banner from './Banner';
-import Icon from './Icon';
 import Button from './Button';
 import EventCard from './EventCard';
-import ActivityCard from './ActivityCard';
-import { navLinks_bottom } from '../../data/links';
+import Icon from './Icon';
 
 const Home = () => {
   const [onClickNewsletter, setOnClickNewsletter] = useState(false);
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="home">
       <Banner
@@ -140,4 +141,3 @@ export default Home;
 function componentDidUpdate() {
   throw new Error('Function not implemented.');
 }
-

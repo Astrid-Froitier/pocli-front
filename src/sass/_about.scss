@@ -7,6 +7,7 @@
 
   &__header {
     width: $pageContentWidth;
+    padding-bottom: 2rem;
     h1 {
       font-size: $textSize;
       margin: 1.5rem 0 1.5rem;
@@ -16,6 +17,23 @@
     }
     &__secondText {
       margin: 1.5rem 0 1.5rem;
+    }
+  }
+  &__associationMembers {
+    width: $pageContentWidth;
+    &__cards {
+      display: flex;
+      gap: 2rem;
+
+      &--img {
+        border-radius: 5%;
+      }
+
+      &--name {
+        display: flex;
+        text-align: center;
+        max-width: fit-content;
+      }
     }
   }
 
