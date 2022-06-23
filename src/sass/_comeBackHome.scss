@@ -13,6 +13,34 @@
       text-decoration: underline;
     }
   }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 49px;
+    height: 49px;
+    clip-path: circle(50%);
+    background-color: $arrow;
+  }
+}
+
+.bigComeBackHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  text-decoration: none;
+  h1 {
+    font-size: $titleSize;
+    color: $colorText-2;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &__arrow {
     display: flex;
     align-items: center;

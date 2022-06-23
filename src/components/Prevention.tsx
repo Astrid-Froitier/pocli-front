@@ -29,13 +29,25 @@ const Prevention = () => {
           <p>En partenariat avec le CCAS de St Quentin de Baron.</p>
           <div className="preventionContainer__visit__description">
             <div className="preventionContainer__visit__description__firstPoint">
-              <Icon name="arrow-right" width="50px" height="40px" color="#b02418" />
+              <Icon
+                name="arrow-right"
+                width="40px"
+                height="40px"
+                color="#b02418"
+                opacity={0.6}
+              />
               <p className="preventionContainer__visit__description__firstPoint__text">
                 Pour garder le lien avec les personnes isolées de la commune.
               </p>
             </div>
             <div className="preventionContainer__visit__description__secondPoint">
-              <Icon name="arrow-right" width="50px" height="40px" color="#b02418" />
+              <Icon
+                name="arrow-right"
+                width="40px"
+                height="40px"
+                color="#b02418"
+                opacity={0.6}
+              />
               <p className="preventionContainer__visit__description__secondPoint__text">
                 Rencontres régulières pour passer un moment convivial et garder un lien
                 social.
@@ -50,13 +62,25 @@ const Prevention = () => {
           </p>
           <div className="preventionContainer__meeting__description">
             <div className="preventionContainer__meeting__description__firstPoint">
-              <Icon name="arrow-right" width="50px" height="40px" color="#b02418" />
+              <Icon
+                name="arrow-right"
+                width="40px"
+                height="40px"
+                color="#b02418"
+                opacity={0.6}
+              />
               <p className="preventionContainer__meeting__description__firstPoint__text">
                 Pour lutter contre l’isolement des Séniors avec les enfants.
               </p>
             </div>
             <div className="preventionContainer__meeting__description__secondPoint">
-              <Icon name="arrow-right" width="50px" height="40px" color="#b02418" />
+              <Icon
+                name="arrow-right"
+                width="40px"
+                height="40px"
+                color="#b02418"
+                opacity={0.6}
+              />
               <p className="preventionContainer__meeting__description__secondPoint__text">
                 Temps de rencontres entre les séniors isolés du territoire et les enfants
                 des accueils de loisirs de Quentin de Baron et Grézillac.

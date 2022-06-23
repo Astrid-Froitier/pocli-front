@@ -33,14 +33,26 @@ const Family = () => {
           <h1>Les Ateliers Part’Ages</h1>
           <div className="familyContainer__workshop__description">
             <div className="familyContainer__workshop__description__firstPoint">
-              <Icon name="arrow-right" width="50px" height="40px" color="#8bafcf" />
+              <Icon
+                name="arrow-right"
+                width="50px"
+                height="40px"
+                color="#8bafcf"
+                opacity={0.6}
+              />
               <p className="familyContainer__workshop__description__firstPoint__text">
                 Moment convivial autour d’une activité partagée : découverte sensorielle,
                 motricité, éveil musical, contes, activité manuelle, sortie nature, …
               </p>
             </div>
             <div className="familyContainer__workshop__description__secondPoint">
-              <Icon name="arrow-right" width="40px" height="40px" color="#8bafcf" />
+              <Icon
+                name="arrow-right"
+                width="40px"
+                height="40px"
+                color="#8bafcf"
+                opacity={0.6}
+              />
               <p className="familyContainer__workshop__description__secondPoint__text">
                 Temps de rencontres intergénérationnelles pour les enfants de 0 à 12 ans
                 et leurs parents et/ou grands parents.
@@ -90,7 +102,7 @@ const Family = () => {
             <img src="/assets/parentsTheme3.png" alt="ParentsThemeImage3" />
           </div>
         </div>
-        <div className="familyContainer__comeBackHome">
+        <div className="comeBackHome">
           <ComeBackHome />
         </div>
       </div>
