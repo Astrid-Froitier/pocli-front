@@ -44,4 +44,4 @@ const navLinks_bottom = [
   },
 ];
 
-export  {navLinks_bottom , navLinks_top};
+export { navLinks_bottom, navLinks_top };

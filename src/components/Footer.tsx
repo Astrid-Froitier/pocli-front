@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {navLinks_top , navLinks_bottom} from '../../data/links'
+
+import { navLinks_bottom, navLinks_top } from '../../data/links';
 
 const Footer = () => {
   return (
@@ -21,7 +22,7 @@ const Footer = () => {
             ))}
         </div>
         <div className="footerContainer__footerLinks__footerLinksBottom">
-          <h4>Pôles d'activité</h4>
+          <h4>Pôles d`&apos;`activité</h4>
           {navLinks_bottom &&
             navLinks_bottom.map((link) => (
               <NavLink
