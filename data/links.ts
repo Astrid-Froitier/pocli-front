@@ -26,21 +26,25 @@ const navLinks_bottom = [
     id: 1,
     path: '/family',
     title: 'Famille - Parentalité',
+    icon: "users",
   },
   {
     id: 2,
     path: '/activities',
     title: 'Activités sportives et de Bien-être',
+    icon: "person-running",
   },
   {
     id: 3,
     path: '/prevention',
     title: 'Prévention - Action Sociale',
+    icon: "hand-holding-heart",
   },
   {
     id: 4,
     path: '/animation',
     title: 'Animation locale',
+    icon: "compass",
   },
 ];
 
@@ -86,3 +90,4 @@ const footerLinks_mention = [
 ];
 
 export { navLinks_bottom, navLinks_top, footerLinks_pocli, footerLinks_mention };
+
