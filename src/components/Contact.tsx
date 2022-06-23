@@ -70,8 +70,10 @@ const Contact = () => {
           </div>
         </div>
         <ContactForm />
+        <div className="comeBackHome">
+          <ComeBackHome />
+        </div>
       </div>
-      <ComeBackHome />
     </div>
   );
 };

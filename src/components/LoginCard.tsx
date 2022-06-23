@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import CurrentUserContext from '../contexts/CurrentUser';
 import IUser from '../interfaces/IUser';
@@ -97,12 +98,12 @@ const LoginCard = () => {
           </label>
         </div>
         <p className="loginCardContainer__passwordForgot">Mot de passe oublié</p>
-        <div className="loginCardContainer__submit">
+        <NavLink to="/welcome" className="loginCardContainer__submit">
           <Icon name="arrow-right" width="40px" height="40px" color="white" />
           {errorMessage && (
             <span className="loginCardContainer__message">{errorMessage}</span>
           )}
-        </div>
+        </NavLink>
       </form>
     </>
   );

@@ -1,0 +1,46 @@
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: $marginBoxTopAndBottom;
+  width: 100%;
+
+  &__header {
+    width: $pageContentWidth;
+    h1 {
+      font-size: $textSize;
+      margin: 1.5rem 0 1.5rem;
+    }
+    &__firstText {
+      margin: 1.5rem 0 1.5rem;
+    }
+    &__secondText {
+      margin: 1.5rem 0 1.5rem;
+    }
+  }
+  &__partners {
+    width: $pageContentWidth;
+    margin: 3rem 0;
+    h1 {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0 1.5rem;
+    }
+    &__imageMapContainer {
+      gap: 1rem;
+      width: $pageContentWidth;
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      grid-template-rows: 40% 40%;
+      justify-items: center;
+      margin: 3rem 0;
+      height: 300px;
+    }
+  }
+  &__comeBackHome {
+    margin-top: 2rem;
+    display: flex;
+    width: $pageContentWidth;
+    justify-content: flex-end;
+  }
+}

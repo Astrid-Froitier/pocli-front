@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {navLinks_top , navLinks_bottom} from '../../data/links'
+
+import { navLinks_bottom, navLinks_top } from '../../data/links';
 // import CurrentUserContext from '../contexts/CurrentUser';
 import Icon from './Icon';
 
@@ -30,6 +31,7 @@ const NavBar = () => {
                 </li>
               </NavLink>
             ))}
+            <img width={20} src="./assets/icone_connexion.png" alt="icone's connexion" />
           </div>
 
           <div className="navBar__box__links__linksBottom">

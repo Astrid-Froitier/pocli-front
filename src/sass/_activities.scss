@@ -3,27 +3,30 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-
+  margin: $marginBoxTopAndBottom;
   &__preambulContainer {
-    width: 80%;
-    font-size: $textSize;
-    h2 {
-      color: $colorText-2;
-      font-size: 24px;
-      font-weight: 700;
+    width: $pageContentWidth;
+    h1 {
+      font-size: $textSize;
+      font-weight: $fontBold;
       font-style: italic;
-      margin: 2rem 0;
+      margin: 0 0 2rem;
     }
     p {
-      margin-bottom: 5%;
+      margin: 1.5rem 0;
     }
   }
-
   &__pilateContainer {
-    width: 80%;
+    margin-top: 4rem;
+    width: $pageContentWidth;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    h1 {
+      font-size: $categorySize;
+      font-weight: $fontExtraBold;
+      margin-bottom: 2rem;
+    }
 
     &__pilateContainerBloc1,
     &__pilateContainerBloc2 {
@@ -31,111 +34,79 @@
       justify-content: flex-start;
       flex-direction: row;
       align-items: center;
-      padding: 15px 0 15px;
-    }
-
-    &__pilateContainerBloc1 p,
-    &__pilateContainerBloc2 p {
-      padding-left: 3%;
-    }
-
-    h1 {
-      margin-bottom: 3%;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    &__pilateContainerHour {
-      margin: 2% 0 8% 0;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
 
   &__gymSeniorContainer {
-    width: 80%;
+    width: $pageContentWidth;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-
+    margin-top: 4rem;
+    h1 {
+      font-size: $categorySize;
+      font-weight: $fontExtraBold;
+      margin-bottom: 2rem;
+    }
     &__gymSeniorContainerBloc1 {
       display: flex;
       justify-content: flex-start;
       flex-direction: row;
       align-items: center;
-      padding: 15px 0 15px;
-    }
-
-    &__gymSeniorContainerBloc1 p {
-      padding-left: 3%;
-    }
-
-    h1 {
-      margin-bottom: 3%;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    &__gymSeniorHour {
-      margin: 2% 0 8% 0;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
 
   &__gymSoftContainer {
-    width: 80%;
+    margin-top: 4rem;
+    width: $pageContentWidth;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
 
+    h1 {
+      font-size: $categorySize;
+      font-weight: $fontExtraBold;
+      margin-bottom: 2rem;
+    }
     &__gymSoftContainerBloc1 {
       display: flex;
       justify-content: flex-start;
       flex-direction: row;
       align-items: center;
-      padding: 15px 0 15px;
-    }
-
-    &__gymSoftContainerBloc1 p {
-      padding-left: 3%;
-    }
-
-    h1 {
-      margin-bottom: 3%;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    &__gymSoftHour {
-      margin: 2% 0 8% 0;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
 
   &__welfareDuoContainer {
-    width: 80%;
+    margin-top: 4rem;
+    width: $pageContentWidth;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    margin: 5% 0 5% 0;
 
+    h1 {
+      font-size: $categorySize;
+      font-weight: $fontExtraBold;
+      margin-bottom: 2rem;
+    }
     &__welfareDuoContainerBloc1 {
       display: flex;
       justify-content: flex-start;
       flex-direction: row;
       align-items: center;
-      padding: 15px 0 15px;
-    }
-
-    &__welfareDuoContainerBloc1 p {
-      padding-left: 3%;
-    }
-
-    h1 {
-      margin-bottom: 3%;
-      font-size: 28px;
-      font-weight: 700;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
 
   &__welfareContainer {
-    width: 80%;
+    margin-top: 4rem;
+    width: $pageContentWidth;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -146,22 +117,20 @@
       justify-content: flex-start;
       flex-direction: row;
       align-items: center;
-      padding: 15px 0 15px;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
-    &__welfareContainerBloc1 p,
-    &__welfareContainerBloc2 p {
-      padding-left: 3%;
-    }
     h1 {
-      margin-bottom: 3%;
-      font-size: 28px;
-      font-weight: 700;
+      font-size: $categorySize;
+      font-weight: $fontExtraBold;
+      margin-bottom: 2rem;
     }
   }
 
   &__activityPictures {
-    width: 80%;
+    width: $pageContentWidth;
+    margin: 4rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -180,10 +149,4 @@
       width: 45%;
     }
   }
-}
-.activityContainer h1 {
-  font-size: $titleSize;
-}
-.activityContainer p {
-  font-size: $textSize;
 }

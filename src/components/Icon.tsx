@@ -2,7 +2,7 @@ import React from 'react';
 import IIcon from '../interfaces/IIcon';
 import svgs from '../../data/svgs'
 
-const Icon = ({ name, width, height, color }: IIcon) => {
+const Icon = ({ name, width, height, color, opacity }: IIcon) => {
   return (
     <>
       {svgs.map((svg)=> svg.name === name && (
