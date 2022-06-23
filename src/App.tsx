@@ -19,6 +19,7 @@ import TestContext from './components/TestContext';
 import { CurrentTestContextProvider } from './contexts/CurrentTest';
 import WelcomeFamily from './components/WelcomeFamily';
 import AdherentSpace from './components/AdherentSpace';
+import PoliticConf from './components/PoliticConf';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="/activities" element={<Activities />} />
             <Route path="/prevention" element={<Prevention />} />
             <Route path="/animation" element={<Animation />} />
+            <Route path="/politicconf" element={<PoliticConf />} />
           </Routes>
         </CurrentTestContextProvider>
         {/* </main> */}

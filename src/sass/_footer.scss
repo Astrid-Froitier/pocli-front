@@ -61,10 +61,10 @@
   &__mention {
     width: 75%;
 
-    & h6 {
+    &__h6 {
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
     }
   }

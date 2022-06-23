@@ -1,8 +1,7 @@
 import React from 'react';
-
 import Banner from './Banner';
-import ComeBackHome from './ComeBackHome';
 import Icon from './Icon';
+import ComeBackHome from './ComeBackHome';
 
 const Activities = () => {
   return (
