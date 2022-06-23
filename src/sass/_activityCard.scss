@@ -1,0 +1,103 @@
+.activityCard {
+  position: sticky;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  border-radius: 40px;
+  background-image: url('/assets/activity-card.png');
+  ::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -4;
+    opacity: 0.6;
+    border-radius: 40px;
+  }
+  h2 {
+    font-family: $fontFamily;
+    font-size: calc($textSize * 1.34);
+    font-weight: $fontExtraBold;
+    color: $colorText-3;
+    align-self: center;
+    margin: 0 20px;
+    text-align: center;
+  }
+  &__iconBottom {
+    align-self: flex-end;
+  }
+  &__iconTop,
+  &__iconBottom {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 101px;
+    height: 101px;
+    clip-path: circle(50%);
+  }
+
+  // THE STYLE ADAPTS TO THE ACTIVITY
+  &.family {
+    ::before {
+      background-color: $bluePocli;
+    }
+  }
+  &.activities {
+    ::before {
+      background-color: $greenPocli;
+    }
+  }
+  &.prevention {
+    ::before {
+      background-color: $redPocli;
+    }
+  }
+  &.animation {
+    ::before {
+      background-color: $yellowPocli;
+    }
+  }
+  &__iconTop.family,
+  &__iconBottom.family {
+    background-color: $bluePocli;
+  }
+  &__iconTop.family {
+    .icon {
+      width: 70px;
+    }
+  }
+  &__iconTop.activities,
+  &__iconBottom.activities {
+    background-color: $greenPocli;
+  }
+  &__iconTop.activities {
+    .icon {
+      width: 56px;
+    }
+  }
+  &__iconTop.prevention,
+  &__iconBottom.prevention {
+    background-color: $redPocli;
+  }
+  &__iconTop.prevention {
+    .icon {
+      width: 60px;
+    }
+  }
+  &__iconTop.animation,
+  &__iconBottom.animation {
+    background-color: $yellowPocli;
+  }
+  &__iconTop.animation {
+    .icon {
+      width: 70px;
+    }
+  }
+}

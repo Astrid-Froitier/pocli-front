@@ -1,5 +1,6 @@
 .navBar {
   position: fixed;
+  z-index: 999;
   top: 0;
   height: 200px;
   width: 100%;
@@ -57,9 +58,10 @@
             align-items: center;
             padding: 10px;
             gap: 8px;
+            border-radius: 0.75rem;
+            max-height: 20px;
+            transition: all 0.3s;
             &:hover {
-              max-height: 20px;
-              border-radius: 0.75rem;
               background-color: $colorText-1;
               color: white;
               .icon {
