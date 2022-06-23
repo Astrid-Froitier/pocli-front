@@ -1,8 +1,8 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
-import { NavLink } from 'react-router-dom';
 
 const WelcomeFamily = () => {
   return (

@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import events from '../../data/Xevents';
+
 import aboutNumbers from '../../data/aboutNumbers';
+import { navLinks_bottom } from '../../data/links';
+import events from '../../data/Xevents';
+import ActivityCard from './ActivityCard';
 import Banner from './Banner';
-import Icon from './Icon';
 import Button from './Button';
 import EventCard from './EventCard';
-import ActivityCard from './ActivityCard';
-import { navLinks_bottom } from '../../data/links';
+import Icon from './Icon';
 
 const Home = () => {
   const [onClickNewsletter, setOnClickNewsletter] = useState(false);
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="home">
       <Banner
@@ -84,7 +85,7 @@ const Home = () => {
         </div>
       </div>
       <div className="home__activities">
-        <h1>Nos domaines d'activité</h1>
+        <h1>Nos domaines d&apos;activité</h1>
         <div className="home__activities__box">
           {navLinks_bottom.map((link, index) => (
             <NavLink to={link.path} key={index}>
@@ -107,7 +108,10 @@ const Home = () => {
               <p>Pour rester informer sur les activités de PoCLi</p>
               <div
                 className="home__newsletter__box__button"
-                onClick={() => setOnClickNewsletter(true)}>
+                onClick={() => setOnClickNewsletter(true)}
+                onKeyDown={() => setOnClickNewsletter(true)}
+                role="button"
+                tabIndex={0}>
                 <Button text="S'INSCRIRE À LA NEWSLETTER" />
               </div>
             </>
@@ -125,7 +129,10 @@ const Home = () => {
               </form>
               <div
                 className="home__newsletter__box__button"
-                onClick={() => setOnClickNewsletter(false)}>
+                onClick={() => setOnClickNewsletter(false)}
+                onKeyDown={() => setOnClickNewsletter(false)}
+                role="button"
+                tabIndex={0}>
                 <Button text="ENVOYER" />
               </div>
             </>
@@ -137,7 +144,3 @@ const Home = () => {
 };
 
 export default Home;
-function componentDidUpdate() {
-  throw new Error('Function not implemented.');
-}
-
