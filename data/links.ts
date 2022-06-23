@@ -85,5 +85,4 @@ const footerLinks_mention = [
   },
 ];
 
-export { navLinks_bottom, navLinks_top, footerLinks_pocli, footerLinks_mention };
-
+export { footerLinks_mention, footerLinks_pocli, navLinks_bottom, navLinks_top };

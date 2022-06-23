@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import {
-  navLinks_bottom,
-  footerLinks_pocli,
   footerLinks_mention,
+  footerLinks_pocli,
+  navLinks_bottom,
 } from '../../data/links';
 import Icon from './Icon';
 
