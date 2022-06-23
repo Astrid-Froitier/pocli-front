@@ -85,7 +85,7 @@ const Home = () => {
         </div>
       </div>
       <div className="home__activities">
-        <h1>Nos domaines d'activité</h1>
+        <h1>Nos domaines d&apos;activité</h1>
         <div className="home__activities__box">
           {navLinks_bottom.map((link, index) => (
             <NavLink to={link.path} key={index}>
@@ -108,7 +108,10 @@ const Home = () => {
               <p>Pour rester informer sur les activités de PoCLi</p>
               <div
                 className="home__newsletter__box__button"
-                onClick={() => setOnClickNewsletter(true)}>
+                onClick={() => setOnClickNewsletter(true)}
+                onKeyDown={() => setOnClickNewsletter(true)}
+                role="button"
+                tabIndex={0}>
                 <Button text="S'INSCRIRE À LA NEWSLETTER" />
               </div>
             </>
@@ -126,7 +129,10 @@ const Home = () => {
               </form>
               <div
                 className="home__newsletter__box__button"
-                onClick={() => setOnClickNewsletter(false)}>
+                onClick={() => setOnClickNewsletter(false)}
+                onKeyDown={() => setOnClickNewsletter(false)}
+                role="button"
+                tabIndex={0}>
                 <Button text="ENVOYER" />
               </div>
             </>
@@ -138,6 +144,3 @@ const Home = () => {
 };
 
 export default Home;
-function componentDidUpdate() {
-  throw new Error('Function not implemented.');
-}
