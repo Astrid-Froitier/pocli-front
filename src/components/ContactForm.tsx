@@ -67,7 +67,6 @@ const ContactForm = () => {
   //   setObject('');
   //   setMessage('');
   // };
-
   return (
     <div className="contactFormContainer">
       <div className="contactFormContainer__civility">

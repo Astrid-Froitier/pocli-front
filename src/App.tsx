@@ -17,6 +17,7 @@ import NavBar from './components/NavBar';
 import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
 import { CurrentTestContextProvider } from './contexts/CurrentTest';
+import PoliticConf from './components/PoliticConf';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/activities" element={<Activities />} />
             <Route path="/prevention" element={<Prevention />} />
             <Route path="/animation" element={<Animation />} />
+            <Route path="/politicconf" element={<PoliticConf />} />
           </Routes>
         </CurrentTestContextProvider>
         {/* </main> */}
