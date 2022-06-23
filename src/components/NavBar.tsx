@@ -1,9 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
-import navLinks_bottom from '../../data/links/navLinks_bottom';
+import {navLinks_top , navLinks_bottom} from '../../data/links'
 // import CurrentUserContext from '../contexts/CurrentUser';
-import navLinks_top from '../../data/links/navLinks_top';
 import Icon from './Icon';
 
 const NavBar = () => {

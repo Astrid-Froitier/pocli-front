@@ -18,7 +18,9 @@ const Banner = ({
     <div className={`banner ${nameBannerActivity}`}>
       <h1>{title}</h1>
       <div className="box">
-        {!bannerAbout && !bannerEvent && !bannerMember && !memberFilter && <Icon name={nameIcon} />}
+        {!bannerAbout && !bannerEvent && !bannerMember && !memberFilter && (
+          <Icon name={nameIcon} />
+        )}
         {bannerAbout && (
           <div className="box__about">
             <span>PoCLi,&nbsp;</span>
