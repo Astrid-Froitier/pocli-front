@@ -1,9 +1,13 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import Banner from './Banner';
 import Icon from './Icon';
 import ComeBackHome from './ComeBackHome';
 
 const Activities = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="">
       <Banner

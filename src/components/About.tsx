@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { partners } from '../../data/Xcrew';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 
 const about = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div>
       <Banner
