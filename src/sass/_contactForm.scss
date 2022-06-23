@@ -1,6 +1,6 @@
 .contactFormContainer {
-  margin: 3rem 0 3rem;
-  width: 80%;
+  margin: $marginBoxTopAndBottom;
+  width: $pageContentWidth;
   max-height: fit-content;
   display: flex;
   flex-direction: column;

@@ -39,9 +39,51 @@ const navLinks_bottom = [
   },
   {
     id: 4,
-    path: 'animation',
+    path: '/animation',
     title: 'Animation locale',
   },
 ];
 
-export { navLinks_bottom, navLinks_top };
+const footerLinks_pocli = [
+  {
+    id: 1,
+    path: '/',
+    title: 'Acceuil',
+  },
+  {
+    id: 2,
+    path: '/about',
+    title: 'Qui sommes-nous ?',
+  },
+  {
+    id: 3,
+    path: '/events',
+    title: 'Evènements',
+  },
+  {
+    id: 4,
+    path: '/login',
+    title: 'Espace adhérant',
+  },
+  {
+    id: 5,
+    path: '/contact',
+    title: 'Contact',
+  },
+];
+
+const footerLinks_mention = [
+  {
+    id: 1,
+    path: '/politicconf',
+    title: 'Politique de confidentialité',
+  },
+  {
+    id: 2,
+    path: '/about',
+    title: 'Qui sommes-nous ?',
+  },
+];
+
+export { navLinks_bottom, navLinks_top, footerLinks_pocli, footerLinks_mention };
+
