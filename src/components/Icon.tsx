@@ -14,6 +14,7 @@ const Icon = ({ name, width, height, color, opacity }: IIcon) => {
               width={width}
               height={height}
               fill={color}
+              opacity={opacity}
               xmlns="http://www.w3.org/2000/svg"
               viewBox={svg.viewBox}>
               <path d={svg.path} />
