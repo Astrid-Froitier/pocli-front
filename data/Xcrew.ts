@@ -1,3 +1,26 @@
+const crewDev = [
+  {
+    id: 1,
+    name: 'Gavin',
+    image: '../public/Crew/gavtof.jpg',
+  },
+  {
+    id: 2,
+    name: 'Frédéric',
+    image: '../public/Crew/Fred.jpg',
+  },
+  {
+    id: 3,
+    name: 'Lucas',
+    image: '../public/Crew/luka.jpg',
+  },
+  {
+    id: 4,
+    name: 'Astrid',
+    image: '../public/Crew/Astrid.jpg',
+  },
+];
+
 const theCrew = [
   {
     id: 1,
@@ -92,4 +115,4 @@ const partners = [
   },
 ];
 
-export { partners, theCrew };
+export { crewDev, partners, theCrew };
