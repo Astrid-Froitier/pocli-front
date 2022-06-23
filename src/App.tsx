@@ -17,6 +17,8 @@ import NavBar from './components/NavBar';
 import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
 import { CurrentTestContextProvider } from './contexts/CurrentTest';
+import WelcomeFamily from './components/WelcomeFamily';
+import AdherentSpace from './components/AdherentSpace';
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/click" element={<TestContext />} />
             {/* <Route path="/address" element={<AddressList onlyMine={id != 0} />} /> */}
+            <Route path="/adherentSpace" element={<AdherentSpace />} />
+            <Route path="/welcome" element={<WelcomeFamily />} />
             <Route path="/login" element={<Login />} />
             <Route path="/family" element={<Family />} />
             <Route path="/activities" element={<Activities />} />
