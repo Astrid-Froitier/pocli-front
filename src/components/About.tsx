@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { partners } from '../../data/Xcrew';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
+import PartnersList from './PartnersList';
 
 const about = () => {
   return (
@@ -51,16 +51,9 @@ const about = () => {
         </div>
         {/* balise pour rajouter directement les membres de l'association */}
         <div className="aboutContainer__associationMembers"></div>
-        <div className="aboutContainer__partners">
-          <h1>Nos partenaires</h1>
-          {/* map de la data des logos pour qu'ils s'affichent directement sur la page */}
-          <div className="aboutContainer__partners__imageMapContainer">
-            {partners.map((partner, index) => (
-              <img src={partner.image} alt="logo" key={index} height={100} />
-            ))}
-          </div>
+        <div>
+          <PartnersList />
         </div>
-
         <div className="aboutContainer__comeBackHome">
           <ComeBackHome />
         </div>

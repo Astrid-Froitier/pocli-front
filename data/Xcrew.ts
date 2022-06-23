@@ -2,22 +2,23 @@ const theCrew = [
   {
     id: 1,
     name: 'Sandrine LARMET',
-    picture: '',
-    status: '',
+    image: '../public/associationMembers/Sandrine.jpg',
   },
   {
     id: 2,
     name: 'Marie-Françoise PARENTEAU',
-    status: '',
+    image: '../public/associationMembers/Marie Françoise.jpg',
   },
   {
     id: 3,
     name: 'Amandine SOLER',
+    image: '../public/associationMembers/Amandine.jpg',
     status: 'Secrétaire',
   },
   {
     id: 4,
     name: 'Sylvie POMMIER',
+    image: '../public/associationMembers/Sylvie1.jpg',
     status: '',
   },
   {
@@ -28,6 +29,7 @@ const theCrew = [
   {
     id: 6,
     name: 'Michaël HOUSSIER',
+    image: '../public/associationMembers/Mika.JPG',
     status: 'Président',
   },
   {
@@ -72,22 +74,22 @@ const partners = [
   {
     id: 8,
     name: 'St Quentin de Baron',
-    image: '/assets/blason_st_Quentin_de_Baron.png',
+    image: '../public/assets/Mairie de St Quentin de B.png',
   },
   {
     id: 9,
     name: 'Espiet',
-    image: '/assets/espiet.jpeg',
+    image: '../public/assets/Mairie Espiet.png',
   },
   {
     id: 10,
     name: 'Nerigean',
-    image: '/assets/nerigean.png',
+    image: '../public/assets/Nérigean.jpg',
   },
   {
     id: 11,
     name: 'Ville de Branne',
-    image: '/assets/ville_de_branne.png',
+    image: '../public/assets/Branne.png',
   },
 ];
 
