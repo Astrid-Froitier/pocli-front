@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import About from './components/About';
 import Activities from './components/Activities';
+import AdherentSpace from './components/AdherentSpace';
 import Animation from './components/Animation';
 import Contact from './components/Contact';
 import Events from './components/Events';
@@ -14,12 +15,11 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
+import PoliticConf from './components/PoliticConf';
 import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
-import { CurrentTestContextProvider } from './contexts/CurrentTest';
 import WelcomeFamily from './components/WelcomeFamily';
-import AdherentSpace from './components/AdherentSpace';
-import PoliticConf from './components/PoliticConf';
+import { CurrentTestContextProvider } from './contexts/CurrentTest';
 
 function App() {
   return (

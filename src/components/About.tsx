@@ -6,8 +6,8 @@ import PartnersList from './PartnersList';
 
 const about = () => {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Banner
