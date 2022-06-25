@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import { theCrew } from '../../data/Xcrew';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 import PartnersList from './PartnersList';
@@ -53,7 +54,28 @@ const about = () => {
           </div>
         </div>
         {/* balise pour rajouter directement les membres de l'association */}
-        <div className="aboutContainer__associationMembers"></div>
+        <div className="aboutContainer__associationMembers">
+          <div className="aboutContainer__associationMembers__cards">
+            {theCrew.map(
+              (crew, index) =>
+                crew.image && (
+                  <div key={index}>
+                    <img
+                      className="aboutContainer__associationMembers__cards--img"
+                      src={crew.image}
+                      key={index}
+                      alt="Members"
+                      height={200}
+                      width={170}
+                    />
+                    <p className="aboutContainer__associationMembers__cards--name">
+                      {crew.name}
+                    </p>
+                  </div>
+                ),
+            )}
+          </div>
+        </div>
         <div>
           <PartnersList />
         </div>
