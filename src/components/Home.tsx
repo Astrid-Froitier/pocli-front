@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
-
 import aboutNumbers from '../../data/aboutNumbers';
 import { navLinks_bottom } from '../../data/links';
 import events from '../../data/Xevents';
@@ -12,9 +12,19 @@ import Icon from './Icon';
 
 const Home = () => {
   const [onClickNewsletter, setOnClickNewsletter] = useState(false);
+  const [emailNewsletter, setEmailNewsletter] = useState({});
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  interface IFormInput {
+    email: String;
+  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
+  const onSubmit: SubmitHandler<IFormInput> = (data) => setEmailNewsletter(data);
   return (
     <div className="home">
       <Banner
@@ -32,8 +42,8 @@ const Home = () => {
             (event, index) =>
               index > 0 &&
               index < 5 && (
-                <div className="home__events__list__card">
-                  <EventCard key={index} event={event} />
+                <div key={index} className="home__events__list__card">
+                  <EventCard event={event} />
                 </div>
               ),
           )}
@@ -106,36 +116,35 @@ const Home = () => {
           {!onClickNewsletter && (
             <>
               <p>Pour rester informer sur les activités de PoCLi</p>
-              <div
-                className="home__newsletter__box__button"
-                onClick={() => setOnClickNewsletter(true)}
-                onKeyDown={() => setOnClickNewsletter(true)}
-                role="button"
-                tabIndex={0}>
-                <Button text="S'INSCRIRE À LA NEWSLETTER" />
-              </div>
+              <button onClick={() => setOnClickNewsletter(true)}>
+                <Button text="S'ABONNER À LA NEWSLETTER" />
+              </button>
             </>
           )}
-          {onClickNewsletter && (
-            <>
-              <form action="">
-                <label htmlFor="email">
-                  Saisissez votre e-mail :
-                  <input id="email" type="text" />
+          {onClickNewsletter && !emailNewsletter.hasOwnProperty('email') && (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div>
+                <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
+                  E-mail :
                 </label>
-                <button type="submit" value="Envoyer">
-                  <Button text="ENVOYER" />
-                </button>
-              </form>
-              <div
-                className="home__newsletter__box__button"
-                onClick={() => setOnClickNewsletter(false)}
-                onKeyDown={() => setOnClickNewsletter(false)}
-                role="button"
-                tabIndex={0}>
-                <Button text="ENVOYER" />
+                <input
+                  {...register('email', {
+                    required: true,
+                    pattern:
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  })}
+                />
+                {errors.email && <p>Champ invalide</p>}
               </div>
-            </>
+              <button onClick={() => setOnClickNewsletter(true)}>
+                <Button text="ENVOYER" />
+              </button>
+            </form>
+          )}
+          {emailNewsletter.hasOwnProperty('email') && (
+            <p>
+              Votre demande d'abonnement à notre newsletter a bien été prise en compte.
+            </p>
           )}
         </div>
       </div>

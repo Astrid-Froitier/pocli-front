@@ -1,5 +1,4 @@
 import React from 'react';
-
 import svgs from '../../data/svgs';
 import IIcon from '../interfaces/IIcon';
 
@@ -7,9 +6,10 @@ const Icon = ({ name, width, height, color, opacity }: IIcon) => {
   return (
     <>
       {svgs.map(
-        (svg) =>
+        (svg, index) =>
           svg.name === name && (
             <svg
+              key={index}
               className="icon"
               width={width}
               height={height}
