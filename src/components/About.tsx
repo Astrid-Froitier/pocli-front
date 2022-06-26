@@ -10,7 +10,7 @@ const about = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div>
+    <div className="about">
       <Banner
         nameBannerActivity=""
         title="Qui sommes-nous ?"
@@ -20,15 +20,31 @@ const about = () => {
         bannerEvent={false}
         bannerMember={false}
       />
-      <div className="aboutContainer">
-        <div className="aboutContainer__header">
-          <h1>PoCLi, POur Créer des LIens, voilà l’essence même de l’association !</h1>
+      <div className="about__aboutContainer">
+        <div className="about__aboutContainer__header">
+          <div className="about__aboutContainer__header__slogan">
+            <span>PoCLi,&nbsp;</span>
+            <span className="about__aboutContainer__header__slogan__blue-pocli-text">
+              PO
+            </span>
+            <span>ur&nbsp;</span>
+            <span className="about__aboutContainer__header__slogan__green-pocli-text">
+              C
+            </span>
+            <span>réer&nbsp;</span>
+            <span>du&nbsp;</span>
+            <span className="about__aboutContainer__header__slogan__red-pocli-text">
+              LI
+            </span>
+            <span>en,&nbsp;</span>
+            <span>voilà l’essence même de l’association !</span>
+          </div>
           <h1>
             PoCLi est un Espace de Vie Sociale, un lieu de rencontres, de partages et
             d’échanges.
           </h1>
 
-          <div className="aboutContainer__header__firstText">
+          <div className="about__aboutContainer__header__firstText">
             <p>Nos objectifs associatifs découlent de notre sigle :</p>
             <p> – Créer du lien entre les personnes,</p>
             <p> – Favoriser l’intégration des habitants sur le territoire,</p>
@@ -37,7 +53,7 @@ const about = () => {
             <p> – Favoriser le bien vivre ensemble,</p>
             <p> – Animer le territoire.</p>
           </div>
-          <div className="aboutContainer__header__secondText">
+          <div className="about__aboutContainer__header__secondText">
             <p>Nos activités s’articulent autour 4 pôles d’activités :</p>
             <p>
               – la famille et la parentalité, – les activités sportives et le bien-être,
@@ -45,7 +61,7 @@ const about = () => {
             <p>– la prévention et l’action sociale,</p>
             <p>– l’animation du territoire.</p>
           </div>
-          <div className="aboutContainer__header__association">
+          <div className="about__aboutContainer__header__association">
             <p>
               L’association emploie 2 salariées. Elle est gouvernée par une équipe de
               bénévoles dynamiques et impliqués. Nous restons à votre écoute pour proposer
@@ -54,32 +70,26 @@ const about = () => {
           </div>
         </div>
         {/* balise pour rajouter directement les membres de l'association */}
-        <div className="aboutContainer__associationMembers">
-          <div className="aboutContainer__associationMembers__cards">
-            {theCrew.map(
-              (crew, index) =>
-                crew.image && (
-                  <div key={index}>
-                    <img
-                      className="aboutContainer__associationMembers__cards--img"
-                      src={crew.image}
-                      key={index}
-                      alt="Members"
-                      height={200}
-                      width={170}
-                    />
-                    <p className="aboutContainer__associationMembers__cards--name">
-                      {crew.name}
-                    </p>
+        <div className="about__aboutContainer__associationMembers">
+          {theCrew.map(
+            (crew, index) =>
+              crew.image && (
+                <div
+                  className="about__aboutContainer__associationMembers__card"
+                  key={index}>
+                  <img src={crew.image} key={index} alt="Members" />
+                  <div className="about__aboutContainer__associationMembers__card__name">
+                    <p>{crew.firstName}</p>
+                    <p>{crew.lastName}</p>
                   </div>
-                ),
-            )}
-          </div>
+                </div>
+              ),
+          )}
         </div>
-        <div>
+        <div className="about__aboutContainer__partners">
           <PartnersList />
         </div>
-        <div className="aboutContainer__comeBackHome">
+        <div className="about__aboutContainer__comeBackHome">
           <ComeBackHome />
         </div>
       </div>

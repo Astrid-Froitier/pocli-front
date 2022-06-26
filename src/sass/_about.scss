@@ -1,46 +1,75 @@
-.aboutContainer {
+.about {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: $marginBoxTopAndBottom;
-  width: 100%;
-
-  &__header {
+  &__aboutContainer {
+    margin: $marginBoxTopAndBottom;
     width: $pageContentWidth;
-    padding-bottom: 2rem;
-    h1 {
+    &__header {
+      width: 100%;
       font-size: $textSize;
-      margin: 1.5rem 0 1.5rem;
+      font-weight: $fontExtraBold;
+      color: $colorText-2;
+      &__slogan{
+        &__blue-pocli-text {
+          color: $bluePocli;
+        }
+        &__green-pocli-text {
+          color: $greenPocli;
+        }
+        &__red-pocli-text {
+          color: $redPocli;
+        }
+      }
+      h1 {
+        font-size: $textSize;
+      }
+      &__firstText {
+        margin: 1.5rem 0 1.5rem;
+      }
+      &__secondText {
+        margin: 1.5rem 0 1.5rem;
+      }
     }
-    &__firstText {
-      margin: 1.5rem 0 1.5rem;
-    }
-    &__secondText {
-      margin: 1.5rem 0 1.5rem;
-    }
-  }
-  &__associationMembers {
-    width: $pageContentWidth;
-    &__cards {
+    &__associationMembers {
+      width: 100%;
+      margin: $marginBoxTopAndBottom;
       display: flex;
-      gap: 2rem;
-
-      &--img {
-        border-radius: 5%;
-      }
-
-      &--name {
+      justify-content: space-between;
+      &__card {
         display: flex;
-        text-align: center;
-        max-width: fit-content;
+        flex-direction: column;
+        img {
+          width: 170px;
+          height: 250px;
+          object-fit: cover;
+          border-radius: 20px 20px 0 0;
+        }
+        &__name {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          background-color: $backGround-2;
+          height: 60px;
+          border-radius: 0 0 20px 20px;
+        }
+        p {
+          font-size: $smallTextSize;
+          font-weight: $fontBold;
+          text-align: center;
+        }
       }
     }
-  }
-
-  &__comeBackHome {
-    margin-top: 2rem;
-    display: flex;
-    width: $pageContentWidth;
-    justify-content: flex-end;
+    &__partners {
+      width: 100%;
+      margin: $marginBoxTopAndBottom;
+      padding-top: 60px;
+    }
+    &__comeBackHome {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }

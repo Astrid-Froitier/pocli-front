@@ -1,4 +1,5 @@
 import React from 'react';
+
 import svgs from '../../data/svgs';
 import IIcon from '../interfaces/IIcon';
 

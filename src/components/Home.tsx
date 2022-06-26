@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
+
 import aboutNumbers from '../../data/aboutNumbers';
 import { navLinks_bottom } from '../../data/links';
 import events from '../../data/Xevents';
@@ -9,6 +10,7 @@ import Banner from './Banner';
 import Button from './Button';
 import EventCard from './EventCard';
 import Icon from './Icon';
+import PartnersList from './PartnersList';
 
 const Home = () => {
   const [onClickNewsletter, setOnClickNewsletter] = useState(false);
@@ -121,32 +123,37 @@ const Home = () => {
               </button>
             </>
           )}
-          {onClickNewsletter && !emailNewsletter.hasOwnProperty('email') && (
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
-                  E-mail :
-                </label>
-                <input
-                  {...register('email', {
-                    required: true,
-                    pattern:
-                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  })}
-                />
-                {errors.email && <p>Champ invalide</p>}
-              </div>
-              <button onClick={() => setOnClickNewsletter(true)}>
-                <Button text="ENVOYER" />
-              </button>
-            </form>
-          )}
-          {emailNewsletter.hasOwnProperty('email') && (
+          {onClickNewsletter &&
+            !Object.getOwnPropertyDescriptor(emailNewsletter, 'email') && (
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div>
+                  <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
+                    E-mail :
+                  </label>
+                  <input
+                    {...register('email', {
+                      required: true,
+                      pattern:
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    })}
+                  />
+                  {errors.email && <p>Champ invalide</p>}
+                </div>
+                <button onClick={() => setOnClickNewsletter(true)}>
+                  <Button text="ENVOYER" />
+                </button>
+              </form>
+            )}
+          {!!Object.getOwnPropertyDescriptor(emailNewsletter, 'email') && (
             <p>
-              Votre demande d'abonnement à notre newsletter a bien été prise en compte.
+              Votre demande d&apos;abonnement à notre newsletter a bien été prise en
+              compte.
             </p>
           )}
         </div>
+      </div>
+      <div className="home__partners">
+        <PartnersList />
       </div>
     </div>
   );
