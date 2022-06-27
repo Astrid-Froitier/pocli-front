@@ -22,8 +22,7 @@ const NavBar = () => {
               <NavLink
                 className="navBar__box__links__linksTop__a"
                 key={link.id}
-                to={link.path}
-              >
+                to={link.path}>
                 <li className="navBar__box__links__linksTop__a__li">
                   {link.title}
                   {link.title === 'Connexion' && (
@@ -39,8 +38,7 @@ const NavBar = () => {
               <NavLink
                 className="navBar__box__links__linksBottom__a"
                 key={link.id}
-                to={link.path}
-              >
+                to={link.path}>
                 <li className="navBar__box__links__linksBottom__a__li">{link.title}</li>
               </NavLink>
             ))}
