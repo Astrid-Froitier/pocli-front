@@ -37,4 +37,11 @@
       }
     }
   }
+  .modal{
+    position: absolute;
+    width: 1000px;
+    width: 1000px;
+    z-index: 800;
+    filter: blur(4px);
+  }
 }

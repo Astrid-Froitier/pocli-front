@@ -10,7 +10,7 @@ const about = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div>
+    <>
       <Banner
         nameBannerActivity=""
         title="Qui sommes-nous ?"
@@ -22,11 +22,21 @@ const about = () => {
       />
       <div className="aboutContainer">
         <div className="aboutContainer__header">
-          <h1>PoCLi, POur Créer des LIens, voilà l’essence même de l’association !</h1>
-          <h1>
-            PoCLi est un Espace de Vie Sociale, un lieu de rencontres, de partages et
-            d’échanges.
-          </h1>
+          <div className="aboutContainer__header__slogan">
+            <span>PoCLi,&nbsp;</span>
+            <span className="aboutContainer__header__slogan__blue-pocli-text">PO</span>
+            <span>ur&nbsp;</span>
+            <span className="aboutContainer__header__slogan__green-pocli-text">C</span>
+            <span>réer&nbsp;</span>
+            <span>du&nbsp;</span>
+            <span className="aboutContainer__header__slogan__red-pocli-text">LI</span>
+            <span>en,&nbsp;</span>
+            <span>voilà l’essence même de l’association !</span>
+            <h1>
+              PoCLi est un Espace de Vie Sociale, un lieu de rencontres, de partages et
+              d’échanges.
+            </h1>
+          </div>
 
           <div className="aboutContainer__header__firstText">
             <p>Nos objectifs associatifs découlent de notre sigle :</p>
@@ -54,38 +64,33 @@ const about = () => {
           </div>
         </div>
         {/* balise pour rajouter directement les membres de l'association */}
-        <div className="aboutContainer">
-          <div className="aboutContainer__associationMembers">
-            {theCrew.map(
-              (crew, index) =>
-                crew.image && (
-                  <div className="aboutContainer__associationMembers__cards" key={index}>
-                    <img
-                      className="aboutContainer__associationMembers__cards__img"
-                      src={crew.image}
-                      key={index}
-                      alt="Members"
-                    />
-                    <div className="aboutContainer__associationMembers__cards__name">
-                      <p>{crew.firstName}</p>
-                      <p>{crew.lastName}</p>
-                    </div>
+        <div className="aboutContainer__associationMembers">
+          {theCrew.map(
+            (crew, index) =>
+              crew.image && (
+                <div className="aboutContainer__associationMembers__card" key={index}>
+                  <img
+                    className="aboutContainer__associationMembers__card__img"
+                    src={crew.image}
+                    key={index}
+                    alt="Members"
+                  />
+                  <div className="aboutContainer__associationMembers__card__name">
+                    <p>{crew.firstName}</p>
+                    <p>{crew.lastName}</p>
                   </div>
-                ),
-            )}
-          </div>
+                </div>
+              ),
+          )}
         </div>
-        <div className="aboutContainer__familyMembers">
-          <familyMembers />
-        </div>
-        <div>
+        <div className="aboutContainer__partners">
           <PartnersList />
         </div>
         <div className="aboutContainer__comeBackHome">
           <ComeBackHome />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
