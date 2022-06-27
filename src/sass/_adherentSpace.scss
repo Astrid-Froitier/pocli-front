@@ -1,0 +1,48 @@
+.adherentSpaceContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: $marginBoxTopAndBottom;
+  &__left {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 7rem;
+
+    width: 450px;
+    p {
+      margin-bottom: 1rem;
+      cursor: pointer;
+      span {
+        font-weight: $fontBold;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    h1 {
+      margin: 0 0 2rem 0;
+      font-size: $titleSize;
+    }
+  }
+  &__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-left: 1px solid $colorText-2;
+    padding-left: 65px;
+    width: 450px;
+    p {
+      margin-bottom: 1rem;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    h1 {
+      margin: 0 0 2rem 0;
+      font-size: $titleSize;
+    }
+  }
+}

@@ -1,8 +1,21 @@
 // import axios from 'axios';
 
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+type FormData = {
+  firstName: string;
+  lastName: string;
+};
 
 const ContactForm = () => {
+  const {
+    // register,
+    // setValue,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm<FormData>();
+  const onSubmit = handleSubmit((data) => console.log(data));
   const [civility, setCivility] = useState('');
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -69,7 +82,7 @@ const ContactForm = () => {
   // };
 
   return (
-    <div className="contactFormContainer">
+    <form className="contactFormContainer" onSubmit={onSubmit}>
       <div className="contactFormContainer__civility">
         <label htmlFor="civility" className="contactFormContainer__civility__title">
           Civilité <span>*</span>
@@ -183,7 +196,7 @@ const ContactForm = () => {
       <button type="submit" className="contactFormContainer__submit">
         ENVOYER
       </button>
-    </div>
+    </form>
   );
 };
 

@@ -3,4 +3,5 @@ export default interface IBanner {
   width?: string;
   height?: string;
   color?: string;
+  opacity?: number;
 }

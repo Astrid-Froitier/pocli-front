@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Banner from './Banner';
 import Button from './Button';
 import LoginCard from './LoginCard';
 
 const Login = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Banner

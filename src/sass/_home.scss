@@ -1,4 +1,4 @@
-.home {
+.homeContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,6 +6,10 @@
   &__events {
     width: $pageContentWidth;
     margin: $marginBoxTopAndBottom;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
     &__list {
       width: 100%;
       display: flex;
@@ -16,5 +20,182 @@
         width: 430px;
       }
     }
+  }
+  &__nonAdherent {
+    margin: $marginBoxTopAndBottom;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: $backGround-2;
+    &__box {
+      width: $pageContentWidth;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &__text {
+        width: 48%;
+        h1 {
+          margin-bottom: 38px;
+        }
+        p {
+          margin-bottom: 24px;
+        }
+      }
+      &__arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 49px;
+        height: 49px;
+        clip-path: circle(50%);
+        background-color: $arrow;
+      }
+      &__button {
+        white-space: nowrap;
+      }
+    }
+  }
+  &__about {
+    width: $pageContentWidth;
+    display: flex;
+    flex-direction: row;
+    margin: $marginBoxTopAndBottom;
+    &__numbers {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-column-gap: 131px;
+      grid-row-gap: 70px;
+      margin-right: 145px;
+      &__box,
+      p {
+        font-family: $fontFamily;
+        font-weight: $fontExtraBold;
+        text-align: center;
+        width: 135px;
+        &__digit {
+          color: $colorText-1;
+          font-size: calc($titleSize * 2);
+        }
+      }
+    }
+    &__text {
+      h1 {
+        margin-bottom: 38px;
+      }
+      p {
+        margin-bottom: 24px;
+      }
+      &__button {
+        div {
+          margin-top: 38px;
+        }
+      }
+    }
+  }
+  &__activities {
+    width: $pageContentWidth;
+    margin: $marginBoxTopAndBottom;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+      margin-bottom: 120px;
+    }
+    &__box{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-column-gap: 128px;
+      grid-row-gap: 128px;
+      &__card {
+        width: 450px;
+        height: 450px;
+        overflow: hidden;
+        border-radius: 40px;
+        .activityCard, .activityCard div{
+          transition: all 400ms ease-out;
+          -webkit-transition: all 400ms ease-out;
+          &:hover, &:hover div{
+            transition: all 400ms ease-in-out;
+            -webkit-transition: all 400ms ease-in-out;
+            transform: scale(1.05);
+            -webkit-transform: scale(1.05);
+            div{
+              transform: scale(0.92);
+              -webkit-transform: scale(0.92);
+            }
+          }
+        }
+      }
+    }
+  }
+  &__newsletter{
+    width: 100%;
+    height: 400px;
+    margin: $marginBoxTopAndBottom;
+    background-image: url('/assets/banner-blue.png');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__box{
+      width: $pageContentWidth;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      img{
+        width: 140px;
+      }
+      p{
+        font-weight: $fontExtraBold;
+      }
+      form{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        font-family: $fontFamily;
+        font-size: $textSize;
+        font-weight: $fontExtraBold;
+        color: $colorText-2;
+        div{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          p{
+            font-size: $smallTextSize;
+            font-weight: $fontBold;
+            color: $colorText-1;
+          }
+        }
+        input{
+          width: 400px;
+          height: 40px;
+          border-radius: 5px;
+          border: 1px solid $colorText-2;
+          font-family: $fontFamily;
+          font-size: $textSize;
+          font-weight: $fontBold;
+          color: $colorText-2;
+          text-align: center;
+        }
+      }
+      button{
+        white-space: nowrap;
+        border: 0px;
+      }
+    }
+  }
+  &__partners{
+    margin: $marginBoxTopAndBottom;
+    width: $pageContentWidth;
   }
 }

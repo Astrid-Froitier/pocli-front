@@ -1,6 +1,5 @@
 .buttonContainer {
   padding: 1rem;
-  margin: 1rem 0;
   max-width: fit-content;
   color: $colorText-3;
   border-radius: 10px;
@@ -9,6 +8,7 @@
   font-family: $fontFamily;
   font-weight: $fontBold;
   background-color: $bluePocli;
+  white-space: nowrap;
   &:hover {
     cursor: pointer;
     text-decoration: underline;

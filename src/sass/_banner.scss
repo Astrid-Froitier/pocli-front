@@ -1,5 +1,5 @@
 .banner {
-  margin-top: 200px;
+  margin-top: 150px;
   position: sticky;
   z-index: -1;
   display: flex;
@@ -27,6 +27,7 @@
     &__about{
       font-size: $titleSize;
       font-weight: $fontExtraBold;
+      color: $colorText-2;
       &__blue-pocli-text{
         color: $bluePocli;
       }
@@ -63,7 +64,7 @@
     }
   }
 
-  // FOR ACTIVITIES
+  // THE STYLE ADAPTS TO THE ACTIVITY
   &.activity {
     background-image: url('/assets/banner-grey.png');
     ::before {

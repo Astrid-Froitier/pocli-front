@@ -9,7 +9,7 @@ export default interface IEventCard {
     reservedAdherent: boolean;
     price?: number;
     idPostType: number;
-    idActivity: number;
+    idActivity?: number;
   };
   bannerEvent?: boolean;
 }

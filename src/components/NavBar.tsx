@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {navLinks_top , navLinks_bottom} from '../../data/links'
+
+import { navLinks_bottom, navLinks_top } from '../../data/links';
 // import CurrentUserContext from '../contexts/CurrentUser';
 import Icon from './Icon';
 
