@@ -54,27 +54,29 @@ const about = () => {
           </div>
         </div>
         {/* balise pour rajouter directement les membres de l'association */}
-        <div className="aboutContainer__associationMembers">
-          <div className="aboutContainer__associationMembers__cards">
+        <div className="aboutContainer">
+          <div className="aboutContainer__associationMembers">
             {theCrew.map(
               (crew, index) =>
                 crew.image && (
-                  <div key={index}>
+                  <div className="aboutContainer__associationMembers__cards" key={index}>
                     <img
-                      className="aboutContainer__associationMembers__cards--img"
+                      className="aboutContainer__associationMembers__cards__img"
                       src={crew.image}
                       key={index}
                       alt="Members"
-                      height={200}
-                      width={170}
                     />
-                    <p className="aboutContainer__associationMembers__cards--name">
-                      {crew.name}
-                    </p>
+                    <div className="aboutContainer__associationMembers__cards__name">
+                      <p>{crew.firstName}</p>
+                      <p>{crew.lastName}</p>
+                    </div>
                   </div>
                 ),
             )}
           </div>
+        </div>
+        <div className="aboutContainer__familyMembers">
+          <familyMembers />
         </div>
         <div>
           <PartnersList />
