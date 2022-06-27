@@ -8,6 +8,7 @@
   font-family: $fontFamily;
   font-weight: $fontBold;
   background-color: $bluePocli;
+  white-space: nowrap;
   &:hover {
     cursor: pointer;
     text-decoration: underline;

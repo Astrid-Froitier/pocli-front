@@ -1,7 +1,6 @@
 // import axios from 'axios';
 
 import React, { useState } from 'react';
-
 import { useForm } from 'react-hook-form';
 
 type FormData = {
@@ -11,10 +10,10 @@ type FormData = {
 
 const ContactForm = () => {
   const {
-    register,
-    setValue,
+    // register,
+    // setValue,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<FormData>();
   const onSubmit = handleSubmit((data) => console.log(data));
   const [civility, setCivility] = useState('');

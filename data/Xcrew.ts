@@ -1,39 +1,46 @@
 const theCrew = [
   {
     id: 1,
-    name: 'Sandrine LARMET',
+    firstName: 'Sandrine',
+    lastName: 'LARMET',
     image: '/associationMembers/Sandrine.jpg',
   },
   {
     id: 2,
-    name: 'Marie-Françoise PARENTEAU',
+    firstName: 'Marie-Françoise',
+    lastName: 'PARENTEAU',
     image: '/associationMembers/Marie Françoise.jpg',
   },
   {
     id: 3,
-    name: 'Amandine SOLER',
+    firstName: 'Amandine',
+    lastName: 'SOLER',
     image: '/associationMembers/Amandine.jpg',
     status: 'Secrétaire',
   },
   {
     id: 4,
-    name: 'Sylvie POMMIER',
+    firstName: 'Sylvie',
+    lastName: 'POMMIER',
     image: '/associationMembers/Sylvie1.jpg',
     status: '',
   },
   {
     id: 5,
-    name: 'Alexia DHELIN',
+    firstName: 'Alexia',
+    lastName: 'DHELIN',
   },
   {
     id: 6,
-    name: 'Michaël HOUSSIER',
+    firstName: 'Michaël',
+    lastName: 'HOUSSIER',
     image: '/associationMembers/Mika.JPG',
     status: 'Président',
   },
   {
     id: 7,
-    name: 'Éléonore AUDET-LAPOINTE',
+    name: 'Éléonore',
+    lastName: 'AUDET-LAPOINTE',
     status: 'Trésorière',
   },
 ];

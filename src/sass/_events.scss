@@ -1,0 +1,40 @@
+.eventsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__filter {
+    width: $pageContentWidth;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    #eventsfilter{
+        border: none;
+        border-radius: 5px;
+        background-color: $backGround-2;
+    }
+  }
+  &__filter , #eventsfilter{
+    font-family: $fontFamily;
+    font-size: $textSize;
+    color: $colorText-2;
+  }
+  &__events {
+    width: $pageContentWidth;
+    margin: $marginBoxTopAndBottom;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__list {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      &__card {
+        width: 430px;
+      }
+    }
+  }
+}
