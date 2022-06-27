@@ -10,7 +10,7 @@ const about = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <>
+    <div>
       <Banner
         nameBannerActivity=""
         title="Qui sommes-nous ?"
@@ -22,17 +22,7 @@ const about = () => {
       />
       <div className="aboutContainer">
         <div className="aboutContainer__header">
-          <div className="aboutContainer__header__slogan">
-            <span>PoCLi,&nbsp;</span>
-            <span className="aboutContainer__header__slogan__blue-pocli-text">PO</span>
-            <span>ur&nbsp;</span>
-            <span className="aboutContainer__header__slogan__green-pocli-text">C</span>
-            <span>réer&nbsp;</span>
-            <span>du&nbsp;</span>
-            <span className="aboutContainer__header__slogan__red-pocli-text">LI</span>
-            <span>en,&nbsp;</span>
-            <span>voilà l’essence même de l’association !</span>
-          </div>
+          <h1>PoCLi, POur Créer des LIens, voilà l’essence même de l’association !</h1>
           <h1>
             PoCLi est un Espace de Vie Sociale, un lieu de rencontres, de partages et
             d’échanges.
@@ -65,27 +55,35 @@ const about = () => {
         </div>
         {/* balise pour rajouter directement les membres de l'association */}
         <div className="aboutContainer__associationMembers">
-          {theCrew.map(
-            (crew, index) =>
-              crew.image && (
-                <div className="aboutContainer__associationMembers__card" key={index}>
-                  <img src={crew.image} key={index} alt="Members" />
-                  <div className="aboutContainer__associationMembers__card__name">
-                    <p>{crew.firstName}</p>
-                    <p>{crew.lastName}</p>
+          <div className="aboutContainer__associationMembers__cards">
+            {theCrew.map(
+              (crew, index) =>
+                crew.image && (
+                  <div key={index}>
+                    <img
+                      className="aboutContainer__associationMembers__cards--img"
+                      src={crew.image}
+                      key={index}
+                      alt="Members"
+                      height={200}
+                      width={170}
+                    />
+                    <p className="aboutContainer__associationMembers__cards--name">
+                      {crew.name}
+                    </p>
                   </div>
-                </div>
-              ),
-          )}
+                ),
+            )}
+          </div>
         </div>
-        <div className="aboutContainer__partners">
+        <div>
           <PartnersList />
         </div>
         <div className="aboutContainer__comeBackHome">
           <ComeBackHome />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
