@@ -19,8 +19,7 @@ const Footer = () => {
               <NavLink
                 className="footerContainer__footerLinks__footerLinksTop__a"
                 key={link.id}
-                to={link.path}
-              >
+                to={link.path}>
                 <li className="footerContainer__footerLinks__footerLinksTop__a__li">
                   {link.title}
                 </li>
@@ -34,8 +33,7 @@ const Footer = () => {
               <NavLink
                 className="footerContainer__footerLinks__footerLinksBottom__a"
                 key={link.id}
-                to={link.path}
-              >
+                to={link.path}>
                 <li className="footerContainer__footerLinks__footerLinksBottom__a__li">
                   {link.title}
                 </li>
@@ -57,8 +55,7 @@ const Footer = () => {
                 <NavLink
                   className="footerContainer__mention__h6__a"
                   key={link.id}
-                  to={link.path}
-                >
+                  to={link.path}>
                   <li className="footerContainer__mention__h6__a__li">{link.title}</li>
                 </NavLink>
               ))}
