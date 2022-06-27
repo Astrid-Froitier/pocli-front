@@ -140,19 +140,19 @@ const PoliticConf = () => {
                   }}>
                   <h2>1.2 Enregistrement d’un compte</h2>
                   {politicListRegister && (
-                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullList">
+                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
                       <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
-                      <ul>
-                        <li>Nom, adresse et ville</li>
-                        <li>Adresse e-mail</li>
-                        <li>
-                          Nom d’utilisateur, mots de passe et autres données spécifiques
-                          au compte
-                        </li>
-                        <li>Adresse IP</li>
-                        <li>Numéro de téléphone</li>
-                      </ul>
-                      <h3>Durée de conservation</h3>
+                      <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer__fullList">
+                        <ul>
+                          <li>Nom, adresse et ville</li>
+                          <li>Adresse e-mail</li>
+                          <li>
+                            Données spécifiques au compte
+                          </li>
+                          <li>Adresse IP</li>
+                          <li>Numéro de téléphone</li>
+                        </ul>
+                     </div> <h3>Durée de conservation</h3>
                       <p>Nous conservons ces données jusqu’à la fin du service.</p>
                     </div>
                   )}
@@ -165,13 +165,15 @@ const PoliticConf = () => {
                   }}>
                   <h2>1.3 Infolettres</h2>
                   {politicListLetters && (
-                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullList">
+                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
                       <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
-                      <ul>
-                        <li>Nom, adresse et ville</li>
-                        <li>Adresse e-mail</li>
-                        <li>Adresse IP</li>
-                      </ul>
+                      <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer__fullList">
+                        <ul>
+                          <li>Nom, adresse et ville</li>
+                          <li>Adresse e-mail</li>
+                          <li>Adresse IP</li>
+                        </ul>
+                      </div>
                       <h3>Durée de conservation</h3>
                       <p>Nous conservons ces données jusqu’à la fin du service.</p>
                     </div>
@@ -188,11 +190,13 @@ const PoliticConf = () => {
                     web.
                   </h2>
                   {politicListCompiler && (
-                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullList">
+                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
                       <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
-                      <ul>
-                        <li>Adresse IP</li>
-                      </ul>
+                      <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer__fullList">
+                        <ul>
+                          <li>Adresse IP</li>
+                        </ul>
+                      </div>
                       <h3>Durée de conservation</h3>
                       <p>Nous conservons ces données jusqu’à la fin du service.</p>
                     </div>
@@ -301,8 +305,11 @@ const PoliticConf = () => {
             <p>4 Ribeyreau, 33420 Espiet</p>
           </div>
         </div>
+        <div className="politicContainer__comeBackHome">
+          <ComeBackHome />
+        </div>
       </div>
-      <ComeBackHome />
+      
     </div>
   );
 };
