@@ -35,10 +35,10 @@
     margin: $marginBoxTopAndBottom;
     display: flex;
     justify-content: space-between;
-    &__cards {
+    &__card {
       display: flex;
       flex-direction: column;
-      img {
+      &__img {
         width: 170px;
         height: 250px;
         object-fit: cover;
