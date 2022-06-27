@@ -84,8 +84,8 @@ const footerLinks_mention = [
   },
   {
     id: 2,
-    path: '/about',
-    title: 'Qui sommes-nous ?',
+    path: '/politiccookie',
+    title: 'Politique de cookies',
   },
 ];
 
