@@ -2,19 +2,24 @@ import React from 'react';
 
 import { crewDev } from '../../data/Xcrew';
 
-const familyMembers = () => {
+const FamilyMembers = () => {
   return (
     <div>
-      <div>
-        {crewDev.map((crew, index) => (
-          <div key={index}>
-            <img src={crew.image} alt="équipe dev" />
-            <p>{crew.name}</p>
-          </div>
-        ))}
+      <div className="familyMembers">
+        {crewDev.map(
+          (crew, index) =>
+            crew.image && (
+              <div className="familyMembers__card" key={index}>
+                <img src={crew.image} key={index} alt="équipe dev" />
+                <div className="familyMembers__card__name">
+                  <p>{crew.name}</p>
+                </div>
+              </div>
+            ),
+        )}
       </div>
     </div>
   );
 };
 
-export default familyMembers;
+export default FamilyMembers;
