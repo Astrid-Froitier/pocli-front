@@ -146,13 +146,12 @@ const PoliticConf = () => {
                         <ul>
                           <li>Nom, adresse et ville</li>
                           <li>Adresse e-mail</li>
-                          <li>
-                            Données spécifiques au compte
-                          </li>
+                          <li>Données spécifiques au compte</li>
                           <li>Adresse IP</li>
                           <li>Numéro de téléphone</li>
                         </ul>
-                     </div> <h3>Durée de conservation</h3>
+                      </div>{' '}
+                      <h3>Durée de conservation</h3>
                       <p>Nous conservons ces données jusqu’à la fin du service.</p>
                     </div>
                   )}
@@ -309,7 +308,6 @@ const PoliticConf = () => {
           <ComeBackHome />
         </div>
       </div>
-      
     </div>
   );
 };
