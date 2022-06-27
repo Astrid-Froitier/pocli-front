@@ -10,10 +10,10 @@ type FormData = {
 
 const ContactForm = () => {
   const {
-    register,
-    setValue,
+    // register,
+    // setValue,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<FormData>();
   const onSubmit = handleSubmit((data) => console.log(data));
   const [civility, setCivility] = useState('');
