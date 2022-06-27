@@ -11,9 +11,11 @@ const Events = () => {
     window.scrollTo(0, 0);
   }, []);
   const [filteredEvent, setFilteredEvent] = useState('');
+  const [modal, setModal] = useState('modal');
 
   return (
     <div className="eventsContainer">
+      <div className={`${modal}`}></div>
       <Banner
         // nameBannerActivity={''}
         title="Evènements"
