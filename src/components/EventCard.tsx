@@ -25,7 +25,8 @@ const EventCard = ({ event, bannerEvent = false }: IEventCard) => {
         alt={
           documents.filter((document) => document.id === documentByEvent[0].idDocument)[0]
             .name
-        }></img>
+        }
+      ></img>
       <div className="eventCard__informations">
         <div className="eventCard__informations__header">
           <span className="eventCard__informations__header__date">{event.date}</span>
@@ -34,7 +35,8 @@ const EventCard = ({ event, bannerEvent = false }: IEventCard) => {
               eventPostType[0].name === 'Activité'
                 ? eventActivity[0].abridged
                 : eventPostType[0].name
-            }`}>
+            }`}
+          >
             {eventPostType[0].name === 'Activité'
               ? eventActivity[0].name
               : eventPostType[0].name}

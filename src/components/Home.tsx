@@ -56,7 +56,9 @@ const Home = () => {
         <div className="homeContainer__nonAdherent__box">
           <div className="homeContainer__nonAdherent__box__text">
             <h1>Devenez adhérent PoCLi</h1>
-            <p>Vous souhaitez vous inscrire à l’association, rien de plus simple !</p>
+            <p>
+              Vous souhaitez vous inscrire à l&apos;association, rien de plus simple !
+            </p>
             <p>Envoyez-nous votre demande via notre formulaire de contact.</p>
             <p>
               Nous reviendrons vers vous dans les plus brefs délais afin de convenir d’un
