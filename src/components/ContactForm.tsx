@@ -94,12 +94,10 @@ const ContactForm = () => {
               type="radio"
               key="madam"
               checked={checkedOne}
-              onChange={handleChangeOne}
-            ></input>
+              onChange={handleChangeOne}></input>
             <label
               htmlFor="madam"
-              className="contactFormContainer__civility__checkbox__madam__label"
-            >
+              className="contactFormContainer__civility__checkbox__madam__label">
               Madame
             </label>
           </div>
@@ -110,12 +108,10 @@ const ContactForm = () => {
               checked={checkedTwo}
               key="monsieur"
               value="Monsieur"
-              onChange={handleChangeTwo}
-            ></input>
+              onChange={handleChangeTwo}></input>
             <label
               htmlFor="monsieur"
-              className="contactFormContainer__civility__checkbox__mister__label"
-            >
+              className="contactFormContainer__civility__checkbox__mister__label">
               Monsieur
             </label>
           </div>
@@ -131,14 +127,12 @@ const ContactForm = () => {
             type="text"
             key="name"
             onChange={(e) => handleLastname(e.target.value)}
-            value={lastname}
-          ></input>
+            value={lastname}></input>
         </div>
         <div className="contactFormContainer__name__firstname">
           <label
             htmlFor="firstname"
-            className="contactFormContainer__name__firstname__label"
-          >
+            className="contactFormContainer__name__firstname__label">
             Prénom <span>*</span>
           </label>
           <input
@@ -146,8 +140,7 @@ const ContactForm = () => {
             type="text"
             key="firsname"
             onChange={(e) => handleFirstname(e.target.value)}
-            value={firstname}
-          ></input>
+            value={firstname}></input>
         </div>
       </div>
       <div className="contactFormContainer__email">
@@ -159,8 +152,7 @@ const ContactForm = () => {
           type={email}
           key="email"
           onChange={(e) => handleEmail(e.target.value)}
-          value={email}
-        ></input>
+          value={email}></input>
       </div>
       <div className="contactFormContainer__object">
         <label htmlFor="object" className="contactFormContainer__object__label">
@@ -171,8 +163,7 @@ const ContactForm = () => {
           type="text"
           key="object"
           onChange={(e) => handleObject(e.target.value)}
-          value={object}
-        ></input>
+          value={object}></input>
       </div>
       <div className="contactFormContainer__message">
         <label htmlFor="message" className="contactFormContainer__message__label">
@@ -183,8 +174,7 @@ const ContactForm = () => {
           type="text"
           key="message"
           onChange={(e) => handleMessage(e.target.value)}
-          value={message}
-        ></input>
+          value={message}></input>
       </div>
       <div className="contactFormContainer__data">
         <h1 className="contactFormContainer__data__title">
@@ -196,8 +186,7 @@ const ContactForm = () => {
             type="checkbox"
             value="rgpd"
             key="rgpd"
-            onChange={() => handlePolicy}
-          ></input>
+            onChange={() => handlePolicy}></input>
           <label htmlFor="rgpd" className="contactFormContainer__data__checkbox__label">
             J&apos;ai lu et j&apos;accepte la Politique de confidentialité de PoCLi.
           </label>

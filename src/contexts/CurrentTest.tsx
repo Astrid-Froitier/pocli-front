@@ -20,8 +20,7 @@ export const CurrentTestContextProvider = ({ children }: CurrentTestProps) => {
       value={{
         numberClick,
         setNumberClick,
-      }}
-    >
+      }}>
       {children}
     </CurrentTestContext.Provider>
   );

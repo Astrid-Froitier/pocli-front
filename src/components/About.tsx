@@ -75,6 +75,9 @@ const about = () => {
             )}
           </div>
         </div>
+        <div className="aboutContainer__familyMembers">
+          <familyMembers />
+        </div>
         <div>
           <PartnersList />
         </div>
