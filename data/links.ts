@@ -84,7 +84,7 @@ const footerLinks_mention = [
   },
   {
     id: 2,
-    path: '/politiccookie',
+    path: '/politiccookies',
     title: 'Politique de cookies',
   },
 ];
