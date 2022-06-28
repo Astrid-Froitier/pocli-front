@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { theCrew } from '../../data/Xcrew';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
-import FamilyMembers from './FamilyMembers';
 import PartnersList from './PartnersList';
 
 const about = () => {
