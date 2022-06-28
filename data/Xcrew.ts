@@ -2,22 +2,30 @@ const crewDev = [
   {
     id: 1,
     name: 'Gavin',
-    image: '../public/Crew/gavtof.jpg',
+    username: 'Le mystérieux',
+    image: '/Crew/gavtof.jpg',
+    // isSelected: false,
   },
   {
     id: 2,
     name: 'Frédéric',
-    image: '../public/Crew/Fred.jpg',
+    username: 'Le calme',
+    image: '/Crew/Fred.jpg',
+    // isSelected: false,
   },
   {
     id: 3,
     name: 'Lucas',
-    image: '../public/Crew/luka.jpg',
+    username: `Le benjamin`,
+    image: '/Crew/luka.jpg',
+    // isSelected: false,
   },
   {
     id: 4,
     name: 'Astrid',
-    image: '../public/Crew/Astrid.jpg',
+    username: 'La fille',
+    image: '/Crew/Astrid.jpg',
+    // isSelected: false,
   },
 ];
 
