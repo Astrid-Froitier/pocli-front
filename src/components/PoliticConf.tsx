@@ -146,11 +146,14 @@ const PoliticConf = () => {
                         <ul>
                           <li>Nom, adresse et ville</li>
                           <li>Adresse e-mail</li>
-                          <li>Données spécifiques au compte</li>
+                          <li>
+                            Nom d’utilisateur, mots de passe et autres données spécifiques
+                            au compte
+                          </li>
                           <li>Adresse IP</li>
                           <li>Numéro de téléphone</li>
                         </ul>
-                      </div>{' '}
+                      </div>
                       <h3>Durée de conservation</h3>
                       <p>Nous conservons ces données jusqu’à la fin du service.</p>
                     </div>
@@ -297,7 +300,7 @@ const PoliticConf = () => {
             </p>
           </div>
           <div className="politicContainer__politicSectionContainer__politicContactContainer">
-            <h1>6. Coordonnées</h1>
+            <h1>10. Coordonnées</h1>
             <p>pocli.asso@gmail.com</p>
             <p>07 64 15 27 11</p>
             <p>Lundi, mardi, jeudi, vendredi - de 9h à 12h30 et de 14h à 16h30</p>
