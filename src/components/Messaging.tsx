@@ -4,8 +4,8 @@ import Icon from './Icon';
 
 const Messaging = () => {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div className="messagingTitle">“Vous avez un message”</div>

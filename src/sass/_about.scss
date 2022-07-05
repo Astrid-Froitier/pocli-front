@@ -1,15 +1,27 @@
 .aboutContainer {
+  margin: $marginBoxTopAndBottom;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: $marginBoxTopAndBottom;
-  width: 100%;
-
   &__header {
     width: $pageContentWidth;
+    font-size: $textSize;
+    font-weight: $fontExtraBold;
+    color: $colorText-2;
+    &__slogan {
+      &__blue-pocli-text {
+        color: $bluePocli;
+      }
+      &__green-pocli-text {
+        color: $greenPocli;
+      }
+      &__red-pocli-text {
+        color: $redPocli;
+      }
+    }
     h1 {
       font-size: $textSize;
-      margin: 1.5rem 0 1.5rem;
     }
     &__firstText {
       margin: 1.5rem 0 1.5rem;
@@ -18,11 +30,43 @@
       margin: 1.5rem 0 1.5rem;
     }
   }
-
-  &__comeBackHome {
-    margin-top: 2rem;
-    display: flex;
+  &__associationMembers {
     width: $pageContentWidth;
+    margin: $marginBoxTopAndBottom;
+    display: flex;
+    justify-content: space-between;
+    &__card {
+      display: flex;
+      flex-direction: column;
+      &__img {
+        width: 170px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 20px 20px 0 0;
+      }
+      &__name {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: $backGround-2;
+        height: 60px;
+        border-radius: 0 0 20px 20px;
+      }
+      p {
+        font-size: $smallTextSize;
+        font-weight: $fontBold;
+        text-align: center;
+      }
+    }
+  }
+  &__partners {
+    width: $pageContentWidth;
+    margin: $marginBoxTopAndBottom;
+    padding-top: 60px;
+  }
+  &__comeBackHome {
+    width: $pageContentWidth;
+    display: flex;
     justify-content: flex-end;
   }
 }

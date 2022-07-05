@@ -47,18 +47,19 @@ const Footer = () => {
       </div>
 
       <div className="footerContainer__mention">
-        <hr />
         <div className="footerContainer__mention__h6">
           <h6>Pocli - Pour créer des liens - 4 Ribeyreau, 33420 Espiet</h6>
-          {footerLinks_mention &&
-            footerLinks_mention.map((link) => (
-              <NavLink
-                className="footerContainer__mention__h6__a"
-                key={link.id}
-                to={link.path}>
-                <li className="footerContainer__mention__h6__a__li">{link.title}</li>
-              </NavLink>
-            ))}
+          <div className="footerContainer__mention__h6__list">
+            {footerLinks_mention &&
+              footerLinks_mention.map((link) => (
+                <NavLink
+                  className="footerContainer__mention__h6__a"
+                  key={link.id}
+                  to={link.path}>
+                  <li className="footerContainer__mention__h6__a__li">{link.title}</li>
+                </NavLink>
+              ))}
+          </div>
         </div>
       </div>
     </div>

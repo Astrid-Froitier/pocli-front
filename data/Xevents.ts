@@ -23,7 +23,7 @@ const events = [
     reservedAdherent: false,
     price: 1000,
     idPostType: 2,
-    idActivity: 3,
+    idActivity: undefined,
   },
   {
     id: 3,
@@ -48,8 +48,8 @@ const events = [
     podcastLink: '',
     reservedAdherent: true,
     price: 1000,
-    idPostType: 1,
-    idActivity: 3,
+    idPostType: 3,
+    idActivity: undefined,
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ const events = [
     reservedAdherent: true,
     price: 1000,
     idPostType: 1,
-    idActivity: 3,
+    idActivity: 8,
   },
 ];
 

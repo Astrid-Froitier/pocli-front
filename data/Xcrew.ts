@@ -1,40 +1,77 @@
-const theCrew = [
+const crewDev = [
   {
     id: 1,
-    name: 'Sandrine LARMET',
-    image: '../public/associationMembers/Sandrine.jpg',
+    name: 'Gavin',
+    username: 'Le mystérieux',
+    image: '/Crew/gavtof.jpg',
+    // isSelected: false,
   },
   {
     id: 2,
-    name: 'Marie-Françoise PARENTEAU',
-    image: '../public/associationMembers/Marie Françoise.jpg',
+    name: 'Frédéric',
+    username: 'Le calme',
+    image: '/Crew/Fred.jpg',
+    // isSelected: false,
   },
   {
     id: 3,
-    name: 'Amandine SOLER',
-    image: '../public/associationMembers/Amandine.jpg',
+    name: 'Lucas',
+    username: `Le benjamin`,
+    image: '/Crew/luka.jpg',
+    // isSelected: false,
+  },
+  {
+    id: 4,
+    name: 'Astrid',
+    username: 'La fille',
+    image: '/Crew/Astrid.jpg',
+    // isSelected: false,
+  },
+];
+
+const theCrew = [
+  {
+    id: 1,
+    firstName: 'Sandrine',
+    lastName: 'LARMET',
+    image: '/associationMembers/Sandrine.jpg',
+  },
+  {
+    id: 2,
+    firstName: 'Marie-Françoise',
+    lastName: 'PARENTEAU',
+    image: '/associationMembers/Marie Françoise.jpg',
+  },
+  {
+    id: 3,
+    firstName: 'Amandine',
+    lastName: 'SOLER',
+    image: '/associationMembers/Amandine.jpg',
     status: 'Secrétaire',
   },
   {
     id: 4,
-    name: 'Sylvie POMMIER',
-    image: '../public/associationMembers/Sylvie1.jpg',
+    firstName: 'Sylvie',
+    lastName: 'POMMIER',
+    image: '/associationMembers/Sylvie1.jpg',
     status: '',
   },
   {
     id: 5,
-    name: 'Alexia DHELIN',
-    status: '',
+    firstName: 'Alexia',
+    lastName: 'DHELIN',
   },
   {
     id: 6,
-    name: 'Michaël HOUSSIER',
-    image: '../public/associationMembers/Mika.JPG',
+    firstName: 'Michaël',
+    lastName: 'HOUSSIER',
+    image: '/associationMembers/Mika.JPG',
     status: 'Président',
   },
   {
     id: 7,
-    name: 'Éléonore AUDET-LAPOINTE',
+    name: 'Éléonore',
+    lastName: 'AUDET-LAPOINTE',
     status: 'Trésorière',
   },
 ];
@@ -74,23 +111,23 @@ const partners = [
   {
     id: 8,
     name: 'St Quentin de Baron',
-    image: '../public/assets/Mairie de St Quentin de B.png',
+    image: '/assets/Mairie de St Quentin de B.png',
   },
   {
     id: 9,
     name: 'Espiet',
-    image: '../public/assets/Mairie Espiet.png',
+    image: '/assets/Mairie Espiet.png',
   },
   {
     id: 10,
     name: 'Nerigean',
-    image: '../public/assets/Nérigean.jpg',
+    image: '/assets/Nérigean.jpg',
   },
   {
     id: 11,
     name: 'Ville de Branne',
-    image: '../public/assets/Branne.png',
+    image: '/assets/Branne.png',
   },
 ];
 
-export { partners, theCrew };
+export { crewDev, partners, theCrew };

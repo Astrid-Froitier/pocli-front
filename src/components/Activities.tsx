@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 import Icon from './Icon';
@@ -87,13 +88,7 @@ const Activities = () => {
         <div className="activityContainer__gymSoftContainer">
           <h1>Gym Douce</h1>
           <div className="activityContainer__gymSoftContainer__gymSoftContainerBloc1">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
+            <Icon name="arrow-right" width="50px" height="40px" color="#519642" />
             <p>
               Travail de respiration, équilibre dynamique, stretching, sens du rythme,
               coordination, relaxation.
@@ -160,7 +155,7 @@ const Activities = () => {
             <img src="/assets/pilate.png" alt="SportThemeImage4" />
           </div>
         </div>
-        <div className="comeBackHome">
+        <div className="activityContainer__comeBackHome">
           <ComeBackHome />
         </div>
       </div>

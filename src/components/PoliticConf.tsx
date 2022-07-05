@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Banner from './Banner';
-// import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 import Icon from './Icon';
 
 const PoliticConf = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [politicListContact, setPoliticListContact] = useState(false);
+  const [politicListRegister, setPoliticListRegister] = useState(false);
+  const [politicListLetters, setPoliticListLetters] = useState(false);
+  const [politicListCompiler, setPoliticListCompiler] = useState(false);
+
+  const handleClickContact = () => {
+    setPoliticListContact(!politicListContact);
+  };
+  const handleClickRegister = () => {
+    setPoliticListRegister(!politicListRegister);
+  };
+  const handleClickLetters = () => {
+    setPoliticListLetters(!politicListLetters);
+  };
+  const handleClickCompiler = () => {
+    setPoliticListCompiler(!politicListCompiler);
+  };
+
   return (
     <div className="">
       <Banner
@@ -86,14 +107,102 @@ const PoliticConf = () => {
             </p>
             <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer">
               <ul>
-                <li>
-                  1.1 Contact – Par téléphone, courrier, e-mail et/ou formulaires web
+                <li
+                  aria-hidden
+                  onKeyDown={handleClickContact}
+                  onClick={() => {
+                    handleClickContact();
+                  }}>
+                  <h2>
+                    1.1 Contact – Par téléphone, courrier, e-mail et/ou formulaires web
+                  </h2>
+                  {politicListContact && (
+                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
+                      <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
+                      <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer__fullList">
+                        <ul>
+                          <li>Nom, adresse et ville</li>
+                          <li>Adresse e-mail</li>
+                          <li>Adresse IP</li>
+                          <li>Numéro de téléphone</li>
+                        </ul>
+                      </div>
+                      <h3>Durée de conservation</h3>
+                      <p>Nous conservons ces données jusqu’à la fin du service.</p>
+                    </div>
+                  )}
                 </li>
-                <li>1.2 Enregistrement d’un compte</li>
-                <li>1.3 Infolettres</li>
-                <li>
-                  1.4 Compiler et analyser des statistiques pour l’amélioration du site
-                  web.
+                <li
+                  aria-hidden
+                  onKeyDown={handleClickRegister}
+                  onClick={() => {
+                    handleClickRegister();
+                  }}>
+                  <h2>1.2 Enregistrement d’un compte</h2>
+                  {politicListRegister && (
+                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
+                      <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
+                      <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer__fullList">
+                        <ul>
+                          <li>Nom, adresse et ville</li>
+                          <li>Adresse e-mail</li>
+                          <li>
+                            Nom d’utilisateur, mots de passe et autres données spécifiques
+                            au compte
+                          </li>
+                          <li>Adresse IP</li>
+                          <li>Numéro de téléphone</li>
+                        </ul>
+                      </div>
+                      <h3>Durée de conservation</h3>
+                      <p>Nous conservons ces données jusqu’à la fin du service.</p>
+                    </div>
+                  )}
+                </li>
+                <li
+                  aria-hidden
+                  onKeyDown={handleClickLetters}
+                  onClick={() => {
+                    handleClickLetters();
+                  }}>
+                  <h2>1.3 Infolettres</h2>
+                  {politicListLetters && (
+                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
+                      <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
+                      <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer__fullList">
+                        <ul>
+                          <li>Nom, adresse et ville</li>
+                          <li>Adresse e-mail</li>
+                          <li>Adresse IP</li>
+                        </ul>
+                      </div>
+                      <h3>Durée de conservation</h3>
+                      <p>Nous conservons ces données jusqu’à la fin du service.</p>
+                    </div>
+                  )}
+                </li>
+                <li
+                  aria-hidden
+                  onKeyDown={handleClickCompiler}
+                  onClick={() => {
+                    handleClickCompiler();
+                  }}>
+                  <h2>
+                    1.4 Compiler et analyser des statistiques pour l’amélioration du site
+                    web.
+                  </h2>
+                  {politicListCompiler && (
+                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
+                      <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
+                      <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer__fullList">
+                        <ul>
+                          <li>Adresse IP</li>
+                        </ul>
+                      </div>
+                      <h3>Durée de conservation</h3>
+                      <p>Nous conservons ces données jusqu’à la fin du service.</p>
+                    </div>
+                  )}
                 </li>
               </ul>
             </div>
@@ -136,51 +245,53 @@ const PoliticConf = () => {
               pouvez nous contacter en utilisant les informations ci-dessous. Vous avez
               les droits suivants:
             </p>
-            <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
-              <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
-              <p>
-                Vous avez le droit de savoir pourquoi vos données personnelles sont
-                nécessaires, ce qui leur arrivera et combien de temps elles seront
-                conservées.
-              </p>
-            </div>
-            <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
-              <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
-              <p>
-                Droit d’accès : vous avez le droit d’accéder à vos données personnelles
-                que nous connaissons.
-              </p>
-            </div>
-            <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
-              <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
-              <p>
-                Droit de rectification : vous avez le droit à tout moment de compléter,
-                corriger, faire supprimer ou bloquer vos données personnelles.
-              </p>
-            </div>
-            <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
-              <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
-              <p>
-                Si vous nous donnez votre consentement pour le traitement de vos données,
-                vous avez le droit de révoquer ce consentement et de faire supprimer vos
-                données personnelles.
-              </p>
-            </div>
-            <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
-              <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
-              <p>
-                Droit de transférer vos données : vous avez le droit de demander toutes
-                vos données personnelles au responsable du traitement et de les transférer
-                dans leur intégralité à un autre responsable du traitement.
-              </p>
-            </div>
-            <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
-              <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
-              <p>
-                Droit d’opposition : vous pouvez vous opposer au traitement de vos
-                données. Nous obtempérerons, à moins que certaines raisons ne justifient
-                ce traitement.
-              </p>
+            <div className="politicContainer__politicSectionContainer__politicAccessContainer__politicAccessBloc__Bloc">
+              <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
+                <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
+                <p>
+                  Vous avez le droit de savoir pourquoi vos données personnelles sont
+                  nécessaires, ce qui leur arrivera et combien de temps elles seront
+                  conservées.
+                </p>
+              </div>
+              <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
+                <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
+                <p>
+                  Droit d’accès : vous avez le droit d’accéder à vos données personnelles
+                  que nous connaissons.
+                </p>
+              </div>
+              <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
+                <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
+                <p>
+                  Droit de rectification : vous avez le droit à tout moment de compléter,
+                  corriger, faire supprimer ou bloquer vos données personnelles.
+                </p>
+              </div>
+              <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
+                <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
+                <p>
+                  Si vous nous donnez votre consentement pour le traitement de vos
+                  données, vous avez le droit de révoquer ce consentement et de faire
+                  supprimer vos données personnelles.
+                </p>
+              </div>
+              <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
+                <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
+                <p>
+                  Droit de transférer vos données : vous avez le droit de demander toutes
+                  vos données personnelles au responsable du traitement et de les
+                  transférer.
+                </p>
+              </div>
+              <div className="politicContainer__politicSectionContainer__politicAccessContainer__Bloc">
+                <Icon name="arrow-right" width="50px" height="40px" color="#AF3D3D" />
+                <p>
+                  Droit d’opposition : vous pouvez vous opposer au traitement de vos
+                  données. Nous obtempérerons, à moins que certaines raisons ne le
+                  justifient.{' '}
+                </p>
+              </div>
             </div>
             <p>
               Assurez-vous de toujours indiquer clairement qui vous êtes, afin que nous
@@ -189,14 +300,16 @@ const PoliticConf = () => {
             </p>
           </div>
           <div className="politicContainer__politicSectionContainer__politicContactContainer">
-            <h1>6. Coordonnées</h1>
+            <h1>10. Coordonnées</h1>
             <p>pocli.asso@gmail.com</p>
             <p>07 64 15 27 11</p>
             <p>Lundi, mardi, jeudi, vendredi - de 9h à 12h30 et de 14h à 16h30</p>
             <p>4 Ribeyreau, 33420 Espiet</p>
           </div>
         </div>
-        <ComeBackHome />
+        <div className="politicContainer__comeBackHome">
+          <ComeBackHome />
+        </div>
       </div>
     </div>
   );
