@@ -9,7 +9,9 @@ const PartnersList = () => {
       {/* map de la data des logos pour qu'ils s'affichent directement sur la page */}
       <div className="partnersContainer__imageMapContainer">
         {partners.map((partner, index) => (
-          <img src={partner.image} alt={partner.name} key={index} />
+          <a href={partner.URL} key={index} target="blank">
+            <img src={partner.image} alt={partner.name} />
+          </a>
         ))}
       </div>
     </div>
