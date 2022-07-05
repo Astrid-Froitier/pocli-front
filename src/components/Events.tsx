@@ -11,7 +11,7 @@ const Events = () => {
     window.scrollTo(0, 0);
   }, []);
   const [filteredEvent, setFilteredEvent] = useState('');
-  const [modal, setModal] = useState('modal');
+  const [modal] = useState('modal');
 
   return (
     <div className="eventsContainer">
