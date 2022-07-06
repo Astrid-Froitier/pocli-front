@@ -31,7 +31,7 @@ const AdherentSpace = () => {
           <h1>Mon compte</h1>
           <p>Changer mon mot de passe</p>
           <p>Mes cotisations</p>
-          <p>Mon status</p>
+          <p>Mon statut</p>
           <p>Pour tout autre changement, merci de nous contacter</p>
           <p>Me déconnecter</p>
         </div>
