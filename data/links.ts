@@ -31,7 +31,7 @@ const navLinks_bottom = [
   {
     id: 2,
     path: '/activities',
-    title: 'Activités sportives et de Bien-être',
+    title: 'Activités physiques et de Bien-être',
     icon: 'person-running',
   },
   {
@@ -89,4 +89,4 @@ const footerLinks_mention = [
   },
 ];
 
-export { navLinks_bottom, navLinks_top, footerLinks_pocli, footerLinks_mention };
+export { footerLinks_mention, footerLinks_pocli, navLinks_bottom, navLinks_top };
