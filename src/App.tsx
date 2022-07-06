@@ -11,7 +11,6 @@ import Contact from './components/Contact';
 import Events from './components/Events';
 import Family from './components/Family';
 import Footer from './components/Footer';
-// import AddressList from './components/AddressList';
 import Home from './components/Home';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
@@ -20,6 +19,7 @@ import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
 import WelcomeFamily from './components/WelcomeFamily';
+import { CurrentModalContextProvider } from './contexts/CurrentModal';
 import { CurrentTestContextProvider } from './contexts/CurrentTest';
 
 function App() {
