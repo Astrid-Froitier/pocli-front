@@ -33,8 +33,8 @@ const EventCard = ({
   }, []);
 
   const documentsByEvent =
-    eventDocuments && eventDocuments.filter((document) => document.idEvent === event.id );
-  
+    eventDocuments && eventDocuments.filter((document) => document.idEvent === event.id);
+
   return (
     <div className="eventCard">
       {documentsByEvent && documentsByEvent.length ? (
@@ -42,7 +42,7 @@ const EventCard = ({
           className="eventCard__image"
           src={documentsByEvent[0].document_url}
           alt={documentsByEvent[0].document_name}></img>
-      ): undefined}
+      ) : undefined}
       <div className="eventCard__informations">
         <div className="eventCard__informations__header">
           <span className="eventCard__informations__header__date">{event.date}</span>
