@@ -1,10 +1,11 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 import aboutNumbers from '../../data/aboutNumbers';
 import { navLinks_bottom } from '../../data/links';
-import events from '../../data/Xevents';
+import IEvent from '../interfaces/IEvent';
 import ActivityCard from './ActivityCard';
 import Banner from './Banner';
 import Button from './Button';
@@ -15,9 +16,29 @@ import PartnersList from './PartnersList';
 const Home = () => {
   const [onClickNewsletter, setOnClickNewsletter] = useState(false);
   const [emailNewsletter, setEmailNewsletter] = useState({});
+  // const { modalOnOff, setModalOnOff } = useContext(CurrentModalContext);
+  // console.log(modalOnOff);
+
+  const [events, setEvents] = useState<IEvent[]>([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const getEvents = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = 'http://localhost:3001/api/events';
+      try {
+        const { data } = await axios.get<IEvent[]>(url);
+        setEvents(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getEvents();
+  }, []);
+
   interface IFormInput {
     email: String;
   }
@@ -37,6 +58,7 @@ const Home = () => {
         // bannerMember={false}
         bannerEvent={true}
         // memberFilter={false}
+        event={events[0]}
       />
       <div className="homeContainer__events">
         <div className="homeContainer__events__list">
