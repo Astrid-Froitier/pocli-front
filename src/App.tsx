@@ -11,14 +11,15 @@ import Contact from './components/Contact';
 import Events from './components/Events';
 import Family from './components/Family';
 import Footer from './components/Footer';
-// import AddressList from './components/AddressList';
 import Home from './components/Home';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
 import PoliticConf from './components/PoliticConf';
+import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
 import WelcomeFamily from './components/WelcomeFamily';
+import { CurrentModalContextProvider } from './contexts/CurrentModal';
 import { CurrentTestContextProvider } from './contexts/CurrentTest';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path="/prevention" element={<Prevention />} />
             <Route path="/animation" element={<Animation />} />
             <Route path="/politicconf" element={<PoliticConf />} />
+            <Route path="/politiccookies" element={<PoliticCookies />} />
           </Routes>
         </CurrentTestContextProvider>
         {/* </main> */}

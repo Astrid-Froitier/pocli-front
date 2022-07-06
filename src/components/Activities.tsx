@@ -12,7 +12,7 @@ const Activities = () => {
     <div className="">
       <Banner
         nameBannerActivity="activity sport"
-        title="Activités sportives et de Bien-Être"
+        title="Activités physiques et de Bien-Être"
         nameIcon="person-running"
         memberFilter={false}
         bannerAbout={false}
@@ -23,7 +23,7 @@ const Activities = () => {
         <div className="activityContainer__preambulContainer">
           <h1>Un lieu d’épanouissement individuel et collectif.</h1>
           <p>
-            Vous pratiquerez des activités sportives dans une ambiance détendue et
+            Vous pratiquerez des activités physiques dans une ambiance détendue et
             conviviale : pilates, gym douce, gym seniors.
             <p>
               Vous renforcerez vos relations avec vos enfants lors de séances de bien être
@@ -75,9 +75,8 @@ const Activities = () => {
               opacity={0.6}
             />
             <p>
-              Renforcement musculaire, équilibre dynamique, stimulation de la fonction
-              cardia-respiratoire, renforcement abdos fessiers, assouplissement de la
-              colonne vertébrale, étirement de la chaîne musculaire.
+              Renforcement et étirement musculaire, équilibre dynamique, stimulation de la
+              fonction cardia-respiratoire, assouplissement de la colonne vertébrale.
             </p>
           </div>
           <div className="activityContainer__gymSeniorContainer__gymSeniorHour">
@@ -88,7 +87,13 @@ const Activities = () => {
         <div className="activityContainer__gymSoftContainer">
           <h1>Gym Douce</h1>
           <div className="activityContainer__gymSoftContainer__gymSoftContainerBloc1">
-            <Icon name="arrow-right" width="50px" height="40px" color="#519642" />
+            <Icon
+              name="arrow-right"
+              width="50px"
+              height="40px"
+              color="#8FBF69"
+              opacity={0.6}
+            />
             <p>
               Travail de respiration, équilibre dynamique, stretching, sens du rythme,
               coordination, relaxation.
