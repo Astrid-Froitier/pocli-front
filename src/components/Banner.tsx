@@ -1,9 +1,21 @@
 import React from 'react';
 
-import events from '../../data/Xevents';
-import IBanner from '../interfaces/IBanner';
+// import events from '../../data/Xevents';
+// import IBanner from '../interfaces/IBanner';
+import IEvent from '../interfaces/IEvent';
 import EventCard from './EventCard';
 import Icon from './Icon';
+
+interface BannerProps {
+  event?: IEvent;
+  nameBannerActivity?: string;
+  title: string;
+  nameIcon?: string;
+  bannerAbout?: boolean;
+  bannerEvent?: boolean;
+  bannerMember?: boolean;
+  memberFilter?: boolean;
+}
 
 const Banner = ({
   nameBannerActivity = '',
@@ -13,7 +25,8 @@ const Banner = ({
   bannerEvent = false,
   bannerMember = false,
   memberFilter = false,
-}: IBanner) => {
+  event,
+}: BannerProps) => {
   return (
     <div className={`banner ${nameBannerActivity}`}>
       <h1>{title}</h1>
@@ -33,9 +46,9 @@ const Banner = ({
             <span>en</span>
           </div>
         )}
-        {bannerEvent && (
+        {bannerEvent && event && (
           <div className="box__event">
-            <EventCard event={events[0]} bannerEvent={bannerEvent} />
+            <EventCard event={event} bannerEvent={bannerEvent} />
           </div>
         )}
       </div>
