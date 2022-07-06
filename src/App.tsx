@@ -15,6 +15,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
 import PoliticConf from './components/PoliticConf';
+import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
 import TestContext from './components/TestContext';
 import WelcomeFamily from './components/WelcomeFamily';
@@ -27,27 +28,26 @@ function App() {
       <Router>
         {/* <main> */}
         <NavBar />
-        <CurrentModalContextProvider>
-          <CurrentTestContextProvider>
-            <Routes>
-              {/* <Route path="*" element={<Home />} /> */}
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/click" element={<TestContext />} />
-              {/* <Route path="/address" element={<AddressList onlyMine={id != 0} />} /> */}
-              <Route path="/adherentSpace" element={<AdherentSpace />} />
-              <Route path="/welcome" element={<WelcomeFamily />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/family" element={<Family />} />
-              <Route path="/activities" element={<Activities />} />
-              <Route path="/prevention" element={<Prevention />} />
-              <Route path="/animation" element={<Animation />} />
-              <Route path="/politicconf" element={<PoliticConf />} />
-            </Routes>
-          </CurrentTestContextProvider>
-        </CurrentModalContextProvider>
+        <CurrentTestContextProvider>
+          <Routes>
+            {/* <Route path="*" element={<Home />} /> */}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/click" element={<TestContext />} />
+            {/* <Route path="/address" element={<AddressList onlyMine={id != 0} />} /> */}
+            <Route path="/adherentSpace" element={<AdherentSpace />} />
+            <Route path="/welcome" element={<WelcomeFamily />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/family" element={<Family />} />
+            <Route path="/activities" element={<Activities />} />
+            <Route path="/prevention" element={<Prevention />} />
+            <Route path="/animation" element={<Animation />} />
+            <Route path="/politicconf" element={<PoliticConf />} />
+            <Route path="/politiccookies" element={<PoliticCookies />} />
+          </Routes>
+        </CurrentTestContextProvider>
         {/* </main> */}
         <Footer />
       </Router>
