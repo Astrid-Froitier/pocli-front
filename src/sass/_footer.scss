@@ -71,13 +71,17 @@
       border-top: 1px solid;
       padding-top: 2%;
       width: 1028px;
+      p {
+        color: white;
+        font-size: 12px;
+      }
 
       &__list {
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 12px;
-        width: 30%;
+        width: 28%;
 
         li {
           list-style: none;
