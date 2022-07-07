@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
+import Icon from './Icon';
 
 const PoliticCookies = () => {
   useEffect(() => {
@@ -10,7 +11,7 @@ const PoliticCookies = () => {
 
   const [listFb, setListFb] = useState(false);
   const [listYt, setListYt] = useState(false);
-  const [listWild, setListWild] = useState(false);
+  // const [listWild, setListWild] = useState(false);
   const [listReact, setListReact] = useState(false);
   const [listSql, setListSql] = useState(false);
 
@@ -20,9 +21,9 @@ const PoliticCookies = () => {
   const handleClickListYt = () => {
     setListYt(!listYt);
   };
-  const handleClickListWild = () => {
-    setListWild(!listWild);
-  };
+  // const handleClickListWild = () => {
+  //   setListWild(!listWild);
+  // };
   const handleClickListReact = () => {
     setListReact(!listReact);
   };
@@ -34,7 +35,7 @@ const PoliticCookies = () => {
     <div className="">
       <Banner
         nameBannerActivity=""
-        title="Politique de Confidentialité"
+        title="Politique de Cookies"
         nameIcon=""
         memberFilter={false}
         bannerAbout={false}
@@ -42,8 +43,8 @@ const PoliticCookies = () => {
         bannerMember={false}
       />
       <div className="politicCookies">
-        <div className="politicCookies__politicSectionContainer">
-          <div className="politicCookies__politicSectionContainer__politicCookiesPreambul">
+        <div className="politicCookies__politicSectionCookiesContainer">
+          <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPreambul">
             <h1>Politique de cookies</h1>
             <h2>
               Nous sommes respectueux de la protection de vos données personnelles.
@@ -55,7 +56,7 @@ const PoliticCookies = () => {
               l’Espace Économique Européen et de la Suisse.{' '}
             </p>
           </div>
-          <div className="politicCookies__politicSectionContainer__politicCookiesIntro">
+          <div className="politicCookies__politicSectionCookiesContainer__politicCookiesIntro">
             <h2>1. Introduction</h2>
             <p>
               Notre site web, https://www.pocli.fr (ci-après : « le site web ») utilise
@@ -66,7 +67,7 @@ const PoliticCookies = () => {
               notre site web.{' '}
             </p>
           </div>
-          <div className="politicCookies__politicSectionContainer__politicCookiesWhat">
+          <div className="politicCookies__politicSectionCookiesContainer__politicCookiesWhat">
             <h2>2. Que sont les cookies ?</h2>
             <p>
               Un cookie est un petit fichier simple envoyé avec les pages de ce site web
@@ -75,7 +76,7 @@ const PoliticCookies = () => {
               à nos serveurs ou aux serveurs des tierces parties concernées lors d’une
               visite ultérieure.{' '}
             </p>
-            <div className="politicCookies__politicSectionContainer__politicCookiesScript">
+            <div className="politicCookies__politicSectionCookiesContainer__politicCookiesScript">
               <h2>3. Que sont les scripts ?</h2>
               <p>
                 Un script est un élément de code utilisé pour que notre site web
@@ -83,7 +84,7 @@ const PoliticCookies = () => {
                 notre serveur ou sur votre appareil.{' '}
               </p>
             </div>
-            <div className="politicCookies__politicSectionContainer__politicCookiesBalis">
+            <div className="politicCookies__politicSectionCookiesContainer__politicCookiesBalis">
               <h2>4. Qu’est-ce qu’une balise invisible ?</h2>
               <p>
                 Une balise invisible (ou balise web) est un petit morceau de texte ou
@@ -92,7 +93,7 @@ const PoliticCookies = () => {
                 l’aide de balises invisibles.{' '}
               </p>
             </div>
-            <div className="politicCookies__politicSectionContainer__politicCookiesCookiesList">
+            <div className="politicCookies__politicSectionCookiesContainer__politicCookiesCookiesList">
               <h2>5. Cookies</h2>
               <h3>5.1 Cookies techniques ou fonctionnels</h3>
               <p>
@@ -119,9 +120,9 @@ const PoliticCookies = () => {
                 sur plusieurs sites web dans des finalités marketing similaires.{' '}
               </p>
             </div>
-            <div className="politicCookies__politicSectionContainer__politicCookiesPlaced">
+            <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced">
               <h2>6. Cookies placés</h2>
-              <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List">
+              <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List">
                 <ul>
                   <li
                     aria-hidden
@@ -129,10 +130,28 @@ const PoliticCookies = () => {
                     onClick={() => {
                       handleClickListFb();
                     }}>
-                    <h2>Facebook</h2>
+                    <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__Align">
+                      <h2>Facebook</h2>
+                      <div
+                        style={
+                          listFb
+                            ? {
+                                transform: 'rotate(180deg)',
+                                transition: 'all 300ms ease',
+                              }
+                            : {}
+                        }>
+                        <Icon
+                          name="arrow-list"
+                          width="20px"
+                          height="20px"
+                          color="#3d79af"
+                        />
+                      </div>
+                    </div>
                     {listFb && (
-                      <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
-                        <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
+                      <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer">
+                        <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Utilisation</h3>
                           <p>
                             Nous utilisons Facebook pour l’affichage de publications
@@ -140,7 +159,7 @@ const PoliticCookies = () => {
                             sociaux.
                           </p>
                         </div>
-                        <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
+                        <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
                             Pour plus d’informations, veuillez lire la déclaration de
@@ -156,34 +175,55 @@ const PoliticCookies = () => {
                     onClick={() => {
                       handleClickListYt();
                     }}>
-                    <h2>Youtube</h2>
+                    <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__Align">
+                      <h2>Youtube</h2>
+                      <div
+                        style={
+                          listYt
+                            ? {
+                                transform: 'rotate(180deg)',
+                                transition: 'all 300ms ease',
+                              }
+                            : {}
+                        }>
+                        <Icon
+                          name="arrow-list"
+                          width="20px"
+                          height="20px"
+                          color="#3d79af"
+                        />
+                      </div>
+                    </div>
                     {listYt && (
-                      <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
-                        <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
+                      <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer">
+                        <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Utilisation</h3>
                           <p>
-                            Nous utilisons Facebook pour l’affichage de publications
+                            Nous utilisons Youtube pour l’affichage de publications
                             sociales récentes et/ou des boutons de partage de réseaux
                             sociaux.
                           </p>
                         </div>
-                        <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
+                        <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
                             Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                            confidentialité YouTube.
                           </p>
                         </div>
                       </div>
                     )}
                   </li>
-                  <li
+                  {/* <li
                     aria-hidden
                     onKeyDown={handleClickListWild}
                     onClick={() => {
                       handleClickListWild();
                     }}>
+                      <div className='politicCookies__politicSectionContainer__politicCookiesPlaced__List__Align'>
                     <h2>Wild Corp</h2>
+                    <img src='../../public/assets/down.png' width={'30px'}/>
+                  </div>
                     {listWild && (
                       <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
@@ -197,35 +237,47 @@ const PoliticCookies = () => {
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
-                            Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                          Ces données ne sont pas partagées avec des tierces parties.
                           </p>
                         </div>
                       </div>
                     )}
-                  </li>
+                  </li> */}
                   <li
                     aria-hidden
                     onKeyDown={handleClickListReact}
                     onClick={() => {
                       handleClickListReact();
                     }}>
-                    <h2>React</h2>
+                    <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__Align">
+                      <h2>React</h2>
+                      <div
+                        style={
+                          listReact
+                            ? {
+                                transform: 'rotate(180deg)',
+                                transition: 'all 300ms ease',
+                              }
+                            : {}
+                        }>
+                        <Icon
+                          name="arrow-list"
+                          width="20px"
+                          height="20px"
+                          color="#3d79af"
+                        />
+                      </div>
+                    </div>
                     {listReact && (
-                      <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
-                        <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
+                      <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer">
+                        <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Utilisation</h3>
-                          <p>
-                            Nous utilisons Facebook pour l’affichage de publications
-                            sociales récentes et/ou des boutons de partage de réseaux
-                            sociaux.
-                          </p>
+                          <p>Nous utilisons React pour l’affichage du site Pocli.</p>
                         </div>
-                        <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
+                        <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
-                            Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                            Ces données ne sont pas partagées avec des tierces parties.
                           </p>
                         </div>
                       </div>
@@ -237,22 +289,38 @@ const PoliticCookies = () => {
                     onClick={() => {
                       handleClickListSql();
                     }}>
-                    <h2>Sql</h2>
+                    <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__Align">
+                      <h2>Sql</h2>
+                      <div
+                        style={
+                          listSql
+                            ? {
+                                transform: 'rotate(180deg)',
+                                transition: 'all 300ms ease',
+                              }
+                            : {}
+                        }>
+                        <Icon
+                          name="arrow-list"
+                          width="20px"
+                          height="20px"
+                          color="#3d79af"
+                        />
+                      </div>
+                    </div>
                     {listSql && (
-                      <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
-                        <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
+                      <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer">
+                        <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Utilisation</h3>
                           <p>
-                            Nous utilisons Facebook pour l’affichage de publications
-                            sociales récentes et/ou des boutons de partage de réseaux
-                            sociaux.
+                            Nous utilisons MySql pour pour gérer la base de donnée du site
+                            Pocli.
                           </p>
                         </div>
-                        <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
+                        <div className="politicCookies__politicSectionCookiesContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
-                            Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                            Ces données ne sont pas partagées avec des tierces parties.
                           </p>
                         </div>
                       </div>
@@ -261,7 +329,7 @@ const PoliticCookies = () => {
                 </ul>
               </div>
             </div>
-            <div className="politicCookies__politicSectionContainer__politicCookiesConsent">
+            <div className="politicCookies__politicSectionCookiesContainer__politicCookiesConsent">
               <h2>7. Consentement</h2>
               <p>
                 Lorsque vous visitez notre site web pour la première fois, nous vous
@@ -282,10 +350,10 @@ const PoliticCookies = () => {
                 communications électroniques.
               </p>
             </div>
-            <div className="politicCookies__politicSectionContainer__politicCookiesData">
+            <div className="politicCookies__politicSectionCookiesContainer__politicCookiesData">
               <h2>8. Vos droits concernant les données personnelles</h2>
               <p>Vous avez les droits suivants concernant vos données personnelles :</p>
-              <div className="politicCookies__politicSectionContainer__politicCookiesData__politicCookiesDataList">
+              <div className="politicCookies__politicSectionCookiesContainer__politicCookiesData__politicCookiesDataList">
                 <ul>
                   <li>
                     Vous avez le droit de savoir pourquoi vos données personnelles sont
@@ -319,7 +387,7 @@ const PoliticCookies = () => {
                 </ul>
               </div>
             </div>
-            <div className="politicContainer__politicSectionContainer__politicCookiesActive">
+            <div className="politicContainer__politicSectionCookiesContainer__politicCookiesActive">
               <h2>9. Activer/désactiver et supprimer les cookies</h2>
               <p>
                 Vous pouvez utiliser votre navigateur internet pour supprimer
@@ -337,7 +405,7 @@ const PoliticCookies = () => {
                 vous revisiterez nos sites web.
               </p>
             </div>
-            <div className="politicContainer__politicSectionContainer__politicCookiesContact">
+            <div className="politicContainer__politicSectionCookiesContainer__politicCookiesContact">
               <h2>10. Coordonnées</h2>
               <p>pocli.asso@gmail.com</p>
               <p>07 64 15 27 11</p>
@@ -346,8 +414,10 @@ const PoliticCookies = () => {
             </div>
           </div>
         </div>
+        <div className="politicContainer__politicSectionCookiesContainer__comeBackHome">
+          <ComeBackHome />
+        </div>
       </div>
-      <ComeBackHome />
     </div>
   );
 };

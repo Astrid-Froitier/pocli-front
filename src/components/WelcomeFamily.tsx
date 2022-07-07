@@ -14,7 +14,7 @@ const WelcomeFamily = () => {
         memberFilter={false}
         bannerAbout={false}
         bannerEvent={false}
-        bannerMember={false}
+        bannerMember={true}
       />
       <div className="welcomeFamilyContainer">
         <div className="welcomeFamilyContainer__left">
