@@ -1,14 +1,14 @@
 .familyMembers {
   width: $pageContentWidth;
-  margin: $marginBoxTopAndBottom;
   display: flex;
   justify-content: space-between;
+  // z-index: 123456;
   &__card {
     display: flex;
     flex-direction: column;
     img {
-      width: 170px;
-      height: 250px;
+      width: 150px;
+      height: 130px;
       object-fit: cover;
       border-radius: 20px 20px 0 0;
     }

@@ -1,4 +1,4 @@
-const crewDev = [
+const members = [
   {
     id: 1,
     name: 'Gavin',
@@ -140,4 +140,4 @@ const partners = [
   },
 ];
 
-export { crewDev, partners, theCrew };
+export { members, partners, theCrew };
