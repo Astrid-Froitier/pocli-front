@@ -13,7 +13,7 @@
     &__politicPreambulContainer {
       h1 {
         color: $colorText-2;
-        font-size: 24px;
+        font-size: $titleSize;
         font-weight: 700;
         font-style: italic;
         margin: 1% 0;
@@ -48,9 +48,10 @@
         padding: 1% 1%;
       }
       &__politicTimeListContainer {
-        width: 80%;
+        width: 90%;
         margin: auto;
         margin-bottom: 5%;
+
         h2 {
           padding: 1% 1%;
         }
@@ -58,11 +59,28 @@
           color: #3d79af;
           margin-top: 1rem;
           list-style: none;
+          background-color: #f5f5f5;
+          padding: 0 10px;
+          
         }
+        &__politicTimeListAlign{
+          display: grid;
+          grid-template: "heading chevron";
+          grid-template-columns: 2fr 35px;
+          grid-gap: 15px;
+          align-items: center;
+
+          .icon {
+            width: 30px;
+            padding-right: 10px;
+            color: $colorText-2;
+          }
+        }
+
         &__fullListContainer {
-          background-color: #fbfbfb;
           padding-top: 2%;
           padding-left: 10%;
+
           h3 {
             margin-bottom: 2%;
           }
@@ -72,6 +90,7 @@
           }
           &__fullList {
             margin: 2% 0% 2% 35%;
+
           }
         }
       }

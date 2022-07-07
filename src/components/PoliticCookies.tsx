@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
+import Icon from './Icon';
 
 const PoliticCookies = () => {
   useEffect(() => {
@@ -34,7 +34,7 @@ const PoliticCookies = () => {
     <div className="">
       <Banner
         nameBannerActivity=""
-        title="Politique de Confidentialité"
+        title="Politique de Cookies"
         nameIcon=""
         memberFilter={false}
         bannerAbout={false}
@@ -129,7 +129,10 @@ const PoliticCookies = () => {
                     onClick={() => {
                       handleClickListFb();
                     }}>
+                    <div className='politicCookies__politicSectionContainer__politicCookiesPlaced__List__Align'>
                     <h2>Facebook</h2>
+                    <Icon name="arrow-list" width="20px" height="20px" color="black"/>
+                  </div>
                     {listFb && (
                       <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
@@ -143,8 +146,7 @@ const PoliticCookies = () => {
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
-                            Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                          Pour plus d’informations, veuillez lire la déclaration de confidentialité Facebook.
                           </p>
                         </div>
                       </div>
@@ -156,13 +158,16 @@ const PoliticCookies = () => {
                     onClick={() => {
                       handleClickListYt();
                     }}>
+                      <div className='politicCookies__politicSectionContainer__politicCookiesPlaced__List__Align'>
                     <h2>Youtube</h2>
+                    <Icon name="arrow-list" width="20px" height="20px" color="black"/>
+                  </div>
                     {listYt && (
                       <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Utilisation</h3>
                           <p>
-                            Nous utilisons Facebook pour l’affichage de publications
+                            Nous utilisons Youtube pour l’affichage de publications
                             sociales récentes et/ou des boutons de partage de réseaux
                             sociaux.
                           </p>
@@ -170,20 +175,22 @@ const PoliticCookies = () => {
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
-                            Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                          Pour plus d’informations, veuillez lire la déclaration de confidentialité YouTube.
                           </p>
                         </div>
                       </div>
                     )}
                   </li>
-                  <li
+                  {/* <li
                     aria-hidden
                     onKeyDown={handleClickListWild}
                     onClick={() => {
                       handleClickListWild();
                     }}>
+                      <div className='politicCookies__politicSectionContainer__politicCookiesPlaced__List__Align'>
                     <h2>Wild Corp</h2>
+                    <img src='../../public/assets/down.png' width={'30px'}/>
+                  </div>
                     {listWild && (
                       <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
@@ -197,35 +204,34 @@ const PoliticCookies = () => {
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
-                            Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                          Ces données ne sont pas partagées avec des tierces parties.
                           </p>
                         </div>
                       </div>
                     )}
-                  </li>
+                  </li> */}
                   <li
                     aria-hidden
                     onKeyDown={handleClickListReact}
                     onClick={() => {
                       handleClickListReact();
                     }}>
+                      <div className='politicCookies__politicSectionContainer__politicCookiesPlaced__List__Align'>
                     <h2>React</h2>
+                    <Icon name="arrow-list" width="20px" height="20px" color="black"/>
+                  </div>
                     {listReact && (
                       <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Utilisation</h3>
                           <p>
-                            Nous utilisons Facebook pour l’affichage de publications
-                            sociales récentes et/ou des boutons de partage de réseaux
-                            sociaux.
+                            Nous utilisons React pour l’affichage du site Pocli.
                           </p>
                         </div>
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
-                            Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                          Ces données ne sont pas partagées avec des tierces parties.
                           </p>
                         </div>
                       </div>
@@ -237,22 +243,22 @@ const PoliticCookies = () => {
                     onClick={() => {
                       handleClickListSql();
                     }}>
+                      <div className='politicCookies__politicSectionContainer__politicCookiesPlaced__List__Align'>
                     <h2>Sql</h2>
+                    <Icon name="arrow-list" width="20px" height="20px" color="black"/>
+                  </div>
                     {listSql && (
                       <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer">
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Utilisation</h3>
                           <p>
-                            Nous utilisons Facebook pour l’affichage de publications
-                            sociales récentes et/ou des boutons de partage de réseaux
-                            sociaux.
+                            Nous utilisons MySql pour pour gérer la base de donnée du site Pocli.
                           </p>
                         </div>
                         <div className="politicCookies__politicSectionContainer__politicCookiesPlaced__List__BlocContainer__Bloc">
                           <h3>Partage de données</h3>
                           <p>
-                            Pour plus d’informations, veuillez lire la déclaration de
-                            confidentialité Facebook.
+                          Ces données ne sont pas partagées avec des tierces parties.
                           </p>
                         </div>
                       </div>
