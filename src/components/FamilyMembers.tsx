@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import { crewDev } from '../../data/Xcrew';
+import { members } from '../../data/Xcrew';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
   const [cardSelected, setCardSelected] = useState<Array>([]);
 
-  // to
+  // to display the family members on the component mount
   useEffect(() => {
-    setCardSelected(crewDev.map(() => true));
+    setCardSelected(members.map(() => true));
   }, []);
 
   console.log(cardSelected);
@@ -24,14 +24,14 @@ const FamilyMembers = () => {
     <div>
       <div className="familyMembers">
         {/* map to show all members in the family */}
-        {crewDev.map(
-          (crew, index) =>
-            crew.image && (
+        {members.map(
+          (member, index) =>
+            member.image && (
               <div className="familyMembers__card" key={index}>
-                <img src={crew.image} alt="équipe dev" />
+                <img src={member.image} alt="équipe dev" />
                 <div className="familyMembers__card__name">
-                  {/* <p>{crew.name}</p> */}
-                  <p>{crew.username}</p>
+                  {/* <p>{member.name}</p> */}
+                  <p>{member.username}</p>
                   {/* button to select one member in family */}
 
                   <div
@@ -41,15 +41,15 @@ const FamilyMembers = () => {
                     {cardSelected[index] ? (
                       <Icon
                         name="square-check"
-                        width="35px"
-                        height="35px"
+                        width="20px"
+                        height="20px"
                         color="white"
                       />
                     ) : (
                       <Icon
                         name="square-nocheck"
-                        width="35px"
-                        height="35px"
+                        width="20px"
+                        height="20px"
                         color="white"
                       />
                     )}

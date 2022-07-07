@@ -1,7 +1,7 @@
 .banner {
   margin-top: 150px;
   position: sticky;
-  z-index: -1;
+  // z-index: -1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@
   background-size: cover;
   h1 {
     margin-top: 30px;
-    max-width: 400px;
+    max-width: 600px;
     text-align: center;
   }
   .box {
@@ -24,43 +24,46 @@
       width: 100px;
       fill: $colorText-2;
     }
-    &__about{
+    &__about {
       font-size: $titleSize;
       font-weight: $fontExtraBold;
       color: $colorText-2;
-      &__blue-pocli-text{
+      &__blue-pocli-text {
         color: $bluePocli;
       }
-      &__green-pocli-text{
+      &__green-pocli-text {
         color: $greenPocli;
       }
-      &__red-pocli-text{
+      &__red-pocli-text {
         color: $redPocli;
       }
     }
-    &__event{
+    &__event {
       width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      img{
+      img {
         max-width: 450px;
         max-height: 330px;
       }
-      span{
+      span {
         font-size: 16px;
       }
-      p{
+      p {
         font-size: $titleSize;
       }
-      .eventCard{
+      .eventCard {
         flex-direction: row-reverse;
       }
-      .icon{
+      .icon {
         width: 24px;
         fill: $colorText-3;
       }
+    }
+    &__member {
+      z-index: 123449956;
     }
   }
 
