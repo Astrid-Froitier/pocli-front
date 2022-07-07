@@ -61,11 +61,10 @@
           list-style: none;
           background-color: #f5f5f5;
           padding: 0 10px;
-          
         }
-        &__politicTimeListAlign{
+        &__politicTimeListAlign {
           display: grid;
-          grid-template: "heading chevron";
+          grid-template: 'heading chevron';
           grid-template-columns: 2fr 35px;
           grid-gap: 15px;
           align-items: center;
@@ -74,6 +73,7 @@
             width: 30px;
             padding-right: 10px;
             color: $colorText-2;
+            cursor: pointer;
           }
         }
 
@@ -90,7 +90,6 @@
           }
           &__fullList {
             margin: 2% 0% 2% 35%;
-
           }
         }
       }
@@ -121,10 +120,9 @@
       }
     }
   }
-  &__comeBackHome{
+  &__comeBackHome {
     display: flex;
-  width: 1028px;
-  justify-content: flex-end;
+    width: 1028px;
+    justify-content: flex-end;
   }
-  
 }
