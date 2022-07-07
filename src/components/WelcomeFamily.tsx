@@ -27,7 +27,9 @@ const WelcomeFamily = () => {
           <NavLink to="/adherentSpace">
             <p>Mon espace adhérent</p>
           </NavLink>
-          <p>Mes évènements</p>
+          <NavLink to="/myevents">
+            <p>Mes évènements</p>
+          </NavLink>
           <p>Ma messagerie</p>
           <p>Mes documents</p>
         </div>

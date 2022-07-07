@@ -13,6 +13,7 @@ import Family from './components/Family';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/Login';
+import MyEvents from './components/MyEvents';
 import NavBar from './components/NavBar';
 import PoliticConf from './components/PoliticConf';
 import PoliticCookies from './components/PoliticCookies';
@@ -47,6 +48,7 @@ function App() {
               <Route path="/animation" element={<Animation />} />
               <Route path="/politicconf" element={<PoliticConf />} />
               <Route path="/politiccookies" element={<PoliticCookies />} />
+              <Route path="/myevents" element={<MyEvents />} />
             </Routes>
           </CurrentTestContextProvider>
         </CurrentModalContextProvider>
