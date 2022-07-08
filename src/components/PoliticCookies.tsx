@@ -414,7 +414,7 @@ const PoliticCookies = () => {
             </div>
           </div>
         </div>
-        <div className="politicContainer__politicSectionCookiesContainer__comeBackHome">
+        <div className="politicCookies__comeBackHome">
           <ComeBackHome />
         </div>
       </div>

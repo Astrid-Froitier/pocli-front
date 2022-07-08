@@ -49,7 +49,7 @@ const Footer = () => {
       <div className="footerContainer__mention">
         <div className="footerContainer__mention__h6">
           <h6>Pocli - Pour créer des liens - 4 Ribeyreau, 33420 Espiet</h6>
-          <p>Siret ° 5082180800027</p>
+          <p>Siret: 5082180800027</p>
           <div className="footerContainer__mention__h6__list">
             {footerLinks_mention &&
               footerLinks_mention.map((link) => (
