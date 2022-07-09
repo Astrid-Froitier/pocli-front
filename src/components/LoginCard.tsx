@@ -4,7 +4,6 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 import CurrentUserContext from '../contexts/CurrentUser';
-import IUser from '../interfaces/IUser';
 import Icon from './Icon';
 
 const LoginCard = () => {
@@ -21,6 +20,11 @@ const LoginCard = () => {
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
+    interface IUser {	
+      id: number;	
+      firstname: string;	
+      admin: number;	
+    }
     try {
       e.preventDefault();
       const { data } = await axios.post<IUser>(
