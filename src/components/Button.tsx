@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import IButton from '../interfaces/IButton';
+interface ButtonProps {
+  text: string;
+  link?: string;
+}
 
-const Button = ({ text, link = '' }: IButton) => {
+const Button = ({ text, link = '' }: ButtonProps) => {
   return link ? (
     <NavLink to={link}>
       <div className="buttonContainer">{text}</div>

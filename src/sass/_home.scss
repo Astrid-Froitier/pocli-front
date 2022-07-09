@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  &.modal {
+    filter: blur(4px);
+  }
   &__events {
     width: $pageContentWidth;
     margin: $marginBoxTopAndBottom;
@@ -18,6 +21,8 @@
       gap: 40px;
       &__card {
         width: 430px;
+        height: 150px;
+        cursor: pointer;
       }
     }
   }
