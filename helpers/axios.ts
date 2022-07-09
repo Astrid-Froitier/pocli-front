@@ -6,7 +6,7 @@ const getAllData = (urls: String[]) => {
 
 const fetchData = async (url: String) => {
   try {
-    const { data } = await axios.get(String(url), { withCredentials: true });
+    const { data } = await axios.get(String(url));
     return {
       success: true,
       data: data,
