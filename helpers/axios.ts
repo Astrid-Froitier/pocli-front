@@ -1,16 +1,19 @@
 import axios from 'axios';
 
-import IEvent from '../src/interfaces/IEvent';
+const getAllData = (urls: String[]) => {
+  return Promise.all(urls.map(fetchData));
+};
 
-const getEvents = async ({ setEvents }) => {
-  // indispensable quand on veut utiliser async/await dans un useEffect
-  let url: string = 'http://localhost:3000/api/events';
+const fetchData = async (url: String) => {
   try {
-    const { data } = await axios.get<IEvent[]>(url);
-    setEvents(data);
+    const { data } = await axios.get(String(url));
+    return {
+      success: true,
+      data: data,
+    };
   } catch (err) {
-    console.error(err);
+    return { success: false };
   }
 };
 
-export { getEvents };
+export default getAllData;

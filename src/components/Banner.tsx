@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { members } from '../../data/Xcrew';
 // import events from '../../data/Xevents';
 // import IBanner from '../interfaces/IBanner';
 import IEvent from '../interfaces/IEvent';
 import EventCard from './EventCard';
+import FamilyMembers from './FamilyMembers';
 import Icon from './Icon';
 
 interface BannerProps {
@@ -49,6 +51,11 @@ const Banner = ({
         {bannerEvent && event && (
           <div className="box__event">
             <EventCard event={event} bannerEvent={bannerEvent} />
+          </div>
+        )}
+        {bannerMember && members && (
+          <div className="box__member">
+            <FamilyMembers />
           </div>
         )}
       </div>

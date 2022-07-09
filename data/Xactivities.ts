@@ -14,31 +14,31 @@ const activities = [
   {
     id: 3,
     name: 'Pilates',
-    category: 'Sport et bien-être',
+    category: 'Activités physiques et bien-être',
     abridged: 'sport',
   },
   {
     id: 4,
     name: 'Gym Douce',
-    category: 'Sport et bien-être',
+    category: 'Activités physiques et bien-être',
     abridged: 'sport',
   },
   {
     id: 5,
     name: 'Gym Seniors',
-    category: 'Sport et bien-être',
+    category: 'Activités physiques et bien-être',
     abridged: 'sport',
   },
   {
     id: 6,
     name: 'Bien-Être Solo',
-    category: 'Sport et bien-être',
+    category: 'Activités physiques et bien-être',
     abridged: 'sport',
   },
   {
     id: 7,
     name: 'Bien-Être Duo',
-    category: 'Sport et bien-être',
+    category: 'Activités physiques et bien-être',
     abridged: 'sport',
   },
   {

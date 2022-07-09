@@ -1,4 +1,4 @@
-const crewDev = [
+const members = [
   {
     id: 1,
     name: 'Gavin',
@@ -81,53 +81,63 @@ const partners = [
     id: 1,
     name: 'caf',
     image: '/assets/logo-caf-gironde.png',
+    URL: 'https://www.caf.fr/allocataires/caf-de-la-gironde',
   },
   {
     id: 2,
     name: 'MSA',
     image: '/assets/msa.png',
+    URL: 'https://gironde.msa.fr/lfp',
   },
   {
     id: 3,
     name: 'Département Gironde',
     image: '/assets/dp_gironde.png',
+    URL: 'https://www.gironde.fr/',
   },
   {
     id: 4,
     name: 'Département Nouvelle Aquitaine',
     image: '/assets/dp_Nouvelle_Aquitiaine.png',
+    URL: 'https://www.nouvelle-aquitaine.fr/le-territoire/la-plus-grande-region-de-france',
   },
   {
     id: 5,
     name: 'REAAP',
     image: '/assets/logo-reaap-gironde.png',
+    URL: '/assets/logo-reaap-gironde.png',
   },
-  { id: 6, name: 'La Cali', image: '/assets/la_Cali.png' },
+  { id: 6, name: 'La Cali', image: '/assets/la_Cali.png', URL: 'https://www.lacali.fr/' },
   {
     id: 7,
     name: 'Castillon Pujols',
     image: '/assets/Cc-Castillon-Pujols.gif',
+    URL: 'https://www.castillonpujols.fr/',
   },
   {
     id: 8,
     name: 'St Quentin de Baron',
     image: '/assets/Mairie de St Quentin de B.png',
+    URL: 'https://saint-quentin-de-baron.fr/',
   },
   {
     id: 9,
     name: 'Espiet',
     image: '/assets/Mairie Espiet.png',
+    URL: 'http://www.espiet.fr/',
   },
   {
     id: 10,
     name: 'Nerigean',
     image: '/assets/Nérigean.jpg',
+    URL: 'https://nerigean.fr/',
   },
   {
     id: 11,
     name: 'Ville de Branne',
     image: '/assets/Branne.png',
+    URL: 'https://www.mairie-branne.fr/',
   },
 ];
 
-export { crewDev, partners, theCrew };
+export { members, partners, theCrew };

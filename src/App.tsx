@@ -17,25 +17,22 @@ import NavBar from './components/NavBar';
 import PoliticConf from './components/PoliticConf';
 import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
-import TestContext from './components/TestContext';
 import WelcomeFamily from './components/WelcomeFamily';
-import { CurrentModalContextProvider } from './contexts/CurrentModal';
-import { CurrentTestContextProvider } from './contexts/CurrentTest';
+import { CurrentDataContextProvider } from './contexts/CurrentData';
 
 function App() {
   return (
     <div className="app">
       <Router>
-        {/* <main> */}
-        <NavBar />
-        <CurrentTestContextProvider>
+        <CurrentDataContextProvider>
+          {/* <main> */}
+          <NavBar />
           <Routes>
             {/* <Route path="*" element={<Home />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/click" element={<TestContext />} />
             {/* <Route path="/address" element={<AddressList onlyMine={id != 0} />} /> */}
             <Route path="/adherentSpace" element={<AdherentSpace />} />
             <Route path="/welcome" element={<WelcomeFamily />} />
@@ -47,9 +44,9 @@ function App() {
             <Route path="/politicconf" element={<PoliticConf />} />
             <Route path="/politiccookies" element={<PoliticCookies />} />
           </Routes>
-        </CurrentTestContextProvider>
-        {/* </main> */}
-        <Footer />
+          {/* </main> */}
+          <Footer />
+        </CurrentDataContextProvider>
       </Router>
     </div>
   );
