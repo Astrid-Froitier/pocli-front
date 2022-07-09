@@ -4,7 +4,7 @@ import { members } from '../../data/Xcrew';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
-  const [cardSelected, setCardSelected] = useState<Array>([]);
+  const [cardSelected, setCardSelected] = useState<boolean[]>([]);
 
   // to display the family members on the component mount
   useEffect(() => {
@@ -16,7 +16,7 @@ const FamilyMembers = () => {
   // function to select only one member of the family with a map. If the key is egal to the index don't select the card else select it.
   function selectMember(index: number) {
     setCardSelected(
-      cardSelected.map((card: string, key: number) => (key == index ? !card : card)),
+      cardSelected.map((card, key) => (key == index ? !card : card)),
     );
   }
 
