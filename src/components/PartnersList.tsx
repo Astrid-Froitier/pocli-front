@@ -6,10 +6,13 @@ const PartnersList = () => {
   return (
     <div className="partnersContainer">
       <h1>Nos partenaires</h1>
-      {/* map de la data des logos pour qu'ils s'affichent directement sur la page */}
+      {/* data map of the logos to display them directly on the page */}
       <div className="partnersContainer__imageMapContainer">
         {partners.map((partner, index) => (
-          <img src={partner.image} alt={partner.name} key={index} />
+          // link to redirect to the partner site in a new window
+          <a href={partner.URL} key={index} target="blank">
+            <img src={partner.image} alt={partner.name} />
+          </a>
         ))}
       </div>
     </div>

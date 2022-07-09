@@ -15,6 +15,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
 import PoliticConf from './components/PoliticConf';
+import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
 import WelcomeFamily from './components/WelcomeFamily';
 import { CurrentDataContextProvider } from './contexts/CurrentData';
@@ -41,6 +42,7 @@ function App() {
             <Route path="/prevention" element={<Prevention />} />
             <Route path="/animation" element={<Animation />} />
             <Route path="/politicconf" element={<PoliticConf />} />
+            <Route path="/politiccookies" element={<PoliticCookies />} />
           </Routes>
           {/* </main> */}
           <Footer />

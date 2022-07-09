@@ -108,14 +108,30 @@ const PoliticConf = () => {
             <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer">
               <ul>
                 <li
+                  className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__politicTimeListRotateArrow"
                   aria-hidden
                   onKeyDown={handleClickContact}
                   onClick={() => {
                     handleClickContact();
                   }}>
-                  <h2>
-                    1.1 Contact – Par téléphone, courrier, e-mail et/ou formulaires web
-                  </h2>
+                  <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__politicTimeListAlign">
+                    <h2>
+                      1.1 Contact – Par téléphone, courrier, e-mail et/ou formulaires web
+                    </h2>
+                    <div
+                      style={
+                        politicListContact
+                          ? { transform: 'rotate(180deg)', transition: 'all 300ms ease' }
+                          : {}
+                      }>
+                      <Icon
+                        name="arrow-list"
+                        width="20px"
+                        height="20px"
+                        color="#3d79af"
+                      />
+                    </div>
+                  </div>
                   {politicListContact && (
                     <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
                       <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
@@ -133,36 +149,84 @@ const PoliticConf = () => {
                   )}
                 </li>
                 <li
+                  className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__politicTimeListRotateArrow"
                   aria-hidden
                   onKeyDown={handleClickRegister}
                   onClick={() => {
                     handleClickRegister();
                   }}>
-                  <h2>1.2 Enregistrement d’un compte</h2>
+                  <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__politicTimeListAlign">
+                    <h2>1.2 Enregistrement d’un compte</h2>
+                    <div
+                      style={
+                        politicListRegister
+                          ? {
+                              transform: 'rotate(180deg)',
+                              transition: 'all 300ms ease',
+                            }
+                          : {}
+                      }>
+                      <Icon
+                        name="arrow-list"
+                        width="20px"
+                        height="20px"
+                        color="#3d79af"
+                      />
+                    </div>
+                  </div>
                   {politicListRegister && (
-                    <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
+                    <div
+                      className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer"
+                      // style={
+                      //   politicListRegister
+                      //     ? { display: 'block', transition: 'all 1s ease-in-out' }
+                      //     : { display: 'hidden' }
+                      // }
+                    >
                       <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
                       <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer__fullList">
                         <ul>
                           <li>Nom, adresse et ville</li>
                           <li>Adresse e-mail</li>
-                          <li>Données spécifiques au compte</li>
+                          <li>
+                            Nom d’utilisateur, mots de passe et autres données spécifiques
+                            au compte
+                          </li>
                           <li>Adresse IP</li>
                           <li>Numéro de téléphone</li>
                         </ul>
-                      </div>{' '}
+                      </div>
                       <h3>Durée de conservation</h3>
                       <p>Nous conservons ces données jusqu’à la fin du service.</p>
                     </div>
                   )}
                 </li>
                 <li
+                  className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__politicTimeListRotateArrow"
                   aria-hidden
                   onKeyDown={handleClickLetters}
                   onClick={() => {
                     handleClickLetters();
                   }}>
-                  <h2>1.3 Infolettres</h2>
+                  <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__politicTimeListAlign">
+                    <h2>1.3 Infolettres</h2>
+                    <div
+                      style={
+                        politicListLetters
+                          ? {
+                              transform: 'rotate(180deg)',
+                              transition: 'all 300ms ease',
+                            }
+                          : {}
+                      }>
+                      <Icon
+                        name="arrow-list"
+                        width="20px"
+                        height="20px"
+                        color="#3d79af"
+                      />
+                    </div>
+                  </div>
                   {politicListLetters && (
                     <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
                       <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
@@ -179,15 +243,31 @@ const PoliticConf = () => {
                   )}
                 </li>
                 <li
+                  className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__politicTimeListRotateArrow"
                   aria-hidden
                   onKeyDown={handleClickCompiler}
                   onClick={() => {
                     handleClickCompiler();
                   }}>
-                  <h2>
-                    1.4 Compiler et analyser des statistiques pour l’amélioration du site
-                    web.
-                  </h2>
+                  <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__politicTimeListAlign">
+                    <h2>
+                      1.4 Compiler et analyser des statistiques pour l’amélioration du
+                      site web.
+                    </h2>
+                    <div
+                      style={
+                        politicListCompiler
+                          ? { transform: 'rotate(180deg)', transition: 'all 300ms ease' }
+                          : {}
+                      }>
+                      <Icon
+                        name="arrow-list"
+                        width="20px"
+                        height="20px"
+                        color="#3d79af"
+                      />
+                    </div>
+                  </div>
                   {politicListCompiler && (
                     <div className="politicContainer__politicSectionContainer__politicTimeConservContainer__politicTimeListContainer__fullListContainer">
                       <h3>Dans cette finalité, nous utilisons les données suivantes :</h3>
@@ -297,7 +377,7 @@ const PoliticConf = () => {
             </p>
           </div>
           <div className="politicContainer__politicSectionContainer__politicContactContainer">
-            <h1>6. Coordonnées</h1>
+            <h1>10. Coordonnées</h1>
             <p>pocli.asso@gmail.com</p>
             <p>07 64 15 27 11</p>
             <p>Lundi, mardi, jeudi, vendredi - de 9h à 12h30 et de 14h à 16h30</p>

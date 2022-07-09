@@ -40,11 +40,11 @@
   }
 
   &__gymSeniorContainer {
+    margin-top: 4rem;
     width: $pageContentWidth;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    margin-top: 4rem;
     h1 {
       font-size: $categorySize;
       font-weight: $fontExtraBold;
