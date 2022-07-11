@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DocumentsCard = () => {
-  return <div className="messagingCardContainer"></div>;
+  return <div className="documentsCardContainer"></div>;
 };
 
 export default DocumentsCard;
