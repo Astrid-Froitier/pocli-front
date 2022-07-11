@@ -21,7 +21,7 @@ const EventCard = ({
   useEffect(() => {
     const getEventDocuments = async () => {
       // indispensable quand on veut utiliser async/await dans un useEffect
-      let url: string = 'http://localhost:3001/api/eventDocuments/';
+      let url: string = 'http://localhost:3001/api/linkedDocuments/';
       try {
         const { data } = await axios.get<IEventDocument[]>(url);
         setEventDocuments(data);
