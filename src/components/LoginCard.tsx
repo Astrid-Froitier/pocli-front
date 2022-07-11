@@ -20,10 +20,10 @@ const LoginCard = () => {
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
-    interface IUser {	
-      id: number;	
-      name: string;	
-      admin: number;	
+    interface IUser {
+      id: number;
+      name: string;
+      admin: number;
     }
     try {
       e.preventDefault();
@@ -43,6 +43,7 @@ const LoginCard = () => {
       setFirstname(data.name);
       setAdmin(data.admin === 1);
       redirectHome();
+      console.log(data);
     } catch (err) {
       // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
       if (axios.isAxiosError(err)) {

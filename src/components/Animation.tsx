@@ -68,7 +68,7 @@ const Animation = () => {
           <img src="/assets/animation2.png" alt="AnimationImage2" />
           <img src="/assets/animation3.png" alt="AnimationImage3" />
         </div>
-        <div className="comeBackHome">
+        <div className="animationContainer__comeBackHome">
           <ComeBackHome />
         </div>
       </div>
