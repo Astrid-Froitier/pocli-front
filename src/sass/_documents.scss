@@ -1,0 +1,27 @@
+.documentsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: $marginBoxTopAndBottom;
+  width: 100%;
+  height: 100%;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: $pageContentWidth;
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: $pageContentWidth;
+    &__right {
+      border-left: 1px solid $colorText-2;
+      padding-left: 1rem;
+      width: calc($pageContentWidth/2);
+    }
+  }
+}

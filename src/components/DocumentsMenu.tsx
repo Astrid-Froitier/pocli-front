@@ -14,7 +14,7 @@ const DocumentsMenu = () => {
           <div
             className="documentsMenuContainer__unreadDocumentsDevelopped__title"
             onClick={() => handleSelectedMenu(0)}>
-            <Icon name="envelope-notification" width="40px" color="white" />
+            <Icon name="document-notification" width="40px" color="white" />
             <p>
               Document(s) non lu(s) - <span> 2</span>
             </p>
@@ -25,7 +25,7 @@ const DocumentsMenu = () => {
         <div
           onClick={() => handleSelectedMenu(1)}
           className="documentsMenuContainer__unreadDocuments">
-          <Icon name="envelope-notification" width="40px" color="#3D79AF" />
+          <Icon name="document-notification" width="40px" color="#3D79AF" />
           <p>
             Document(s) non lu(s) - <span> 2</span>
           </p>
@@ -36,7 +36,7 @@ const DocumentsMenu = () => {
           <div
             className="documentsMenuContainer__allDocumentsDevelopped__title"
             onClick={() => handleSelectedMenu(0)}>
-            <Icon name="envelopes" width="40px" color="white" />
+            <Icon name="documents" width="40px" color="white" />
             <p>Tous les documents</p>
           </div>
           <div className="documentsMenuContainer__allDocumentsDevelopped__documents"></div>
@@ -45,7 +45,7 @@ const DocumentsMenu = () => {
         <div
           onClick={() => handleSelectedMenu(2)}
           className="documentsMenuContainer__allDocuments">
-          <Icon name="envelopes" width="40px" color="#3D79AF" />
+          <Icon name="documents" width="40px" color="#3D79AF" />
           <p>Tous les documents</p>
         </div>
       )}

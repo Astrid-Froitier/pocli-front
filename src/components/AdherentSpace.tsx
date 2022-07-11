@@ -30,9 +30,11 @@ const AdherentSpace = () => {
               Mes messages - <span>3</span> non lu(s)
             </p>
           </NavLink>
-          <p>
-            Mes documents - <span>0</span> non lu(s)
-          </p>
+          <NavLink to="/documents">
+            <p>
+              Mes documents - <span>0</span> non lu(s)
+            </p>
+          </NavLink>
         </div>
         <div className="adherentSpaceContainer__right">
           <h1>Mon compte</h1>

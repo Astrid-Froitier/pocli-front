@@ -20,6 +20,7 @@ import Prevention from './components/Prevention';
 import { CurrentDataContextProvider } from './contexts/CurrentData';
 import CurrentUserContext from './contexts/CurrentUser';
 import Messaging from './components/Messaging';
+import Documents from './components/Documents';
 
 function App() {
   const { id } = useContext(CurrentUserContext);
@@ -45,6 +46,7 @@ function App() {
             <Route path="/politicconf" element={<PoliticConf />} />
             <Route path="/politiccookies" element={<PoliticCookies />} />
             <Route path="/messaging" element={<Messaging />} />
+            <Route path="/documents" element={<Documents />} />
           </Routes>
           {/* </main> */}
           <Footer />
