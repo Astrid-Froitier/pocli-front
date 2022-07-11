@@ -24,7 +24,7 @@
     transform: translate(-50%, -50%);
     background-color: $backGround-2;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
-    border-radius: 60px;
+    border-radius: 20px;
     overflow-y: scroll;
     padding: 30px 60px;
     &::-webkit-scrollbar {
@@ -43,6 +43,15 @@
     }
     &::-webkit-scrollbar-thumb:hover {
         background: $colorText-2;
+    }
+    &__header{
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      &__x-mark{
+        width: fit-content;
+        cursor: pointer;
+      }
     }
   }
 }

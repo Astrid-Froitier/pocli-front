@@ -61,7 +61,7 @@ const Events = () => {
       });
   }, []);
 
-  // useEffect permettant d'empêcher le scroll sur x suivant l'état de modalOnOff
+  // useEffect permettant d'empêcher le scroll sur Y suivant l'état de modalOnOff
   useEffect(() => {
     {
       modalOnOff && document.documentElement.style.setProperty('overflow-y', 'hidden');
