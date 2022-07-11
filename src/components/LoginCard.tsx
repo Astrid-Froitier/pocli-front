@@ -9,26 +9,26 @@ import Icon from './Icon';
 const LoginCard = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate: NavigateFunction = useNavigate();
 
   const { setId, setAdmin, setFirstname } = useContext(CurrentUserContext);
 
   function redirectHome() {
-    navigate('/');
+    navigate('/adherentSpace');
   }
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
     interface IUser {	
       id: number;	
-      firstname: string;	
+      name: string;	
       admin: number;	
     }
     try {
       e.preventDefault();
       const { data } = await axios.post<IUser>(
-        'http://localhost:8000/api/login',
+        'http://localhost:3001/api/login',
         { email, password },
         {
           method: 'POST',
@@ -40,7 +40,7 @@ const LoginCard = () => {
       );
       setErrorMessage('');
       setId(data.id);
-      setFirstname(data.firstname);
+      setFirstname(data.name);
       setAdmin(data.admin === 1);
       redirectHome();
     } catch (err) {
@@ -102,12 +102,12 @@ const LoginCard = () => {
           </label>
         </div>
         <p className="loginCardContainer__passwordForgot">Mot de passe oublié</p>
-        <NavLink to="/welcome" className="loginCardContainer__submit">
+        <button type="submit" className="loginCardContainer__submit">
           <Icon name="arrow-right" width="40px" height="40px" color="white" />
           {errorMessage && (
             <span className="loginCardContainer__message">{errorMessage}</span>
           )}
-        </NavLink>
+        </button>
       </form>
     </>
   );

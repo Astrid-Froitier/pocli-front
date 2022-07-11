@@ -25,7 +25,7 @@ const ModalEvent = ({ event, setModalOnOff }: BannerProps) => {
         role="button"
         tabIndex={0}></div>
       <div className="modalEvent__box">
-        <EventCard event={event} />
+        <EventCard event={event} modalEvent={true} />
         <div className="modalEvent__box__test"></div>
       </div>
     </div>
