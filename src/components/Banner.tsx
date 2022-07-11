@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { members } from '../../data/Xcrew';
-// import events from '../../data/Xevents';
-// import IBanner from '../interfaces/IBanner';
 import IEvent from '../interfaces/IEvent';
 import EventCard from './EventCard';
 import FamilyMembers from './FamilyMembers';
@@ -54,7 +52,7 @@ const Banner = ({
           </div>
         )}
         {bannerMember && members && (
-          <div className="box__member">
+          <div className="box__members">
             <FamilyMembers />
           </div>
         )}
