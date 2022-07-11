@@ -7,8 +7,6 @@ export default interface IEvent {
   podcastLink?: string;
   reservedAdherent: number;
   price?: number;
-  postType_name: string;
-  activity_name?: string;
-  activity_category?: string;
-  activity_abridged?: string;
+  idPostType: number;
+  idActivity?: number;
 }

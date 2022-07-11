@@ -1,9 +1,16 @@
 import React from 'react';
 
 import svgs from '../../data/svgs';
-import IIcon from '../interfaces/IIcon';
 
-const Icon = ({ name, width, height, color, opacity }: IIcon) => {
+interface IconProps {
+  name: string;
+  width?: string;
+  height?: string;
+  color?: string;
+  opacity?: number;
+}
+
+const Icon = ({ name, width, height, color, opacity }: IconProps) => {
   return (
     <>
       {svgs.map(

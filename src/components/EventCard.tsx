@@ -1,8 +1,7 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
+import CurrentDataContext from '../contexts/CurrentData';
 import IEvent from '../interfaces/IEvent';
-import IEventDocument from '../interfaces/IEventDocument';
 import Icon from './Icon';
 
 interface EventCardProps {
@@ -16,45 +15,49 @@ const EventCard = ({
   bannerEvent = false,
   modalEvent = false,
 }: EventCardProps) => {
-  const [eventDocuments, setEventDocuments] = useState<IEventDocument[]>();
+  const { postTypes, activities, documents, linkedDocuments } =
+    useContext(CurrentDataContext);
 
-  useEffect(() => {
-    const getEventDocuments = async () => {
-      // indispensable quand on veut utiliser async/await dans un useEffect
-      let url: string = 'http://localhost:3001/api/linkedDocuments/';
-      try {
-        const { data } = await axios.get<IEventDocument[]>(url);
-        setEventDocuments(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getEventDocuments();
-  }, []);
-
-  const documentsByEvent =
-    eventDocuments && eventDocuments.filter((document) => document.idEvent === event.id);
+  const documentsByEvent = linkedDocuments
+    .filter((linkedDocument) => linkedDocument.idEvent === event.id)
+    .map((linkedDocument) => linkedDocument.idDocument);
 
   return (
     <div className="eventCard">
-      {documentsByEvent && documentsByEvent.length ? (
+      {documentsByEvent && (
         <img
           className="eventCard__image"
-          src={documentsByEvent[0].document_url}
-          alt={documentsByEvent[0].document_name}></img>
-      ) : undefined}
+          src={
+            documents
+              .filter((document) => document.id === documentsByEvent[0])
+              .map((document) => document.url)[0]
+          }
+          alt={
+            documents
+              .filter((document) => document.id === documentsByEvent[0])
+              .map((document) => document.name)[0]
+          }></img>
+      )}
       <div className="eventCard__informations">
         <div className="eventCard__informations__header">
           <span className="eventCard__informations__header__date">{event.date}</span>
           <span
             className={`eventCard__informations__header__${
-              event.postType_name === 'Activité'
-                ? event.activity_abridged
-                : event.postType_name
+              event.idPostType === 1
+                ? activities
+                    .filter((activity) => activity.id === event.idActivity)
+                    .map((activity) => activity.shortName)
+                : postTypes
+                    .filter((postType) => postType.id === event.idPostType)
+                    .map((postType) => postType.name)
             }`}>
-            {event.postType_name === 'Activité'
-              ? event.activity_name
-              : event.postType_name}
+            {event.idPostType === 1
+              ? activities
+                  .filter((activity) => activity.id === event.idActivity)
+                  .map((activity) => activity.name)
+              : postTypes
+                  .filter((postType) => postType.id === event.idPostType)
+                  .map((postType) => postType.name)}
           </span>
         </div>
         <p className="eventCard__informations__text">{event.description}</p>
@@ -63,7 +66,7 @@ const EventCard = ({
             <Icon name="arrow-right" />
           </div>
         )}
-        {modalEvent && <div>{event.description}</div>}
+        {modalEvent && <div>{event.text}</div>}
       </div>
     </div>
   );

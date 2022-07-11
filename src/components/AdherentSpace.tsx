@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 
 const AdherentSpace = () => {
+  const { id } = useContext(CurrentUserContext);
+  console.log(id);
+
   return (
     <div>
       <Banner

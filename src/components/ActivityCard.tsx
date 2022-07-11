@@ -1,9 +1,14 @@
 import React from 'react';
 
-import IActivityCard from '../interfaces/IActivityCard';
 import Icon from './Icon';
 
-const ActivityCard = ({ nameActivity, nameIcon, title }: IActivityCard) => {
+interface ActivityCardProps {
+  nameActivity: string;
+  nameIcon: string;
+  title: string;
+}
+
+const ActivityCard = ({ nameActivity, nameIcon, title }: ActivityCardProps) => {
   return (
     <div className={`activityCard ${nameActivity}`}>
       <div className={`activityCard__iconTop ${nameActivity}`}>
