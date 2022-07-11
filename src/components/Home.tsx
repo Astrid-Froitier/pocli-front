@@ -81,6 +81,7 @@ const Home = () => {
     formState: { errors },
   } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (data) => setEmailNewsletter(data);
+
   return (
     <>
       <div className={`homeContainer ${modalOnOff}`}>

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import getAllData from '../../helpers/axios';
 import CurrentDataContext from '../contexts/CurrentData';
 import Banner from './Banner';
+import ComeBackHome from './ComeBackHome';
 import EventCard from './EventCard';
 import ModalEvent from './ModalEvent';
 
@@ -144,6 +145,9 @@ const Events = () => {
                   </div>
                 ))}
           </div>
+        </div>
+        <div className='eventsContainer__comeBackHome'>
+          <ComeBackHome />
         </div>
       </div>
       {modalOnOff && (

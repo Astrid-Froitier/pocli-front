@@ -16,12 +16,11 @@ const FamilyMembers = () => {
   // function to select only one member of the family with a map. If the key is egal to the index don't select the card else select it.
   function selectMember(index: number) {
     setCardSelected(
-      cardSelected.map((card, key) => (key == index ? !card : card)),
+      cardSelected.map((card, key) => (key === index ? !card : card)),
     );
   }
 
   return (
-    <div>
       <div className="familyMembers">
         {/* map to show all members in the family */}
         {members.map(
@@ -59,7 +58,6 @@ const FamilyMembers = () => {
             ),
         )}
       </div>
-    </div>
   );
 };
 

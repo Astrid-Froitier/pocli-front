@@ -44,4 +44,10 @@
       }
     }
   }
+  &__comeBackHome{
+    width: $pageContentWidth;
+    margin: $marginBoxTopAndBottom;
+    display: flex;
+    justify-content: flex-end;
+  }
 }

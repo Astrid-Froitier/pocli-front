@@ -21,6 +21,19 @@ type DataContent = {
 
 type CurrentModalProps = { children: React.ReactNode };
 
+const dateToday = new Date().toLocaleDateString();
+
+const eventLoader = {
+  id: 1,
+  date: `${dateToday}`,
+  description: 'Chargement en cours. Veuillez patienter...',
+  reservedAdherent: 0,
+  idPostType: 1,
+  idActivity: 1,
+};
+
+const eventsLoader = [eventLoader, eventLoader, eventLoader, eventLoader, eventLoader];
+
 const CurrentDataContext = createContext<DataContent>({
   events: [],
   postTypes: [],
@@ -35,11 +48,35 @@ const CurrentDataContext = createContext<DataContent>({
 });
 
 export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
-  const [events, setEvents] = useState<IEvent[]>([]);
-  const [postTypes, setPostTypes] = useState<IPostType[]>([]);
-  const [activities, setActivities] = useState<IActivity[]>([]);
-  const [documents, setDocuments] = useState<IDocument[]>([]);
-  const [linkedDocuments, setLinkedDocuments] = useState<ILinkedDocument[]>([]);
+  const [events, setEvents] = useState<IEvent[]>(eventsLoader);
+  const [postTypes, setPostTypes] = useState<IPostType[]>([
+    {
+      id: 1,
+      name: 'Activité',
+    },
+  ]);
+  const [activities, setActivities] = useState<IActivity[]>([
+    {
+      id: 1,
+      name: 'PoCLi',
+      category: '',
+      shortName: 'family',
+    },
+  ]);
+  const [documents, setDocuments] = useState<IDocument[]>([
+    {
+      id: 1,
+      name: 'pocli',
+      url: 'assets/pocli.png',
+    },
+  ]);
+  const [linkedDocuments, setLinkedDocuments] = useState<ILinkedDocument[]>([
+    {
+      id: 1,
+      idEvent: 1,
+      idDocument: 1,
+    },
+  ]);
 
   return (
     <CurrentDataContext.Provider
