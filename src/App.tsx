@@ -8,11 +8,13 @@ import Activities from './components/Activities';
 import AdherentSpace from './components/AdherentSpace';
 import Animation from './components/Animation';
 import Contact from './components/Contact';
+import Documents from './components/Documents';
 import Events from './components/Events';
 import Family from './components/Family';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/Login';
+import Messaging from './components/Messaging';
 import MyEvents from './components/MyEvents';
 import NavBar from './components/NavBar';
 import PoliticConf from './components/PoliticConf';
@@ -45,6 +47,8 @@ function App() {
             <Route path="/politicconf" element={<PoliticConf />} />
             <Route path="/politiccookies" element={<PoliticCookies />} />
             <Route path="/myevents" element={<MyEvents />} />
+            <Route path="/messaging" element={<Messaging />} />
+            <Route path="/documents" element={<Documents />} />
           </Routes>
           {/* </main> */}
           <Footer />

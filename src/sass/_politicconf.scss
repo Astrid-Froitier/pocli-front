@@ -123,8 +123,9 @@
     }
   }
   &__comeBackHome {
+    width: $pageContentWidth;
     display: flex;
-    width: 1028px;
+    width: $pageContentWidth;
     justify-content: flex-end;
   }
 }

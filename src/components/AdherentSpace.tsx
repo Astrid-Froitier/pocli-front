@@ -22,26 +22,28 @@ const AdherentSpace = () => {
       <div className="adherentSpaceContainer">
         <div className="adherentSpaceContainer__left">
           <h1>Tableau de bord</h1>
-          <NavLink to="/myevents">
+          <p>
+            Mes évènements - <span>2</span> à venir
+          </p>
+          <NavLink to="/messaging">
             <p>
-              Mes évènements - <span>2</span> à venir
+              Mes messages - <span>3</span> non lu(s)
             </p>
           </NavLink>
-
-          <p>
-            Mes messages - <span>3</span> non lu(s)
-          </p>
-          <p>
-            Mes documents - <span>0</span> non lu(s)
-          </p>
+          <NavLink to="/documents">
+            <p>
+              Mes documents - <span>0</span> non lu(s)
+            </p>
+          </NavLink>
         </div>
         <div className="adherentSpaceContainer__right">
           <h1>Mon compte</h1>
+          <p>Mes informations</p>
           <p>Changer mon mot de passe</p>
-          <p>Mes cotisations</p>
-          <p>Mon statut</p>
-          <p>Pour tout autre changement, merci de nous contacter</p>
-          <p>Me déconnecter</p>
+          <NavLink to="/contact">
+            <p>Nous contacter</p>
+          </NavLink>
+          <p className="adherentSpaceContainer__right__disconnection">Me déconnecter</p>
         </div>
       </div>
     </div>

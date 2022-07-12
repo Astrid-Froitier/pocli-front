@@ -12,7 +12,7 @@ const LoginCard = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate: NavigateFunction = useNavigate();
 
-  const { setId, setAdmin, setFirstname } = useContext(CurrentUserContext);
+  const { setId, setAdmin, setName } = useContext(CurrentUserContext);
 
   function redirectHome() {
     navigate('/adherentSpace');
@@ -40,7 +40,7 @@ const LoginCard = () => {
       );
       setErrorMessage('');
       setId(data.id);
-      setFirstname(data.name);
+      setName(data.name);
       setAdmin(data.admin === 1);
       redirectHome();
     } catch (err) {
