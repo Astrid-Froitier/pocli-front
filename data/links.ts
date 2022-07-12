@@ -52,7 +52,7 @@ const footerLinks_pocli = [
   {
     id: 1,
     path: '/',
-    title: 'Acceuil',
+    title: 'Accueil',
   },
   {
     id: 2,

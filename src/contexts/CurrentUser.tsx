@@ -4,8 +4,8 @@ import { useCookies } from 'react-cookie';
 type UserContent = {
   id: number;
   setId: React.Dispatch<React.SetStateAction<number>>;
-  firstname: string;
-  setFirstname: React.Dispatch<React.SetStateAction<string>>;
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
   admin: boolean;
   setAdmin: React.Dispatch<React.SetStateAction<boolean>>;
   logout: () => void;
@@ -16,8 +16,8 @@ type Props = { children: React.ReactNode };
 const CurrentUserContext = createContext<UserContent>({
   id: 0,
   setId: () => {},
-  firstname: '',
-  setFirstname: () => {},
+  name: '',
+  setName: () => {},
   logout: () => {},
   admin: false,
   setAdmin: () => {},
@@ -25,13 +25,13 @@ const CurrentUserContext = createContext<UserContent>({
 
 export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
   const [id, setId] = useState<number>(0);
-  const [firstname, setFirstname] = useState<string>('');
+  const [name, setName] = useState<string>('');
   const [admin, setAdmin] = useState<boolean>(false);
   const removeCookie = useCookies(['user_token'])[2];
 
   const logout = (): void => {
     setId(0);
-    setFirstname('');
+    setName('');
     setAdmin(false);
     removeCookie('user_token');
   };
@@ -41,8 +41,8 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
       value={{
         id,
         setId,
-        firstname,
-        setFirstname,
+        name,
+        setName,
         logout,
         admin,
         setAdmin,

@@ -12,7 +12,7 @@ const LoginCard = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate: NavigateFunction = useNavigate();
 
-  const { setId, setAdmin, setFirstname } = useContext(CurrentUserContext);
+  const { setId, setAdmin, setName } = useContext(CurrentUserContext);
 
   function redirectHome() {
     navigate('/adherentSpace');
@@ -20,10 +20,10 @@ const LoginCard = () => {
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
-    interface IUser {	
-      id: number;	
-      name: string;	
-      admin: number;	
+    interface IUser {
+      id: number;
+      name: string;
+      admin: number;
     }
     try {
       e.preventDefault();
@@ -40,7 +40,7 @@ const LoginCard = () => {
       );
       setErrorMessage('');
       setId(data.id);
-      setFirstname(data.name);
+      setName(data.name);
       setAdmin(data.admin === 1);
       redirectHome();
     } catch (err) {
