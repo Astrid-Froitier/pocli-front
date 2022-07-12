@@ -1,34 +1,32 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-import IEvent from '../interfaces/IEvent';
+import IFamilyMemberEvent from '../interfaces/IFamilyMembers';
 import Banner from './Banner';
 import ComeBackDashbord from './ComeBackAdherentSpace';
 import EventCard from './EventCard';
 
 const MyEvents = () => {
   // state
-  const [events, setEvents] = useState<IEvent[]>([]);
+  const [familyMemberEvent, setFamilyMemberEvent] = useState<IFamilyMemberEvent[]>([]);
   // function
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const getEvents = async () => {
-      let url: string = 'http://localhost:3001/api/events';
+    const getFamilyMemberByID = async () => {
+      let url: string = 'http://localhost:3001/api/familyMemberEvents';
       try {
-        const { data } = await axios.get<IEvent[]>(url);
-        setEvents(data);
+        const { data } = await axios.get<IFamilyMemberEvent[]>(url);
+        setFamilyMemberEvent(data);
       } catch (err) {
         console.error(err);
       }
     };
-    getEvents();
+    getFamilyMemberByID();
   }, []);
 
-  // const documentsByEvent =
-  //   eventDocuments && eventDocuments.filter((document) => document.idEvent === event.id);
   // debug
 
   return (
@@ -56,12 +54,12 @@ const MyEvents = () => {
         </div>
       </div>
       <div className="myEventsContainer__events">
-        {events.map(
-          (event, index) =>
+        {familyMemberEvent.map(
+          (familyMember, index) =>
             index > 0 &&
             index < 5 && (
               <div key={index}>
-                <EventCard event={event} />
+                <EventCard familyMember={familyMember} />
               </div>
             ),
         )}

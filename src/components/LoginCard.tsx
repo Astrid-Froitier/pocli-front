@@ -20,10 +20,10 @@ const LoginCard = () => {
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
-    interface IUser {	
-      id: number;	
-      name: string;	
-      admin: number;	
+    interface IUser {
+      id: number;
+      name: string;
+      admin: number;
     }
     try {
       e.preventDefault();

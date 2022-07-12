@@ -146,7 +146,7 @@ const Events = () => {
                 ))}
           </div>
         </div>
-        <div className='eventsContainer__comeBackHome'>
+        <div className="eventsContainer__comeBackHome">
           <ComeBackHome />
         </div>
       </div>
