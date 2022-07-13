@@ -40,7 +40,6 @@ const FamilyMembers = () => {
             <div className="familyMembers__card" key={index}>
               <img src={familyMember.avatar} alt="équipe dev" />
               <div className="familyMembers__card__name">
-                {/* <p>{member.name}</p> */}
                 <p>{familyMember.firstname}</p>
                 {/* button to select one member in family */}
 
