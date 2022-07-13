@@ -70,7 +70,7 @@ const Contact = () => {
           </div>
         </div>
         <ContactForm />
-        <div className="comeBackHome">
+        <div className="contactContainer__comeBackHome">
           <ComeBackHome />
         </div>
       </div>
