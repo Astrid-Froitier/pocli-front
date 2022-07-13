@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import Banner from './Banner';
 import Button from './Button';
@@ -33,7 +34,9 @@ const Login = () => {
             Nous reviendrons vers vous dans les plus brefs délais afin de convenir d’un
             rendez-vous.
           </p>
-          <Button text="CONTACTEZ-NOUS" />
+          <NavLink to="/contact">
+            <Button text="CONTACTEZ-NOUS" />
+          </NavLink>
         </div>
       </div>
     </div>

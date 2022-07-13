@@ -53,6 +53,7 @@
           color: $colorText-1;
           font-weight: $fontBold;
           font-family: $fontFamily;
+
           &__li {
             display: flex;
             align-items: center;
@@ -62,15 +63,33 @@
             border-radius: 0.75rem;
             max-height: 20px;
             transition: all 0.3s;
+
             &:hover {
               background-color: $colorText-1;
               color: white;
+              cursor: pointer;
               .icon {
                 fill: white;
               }
             }
             .icon {
               width: 30px;
+            }
+          }
+          &__liFamily {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            gap: 8px;
+            border-radius: 0.75rem;
+            max-height: 20px;
+            transition: all 0.3s;
+            border: 1px solid $colorText-1;
+            border-radius: 0.9rem;
+            &:hover {
+              background-color: $colorText-1;
+              color: white;
             }
           }
         }

@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import CurrentUserContext from '../contexts/CurrentUser';
 
 import Banner from './Banner';
 
 const AdherentSpace = () => {
   const { id } = useContext(CurrentUserContext);
-  console.log(id);
-  
   return (
     <div>
       <Banner
@@ -24,20 +23,25 @@ const AdherentSpace = () => {
           <p>
             Mes évènements - <span>2</span> à venir
           </p>
-          <p>
-            Mes messages - <span>3</span> non lu(s)
-          </p>
-          <p>
-            Mes documents - <span>0</span> non lu(s)
-          </p>
+          <NavLink to="/messaging">
+            <p>
+              Mes messages - <span>3</span> non lu(s)
+            </p>
+          </NavLink>
+          <NavLink to="/documents">
+            <p>
+              Mes documents - <span>0</span> non lu(s)
+            </p>
+          </NavLink>
         </div>
         <div className="adherentSpaceContainer__right">
           <h1>Mon compte</h1>
+          <p>Mes informations</p>
           <p>Changer mon mot de passe</p>
-          <p>Mes cotisations</p>
-          <p>Mon statut</p>
-          <p>Pour tout autre changement, merci de nous contacter</p>
-          <p>Me déconnecter</p>
+          <NavLink to="/contact">
+            <p>Nous contacter</p>
+          </NavLink>
+          <p className="adherentSpaceContainer__right__disconnection">Me déconnecter</p>
         </div>
       </div>
     </div>
