@@ -1,11 +1,12 @@
 .banner {
   margin-top: 150px;
+  width: 100%;
+  height: 400px;
   position: sticky;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 400px;
+  justify-content: center;
   background-image: url('/assets/banner-multicolor.png');
   background-size: cover;
   h1 {
@@ -15,7 +16,7 @@
   }
   .box {
     width: $pageContentWidth;
-    height: 90%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,16 +40,10 @@
     }
     &__event {
       width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      height: 85%;
       -webkit-animation: slide-in-blurred-left 0.8s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
       animation: slide-in-blurred-left 0.8s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-      img {
-        max-width: 450px;
-        max-height: 330px;
-      }
+
       span {
         font-size: 16px;
       }

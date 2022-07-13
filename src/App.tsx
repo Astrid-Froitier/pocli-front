@@ -19,9 +19,13 @@ import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
 import { CurrentDataContextProvider } from './contexts/CurrentData';
 import CurrentUserContext from './contexts/CurrentUser';
+import Messaging from './components/Messaging';
+import Documents from './components/Documents';
 
 function App() {
-  const { id } = useContext(CurrentUserContext);
+  const { user } = useContext(CurrentUserContext);
+  console.log(user.id > 0);
+  console.log(user.id);
   return (
     <div className="app">
       <Router>
@@ -35,7 +39,9 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/contact" element={<Contact />} />
             {/* <Route path="/address" element={<AddressList onlyMine={id != 0} />} /> */}
-            {id && <Route path="/adherentSpace" element={<AdherentSpace />} />}
+            {user && user.id > 0 && (
+              <Route path="/adherentSpace" element={<AdherentSpace />} />
+            )}
             <Route path="/login" element={<Login />} />
             <Route path="/family" element={<Family />} />
             <Route path="/activities" element={<Activities />} />
@@ -43,6 +49,8 @@ function App() {
             <Route path="/animation" element={<Animation />} />
             <Route path="/politicconf" element={<PoliticConf />} />
             <Route path="/politiccookies" element={<PoliticCookies />} />
+            <Route path="/messaging" element={<Messaging />} />
+            <Route path="/documents" element={<Documents />} />
           </Routes>
           {/* </main> */}
           <Footer />

@@ -1,33 +1,29 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-
 import CurrentUserContext from '../contexts/CurrentUser';
+import IUserInfos from '../interfaces/IUserInfos';
 import Icon from './Icon';
 
 const LoginCard = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
+
   const navigate: NavigateFunction = useNavigate();
 
-  const { setId, setAdmin, setFirstname } = useContext(CurrentUserContext);
+  const { setUser, user } = useContext(CurrentUserContext);
 
-  function redirectHome() {
+  function redirectAdherentSpace() {
     navigate('/adherentSpace');
   }
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
-    interface IUser {	
-      id: number;	
-      name: string;	
-      admin: number;	
-    }
     try {
       e.preventDefault();
-      const { data } = await axios.post<IUser>(
+      const { data } = await axios.post<IUserInfos>(
         'http://localhost:3001/api/login',
         { email, password },
         {
@@ -38,11 +34,10 @@ const LoginCard = () => {
           withCredentials: true,
         },
       );
+      localStorage.setItem('userInfos', JSON.stringify({ id: data.id, name: data.name }));
       setErrorMessage('');
-      setId(data.id);
-      setFirstname(data.name);
-      setAdmin(data.admin === 1);
-      redirectHome();
+      setUser({ id: data.id, name: data.name });
+      redirectAdherentSpace();
     } catch (err) {
       // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
       if (axios.isAxiosError(err)) {
@@ -56,6 +51,7 @@ const LoginCard = () => {
       }
     }
   };
+  // token && setUserInfos({ id: token.id, name: token.name, token: token.token }):IUserInfos;
 
   return (
     <>
