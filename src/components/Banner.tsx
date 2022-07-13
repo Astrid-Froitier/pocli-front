@@ -29,7 +29,7 @@ const Banner = ({
 }: BannerProps) => {
   return (
     <div className={`banner ${nameBannerActivity}`}>
-      <h1>{title}</h1>
+      {title && <h1>{title}</h1>}
       <div className="box">
         {!bannerAbout && !bannerEvent && !bannerMember && !memberFilter && (
           <Icon name={nameIcon} />
