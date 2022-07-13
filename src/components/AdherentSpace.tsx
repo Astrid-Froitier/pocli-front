@@ -22,9 +22,12 @@ const AdherentSpace = () => {
       <div className="adherentSpaceContainer">
         <div className="adherentSpaceContainer__left">
           <h1>Tableau de bord</h1>
-          <p>
-            Mes évènements - <span>2</span> à venir
-          </p>
+          <NavLink to="/myevents">
+            <p>
+              Mes évènements - <span>2</span> à venir
+            </p>
+          </NavLink>
+
           <NavLink to="/messaging">
             <p>
               Mes messages - <span>3</span> non lu(s)
