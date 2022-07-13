@@ -1,44 +1,51 @@
 import React, { createContext, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import IUserInfos from '../interfaces/IUserInfos';
-
-const userLog = JSON.parse(
-  localStorage.getItem('userInfos') || '{id:0,name:""}',
-) as unknown as IUserInfos;
 
 type UserContent = {
-  user: IUserInfos;
-  setUser: React.Dispatch<React.SetStateAction<IUserInfos>>;
-  
+  id: number;
+  setId: React.Dispatch<React.SetStateAction<number>>;
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  admin: boolean;
+  setAdmin: React.Dispatch<React.SetStateAction<boolean>>;
   logout: () => void;
 };
 
 type Props = { children: React.ReactNode };
 
 const CurrentUserContext = createContext<UserContent>({
-  user: userLog,
-  setUser: () => {},
+  id: 0,
+  setId: () => {},
+  name: '',
+  setName: () => {},
   logout: () => {},
+  admin: false,
+  setAdmin: () => {},
 });
 
 export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
-
-  const [user, setUser] = useState<IUserInfos>(userLog);
-  
+  const [id, setId] = useState<number>(0);
+  const [name, setName] = useState<string>('');
+  const [admin, setAdmin] = useState<boolean>(false);
   const removeCookie = useCookies(['user_token'])[2];
 
   const logout = (): void => {
-    localStorage.clear();
+    setId(0);
+    setName('');
+    setAdmin(false);
     removeCookie('user_token');
-    setUser({ id: 0, name: '' });
   };
 
   return (
     <CurrentUserContext.Provider
       value={{
-        user,
-        setUser,
+        id,
+        setId,
+        name,
+        setName,
         logout,
+        admin,
+        setAdmin,
       }}>
       {children}
     </CurrentUserContext.Provider>
