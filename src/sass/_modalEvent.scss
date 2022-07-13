@@ -16,6 +16,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     z-index: 500;
     width: 50%;
     height: 50%;
@@ -47,7 +48,26 @@
     &__header{
       width: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
+      &__sign-up, &__unsubscribe{
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        background-color: $backGround-1;
+        border-radius: 20px;
+        padding: 7px 10px;
+        color: white;
+        font-weight: $fontExtraBold;
+        cursor: pointer;
+        &__user-plus, &__user-minus{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
       &__x-mark{
         width: fit-content;
         cursor: pointer;

@@ -88,7 +88,7 @@ const Events = () => {
             onChange={(e) => setFilteredEvent(e.target.value)}>
             <option value="">Tous</option>
             {/* postTypes[0] correspond au type "Activité" : créer une <option> autant qu'il y a de types de poste dans postTypes excepté pour le type "Activité" */}
-            {postTypes.map(
+            {postTypes && postTypes.map(
               (postType, index) =>
                 index > 0 && (
                   <option key={index} value={postType.name}>
@@ -97,7 +97,7 @@ const Events = () => {
                 ),
             )}
             {/* Créer une <option> autant qu'il y a d'activités dans activities */}
-            {activities.map((activity, index) => (
+            {activities && activities.map((activity, index) => (
               <option key={index} value={activity.name}>
                 {activity.name}
               </option>
@@ -108,7 +108,7 @@ const Events = () => {
           <div className="eventsContainer__events__list">
             {/* Si filterEvent est vrai (soit la valeur du filtre n'est pas égale à "Tous"), renvoie les évènements correspondant à sélection */}
             {filteredEvent
-              ? events
+              ? events && events
                   .filter((event) =>
                     // si le type de poste est une Activité
                     event.idPostType === 1
@@ -133,7 +133,7 @@ const Events = () => {
                     </div>
                   ))
               : // Si la valeur du filtre est égale à "Tous", renvoie tous les évènements
-                events.map((event, index) => (
+                events && events.map((event, index) => (
                   <div
                     role="button"
                     key={index}
@@ -150,7 +150,7 @@ const Events = () => {
           <ComeBackHome />
         </div>
       </div>
-      {modalOnOff && (
+      {modalOnOff && events && (
         <ModalEvent
           event={events.filter((event) => event.id === idEventModal)[0]}
           setModalOnOff={setModalOnOff}
