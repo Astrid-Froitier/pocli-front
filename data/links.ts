@@ -21,6 +21,33 @@ const navLinks_top = [
   },
 ];
 
+const navLinks_topConnected = [
+  {
+    id: 1,
+    path: '/about',
+    title: 'Qui sommes-nous ?',
+  },
+  {
+    id: 2,
+    path: '/events',
+    title: 'Evènements',
+  },
+  {
+    id: 3,
+    path: '/contact',
+    title: 'Contact',
+  },
+  {
+    id: 4,
+    path: '/adherentSpace',
+  },
+  {
+    id: 5,
+    path: '/login',
+    title: 'Déconnexion',
+  },
+];
+
 const navLinks_bottom = [
   {
     id: 1,
@@ -52,7 +79,7 @@ const footerLinks_pocli = [
   {
     id: 1,
     path: '/',
-    title: 'Acceuil',
+    title: 'Accueil',
   },
   {
     id: 2,
@@ -67,7 +94,7 @@ const footerLinks_pocli = [
   {
     id: 4,
     path: '/login',
-    title: 'Espace adhérant',
+    title: 'Espace adhérent',
   },
   {
     id: 5,
@@ -89,4 +116,10 @@ const footerLinks_mention = [
   },
 ];
 
-export { footerLinks_mention, footerLinks_pocli, navLinks_bottom, navLinks_top };
+export {
+  footerLinks_mention,
+  footerLinks_pocli,
+  navLinks_bottom,
+  navLinks_top,
+  navLinks_topConnected,
+};

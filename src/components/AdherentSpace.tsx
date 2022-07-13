@@ -4,9 +4,6 @@ import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 
 const AdherentSpace = () => {
-  const { id } = useContext(CurrentUserContext);
-  console.log(id);
-  
   return (
     <div>
       <Banner
