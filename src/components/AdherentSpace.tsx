@@ -103,5 +103,5 @@ const AdherentSpace = () => {
     </div>
   );
 };
-
+ 
 export default AdherentSpace;
