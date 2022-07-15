@@ -4,6 +4,9 @@
   align-items: flex-start;
   width: 100%;
   margin: $marginBoxTopAndBottom;
+  &.modal {
+    filter: blur(4px);
+  }
   &__left {
     display: flex;
     flex-direction: column;
