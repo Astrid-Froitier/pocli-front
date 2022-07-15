@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { getAllDataWithoutCredential } from '../../helpers/axios';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
@@ -107,12 +107,16 @@ const AdherentSpace = () => {
             <p>
               Mes évènements - <span>2</span> à venir
             </p>
+            <NavLink to="/messaging">
             <p>
               Mes messages - <span>3</span> non lu(s)
             </p>
+            </NavLink>
+            <NavLink to="/documents">
             <p>
               Mes documents - <span>0</span> non lu(s)
             </p>
+            </NavLink>
           </div>
           <div className="adherentSpaceContainer__right">
             <h1>Mon compte</h1>
@@ -137,9 +141,9 @@ const AdherentSpace = () => {
                 </span>
               </li>
 
-              <Link to="/contact">
+              <NavLink to="/contact">
                 <li>Nous contacter</li>
-              </Link>
+              </NavLink>
               <li>Me déconnecter</li>
             </ul>
           </div>
