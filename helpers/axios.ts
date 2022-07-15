@@ -22,7 +22,7 @@ const getAllDataWithCredential = (urls: String[]) => {
 
 const fetchDataWithCredential = async (url: String) => {
   try {
-    const { data } = await axios.get(String(url),{withCredentials: true});
+    const { data } = await axios.get(String(url), { withCredentials: true });
     return {
       success: true,
       data: data,
@@ -32,4 +32,4 @@ const fetchDataWithCredential = async (url: String) => {
   }
 };
 
-export {getAllDataWithoutCredential, getAllDataWithCredential};
+export { getAllDataWithoutCredential, getAllDataWithCredential };

@@ -53,21 +53,21 @@ const EventCard = ({
                     ? activities &&
                       activities
                         .filter((activity) => activity.id === event.idActivity)
-                        .map((activity) => activity.shortName)
+                        .map((activity) => activity.shortName)[0]
                     : postTypes &&
                       postTypes
                         .filter((postType) => postType.id === event.idPostType)
-                        .map((postType) => postType.name)
+                        .map((postType) => postType.name)[0]
                 }`}>
                 {event.idPostType === 1
                   ? activities &&
                     activities
                       .filter((activity) => activity.id === event.idActivity)
-                      .map((activity) => activity.name)
+                      .map((activity) => activity.name)[0]
                   : postTypes &&
-                    activities
+                    postTypes
                       .filter((postType) => postType.id === event.idPostType)
-                      .map((postType) => postType.name)}
+                      .map((postType) => postType.name)[0]}
               </span>
             </div>
             <p className="eventCard__preview__informations__text">{event.description}</p>
