@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { members } from '../../data/Xcrew';
-import IFamilyMember from '../interfaces/IFamilyMember';
+import CurrentUserContext from '../contexts/CurrentUser';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
   const [cardSelected, setCardSelected] = useState<boolean[]>([]);
-  const [familyMembers, setFamilyMembers] = useState<IFamilyMember[]>([]);
-
-  // to display the family members on the component mount
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3001/api/families/11/familyMembers')
-      // .then((res) => console.log(res.data))
-      .then((res) => res.data)
-      .then((data) => setFamilyMembers(data))
-      .catch((err) => console.log(err));
-  }, []);
+  const { familyMembers } = useContext(CurrentUserContext);
 
   useEffect(() => {
     setCardSelected(members.map(() => true));

@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { useCookies } from 'react-cookie';
+
 import ICity from '../interfaces/ICity';
 import ICommunication from '../interfaces/ICommunication';
 import ICommunicationMember from '../interfaces/ICommunicationMember';
@@ -22,10 +23,10 @@ type UserContent = {
   logout: () => void;
   family: IFamily[];
   setFamily: React.Dispatch<React.SetStateAction<IFamily[]>>;
-  city: ICity[];
-  setCity: React.Dispatch<React.SetStateAction<ICity[]>>;
-  recipient: IRecipient[];
-  setRecipient: React.Dispatch<React.SetStateAction<IRecipient[]>>;
+  cities: ICity[];
+  setCities: React.Dispatch<React.SetStateAction<ICity[]>>;
+  recipients: IRecipient[];
+  setRecipients: React.Dispatch<React.SetStateAction<IRecipient[]>>;
   familyMembers: IFamilyMember[];
   setFamilyMembers: React.Dispatch<React.SetStateAction<IFamilyMember[]>>;
   paymentRecordsByFamily: IPaymentRecord[];
@@ -52,10 +53,10 @@ const CurrentUserContext = createContext<UserContent>({
   logout: () => {},
   family: [],
   setFamily: () => {},
-  city: [],
-  setCity: () => {},
-  recipient: [],
-  setRecipient: () => {},
+  cities: [],
+  setCities: () => {},
+  recipients: [],
+  setRecipients: () => {},
   familyMembers: [],
   setFamilyMembers: () => {},
   paymentRecordsByFamily: [],
@@ -75,8 +76,8 @@ const CurrentUserContext = createContext<UserContent>({
 export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<IUserInfos>(userLog);
   const [family, setFamily] = useState<IFamily[]>([]);
-  const [city, setCity] = useState<ICity[]>([]);
-  const [recipient, setRecipient] = useState<IRecipient[]>([]);
+  const [cities, setCities] = useState<ICity[]>([]);
+  const [recipients, setRecipients] = useState<IRecipient[]>([]);
   const [familyMembers, setFamilyMembers] = useState<IFamilyMember[]>([]);
   const [paymentRecordsByFamily, setPaymentRecordsByFamily] = useState<IPaymentRecord[]>(
     [],
@@ -107,10 +108,10 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
         logout,
         family,
         setFamily,
-        city,
-        setCity,
-        recipient,
-        setRecipient,
+        cities,
+        setCities,
+        recipients,
+        setRecipients,
         familyMembers,
         setFamilyMembers,
         paymentRecordsByFamily,
