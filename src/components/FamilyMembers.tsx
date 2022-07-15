@@ -11,8 +11,6 @@ const FamilyMembers = () => {
     setCardSelected(members.map(() => true));
   }, []);
 
-  console.log(cardSelected);
-
   // function to select only one member of the family with a map. If the key is egal to the index don't select the card else select it.
   function selectMember(index: number) {
     setCardSelected(

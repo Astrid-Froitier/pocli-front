@@ -24,8 +24,6 @@ import Documents from './components/Documents';
 
 function App() {
   const { user } = useContext(CurrentUserContext);
-  console.log(user.id > 0);
-  console.log(user.id);
   return (
     <div className="app">
       <Router>

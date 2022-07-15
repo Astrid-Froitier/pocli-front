@@ -10,9 +10,6 @@ const NavBar = () => {
   const { user, logout } = useContext(CurrentUserContext);
   const navigate: NavigateFunction = useNavigate();
 
-  console.log(user.name);
-  console.log(user);
-
   function redirectHome() {
     navigate('/');
   }

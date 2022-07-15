@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import getAllData from '../../helpers/axios';
+import {getAllDataWithoutCredential} from '../../helpers/axios';
 import CurrentDataContext from '../contexts/CurrentData';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
@@ -48,7 +48,7 @@ const Events = () => {
       'https://wild-pocli.herokuapp.com/api/linkedDocuments',
     ];
 
-    getAllData(urls)
+    getAllDataWithoutCredential(urls)
       .then((res) => {
         setEvents(res[0].data);
         setPostTypes(res[1].data);
