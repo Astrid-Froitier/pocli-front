@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import { members } from '../../data/Xcrew';
+import IFamilyMembers from '../interfaces/IFamilyMembers';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
   const [cardSelected, setCardSelected] = useState<boolean[]>([]);
+  const [familyMembers, setFamilyMembers] = useState<IFamilyMembers[]>([]);
 
   // to display the family members on the component mount
+
   useEffect(() => {
-    setCardSelected(members.map(() => true));
+    axios
+      .get('http://localhost:3001/api/families/11/familyMembers')
+      // .then((res) => console.log(res.data))
+      .then((res) => res.data)
+      .then((data) => setFamilyMembers(data))
+      .catch((err) => console.log(err));
   }, []);
 
   console.log(cardSelected);
+
+  useEffect(() => {
+    setCardSelected(members.map(() => true));
+  }, []);
 
   // function to select only one member of the family with a map. If the key is egal to the index don't select the card else select it.
   function selectMember(index: number) {
@@ -21,14 +34,13 @@ const FamilyMembers = () => {
   return (
     <div className="familyMembers">
       {/* map to show all members in the family */}
-      {members.map(
-        (member, index) =>
-          member.image && (
+      {familyMembers.map(
+        (familyMember, index) =>
+          familyMember.avatar && (
             <div className="familyMembers__card" key={index}>
-              <img src={member.image} alt="équipe dev" />
+              <img src={familyMember.avatar} alt="équipe dev" />
               <div className="familyMembers__card__name">
-                {/* <p>{member.name}</p> */}
-                <p>{member.username}</p>
+                <p>{familyMember.firstname}</p>
                 {/* button to select one member in family */}
 
                 <div

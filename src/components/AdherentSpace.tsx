@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import getAllData from '../../helpers/axios';
-// import CurrentUserContext from '../contexts/CurrentUser';
+import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
 
 const AdherentSpace = () => {
   // useContext pour la data
-  // useContext(CurrentUserContext);
+  const { user } = useContext(CurrentUserContext);
+  console.log(user); // useContext(CurrentUserContext);
 
   const [modalOnOff, setModalOnOff] = useState<string>('');
   const [modalAdherentInfo, setModalAdherentInfo] = useState<boolean>(false);
