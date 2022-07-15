@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getAllDataWithoutCredential } from '../../helpers/axios';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
