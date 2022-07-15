@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { members } from '../../data/Xcrew';
-import IFamilyMembers from '../interfaces/IFamilyMembers';
+import IFamilyMember from '../interfaces/IFamilyMember';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
   const [cardSelected, setCardSelected] = useState<boolean[]>([]);
-  const [familyMembers, setFamilyMembers] = useState<IFamilyMembers[]>([]);
+  const [familyMembers, setFamilyMembers] = useState<IFamilyMember[]>([]);
 
   // to display the family members on the component mount
 
@@ -19,8 +19,6 @@ const FamilyMembers = () => {
       .then((data) => setFamilyMembers(data))
       .catch((err) => console.log(err));
   }, []);
-
-  console.log(cardSelected);
 
   useEffect(() => {
     setCardSelected(members.map(() => true));

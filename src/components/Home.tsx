@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import aboutNumbers from '../../data/aboutNumbers';
 import { navLinks_bottom } from '../../data/links';
-import getAllData from '../../helpers/axios';
+import {getAllDataWithoutCredential} from '../../helpers/axios';
 import CurrentDataContext from '../contexts/CurrentData';
 import ActivityCard from './ActivityCard';
 import Banner from './Banner';
@@ -52,7 +52,7 @@ const Home = () => {
       'https://wild-pocli.herokuapp.com/api/linkedDocuments',
     ];
 
-    getAllData(urls)
+    getAllDataWithoutCredential(urls)
       .then((res) => {
         setEvents(res[0].data);
         setPostTypes(res[1].data);
