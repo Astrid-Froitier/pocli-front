@@ -57,6 +57,9 @@ const NavBar = () => {
                     </NavLink>
                   ) : link.id === 5 ? (
                     <div
+                      onKeyDown={handleLogout}
+                      role="button"
+                      tabIndex={0}
                       className="navBar__box__links__linksTop__a"
                       onClick={handleLogout}
                       key={link.id}>
