@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 import aboutNumbers from '../../data/aboutNumbers';
 import { navLinks_bottom } from '../../data/links';
-import {getAllDataWithoutCredential} from '../../helpers/axios';
+import { getAllDataWithoutCredential } from '../../helpers/axios';
 import CurrentDataContext from '../contexts/CurrentData';
+import CurrentUserContext from '../contexts/CurrentUser';
 import ActivityCard from './ActivityCard';
 import Banner from './Banner';
 import Button from './Button';
@@ -31,6 +32,8 @@ const Home = () => {
     setLinkedDocuments,
   } = useContext(CurrentDataContext);
 
+  const { user } = useContext(CurrentUserContext);
+
   // useEffect permettant de remonter la page en top au montage du composant
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,7 +48,7 @@ const Home = () => {
   // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
   useEffect(() => {
     let urls = [
-      'https://wild-pocli.herokuapp.com/api/events',
+      'https://wild-pocli.herokuapp.com/api/events?sort="id,DESC"',
       'https://wild-pocli.herokuapp.com/api/postTypes',
       'https://wild-pocli.herokuapp.com/api/activities',
       'https://wild-pocli.herokuapp.com/api/documents',
@@ -93,76 +96,88 @@ const Home = () => {
           // bannerMember={false}
           bannerEvent={true}
           // memberFilter={false}
-          event={events[0]}
+          event={
+            events &&
+            events.filter((event) => (!user.id ? event.reservedAdherent === 0 : event))[0]
+          }
         />
         <div className="homeContainer__events">
           <div className="homeContainer__events__list">
-            {events.map(
-              (event, index) =>
-                index > 0 &&
-                index < 5 && (
-                  <div
-                    role="button"
-                    key={index}
-                    className="homeContainer__events__list__card"
-                    onClick={() => handleClick(event.id)}
-                    onKeyDown={() => handleClick(event.id)}
-                    tabIndex={0}>
-                    <EventCard event={event} />
-                  </div>
-                ),
-            )}
+            {events &&
+              events
+                .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
+                .map(
+                  (event, index) =>
+                    index > 0 &&
+                    index < 5 && (
+                      <div
+                        role="button"
+                        key={index}
+                        className="homeContainer__events__list__card"
+                        onClick={() => handleClick(event.id)}
+                        onKeyDown={() => handleClick(event.id)}
+                        tabIndex={0}>
+                        <EventCard event={event} />
+                      </div>
+                    ),
+                )}
           </div>
           <Button text="TOUS LES ÉVÈNEMENTS" link="/events" />
         </div>
-        <div className="homeContainer__nonAdherent">
-          <div className="homeContainer__nonAdherent__box">
-            <div className="homeContainer__nonAdherent__box__text">
-              <h1>Devenez adhérent PoCLi</h1>
-              <p>
-                Vous souhaitez vous inscrire à l&apos;association, rien de plus simple !
-              </p>
-              <p>Envoyez-nous votre demande via notre formulaire de contact.</p>
-              <p>
-                Nous reviendrons vers vous dans les plus brefs délais afin de convenir
-                d’un rendez-vous.
-              </p>
-            </div>
-            <div className="homeContainer__nonAdherent__box__arrow">
-              <Icon name="arrow-right" width="24px" color="white" />
-            </div>
-            <div className="homeContainer__nonAdherent__box__button">
-              <Button text="CONTACTEZ-NOUS" link="/contact" />
-            </div>
-          </div>
-        </div>
-        <div className="homeContainer__about">
-          <div className="homeContainer__about__numbers">
-            {aboutNumbers.map((number, index) => (
-              <div className="homeContainer__about__numbers__box" key={index}>
-                <div className="homeContainer__about__numbers__box__digit">
-                  {number.number}
-                </div>
-                <p className="homeContainer__about__numbers__box__text">{number.text}</p>
+        {!user.id && (
+          <div className="homeContainer__nonAdherent">
+            <div className="homeContainer__nonAdherent__box">
+              <div className="homeContainer__nonAdherent__box__text">
+                <h1>Devenez adhérent PoCLi</h1>
+                <p>
+                  Vous souhaitez vous inscrire à l&apos;association, rien de plus simple !
+                </p>
+                <p>Envoyez-nous votre demande via notre formulaire de contact.</p>
+                <p>
+                  Nous reviendrons vers vous dans les plus brefs délais afin de convenir
+                  d’un rendez-vous.
+                </p>
               </div>
-            ))}
-          </div>
-          <div className="homeContainer__about__text">
-            <h1>PoCLi, c’est [accroche]</h1>
-            <p>Description succincte...</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
-              libero ipsa
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
-              libero ipsa
-            </p>
-            <div className="homeContainer__about__text__button">
-              <Button text="QUI SOMMES-NOUS ?" link="/about" />
+              <div className="homeContainer__nonAdherent__box__arrow">
+                <Icon name="arrow-right" width="24px" color="white" />
+              </div>
+              <div className="homeContainer__nonAdherent__box__button">
+                <Button text="CONTACTEZ-NOUS" link="/contact" />
+              </div>
             </div>
           </div>
-        </div>
+        )}
+        {!user.id && (
+          <div className="homeContainer__about">
+            <div className="homeContainer__about__numbers">
+              {aboutNumbers.map((number, index) => (
+                <div className="homeContainer__about__numbers__box" key={index}>
+                  <div className="homeContainer__about__numbers__box__digit">
+                    {number.number}
+                  </div>
+                  <p className="homeContainer__about__numbers__box__text">
+                    {number.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="homeContainer__about__text">
+              <h1>PoCLi, c’est [accroche]</h1>
+              <p>Description succincte...</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
+                libero ipsa
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
+                libero ipsa
+              </p>
+              <div className="homeContainer__about__text__button">
+                <Button text="QUI SOMMES-NOUS ?" link="/about" />
+              </div>
+            </div>
+          </div>
+        )}
         <div className="homeContainer__activities">
           <h1>Nos domaines d&apos;activité</h1>
           <div className="homeContainer__activities__box">

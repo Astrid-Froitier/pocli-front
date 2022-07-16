@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { getAllDataWithoutCredential } from '../../helpers/axios';
+import { NavLink } from 'react-router-dom';
+
+import { getAllDataWithCredential } from '../../helpers/axios';
+import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
@@ -10,10 +12,10 @@ const AdherentSpace = () => {
     user,
     // family,
     setFamily,
-    // city,
-    setCity,
-    // recipient,
-    setRecipient,
+    // cities,
+    setCities,
+    // recipients,
+    setRecipients,
     // familyMembers,
     setFamilyMembers,
     // paymentRecordsByFamily,
@@ -27,8 +29,10 @@ const AdherentSpace = () => {
     // linkedDocumentsByFamily,
     setLinkedDocumentsByFamily,
     // familyMemberEvents,
-    setFamilyMemberEvents
+    setFamilyMemberEvents,
   } = useContext(CurrentUserContext);
+
+  const { setDocuments } = useContext(CurrentDataContext)
 
   useEffect(() => {
     let urls = [
@@ -41,22 +45,24 @@ const AdherentSpace = () => {
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/communicationMembers`,
       `https://wild-pocli.herokuapp.com/api/communications`,
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
+      `https://wild-pocli.herokuapp.com/api/documents`,
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
       // `https://wild-pocli.herokuapp.com/api/familyMemberActivities/${idFamlyMember}`,
     ];
 
-    getAllDataWithoutCredential(urls)
+    getAllDataWithCredential(urls)
       .then((res) => {
         setFamily(res[0].data);
-        setCity(res[1].data);
-        setRecipient(res[2].data);
+        setCities(res[1].data);
+        setRecipients(res[2].data);
         setFamilyMembers(res[3].data);
         setPaymentRecordsByFamily(res[4].data);
         setPaymentMethods(res[5].data);
         setCommunicationMembersByFamily(res[6].data);
         setCommunications(res[7].data);
         setLinkedDocumentsByFamily(res[8].data);
-        setFamilyMemberEvents(res[9].data);
+        setDocuments(res[9].data);
+        setFamilyMemberEvents(res[10].data);
       })
       .catch((err) => {
         console.error(err);
@@ -104,18 +110,20 @@ const AdherentSpace = () => {
         <div className={`adherentSpaceContainer ${modalOnOff}`}>
           <div className="adherentSpaceContainer__left">
             <h1>Tableau de bord</h1>
-            <p>
-              Mes évènements - <span>2</span> à venir
-            </p>
-            <NavLink to="/messaging">
-            <p>
-              Mes messages - <span>3</span> non lu(s)
-            </p>
+            <NavLink to="/my-events">
+              <p>
+                Mes évènements - <span>2</span> à venir
+              </p>
             </NavLink>
-            <NavLink to="/documents">
-            <p>
-              Mes documents - <span>0</span> non lu(s)
-            </p>
+            <NavLink to="/my-messaging">
+              <p>
+                Mes messages - <span>3</span> non lu(s)
+              </p>
+            </NavLink>
+            <NavLink to="/my-documents">
+              <p>
+                Mes documents - <span>0</span> non lu(s)
+              </p>
             </NavLink>
           </div>
           <div className="adherentSpaceContainer__right">
@@ -161,5 +169,5 @@ const AdherentSpace = () => {
     </>
   );
 };
- 
+
 export default AdherentSpace;
