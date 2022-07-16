@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import IUserInfos from '../interfaces/IUserInfos';
 
 const userLog = JSON.parse(
-  localStorage.getItem('userInfos') || '{id:0,name:""}',
+  localStorage.getItem('userInfos') || '{"id":0,"name":""}',
 ) as unknown as IUserInfos;
 
 type UserContent = {

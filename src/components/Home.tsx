@@ -183,12 +183,12 @@ const Home = () => {
           <div className="homeContainer__newsletter__box">
             <img src="./assets/pocli.png" alt="logo" />
             {!onClickNewsletter && (
-              <>
+              <div className="homeContainer__newsletter__box__newsrespons">
                 <p>Pour rester informer sur les activités de PoCLi</p>
                 <button onClick={() => setOnClickNewsletter(true)}>
                   <Button text="S'ABONNER À LA NEWSLETTER" />
                 </button>
-              </>
+              </div>
             )}
             {onClickNewsletter &&
               !Object.getOwnPropertyDescriptor(emailNewsletter, 'email') && (
