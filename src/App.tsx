@@ -24,8 +24,6 @@ import CurrentUserContext from './contexts/CurrentUser';
 
 function App() {
   const { user } = useContext(CurrentUserContext);
-  console.log(user.id > 0);
-  console.log(user.id);
   return (
     <div className="app">
       <Router>
@@ -40,7 +38,12 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             {/* <Route path="/address" element={<AddressList onlyMine={id != 0} />} /> */}
             {user && user.id > 0 && (
-              <Route path="/adherentSpace" element={<AdherentSpace />} />
+              <>
+                <Route path="/adherent-space" element={<AdherentSpace />} />
+                <Route path="/my-messaging" element={<Messaging />} />
+                <Route path="/my-documents" element={<Documents />} />
+                <Route path="/my-events" element={<Events />} />
+              </>
             )}
             <Route path="/login" element={<Login />} />
             <Route path="/family" element={<Family />} />
@@ -49,8 +52,6 @@ function App() {
             <Route path="/animation" element={<Animation />} />
             <Route path="/politicconf" element={<PoliticConf />} />
             <Route path="/politiccookies" element={<PoliticCookies />} />
-            <Route path="/messaging" element={<Messaging />} />
-            <Route path="/documents" element={<Documents />} />
           </Routes>
           {/* </main> */}
           <Footer />

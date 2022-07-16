@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import getAllData from '../../helpers/axios';
+import { getAllDataWithoutCredential } from '../../helpers/axios';
 import CurrentDataContext from '../contexts/CurrentData';
+import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 import EventCard from './EventCard';
@@ -27,6 +28,10 @@ const Events = () => {
     setLinkedDocuments,
   } = useContext(CurrentDataContext);
 
+  // useContext permettant de savoir si l'utilisateur est connecté ou non.
+  // Permet d'afficher tous les évènements ou seulement ceux accessibles aux visiteurs
+  const { user } = useContext(CurrentUserContext);
+
   // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
   const handleClick = (e: number) => {
     setModalOnOff('modal');
@@ -41,14 +46,14 @@ const Events = () => {
   // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
   useEffect(() => {
     let urls = [
-      'https://wild-pocli.herokuapp.com/api/events',
+      'https://wild-pocli.herokuapp.com/api/events?sort="id,DESC"',
       'https://wild-pocli.herokuapp.com/api/postTypes',
       'https://wild-pocli.herokuapp.com/api/activities',
       'https://wild-pocli.herokuapp.com/api/documents',
       'https://wild-pocli.herokuapp.com/api/linkedDocuments',
     ];
 
-    getAllData(urls)
+    getAllDataWithoutCredential(urls)
       .then((res) => {
         setEvents(res[0].data);
         setPostTypes(res[1].data);
@@ -112,6 +117,7 @@ const Events = () => {
             {filteredEvent
               ? events &&
                 events
+                  .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
                   .filter((event) =>
                     // si le type de poste est une Activité
                     event.idPostType === 1
@@ -137,17 +143,19 @@ const Events = () => {
                   ))
               : // Si la valeur du filtre est égale à "Tous", renvoie tous les évènements
                 events &&
-                events.map((event, index) => (
-                  <div
-                    role="button"
-                    key={index}
-                    className="eventsContainer__events__list__card"
-                    onClick={() => handleClick(event.id)}
-                    onKeyDown={() => handleClick(event.id)}
-                    tabIndex={0}>
-                    <EventCard event={event} />
-                  </div>
-                ))}
+                events
+                  .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
+                  .map((event, index) => (
+                    <div
+                      role="button"
+                      key={index}
+                      className="eventsContainer__events__list__card"
+                      onClick={() => handleClick(event.id)}
+                      onKeyDown={() => handleClick(event.id)}
+                      tabIndex={0}>
+                      <EventCard event={event} />
+                    </div>
+                  ))}
           </div>
         </div>
         <div className="eventsContainer__comeBackHome">

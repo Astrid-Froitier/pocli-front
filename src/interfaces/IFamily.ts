@@ -8,5 +8,4 @@ export default interface IFamily {
   password: string;
   idCity: number;
   idRecipient: number;
-  isActive: number;
 }

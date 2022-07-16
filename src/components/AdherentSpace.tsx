@@ -1,15 +1,68 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import getAllData from '../../helpers/axios';
+
+import { getAllDataWithCredential } from '../../helpers/axios';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
 
 const AdherentSpace = () => {
-  // useContext pour la data
-  const { user } = useContext(CurrentUserContext);
-  console.log(user); // useContext(CurrentUserContext);
+  const {
+    user,
+    // family,
+    setFamily,
+    // cities,
+    setCities,
+    // recipients,
+    setRecipients,
+    // familyMembers,
+    setFamilyMembers,
+    // paymentRecordsByFamily,
+    setPaymentRecordsByFamily,
+    // paymentMethods,
+    setPaymentMethods,
+    // communicationMembersByFamily,
+    setCommunicationMembersByFamily,
+    // communications,
+    setCommunications,
+    // linkedDocumentsByFamily,
+    setLinkedDocumentsByFamily,
+    // familyMemberEvents,
+    setFamilyMemberEvents,
+  } = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    let urls = [
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}`,
+      `https://wild-pocli.herokuapp.com/api/cities/`,
+      `https://wild-pocli.herokuapp.com/api/recipients/`,
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}/paymentRecords`,
+      `https://wild-pocli.herokuapp.com/api/paymentMethods`,
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}/communicationMembers`,
+      `https://wild-pocli.herokuapp.com/api/communications`,
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
+      `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
+      // `https://wild-pocli.herokuapp.com/api/familyMemberActivities/${idFamlyMember}`,
+    ];
+
+    getAllDataWithCredential(urls)
+      .then((res) => {
+        setFamily(res[0].data);
+        setCities(res[1].data);
+        setRecipients(res[2].data);
+        setFamilyMembers(res[3].data);
+        setPaymentRecordsByFamily(res[4].data);
+        setPaymentMethods(res[5].data);
+        setCommunicationMembersByFamily(res[6].data);
+        setCommunications(res[7].data);
+        setLinkedDocumentsByFamily(res[8].data);
+        setFamilyMemberEvents(res[9].data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   const [modalOnOff, setModalOnOff] = useState<string>('');
   const [modalAdherentInfo, setModalAdherentInfo] = useState<boolean>(false);
@@ -28,24 +81,6 @@ const AdherentSpace = () => {
   // useEffect permettant de remonter la page en top au montage du composant
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
-  useEffect(() => {
-    let urls = [
-      'https://wild-pocli.herokuapp.com/api/families/:idfamily/familyMembers/:idfamilymember',
-      'https://wild-pocli.herokuapp.com/api/families/:idfamily/paymentrecords/:idpaymentrecord',
-    ];
-
-    getAllData(urls)
-      .then((res) => {
-        setModalAdherentInfo(res[0].data);
-        setModalAdherentPwd(res[1].data);
-        console.log(res[0].data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
   }, []);
 
   // useEffect permettant d'empêcher le scroll sur x suivant l'état de modalOnOff
@@ -70,15 +105,17 @@ const AdherentSpace = () => {
         <div className={`adherentSpaceContainer ${modalOnOff}`}>
           <div className="adherentSpaceContainer__left">
             <h1>Tableau de bord</h1>
-            <p>
-              Mes évènements - <span>2</span> à venir
-            </p>
-            <NavLink to="/messaging">
+            <NavLink to="/my-events">
+              <p>
+                Mes évènements - <span>2</span> à venir
+              </p>
+            </NavLink>
+            <NavLink to="/my-messaging">
               <p>
                 Mes messages - <span>3</span> non lu(s)
               </p>
             </NavLink>
-            <NavLink to="/documents">
+            <NavLink to="/my-documents">
               <p>
                 Mes documents - <span>0</span> non lu(s)
               </p>
@@ -108,7 +145,7 @@ const AdherentSpace = () => {
               </li>
 
               <NavLink to="/contact">
-                <p>Nous contacter</p>
+                <li>Nous contacter</li>
               </NavLink>
               <li>Me déconnecter</li>
             </ul>

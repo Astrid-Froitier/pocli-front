@@ -17,7 +17,7 @@ const LoginCard = () => {
   console.log(user);
 
   function redirectAdherentSpace() {
-    navigate('/adherentSpace');
+    navigate('/adherent-space');
   }
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
