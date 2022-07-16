@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { getAllDataWithCredential } from '../../helpers/axios';
+import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
@@ -31,6 +32,8 @@ const AdherentSpace = () => {
     setFamilyMemberEvents,
   } = useContext(CurrentUserContext);
 
+  const { setDocuments } = useContext(CurrentDataContext)
+
   useEffect(() => {
     let urls = [
       `https://wild-pocli.herokuapp.com/api/families/${user.id}`,
@@ -42,6 +45,7 @@ const AdherentSpace = () => {
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/communicationMembers`,
       `https://wild-pocli.herokuapp.com/api/communications`,
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
+      `https://wild-pocli.herokuapp.com/api/documents`,
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
       // `https://wild-pocli.herokuapp.com/api/familyMemberActivities/${idFamlyMember}`,
     ];
@@ -57,7 +61,8 @@ const AdherentSpace = () => {
         setCommunicationMembersByFamily(res[6].data);
         setCommunications(res[7].data);
         setLinkedDocumentsByFamily(res[8].data);
-        setFamilyMemberEvents(res[9].data);
+        setDocuments(res[9].data);
+        setFamilyMemberEvents(res[10].data);
       })
       .catch((err) => {
         console.error(err);
