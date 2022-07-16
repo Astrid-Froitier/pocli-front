@@ -1,0 +1,96 @@
+.modalAdherent {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  overflow: hidden;
+  &__overlay {
+    position: fixed;
+    z-index: 200;
+    width: 100%;
+    height: 100%;
+  }
+  &__box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 500;
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 40px;
+    overflow-y: scroll;
+    padding: 30px 60px;
+    &__infos {
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 2%;
+      &__hr {
+        height: 2px;
+        width: 90%;
+        background-color: $colorText-2;
+      }
+      &__family,
+      &__familyMembers {
+        h1 {
+          margin-bottom: 2%;
+        }
+        h2 {
+          font-size: 20px;
+          color: $colorText-2;
+        }
+        p {
+          font-size: 20px;
+          font-weight: $fontBold;
+        }
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 2%;
+        &__address,
+        &__mail,
+        &__recipient,
+        &__isActived,
+        &__firstname,
+        &__birthday,
+        &__activities {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: row;
+          padding: 3.5%;
+          &__p {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background: white;
+      margin: $marginBoxTopAndBottom;
+      border-radius: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $colorText-2;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: $colorText-2;
+    }
+  }
+}

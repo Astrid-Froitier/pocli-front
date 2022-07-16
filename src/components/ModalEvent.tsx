@@ -11,7 +11,7 @@ interface BannerProps {
 
 const ModalEvent = ({ event, setModalOnOff }: BannerProps) => {
   const [signUp, setSignUp] = useState(false);
-  const [unsubscribe, setUnsubscribe] = useState(false);
+  // const [unsubscribe, setUnsubscribe] = useState(false);
   // useEffect permettant de libérer le scroll sur Y lorsque le composant se démonte (en cas de changement de page avec la modale ouverte)
   useEffect(() => {
     return () => {
@@ -31,6 +31,7 @@ const ModalEvent = ({ event, setModalOnOff }: BannerProps) => {
         <div className="modalEvent__box__header">
           {!signUp && (
             <div
+              onKeyDown={() => setSignUp(true)}
               className="modalEvent__box__header__sign-up"
               role="button"
               tabIndex={0}
@@ -38,7 +39,7 @@ const ModalEvent = ({ event, setModalOnOff }: BannerProps) => {
               <div className="modalEvent__box__header__sign-up__user-plus">
                 <Icon name={'user-plus'} height={'30px'} color={'white'} />
               </div>
-              <span>S'inscrire</span>
+              <span>S&apos;inscrire</span>
             </div>
           )}
           {signUp && (

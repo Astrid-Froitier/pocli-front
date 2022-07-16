@@ -10,9 +10,6 @@ const NavBar = () => {
   const { user, logout } = useContext(CurrentUserContext);
   const navigate: NavigateFunction = useNavigate();
 
-  console.log(user.name);
-  console.log(user);
-
   function redirectHome() {
     navigate('/');
   }
@@ -57,6 +54,9 @@ const NavBar = () => {
                     </NavLink>
                   ) : link.id === 5 ? (
                     <div
+                      onKeyDown={handleLogout}
+                      role="button"
+                      tabIndex={0}
                       className="navBar__box__links__linksTop__a"
                       onClick={handleLogout}
                       key={link.id}>
