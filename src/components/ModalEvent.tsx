@@ -45,10 +45,10 @@ const ModalEvent = ({ event, setModalOnOff }: BannerProps) => {
             <select
               className="modalEvent__box__header__sign-up"
               onChange={(e) => console.log(e.target.value)}>
-                <option value="Fred">Fred</option>
-                <option value="Jean">Jean</option>
-                <option value="Alfred">Alfred</option>
-                <option value="Jose">Jose</option>
+              <option value="Fred">Fred</option>
+              <option value="Jean">Jean</option>
+              <option value="Alfred">Alfred</option>
+              <option value="Jose">Jose</option>
               <div className="modalEvent__box__header__sign-up__user-plus">
                 <Icon name={'user-plus'} height={'30px'} color={'white'} />
               </div>

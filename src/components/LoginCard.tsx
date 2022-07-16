@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+
 import CurrentUserContext from '../contexts/CurrentUser';
 import IUserInfos from '../interfaces/IUserInfos';
 import Icon from './Icon';

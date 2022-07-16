@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import CurrentUserContext from '../contexts/CurrentUser';
 
+import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 
 const AdherentSpace = () => {
