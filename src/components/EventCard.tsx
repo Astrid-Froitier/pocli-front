@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
+import transformDate from '../../helpers/transformDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import IEvent from '../interfaces/IEvent';
 import Icon from './Icon';
@@ -18,6 +19,12 @@ const EventCard = ({
   const { postTypes, activities, documents, linkedDocuments } =
     useContext(CurrentDataContext);
 
+  const [dateEvent, setDateEvent] = useState<React.SetStateAction<string>>();
+
+  useEffect(() => {
+    setDateEvent(transformDate(event.date));
+  }, []);
+
   const documentsByEvent = linkedDocuments
     .filter((linkedDocument) => linkedDocument.idEvent === event.id)
     .map((linkedDocument) => linkedDocument.idDocument);
@@ -26,26 +33,30 @@ const EventCard = ({
     <>
       <div className={`eventCard${modalEvent ? ' modal' : ''}`}>
         <div className="eventCard__preview">
-          {documentsByEvent && documentsByEvent && (
+          {documentsByEvent[0] && (
             <img
               className="eventCard__preview__image"
               src={
-                documents &&
                 documents
                   .filter((document) => document.id === documentsByEvent[0])
                   .map((document) => document.url)[0]
               }
               alt={
-                documents &&
                 documents
                   .filter((document) => document.id === documentsByEvent[0])
                   .map((document) => document.name)[0]
               }></img>
           )}
+          {!documentsByEvent[0] && !modalEvent && (
+            <img
+              className="eventCard__preview__image"
+              src="assets/nopicture.png"
+              alt="no img"></img>
+          )}
           <div className="eventCard__preview__informations">
             <div className="eventCard__preview__informations__date-and-category">
               <span className="eventCard__preview__informations__date-and-category__date">
-                {event.date}
+                {dateEvent}
               </span>
               <span
                 className={`eventCard__preview__informations__date-and-category__${
