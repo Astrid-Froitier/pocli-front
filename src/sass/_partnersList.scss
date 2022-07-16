@@ -11,8 +11,29 @@
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: min-content;
     gap: 20px;
-    img{
+    img {
       height: 100px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .partnersContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 120px;
+    &__imageMapContainer {
+      width: 75%;
+      display: grid;
+      justify-items: center;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: min-content;
+      gap: 8px;
+      img {
+        height: 100px;
+      }
     }
   }
 }
