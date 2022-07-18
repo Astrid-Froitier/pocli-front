@@ -85,7 +85,13 @@ const NavBarMobile = () => {
                         <li className="">Famille {user.name}</li>
                       </NavLink>
                     ) : link.id === 5 ? (
-                      <div className="" onClick={handleLogout} key={link.id}>
+                      <div
+                        onKeyDown={handleLogout}
+                        role="button"
+                        tabIndex={0}
+                        className="navBarMobile__links__linksTop__a"
+                        onClick={handleLogout}
+                        key={link.id}>
                         <li className="">
                           {link.title}
                           <Icon name="disconnection" height="30px" color="#af3d3d" />
