@@ -12,6 +12,9 @@ const MessagingMenu = () => {
       {selectedMenu === 1 ? (
         <div className="messagingMenuContainer__unreadMessagesDevelopped">
           <div
+            role="button"
+            onKeyDown={() => handleSelectedMenu(0)}
+            tabIndex={0}
             className="messagingMenuContainer__unreadMessagesDevelopped__title"
             onClick={() => handleSelectedMenu(0)}>
             <Icon name="envelope-notification" width="40px" color="white" />
@@ -23,6 +26,9 @@ const MessagingMenu = () => {
         </div>
       ) : (
         <div
+          role="button"
+          onKeyDown={() => handleSelectedMenu(1)}
+          tabIndex={0}
           onClick={() => handleSelectedMenu(1)}
           className="messagingMenuContainer__unreadMessages">
           <Icon name="envelope-notification" width="40px" color="#3D79AF" />
@@ -34,6 +40,9 @@ const MessagingMenu = () => {
       {selectedMenu === 2 ? (
         <div className="messagingMenuContainer__allMessagesDevelopped">
           <div
+            role="button"
+            onKeyDown={() => handleSelectedMenu(0)}
+            tabIndex={0}
             className="messagingMenuContainer__allMessagesDevelopped__title"
             onClick={() => handleSelectedMenu(0)}>
             <Icon name="envelopes" width="40px" color="white" />
@@ -43,6 +52,9 @@ const MessagingMenu = () => {
         </div>
       ) : (
         <div
+          role="button"
+          onKeyDown={() => handleSelectedMenu(2)}
+          tabIndex={0}
           onClick={() => handleSelectedMenu(2)}
           className="messagingMenuContainer__allMessages">
           <Icon name="envelopes" width="40px" color="#3D79AF" />
@@ -52,6 +64,9 @@ const MessagingMenu = () => {
       {selectedMenu === 3 ? (
         <div className="messagingMenuContainer__trashDevelopped">
           <div
+            role="button"
+            onKeyDown={() => handleSelectedMenu(0)}
+            tabIndex={0}
             className="messagingMenuContainer__trashDevelopped__title"
             onClick={() => handleSelectedMenu(0)}>
             <Icon name="trash-can" width="40px" color="white" />
@@ -61,6 +76,9 @@ const MessagingMenu = () => {
         </div>
       ) : (
         <div
+          role="button"
+          onKeyDown={() => handleSelectedMenu(3)}
+          tabIndex={0}
           onClick={() => handleSelectedMenu(3)}
           className="messagingMenuContainer__trash">
           <Icon name="trash-can" width="40px" color="#3D79AF" />

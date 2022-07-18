@@ -39,7 +39,7 @@ const navLinks_topConnected = [
   },
   {
     id: 4,
-    path: '/adherentSpace',
+    path: '/adherent-space',
   },
   {
     id: 5,
