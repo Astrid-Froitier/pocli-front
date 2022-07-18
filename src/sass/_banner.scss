@@ -118,14 +118,66 @@
   //   END ACTIVITIES////////////////
 }
 
-// @media screen and (max-width: 900px) {
-//   .banner {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     width: 100%;
-//   }
-// }
+@media screen and (max-width: 1100px) {
+  .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .eventCard {
+      &__preview {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        &__image {
+          width: 20%;
+          height: 100%;
+          max-height: max-content;
+          object-fit: cover;
+          border-radius: 20px;
+        }
+        &__informations {
+          width: 55%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          gap: 35px;
+          &__date-and-category {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #3d79af;
+          }
+          p {
+            font-size: 25px;
+          }
+          &__arrow {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .banner {
+    .eventCard {
+      &__preview {
+        &__informations {
+          p {
+            font-size: 17px;
+          }
+        }
+      }
+    }
+  }
+}
 
 @-webkit-keyframes slide-in-blurred-left {
   0% {

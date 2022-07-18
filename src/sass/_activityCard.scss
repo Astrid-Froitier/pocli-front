@@ -101,3 +101,49 @@
     }
   }
 }
+
+@media screen and (max-width: 1100px) {
+  .activityCard {
+    width: 80%;
+    height: 80%;
+
+    h2 {
+      font-family: $fontFamily;
+      font-size: 16.16px;
+      font-weight: $fontExtraBold;
+      color: $colorText-3;
+      align-self: center;
+      margin: 0 20px;
+      text-align: center;
+    }
+    &__iconBottom {
+      align-self: flex-end;
+    }
+    &__iconTop,
+    &__iconBottom {
+      margin: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 55px;
+      clip-path: circle(50%);
+    }
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .activityCard {
+    width: 80%;
+    height: 80%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    &__iconTop {
+      margin: 8px;
+    }
+    &__iconBottom {
+      display: none;
+    }
+  }
+}

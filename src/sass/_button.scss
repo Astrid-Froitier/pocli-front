@@ -14,17 +14,3 @@
     text-decoration: underline;
   }
 }
-
-@media screen and (max-width: 900px) {
-  .buttonContainer {
-    padding: 1rem;
-    max-width: fit-content;
-    color: white;
-    border-radius: 10px;
-    font-size: 24px;
-    text-align: center;
-    font-family: 'Karla', sans-serif;
-    font-weight: 700;
-    background-color: #3373c7;
-  }
-}
