@@ -54,19 +54,17 @@
 
 ////// RESPONSIVE comeBackHome //////
 
-@media screen and (max-width: 1100px) {
+@media all and (max-width: 1100px) {
   .comeBackHome {
-    padding-right: 15px;
-    &__title {
-      font-size: 16px;
+    h1 {
+      font-size: $smallTextSize;
     }
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .comeBackHome {
-    &__title {
-      display: none;
+    &__arrow {
+      width: 30px;
+      height: 30px;
+      .icon {
+        width: 15px;
+      }
     }
   }
 }
