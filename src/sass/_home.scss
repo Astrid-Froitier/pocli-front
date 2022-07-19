@@ -155,6 +155,10 @@
       &__newsrespons {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        p {
+          margin-right: 30px;
+        }
       }
       margin: 0 10px;
       width: $pageContentWidth;
@@ -216,23 +220,15 @@
 
 @media screen and (max-width: 1100px) {
   .homeContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    &.modal {
-      filter: blur(4px);
+    &__partners {
+      margin: $marginBoxTopAndBottom;
+      width: 90%;
     }
     &__events {
       width: 100%;
       margin: 60px 0;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 60px;
       &__list {
-        width: 100%;
         display: flex;
         justify-content: center;
         gap: 45px;
@@ -241,15 +237,8 @@
     &__nonAdherent {
       align-items: center;
       margin: 60px 0;
-      width: 100%;
-      height: 600px;
-      display: flex;
-      justify-content: center;
       background-color: #e8f2fe;
       &__box {
-        height: 500px;
-        display: flex;
-        align-items: center;
         justify-content: space-around;
         flex-direction: column;
         &__text {
@@ -261,26 +250,25 @@
       }
     }
     &__about {
-      display: flex;
       justify-content: center;
       flex-direction: column;
       align-items: center;
       margin: 60px 0;
+      width: 90%;
+      text-align: center;
       &__numbers {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 131px;
-        grid-row-gap: 70px;
         margin-right: 0%;
         margin-bottom: 10%;
       }
       &__text {
         display: flex;
         justify-content: space-around;
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column;
         width: 75%;
+        p {
+          text-align: center;
+        }
       }
     }
     &__activities {
@@ -289,13 +277,12 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 0%;
-        grid-row-gap: 0%;
+        grid-column-gap: 6%;
+        grid-row-gap: 6%;
         &__card {
           width: 275px;
           height: 275px;
           overflow: hidden;
-          border-radius: 40px;
         }
       }
     }
@@ -313,7 +300,6 @@
         }
         &__newsrespons {
           font-weight: 700;
-          display: flex;
           flex-direction: column;
           justify-content: space-around;
           align-items: center;
@@ -333,6 +319,23 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        grid-column-gap: 6%;
+        grid-row-gap: 6%;
+
+        &__card {
+          margin-bottom: 5%;
+        }
+      }
+    }
+    &__about {
+      &__numbers {
+        grid-column-gap: 50px;
+        grid-row-gap: 35px;
+      }
+      &__text {
+        h1 {
+          font-size: 30px;
+        }
       }
     }
     &__newsletter {
@@ -358,7 +361,7 @@
   }
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 400px) {
   .homeContainer {
     &__events {
       display: flex;
@@ -366,14 +369,49 @@
       justify-content: center;
       align-items: center;
       &__list {
-        gap: 90px;
+        gap: 135px;
+      }
+    }
+    &__about {
+      &__numbers {
+        grid-column-gap: 15px;
+        grid-row-gap: 10px;
+        &__box {
+          &__digit {
+            font-size: 50px;
+          }
+          &__text {
+            font-size: 28px;
+          }
+        }
+      }
+      &__text {
+        h1 {
+          font-size: 28px;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+    &__nonAdherent {
+      &__box {
+        &__text {
+          h1 {
+            font-size: 28px;
+          }
+          p {
+            font-size: 16px;
+          }
+        }
       }
     }
     &__activities {
       width: 100%;
       h1 {
+        text-align: center;
         margin-bottom: 80px;
-        font-size: 20px;
+        font-size: 28px;
       }
       &__box {
         &__card {

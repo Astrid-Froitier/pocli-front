@@ -58,7 +58,7 @@ const navLinks_bottom = [
   {
     id: 2,
     path: '/activities',
-    title: 'Activités physiques et de Bien-être',
+    title: 'Activités physiques et de Bien-Être',
     icon: 'person-running',
   },
   {

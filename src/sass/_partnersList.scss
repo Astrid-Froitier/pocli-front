@@ -75,6 +75,9 @@
     flex-direction: column;
     align-items: center;
     gap: 120px;
+    h1 {
+      font-size: 28px;
+    }
     &__imageMapContainer {
       // width: 35%;
       display: grid;
@@ -82,17 +85,6 @@
       grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: min-content;
       gap: 8px;
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .partnersContainer {
-    h1 {
-      font-size: 20px;
-    }
-    &__imageMapContainer {
-      // width: 23%;
       img {
         height: 50px;
       }
