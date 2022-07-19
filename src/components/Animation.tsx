@@ -10,6 +10,10 @@ const Animation = () => {
   }, []);
   return (
     <div>
+      <div className="animationBanner">
+        <h1>Animation Locale</h1>
+        <Icon name="compass" color="#fff" />
+      </div>
       <Banner
         nameBannerActivity="activity animation"
         title="Animation Locale"
