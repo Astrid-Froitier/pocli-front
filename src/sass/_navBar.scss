@@ -130,24 +130,25 @@
 
         &__logo {
           &__img {
-            width: 90px;
+            width: 110px;
           }
         }
         &__links {
+          width: fit-content;
           &__linksTop {
             &__a {
               &__li {
-                font-size: 13px;
+                font-size: 16px;
               }
               &__liFamily {
-                font-size: 13px;
+                font-size: 16px;
               }
             }
           }
           &__linksBottom {
             &__a {
               &__li {
-                font-size: 13px;
+                font-size: 16px;
               }
             }
           }
