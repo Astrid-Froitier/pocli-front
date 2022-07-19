@@ -36,6 +36,9 @@
       align-items: center;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      p {
+        width: fit-content;
+      }
     }
   }
 
@@ -57,6 +60,9 @@
       align-items: center;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      p {
+        width: fit-content;
+      }
     }
   }
 
@@ -79,6 +85,9 @@
       align-items: center;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      p {
+        width: fit-content;
+      }
     }
   }
 
@@ -101,6 +110,10 @@
       align-items: center;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      width: fit-content;
+      p {
+        width: fit-content;
+      }
     }
   }
 
@@ -150,9 +163,171 @@
     }
   }
   &__comeBackHome {
-    width: $pageContentWidth;
     display: flex;
     width: $pageContentWidth;
     justify-content: flex-end;
+    padding-bottom: 60px;
+  }
+}
+
+/////////// RESPONSIVE ////////////
+
+@media screen and (max-width: 1100px) {
+  .activityContainer {
+    &__preambulContainer,
+    &__pilateContainer,
+    &__gymSeniorContainer,
+    &__gymSoftContainer,
+    &__welfareDuoContainer,
+    &__welfareContainer {
+      width: 90%;
+    }
+
+    &__activityPictures {
+      width: 90%;
+      &__activityPicturesBloc1,
+      &__activityPicturesBloc2 {
+        display: flex;
+        flex-direction: column;
+      }
+      img {
+        width: 300px;
+      }
+    }
+    &__comeBackHome {
+      width: 90%;
+    }
+  }
+}
+@media screen and (min-width: 700px) {
+  .activityBanner {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .activityBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #519642;
+    opacity: 60%;
+    height: 150px;
+    color: $colorText-3;
+    gap: 8px;
+
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      width: 300px;
+      display: flex;
+      text-align: center;
+    }
+    .icon {
+      width: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .activityContainer {
+    &__preambulContainer {
+      width: 90%;
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: $smallTextSize;
+      }
+    }
+    &__pilateContainer {
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: $smallTextSize;
+      }
+      .icon {
+        width: 25px;
+        height: 20px;
+      }
+      width: 90%;
+      &__pilateContainerBloc1 p,
+      &__pilateContainerBloc2 p {
+        font-size: $smallTextSize;
+      }
+    }
+    &__gymSeniorContainer {
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: $smallTextSize;
+      }
+      .icon {
+        width: 25px;
+        height: 20px;
+      }
+      width: 90%;
+      &__gymSeniorContainerBloc1 p {
+        font-size: $smallTextSize;
+      }
+    }
+    &__gymSoftContainer {
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: $smallTextSize;
+      }
+      .icon {
+        width: 25px;
+        height: 20px;
+      }
+      width: 90%;
+      &__gymSoftContainerBloc1 p {
+        font-size: $smallTextSize;
+      }
+    }
+    &__welfareDuoContainer {
+      h1 {
+        font-size: 20px;
+      }
+      &__welfareDuoContainerBloc1 p {
+        font-size: $smallTextSize;
+      }
+      .icon {
+        width: 25px;
+        height: 20px;
+      }
+      width: 90%;
+    }
+    &__welfareContainer {
+      h1 {
+        font-size: 20px;
+      }
+      .icon {
+        width: 25px;
+        height: 20px;
+      }
+      width: 90%;
+      &__welfareContainerBloc1 p,
+      &__welfareContainerBloc2 p {
+        font-size: $smallTextSize;
+      }
+    }
+
+    &__activityPictures {
+      width: 90%;
+      &__activityPicturesBloc1 p,
+      &__activityPicturesBloc2 p {
+        display: flex;
+        flex-direction: column;
+      }
+      img {
+        width: 300px;
+      }
+    }
   }
 }
