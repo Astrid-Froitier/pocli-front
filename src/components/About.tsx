@@ -11,6 +11,9 @@ const about = () => {
   }, []);
   return (
     <>
+      <div className="aboutBanner">
+        <h1>Qui sommes-nous ?</h1>
+      </div>
       <Banner
         nameBannerActivity=""
         title="Qui sommes-nous ?"
