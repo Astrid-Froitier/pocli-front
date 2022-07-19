@@ -79,20 +79,10 @@
     margin: 20px 0;
     &__header {
       width: $pageContentResponsive;
-      font-size: $smallTextSize;
+      // font-size: $smallTextSize;
       text-align: justify;
       justify-items: center;
       width: 90%;
-
-      &__slogan {
-        font-size: $smallTextSize;
-      }
-      h1 {
-        font-size: $smallTextSize;
-      }
-      p {
-        font-size: $smallTextSize;
-      }
     }
 
     &__associationMembers {
@@ -124,10 +114,20 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 400px) {
   .aboutContainer {
-    &__partners {
-      padding: 0 20px;
+    &__header {
+      font-size: $smallTextSize;
+
+      &__slogan {
+        font-size: $smallTextSize;
+      }
+      h1 {
+        font-size: $smallTextSize;
+      }
+      p {
+        font-size: $smallTextSize;
+      }
     }
   }
 }

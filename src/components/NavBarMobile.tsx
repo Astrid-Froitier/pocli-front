@@ -104,7 +104,9 @@ const NavBarMobile = () => {
       ) : (
         <div className="navBarMobile__banner">
           <div className="navBarMobile__banner__img">
-            <img src="/assets/pocli.png" alt="logo pocli" width={90} height={60} />
+            <NavLink to="/" className="navBarMobile__banner__img">
+              <img src="/assets/pocli.png" alt="logo pocli" width={90} height={60} />
+            </NavLink>
           </div>
           <GiHamburgerMenu
             className="navBarMobile__banner__button"
