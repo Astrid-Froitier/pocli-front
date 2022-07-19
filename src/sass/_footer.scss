@@ -9,7 +9,7 @@
 
   &__footerLinks {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 1028px;
     margin: 6% 0 6% 0;
@@ -104,16 +104,15 @@
     &__footerLinks {
       display: flex;
       justify-content: space-around;
-      align-items: flex-start;
-      flex-direction: column;
+      align-items: center;
+      flex-direction: row;
       width: 100%;
-      margin: 6% 0 6% 16%;
+      margin: 6% 0 6% 0;
       &__footerLinksTop {
         margin-bottom: 4%;
       }
       &__footerLinksTop h4 {
         padding-bottom: 1rem;
-        font-size: 35px;
       }
       &__footerLinksTop__a {
         text-decoration: none;
@@ -122,7 +121,7 @@
           color: white;
           font-family: $typoNav;
           font-weight: 400;
-          font-size: 30px;
+          font-size: 16px;
           list-style: none;
           padding-bottom: 0.5rem;
         }
@@ -131,7 +130,6 @@
         margin-bottom: 4%;
         h4 {
           padding-bottom: 1rem;
-          font-size: 35px;
         }
       }
       &__footerLinksBottom__a {
@@ -140,14 +138,9 @@
           color: white;
           font-family: $typoNav;
           font-weight: 400;
-          font-size: 30px;
+          font-size: 16px;
           list-style: none;
           padding-bottom: 0.5rem;
-        }
-      }
-      &__logo {
-        h4 {
-          font-size: 35px;
         }
       }
     }
@@ -165,11 +158,11 @@
         padding-top: 2%;
 
         h6 {
-          font-size: 35px;
           margin-bottom: 2%;
+          font-size: 16px;
         }
         p {
-          font-size: 20px;
+          font-size: 16px;
         }
         &__list {
           width: 100%;
@@ -181,6 +174,42 @@
           font-size: 25px;
           li {
             text-decoration: underline white;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .footerContainer {
+    &__footerLinks {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
+      margin: 6% 0 0 10%;
+      &__footerLinksTop {
+        margin-bottom: 10%;
+      }
+      &__footerLinksBottom {
+        margin-bottom: 10%;
+      }
+      &__logo {
+        margin-bottom: 20%;
+      }
+    }
+    &__mention {
+      &__h6 {
+        h6 {
+          margin: 4% 0 10% 0;
+        }
+        &__list {
+          flex-direction: column;
+          li {
+            margin: 4% 0 4% 0;
           }
         }
       }
