@@ -15,7 +15,7 @@
     text-align: center;
   }
   .box {
-    // width: $pageContentWidth;
+    width: $pageContentWidth;
     height: 100%;
     display: flex;
     align-items: center;
@@ -50,7 +50,7 @@
       p {
         font-size: $titleSize;
       }
-      .eventCard {
+      .eventCard__preview {
         flex-direction: row-reverse;
       }
       .icon {
@@ -119,65 +119,33 @@
 }
 ///////// RESPONSIVE ///////////
 
-/// BANNER ABOUT //////
-
-@media screen and (max-width: 1100px) {
-  .banner {
-    height: 300px;
-    h1 {
-      font-size: 30px;
-    }
-    .box {
-      &__about {
-        font-size: 30px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .banner {
-    h1 {
-      font-size: 24px;
-    }
-    .box {
-      display: none;
-    }
-    margin-top: 0;
-    background-image: none;
-    height: 150px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .banner {
-    h1 {
-      font-size: 20px;
-    }
-    .box {
-      &__about {
-        display: none;
-      }
-    }
-  }
-}
-
-/// BANNER HOME ///////
 @media screen and (max-width: 1100px) {
   .banner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    height: 300px;
+    h1 {
+      font-size: 30px;
+    }
+    .box {
+      width: 90%;
+      &__about {
+        font-size: 30px;
+      }
+      &__event {
+        width: 90%;
+      }
+    }
     .eventCard {
+      // width: 90%;
       &__preview {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;
         flex-direction: column;
         &__image {
-          width: 20%;
-          height: 100%;
+          width: 300px;
+          height: 250px;
           max-height: max-content;
           object-fit: cover;
           border-radius: 20px;
@@ -186,14 +154,14 @@
           width: 55%;
           height: 100%;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           flex-direction: column;
           gap: 35px;
           &__date-and-category {
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: center;
+            // justify-content: center;
             gap: 10px;
             font-size: 14px;
             color: #3d79af;
@@ -201,26 +169,15 @@
           p {
             font-size: 25px;
           }
-          &__arrow {
-            display: none;
-          }
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 700px) {
   .banner {
-    .eventCard {
-      &__preview {
-        &__informations {
-          p {
-            font-size: 17px;
-          }
-        }
-      }
-    }
+    display: none;
   }
 }
 
