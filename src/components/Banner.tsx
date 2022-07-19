@@ -36,14 +36,18 @@ const Banner = ({
         )}
         {bannerAbout && (
           <div className="box__about">
-            <span>PoCLi,&nbsp;</span>
-            <span className="box__about__blue-pocli-text">PO</span>
-            <span>ur&nbsp;</span>
-            <span className="box__about__green-pocli-text">C</span>
-            <span>réer&nbsp;</span>
-            <span>du&nbsp;</span>
-            <span className="box__about__red-pocli-text">LI</span>
-            <span>en</span>
+            <div>
+              <span>PoCLi,&nbsp;</span>
+            </div>
+            <div>
+              <span className="box__about__blue-pocli-text">PO</span>
+              <span>ur&nbsp;</span>
+              <span className="box__about__green-pocli-text">C</span>
+              <span>réer&nbsp;</span>
+              <span>du&nbsp;</span>
+              <span className="box__about__red-pocli-text">LI</span>
+              <span>en</span>
+            </div>
           </div>
         )}
         {bannerEvent && event && (

@@ -29,12 +29,7 @@ const NavBarMobile = () => {
         <div className="navBarMobile">
           <div className="navBarMobile__banner">
             <NavLink to="/" className="navBarMobile__banner__img">
-              <img
-                src="../../public/assets/pocli.png"
-                alt="logo pocli"
-                width={140}
-                height={100}
-              />
+              <img src="/assets/pocli.png" alt="logo pocli" width={90} height={60} />
             </NavLink>
             {isOpen ? (
               <AiOutlineClose
@@ -109,12 +104,7 @@ const NavBarMobile = () => {
       ) : (
         <div className="navBarMobile__banner">
           <div className="navBarMobile__banner__img">
-            <img
-              src="../../public/assets/pocli.png"
-              alt="logo pocli"
-              width={140}
-              height={100}
-            />
+            <img src="/assets/pocli.png" alt="logo pocli" width={90} height={60} />
           </div>
           <GiHamburgerMenu
             className="navBarMobile__banner__button"
