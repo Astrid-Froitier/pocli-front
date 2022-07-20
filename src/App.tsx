@@ -16,6 +16,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Messaging from './components/Messaging';
 import NavBar from './components/NavBar';
+import NavBarMobile from './components/NavBarMobile';
 import PoliticConf from './components/PoliticConf';
 import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
@@ -30,6 +31,7 @@ function App() {
         <CurrentDataContextProvider>
           {/* <main> */}
           <NavBar />
+          <NavBarMobile />
           <Routes>
             {/* <Route path="*" element={<Home />} /> */}
             <Route path="/" element={<Home />} />

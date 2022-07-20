@@ -46,9 +46,8 @@ const AdherentSpace = () => {
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/communicationMembers`,
       `https://wild-pocli.herokuapp.com/api/communications`,
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
-      `https://wild-pocli.herokuapp.com/api/documents`,
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
-      // `https://wild-pocli.herokuapp.com/api/familyMemberActivities/${idFamlyMember}`,
+      `https://wild-pocli.herokuapp.com/api/documents`,
     ];
 
     getAllDataWithCredential(urls)
@@ -62,8 +61,8 @@ const AdherentSpace = () => {
         setCommunicationMembersByFamily(res[6].data);
         setCommunications(res[7].data);
         setLinkedDocumentsByFamily(res[8].data);
-        setDocuments(res[9].data);
-        setFamilyMemberEvents(res[10].data);
+        setFamilyMemberEvents(res[9].data);
+        setDocuments(res[10].data);
       })
       .catch((err) => {
         console.error(err);

@@ -11,6 +11,10 @@ const Contact = () => {
   }, []);
   return (
     <div>
+      <div className="contactBanner">
+        <h1>Contact</h1>
+        <Icon name="paper-plane" />
+      </div>
       <Banner
         nameBannerActivity=""
         title="Contact"
@@ -28,7 +32,7 @@ const Contact = () => {
           </h1>
           <div className="contactContainer__header__textContact">
             <h1 className="contactContainer__header__textContact__title">
-              Vous pouvez également nous joindre par mail ou par téléphone :
+              Vous pouvez également nous joindre par mail ou par téléphone&nbsp;:
             </h1>
             <div className="contactContainer__header__textContact__email">
               <div className="contactContainer__header__textContact__email__icon">
@@ -70,9 +74,9 @@ const Contact = () => {
           </div>
         </div>
         <ContactForm />
-        <div className="contactContainer__comeBackHome">
-          <ComeBackHome />
-        </div>
+      </div>
+      <div className="contactContainer__comeBackHome">
+        <ComeBackHome />
       </div>
     </div>
   );
