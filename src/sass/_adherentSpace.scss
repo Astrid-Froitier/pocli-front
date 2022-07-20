@@ -10,11 +10,14 @@
   &__left {
     display: flex;
     flex-direction: column;
-    padding-bottom: 7rem;
-
     width: 450px;
+    padding-right: 64px;
+    a {
+      width: fit-content;
+    }
     p {
       margin-bottom: 1rem;
+      width: fit-content;
       cursor: pointer;
       span {
         font-weight: $fontBold;
@@ -38,14 +41,31 @@
     height: 100%;
     width: 450px;
     p {
+      margin-left: 140px;
       margin-bottom: 1rem;
       cursor: pointer;
       &:hover {
         text-decoration: underline;
       }
     }
+    span {
+      margin-left: 140px;
+      margin-bottom: 1rem;
+      font-size: $textSize;
+      color: $colorText-2;
+      font-weight: $fontRegular;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    a {
+      &:nth-child(4) {
+        padding-bottom: 3rem;
+      }
+    }
     h1 {
-      margin: 0 0 2rem 0;
+      margin: 0 0 2rem 140px;
       font-size: $titleSize;
     }
     &__disconnection {

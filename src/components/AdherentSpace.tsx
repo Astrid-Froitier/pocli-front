@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 
 import { getAllDataWithCredential } from '../../helpers/axios';
+import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
@@ -29,7 +30,10 @@ const AdherentSpace = () => {
     setLinkedDocumentsByFamily,
     // familyMemberEvents,
     setFamilyMemberEvents,
+    logout,
   } = useContext(CurrentUserContext);
+
+  const { setDocuments } = useContext(CurrentDataContext);
 
   useEffect(() => {
     let urls = [
@@ -43,7 +47,7 @@ const AdherentSpace = () => {
       `https://wild-pocli.herokuapp.com/api/communications`,
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
-      // `https://wild-pocli.herokuapp.com/api/familyMemberActivities/${idFamlyMember}`,
+      `https://wild-pocli.herokuapp.com/api/documents`,
     ];
 
     getAllDataWithCredential(urls)
@@ -58,6 +62,7 @@ const AdherentSpace = () => {
         setCommunications(res[7].data);
         setLinkedDocumentsByFamily(res[8].data);
         setFamilyMemberEvents(res[9].data);
+        setDocuments(res[10].data);
       })
       .catch((err) => {
         console.error(err);
@@ -68,6 +73,8 @@ const AdherentSpace = () => {
   const [modalAdherentInfo, setModalAdherentInfo] = useState<boolean>(false);
   const [modalAdherentPwd, setModalAdherentPwd] = useState<boolean>(false);
 
+  const navigate: NavigateFunction = useNavigate();
+
   // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
   const handleClickInfo = () => {
     setModalAdherentInfo(!modalAdherentInfo);
@@ -76,6 +83,15 @@ const AdherentSpace = () => {
   const handleClickPwd = () => {
     setModalAdherentPwd(!modalAdherentPwd);
     setModalOnOff('modal');
+  };
+
+  function redirectHome() {
+    navigate('/');
+  }
+
+  const handleLogout = () => {
+    redirectHome();
+    logout();
   };
 
   // useEffect permettant de remonter la page en top au montage du composant
@@ -123,32 +139,32 @@ const AdherentSpace = () => {
           </div>
           <div className="adherentSpaceContainer__right">
             <h1>Mon compte</h1>
-            <ul>
-              <li className="adherentSpaceContainer__right__info">
-                <span
-                  onKeyDown={handleClickInfo}
-                  tabIndex={0}
-                  onClick={handleClickInfo}
-                  role="button">
-                  Mes informations
-                </span>
-              </li>
+            <span
+              onKeyDown={handleClickInfo}
+              tabIndex={0}
+              onClick={handleClickInfo}
+              role="button">
+              Mes informations
+            </span>
 
-              <li className="adherentSpaceContainer__right__pwd">
-                <span
-                  onKeyDown={handleClickPwd}
-                  tabIndex={0}
-                  onClick={handleClickPwd}
-                  role="button">
-                  Changer mon mot de passe
-                </span>
-              </li>
+            <span
+              onKeyDown={handleClickPwd}
+              tabIndex={0}
+              onClick={handleClickPwd}
+              role="button">
+              Changer mon mot de passe
+            </span>
 
-              <NavLink to="/contact">
-                <li>Nous contacter</li>
-              </NavLink>
-              <li>Me déconnecter</li>
-            </ul>
+            <NavLink to="/contact">
+              <p>Nous contacter</p>
+            </NavLink>
+            <span
+              onKeyDown={handleLogout}
+              tabIndex={0}
+              onClick={handleLogout}
+              role="button">
+              Me déconnecter
+            </span>
           </div>
         </div>
       </div>

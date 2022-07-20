@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-// import { members } from '../../data/Xcrew';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
-  const [cardSelected, setCardSelected] = useState<boolean[]>([]);
-  const { familyMembers } = useContext(CurrentUserContext);
+  const { familyMembers, cardSelected, setCardSelected } = useContext(CurrentUserContext);
   const { documents } = useContext(CurrentDataContext);
 
   useEffect(() => {
@@ -19,19 +17,24 @@ const FamilyMembers = () => {
     setCardSelected(cardSelected.map((card, key) => (key === index ? !card : card)));
   }
 
+  console.log(documents);
+
   return (
     <div className="familyMembers">
       {/* map to show all members in the family */}
       {familyMembers &&
         familyMembers.map((familyMember, index) => (
           <div className="familyMembers__card" key={index}>
-            {familyMember.avatar && <img src={familyMember.avatar} alt="avatar" />}
-            {!familyMember.avatar && documents.length > 1 && (
-              <img src={documents[index].url} alt="avatar" />
-            )}
-            {!familyMember.avatar && documents.length === 1 && (
-              <img src="assets/nopicture.png" alt="avatar" />
-            )}
+            <img
+              src={
+                familyMember.avatar
+                  ? `${familyMember.avatar}`
+                  : !familyMember.avatar && documents && documents.length > 1
+                  ? `${documents[index].url}`
+                  : 'assets/nopicture.png'
+              }
+              alt="avatar"
+            />
             <div className="familyMembers__card__name">
               <p>{familyMember.firstname}</p>
               {/* button to select one member in family */}
