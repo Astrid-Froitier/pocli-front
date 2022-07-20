@@ -3,17 +3,17 @@
   height: 100%;
   display: flex;
   gap: 10px;
-  &.modal{
+  &.modal {
     height: fit-content;
-    .eventCard__preview{
+    .eventCard__preview {
       flex-direction: column;
-      &__image{
+      &__image {
         width: 84%;
         height: 200px;
       }
-      &__informations{
+      &__informations {
         width: 80%;
-        p{
+        p {
           font-size: $textSize;
         }
       }
@@ -87,20 +87,33 @@
   }
 }
 
-.eventCard-modal{
+.eventCard-modal {
   width: 100%;
   margin: 20px 0;
   display: flex;
   flex-direction: column;
-  &__images{
+  &__images {
     margin-top: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    >img{
+    > img {
       width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .eventCard {
+    &__preview {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      &__image {
+        width: 175px;
+      }
     }
   }
 }

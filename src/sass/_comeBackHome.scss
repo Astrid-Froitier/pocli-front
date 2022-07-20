@@ -51,3 +51,20 @@
     background-color: $arrow;
   }
 }
+
+////// RESPONSIVE comeBackHome //////
+
+@media all and (max-width: 1100px) {
+  .comeBackHome {
+    h1 {
+      font-size: $smallTextSize;
+    }
+    &__arrow {
+      width: 30px;
+      height: 30px;
+      .icon {
+        width: 15px;
+      }
+    }
+  }
+}

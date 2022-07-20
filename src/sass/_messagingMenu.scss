@@ -25,15 +25,14 @@
       color: $colorText-2;
     }
   }
-  &__unreadMessagesDevelopped,
-  &__allMessagesDevelopped,
-  &__trashDevelopped {
+  &__allMessagesDevelopped {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    padding-bottom: 1rem;
     &__title {
       width: 480px;
       display: flex;
@@ -56,10 +55,234 @@
         color: white;
       }
     }
-    &__messages {
+    &__messagesBox {
       width: 480px;
-      height: 400px;
+      height: 380px;
+      padding: 1rem 0;
       background-color: $backGround-2;
+      &__messages {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 44px;
+        &__unreadMessage {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          p {
+            color: $colorText-2;
+            font-weight: $fontBold;
+            padding: 0 1.5rem;
+            &:first-child {
+              &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        &__readedMessage {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          p {
+            color: $colorText-2;
+            padding: 0 1.5rem;
+            &:first-child {
+              &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      &__messageSelected {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-left: 0.5rem solid $colorText-2;
+        height: 44px;
+        &__unreadMessage {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          p {
+            color: $colorText-2;
+            font-weight: $fontBold;
+            padding: 0 1.5rem;
+            text-decoration: underline;
+            &:first-child {
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        &__readedMessage {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          p {
+            color: $colorText-2;
+            padding: 0 1.5rem;
+            text-decoration: underline;
+            &:first-child {
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &__unreadMessagesDevelopped {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-bottom: 1rem;
+    &__title {
+      width: 480px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      background-color: $backGround-1;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      .icon {
+        padding: 0 0.5rem;
+      }
+      p {
+        color: white;
+      }
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: white;
+      }
+    }
+    &__messagesBox {
+      width: 480px;
+      height: 380px;
+      padding: 1rem 0;
+      background-color: $backGround-2;
+      &__messages {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 44px;
+        p {
+          color: $colorText-2;
+          font-weight: $fontBold;
+          padding: 0 1.5rem;
+          &:first-child {
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      &__messageSelected {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-left: 0.5rem solid $colorText-2;
+        height: 44px;
+        p {
+          color: $colorText-2;
+          font-weight: $fontBold;
+          padding: 0 1rem;
+          text-decoration: underline;
+          &:first-child {
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__trashDevelopped {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-bottom: 1rem;
+    &__title {
+      width: 480px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      background-color: $backGround-1;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      .icon {
+        padding: 0 0.5rem;
+      }
+      p {
+        color: white;
+      }
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: white;
+      }
+    }
+    &__messagesBox {
+      width: 480px;
+      height: 380px;
+      padding: 1rem 0;
+      background-color: $backGround-2;
+      &__messages {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 44px;
+        p {
+          color: $colorText-2;
+          padding: 0 1.5rem;
+          &:first-child {
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      &__messageSelected {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-left: 0.5rem solid $colorText-2;
+        height: 44px;
+        p {
+          color: $colorText-2;
+          padding: 0 1rem;
+          text-decoration: underline;
+          &:first-child {
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
   }
 }

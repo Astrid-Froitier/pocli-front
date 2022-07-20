@@ -23,7 +23,12 @@ const NavBar = () => {
       <div className="navBar__box">
         <div className="navBar__box__logo">
           <NavLink to="/">
-            <img width={140} src="./assets/pocli.png" alt="pocli's logo" />
+            <img
+              className="navBar__box__logo__img"
+              width={140}
+              src="./assets/pocli.png"
+              alt="pocli's logo"
+            />
           </NavLink>
         </div>
         <div className="navBar__box__links">

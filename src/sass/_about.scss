@@ -68,5 +68,93 @@
     width: $pageContentWidth;
     display: flex;
     justify-content: flex-end;
+    padding-bottom: 60px;
+  }
+}
+
+/////// RESPONSIVE ////////
+
+@media screen and (max-width: 1100px) {
+  .aboutContainer {
+    margin: 20px 0;
+    &__header {
+      width: $pageContentResponsive;
+      text-align: justify;
+      justify-items: center;
+      width: 90%;
+    }
+
+    &__associationMembers {
+      margin: 20px 0;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      &__card {
+        &__img {
+          width: 120px;
+          height: 180px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+    &__partners {
+      margin: 30px 0;
+      padding: 30px 0;
+      width: 96%;
+    }
+    &__comeBackHome {
+      width: 96%;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .aboutBanner {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .aboutBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    gap: 8px;
+
+    h1 {
+      color: $colorText-2;
+      font-size: 24px;
+      width: 300px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+    }
+    .icon {
+      width: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .aboutContainer {
+    &__header {
+      font-size: $smallTextSize;
+
+      &__slogan {
+        font-size: $smallTextSize;
+      }
+      h1 {
+        font-size: $smallTextSize;
+      }
+      p {
+        font-size: $smallTextSize;
+      }
+    }
   }
 }

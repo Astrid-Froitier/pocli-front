@@ -33,6 +33,9 @@
         flex-direction: row;
         margin-bottom: 1.5rem;
       }
+      p {
+        width: fit-content;
+      }
     }
   }
   &__meeting {
@@ -45,6 +48,7 @@
     }
     p {
       margin: 0 0 1.5rem 0;
+      width: fit-content;
     }
     &__description {
       &__firstPoint,
@@ -67,5 +71,81 @@
     display: flex;
     width: $pageContentWidth;
     justify-content: flex-end;
+  }
+}
+
+////////: RESPONSIVE /////////////
+
+@media screen and (max-width: 1100px) {
+  .preventionContainer {
+    &__header,
+    &__visit,
+    &__meeting {
+      width: 90%;
+    }
+    &__comeBackHome {
+      width: 90%;
+    }
+    &__pictures {
+      width: 90%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      img {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .preventionBanner {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .preventionBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #af3d3d;
+    opacity: 60%;
+    height: 150px;
+    color: $colorText-3;
+    gap: 8px;
+
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      width: 300px;
+      display: flex;
+      text-align: center;
+    }
+    .icon {
+      width: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .preventionContainer {
+    &__header,
+    &__visit,
+    &__meeting {
+      margin-top: 2rem;
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: $smallTextSize;
+      }
+      .icon {
+        width: 25px;
+        height: 20px;
+      }
+    }
   }
 }

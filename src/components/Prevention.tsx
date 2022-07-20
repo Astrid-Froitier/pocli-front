@@ -10,9 +10,13 @@ const Prevention = () => {
   }, []);
   return (
     <div>
+      <div className="preventionBanner">
+        <h1>Prévention - Action sociale</h1>
+        <Icon name="hand-holding-heart" color="#fff" />
+      </div>
       <Banner
         nameBannerActivity="activity social"
-        title="Prevention - Action sociale"
+        title="Prévention - Action sociale"
         nameIcon="hand-holding-heart"
         memberFilter={false}
         bannerAbout={false}
