@@ -164,12 +164,10 @@ const Activities = () => {
             <img src="/assets/pilate.png" alt="SportThemeImage4" />
           </div>
         </div>
-      </div>
-      <>
         <div className="activityContainer__comeBackHome">
           <ComeBackHome />
         </div>
-      </>
+      </div>
     </div>
   );
 };
