@@ -9,14 +9,12 @@ const ComeBackHome = ({
   link = '/',
 }) => {
   return (
-    <div>
-      <NavLink to={link} className={type}>
-        <h1 className="comeBackHome__title">{text}</h1>
-        <div className="comeBackHome__arrow">
-          <Icon name="arrow-left" width="25px" height="25px" color="white" />
-        </div>
-      </NavLink>
-    </div>
+    <NavLink to={link} className={type}>
+      <h1 className="comeBackHome__title">{text}</h1>
+      <div className="comeBackHome__arrow">
+        <Icon name="arrow-left" width="25px" height="25px" color="white" />
+      </div>
+    </NavLink>
   );
 };
 
