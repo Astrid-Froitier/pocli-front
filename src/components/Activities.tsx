@@ -19,6 +19,10 @@ const Activities = () => {
         bannerEvent={false}
         bannerMember={false}
       />
+      <div className="activityBanner">
+        <h1 className="activityBanner__title">Activités physiques et de Bien-Être</h1>
+        <Icon name="person-running" color="#fff" width="40px" height="40px" />
+      </div>
       <div className="activityContainer">
         <div className="activityContainer__preambulContainer">
           <h1>Un lieu d’épanouissement individuel et collectif.</h1>

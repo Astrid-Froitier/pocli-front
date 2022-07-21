@@ -68,6 +68,7 @@ export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
       id: 0,
       name: 'pocli',
       url: 'assets/nopicture.png',
+      idDocumentType: 1,
     },
   ]);
   const [linkedDocuments, setLinkedDocuments] = useState<ILinkedDocument[]>([

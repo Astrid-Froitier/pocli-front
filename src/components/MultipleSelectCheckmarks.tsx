@@ -39,11 +39,11 @@ const MultipleSelectCheckmarks = ({
 }: MultipleSelectCheckmarksProp) => {
   const { familyMemberEvents, setFamilyMemberEvents, familyMembers } =
     React.useContext(CurrentUserContext);
-  console.log('familyMemberEvents');
-  console.log(familyMemberEvents);
+
   const [registeredFamilyMembers, setRegisteredFamilyMembers] = React.useState<
     IFamilyMember[]
   >([]);
+
   React.useEffect(() => {
     setRegisteredFamilyMembers(
       familyMemberEvents
@@ -59,6 +59,7 @@ const MultipleSelectCheckmarks = ({
 
   const idEvent = event.id;
   const numberParticipantsMax = event.numberParticipantsMax;
+
   const handleChange = async (event: SelectChangeEvent<String[]>) => {
     const inputFirstnames = event.target.value as string[];
 
@@ -69,13 +70,11 @@ const MultipleSelectCheckmarks = ({
             .map((registeredFamilyMember) => registeredFamilyMember.firstname)
             .includes(inputFirstname),
       )[0];
+
       const idFamilyMember = familyMembersIsActive.filter(
         (familyMemberIsActive) => familyMemberIsActive.firstname === addMember,
       )[0].id;
-      console.log('addMember');
-      console.log(addMember);
-      console.log('idFamilyMember');
-      console.log(idFamilyMember);
+
       try {
         await axios.post<IFamilyMemberEvent>(
           'http://localhost:3001/api/familyMemberEvents',
@@ -118,13 +117,10 @@ const MultipleSelectCheckmarks = ({
         (registeredFamilyMember) =>
           !inputFirstnames.includes(registeredFamilyMember.firstname),
       )[0];
+
       const idFamilyMemberEvent = familyMemberEvents
         .filter((familyMemberEvent) => familyMemberEvent.idEvent === idEvent)
         .filter((event) => event.idFamilyMember === deleteMember.id)[0].id;
-      console.log('deleteMember');
-      console.log(deleteMember);
-      console.log('idFamilyMemberEvent');
-      console.log(idFamilyMemberEvent);
 
       try {
         await axios.delete<IFamilyMemberEvent>(

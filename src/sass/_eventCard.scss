@@ -134,4 +134,17 @@
       width: 100%;
     }
   }
+
+@media screen and (max-width: 400px) {
+  .eventCard {
+    &__preview {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      &__image {
+        width: 175px;
+      }
+    }
+  }
+}
 }

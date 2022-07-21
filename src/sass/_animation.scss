@@ -10,12 +10,18 @@
     font-weight: $fontBold;
     font-style: italic;
     margin: 0 0 2rem 0;
+    p {
+      width: fit-content;
+    }
   }
   &__list {
     margin: 1rem;
     width: $pageContentWidth;
     display: flex;
     gap: 1rem;
+    p {
+      width: fit-content;
+    }
   }
   &__pictures {
     width: $pageContentWidth;
@@ -29,7 +35,79 @@
   &__comeBackHome {
     width: $pageContentWidth;
     display: flex;
-    width: $pageContentWidth;
     justify-content: flex-end;
+  }
+}
+//////// RESPONSIVE ///////////
+
+@media screen and (max-width: 1100px) {
+  .animationContainer {
+    &__sentenceList,
+    &__list {
+      width: 90%;
+    }
+    &__comeBackHome {
+      width: 90%;
+    }
+    &__pictures {
+      width: 90%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      img {
+        width: 300px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .animationBanner {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .animationBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5c342;
+    opacity: 60%;
+    height: 150px;
+    color: $colorText-3;
+    gap: 8px;
+
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      width: 300px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+    }
+    .icon {
+      width: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .animationContainer {
+    &__sentenceList,
+    &__list {
+      h1 {
+        font-size: 20px;
+      }
+      p {
+        font-size: $smallTextSize;
+      }
+      .icon {
+        width: 25px;
+        height: 20px;
+      }
+    }
   }
 }
