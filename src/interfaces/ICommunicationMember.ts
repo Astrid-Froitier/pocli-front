@@ -6,4 +6,5 @@ export default interface ICommunicationMember {
   idCommunication: number;
   isOpened: number;
   isTrashed: number;
+  isBanner: number;
 }

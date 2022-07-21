@@ -4,5 +4,4 @@ export default interface ICommunication {
   content: string;
   date: string;
   idAdmin: number;
-  isBanner: number;
 }

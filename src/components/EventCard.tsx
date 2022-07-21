@@ -61,6 +61,11 @@ const EventCard = ({
         )[0],
     );
 
+    const availablePlaces = event.numberParticipantsMax && event.numberParticipantsMax -
+    familyMemberEvents.filter(
+      (familyMemberEvent) => familyMemberEvent.idEvent === event.id,
+    ).length
+
   return (
     <>
       <div className={`eventCard${modalEvent ? ' modal' : ''}`}>
@@ -138,16 +143,9 @@ const EventCard = ({
           ) : null}
           {event.idActivity &&
           familyMembersIsActive.length &&
-          event.numberParticipantsMax &&
           event.numberParticipantsMax ? (
             <div className="eventCard-modal__numberParticipantsMax">
-              <span>{`Places disponibles : ${
-                event.numberParticipantsMax -
-                familyMemberEvents.filter(
-                  (familyMemberEvent) => familyMemberEvent.idEvent === event.id,
-                ).length
-              }`}</span>
-              <span>man</span>
+              {availablePlaces ? <span>{`Place${availablePlaces > 1 ? "s" : ""} disponible${availablePlaces > 1 ? "s" : ""} : ${availablePlaces}`}</span> : <span>Toutes les places ont été prises !</span>}
             </div>
           ) : null}
           {event.podcastLink && (
