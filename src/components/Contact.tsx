@@ -74,9 +74,9 @@ const Contact = () => {
           </div>
         </div>
         <ContactForm />
-      </div>
-      <div className="contactContainer__comeBackHome">
-        <ComeBackHome />
+        <div className="contactContainer__comeBackHome">
+          <ComeBackHome />
+        </div>
       </div>
     </div>
   );

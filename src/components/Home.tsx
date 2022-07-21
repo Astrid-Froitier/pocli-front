@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
@@ -7,6 +8,7 @@ import { navLinks_bottom } from '../../data/links';
 import { getAllDataWithoutCredential } from '../../helpers/axios';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
+import INewsletter from '../interfaces/INewsletter';
 import ActivityCard from './ActivityCard';
 import Banner from './Banner';
 import Button from './Button';
@@ -40,9 +42,9 @@ const Home = () => {
   }, []);
 
   // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
-  const handleClick = (e: number) => {
-    setModalOnOff('modal');
-    setIdEventModal(e);
+  const handleClick = (e: React.SetStateAction<number>) => {
+    events[0].id > 0 && setModalOnOff('modal');
+    events[0].id > 0 && setIdEventModal(e);
   };
 
   // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
@@ -83,7 +85,24 @@ const Home = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => setEmailNewsletter(data);
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const email = data.email;
+    try {
+      const { data } = await axios.post<INewsletter>(
+        'http://localhost:3001/api/newsletters',
+        { email },
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      setEmailNewsletter(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
@@ -100,6 +119,7 @@ const Home = () => {
             events &&
             events.filter((event) => (!user.id ? event.reservedAdherent === 0 : event))[0]
           }
+          handleClick={handleClick}
         />
         <div className="homeContainer__events">
           <div className="homeContainer__events__list">

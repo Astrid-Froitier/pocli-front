@@ -52,7 +52,6 @@ const Documents = () => {
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
       `https://wild-pocli.herokuapp.com/api/documents`,
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
-      // `https://wild-pocli.herokuapp.com/api/familyMemberActivities/${idFamlyMember}`,
     ];
 
     getAllDataWithCredential(urls)
