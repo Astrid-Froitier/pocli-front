@@ -1,30 +1,31 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
 import CurrentUserContext from '../contexts/CurrentUser';
-import IUser from '../interfaces/IUser';
+import IUserInfos from '../interfaces/IUserInfos';
 import Icon from './Icon';
 
 const LoginCard = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
   const navigate: NavigateFunction = useNavigate();
 
-  const { setId, setAdmin, setFirstname } = useContext(CurrentUserContext);
+  const { setUser, user } = useContext(CurrentUserContext);
+  console.log(user);
 
-  function redirectHome() {
-    navigate('/');
+  function redirectAdherentSpace() {
+    navigate('/adherent-space');
   }
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       e.preventDefault();
-      const { data } = await axios.post<IUser>(
-        'http://localhost:8000/api/login',
+      const { data } = await axios.post<IUserInfos>(
+        'http://localhost:3001/api/login',
         { email, password },
         {
           method: 'POST',
@@ -34,11 +35,10 @@ const LoginCard = () => {
           withCredentials: true,
         },
       );
+      localStorage.setItem('userInfos', JSON.stringify({ id: data.id, name: data.name }));
       setErrorMessage('');
-      setId(data.id);
-      setFirstname(data.firstname);
-      setAdmin(data.admin === 1);
-      redirectHome();
+      setUser({ id: data.id, name: data.name });
+      redirectAdherentSpace();
     } catch (err) {
       // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
       if (axios.isAxiosError(err)) {
@@ -52,6 +52,7 @@ const LoginCard = () => {
       }
     }
   };
+  // token && setUserInfos({ id: token.id, name: token.name, token: token.token }):IUserInfos;
 
   return (
     <>
@@ -98,12 +99,12 @@ const LoginCard = () => {
           </label>
         </div>
         <p className="loginCardContainer__passwordForgot">Mot de passe oublié</p>
-        <NavLink to="/welcome" className="loginCardContainer__submit">
+        <button type="submit" className="loginCardContainer__submit">
           <Icon name="arrow-right" width="40px" height="40px" color="white" />
           {errorMessage && (
             <span className="loginCardContainer__message">{errorMessage}</span>
           )}
-        </NavLink>
+        </button>
       </form>
     </>
   );

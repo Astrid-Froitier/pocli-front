@@ -1,9 +1,12 @@
 .adherentSpaceContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   margin: $marginBoxTopAndBottom;
+  &.modal {
+    filter: blur(4px);
+  }
   &__left {
     display: flex;
     flex-direction: column;
@@ -28,10 +31,11 @@
   &__right {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
     border-left: 1px solid $colorText-2;
     padding-left: 65px;
+    height: 100%;
     width: 450px;
     p {
       margin-bottom: 1rem;
@@ -43,6 +47,13 @@
     h1 {
       margin: 0 0 2rem 0;
       font-size: $titleSize;
+    }
+    &__disconnection {
+      margin-top: 3rem;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

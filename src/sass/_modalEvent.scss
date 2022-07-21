@@ -18,31 +18,47 @@
     flex-direction: column;
     z-index: 500;
     width: 50%;
-    height: 50%;
-    top: 50%;
+    height: calc(100vh - 300px);
+    top: calc(50% + 75px);
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: $backGround-2;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
-    border-radius: 60px;
+    border-radius: 20px;
     overflow-y: scroll;
-    padding: 30px 60px;
+    padding: 50px;
     &::-webkit-scrollbar {
         width: 10px;
     }
     &::-webkit-scrollbar-track {
-        background: white;
+        background: rgb(222, 222, 222);
         margin: $marginBoxTopAndBottom;
         border-radius: 12px;
         
     }
     &::-webkit-scrollbar-thumb {
-        background: $colorText-2;
+        background-color: $backGround-1;
         border-radius: 12px;
         transition: all 0.3s ease;
     }
-    &::-webkit-scrollbar-thumb:hover {
-        background: $colorText-2;
+    &__header{
+      width: 100%;
+      height: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      &__x-mark{
+        display: flex;
+        justify-content: center;
+        width: fit-content;
+        width: 49px;
+        height: 49px;
+        clip-path: circle(50%);
+        background-color: $backGround-1;
+        cursor: pointer;
+      }
     }
   }
 }

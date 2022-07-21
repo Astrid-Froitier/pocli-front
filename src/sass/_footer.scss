@@ -91,3 +91,99 @@
     }
   }
 }
+
+@media screen and (max-width: 900px) {
+  .footerContainer {
+    justify-content: center;
+    background-color: #8bafcf;
+    color: white;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__footerLinks {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
+      margin: 6% 0 6% 16%;
+      &__footerLinksTop {
+        margin-bottom: 4%;
+      }
+      &__footerLinksTop h4 {
+        padding-bottom: 1rem;
+        font-size: 35px;
+      }
+      &__footerLinksTop__a {
+        text-decoration: none;
+
+        &__li {
+          color: white;
+          font-family: $typoNav;
+          font-weight: 400;
+          font-size: 30px;
+          list-style: none;
+          padding-bottom: 0.5rem;
+        }
+      }
+      &__footerLinksBottom {
+        margin-bottom: 4%;
+        h4 {
+          padding-bottom: 1rem;
+          font-size: 35px;
+        }
+      }
+      &__footerLinksBottom__a {
+        text-decoration: none;
+        &__li {
+          color: white;
+          font-family: $typoNav;
+          font-weight: 400;
+          font-size: 30px;
+          list-style: none;
+          padding-bottom: 0.5rem;
+        }
+      }
+      &__logo {
+        h4 {
+          font-size: 35px;
+        }
+      }
+    }
+    &__mention {
+      margin-bottom: 5%;
+      width: 80%;
+      text-align: center;
+      &__h6 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid;
+        padding-top: 2%;
+
+        h6 {
+          font-size: 35px;
+          margin-bottom: 2%;
+        }
+        p {
+          font-size: 20px;
+        }
+        &__list {
+          width: 100%;
+          margin-top: 2%;
+          display: flex;
+          justify-content: space-around;
+          flex-direction: row;
+          align-items: center;
+          font-size: 25px;
+          li {
+            text-decoration: underline white;
+          }
+        }
+      }
+    }
+  }
+}

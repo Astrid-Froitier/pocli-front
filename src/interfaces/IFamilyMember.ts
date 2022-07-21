@@ -1,8 +1,7 @@
-export default interface IFamilyMembers {
+export default interface IFamilyMember {
   id: number;
   idFamily: number;
   firstname: string;
   birthday: string;
-  isActive: boolean;
   avatar: string;
 }

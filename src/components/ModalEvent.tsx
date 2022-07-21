@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import IEvent from '../interfaces/IEvent';
 import EventCard from './EventCard';
+import Icon from './Icon';
 
 interface BannerProps {
   event: IEvent;
@@ -9,7 +10,7 @@ interface BannerProps {
 }
 
 const ModalEvent = ({ event, setModalOnOff }: BannerProps) => {
-  // useEffect permettant de libérer le scroll sur x lorsque le composant se démonte (en cas de changement de page avec la modale ouverte)
+  // useEffect permettant de libérer le scroll sur Y lorsque le composant se démonte (en cas de changement de page avec la modale ouverte)
   useEffect(() => {
     return () => {
       document.documentElement.style.setProperty('overflow-y', 'scroll');
@@ -25,7 +26,19 @@ const ModalEvent = ({ event, setModalOnOff }: BannerProps) => {
         role="button"
         tabIndex={0}></div>
       <div className="modalEvent__box">
-        <EventCard event={event} />
+        <div className="modalEvent__box__header">
+          <div
+            className="modalEvent__box__header__x-mark"
+            role="button"
+            onClick={() => setModalOnOff('')}
+            onKeyDown={() => setModalOnOff('')}
+            tabIndex={0}>
+            <Icon name={'xmark'} width={'25px'} color={'white'} />
+          </div>
+        </div>
+        <div>
+          <EventCard event={event} modalEvent={true} />
+        </div>
         <div className="modalEvent__box__test"></div>
       </div>
     </div>

@@ -11,7 +11,7 @@ const Activities = () => {
   return (
     <div className="">
       <Banner
-        nameBannerActivity="activity sport"
+        nameBannerActivity="activity physical"
         title="Activités physiques et de Bien-Être"
         nameIcon="person-running"
         memberFilter={false}

@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const getAllData = (urls: String[]) => {
-  return Promise.all(urls.map(fetchData));
+const getAllDataWithoutCredential = (urls: String[]) => {
+  return Promise.all(urls.map(fetchDataWithoutCredential));
 };
 
-const fetchData = async (url: String) => {
+const fetchDataWithoutCredential = async (url: String) => {
   try {
     const { data } = await axios.get(String(url));
     return {
@@ -16,4 +16,20 @@ const fetchData = async (url: String) => {
   }
 };
 
-export default getAllData;
+const getAllDataWithCredential = (urls: String[]) => {
+  return Promise.all(urls.map(fetchDataWithCredential));
+};
+
+const fetchDataWithCredential = async (url: String) => {
+  try {
+    const { data } = await axios.get(String(url), { withCredentials: true });
+    return {
+      success: true,
+      data: data,
+    };
+  } catch (err) {
+    return { success: false };
+  }
+};
+
+export { getAllDataWithoutCredential, getAllDataWithCredential };
