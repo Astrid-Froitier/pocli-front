@@ -43,8 +43,6 @@ type UserContent = {
   setLinkedDocumentsByFamily: React.Dispatch<React.SetStateAction<ILinkedDocument[]>>;
   familyMemberEvents: IFamilyMemberEvent[];
   setFamilyMemberEvents: React.Dispatch<React.SetStateAction<IFamilyMemberEvent[]>>;
-  cardSelected: boolean[];
-  setCardSelected: React.Dispatch<React.SetStateAction<boolean[]>>;
 };
 
 type Props = { children: React.ReactNode };
@@ -73,8 +71,6 @@ const CurrentUserContext = createContext<UserContent>({
   setLinkedDocumentsByFamily: () => {},
   familyMemberEvents: [],
   setFamilyMemberEvents: () => {},
-  cardSelected: [],
-  setCardSelected: () => {},
 });
 
 export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
@@ -95,7 +91,6 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
     ILinkedDocument[]
   >([]);
   const [familyMemberEvents, setFamilyMemberEvents] = useState<IFamilyMemberEvent[]>([]);
-  const [cardSelected, setCardSelected] = useState<boolean[]>([]);
 
   const removeCookie = useCookies(['user_token'])[2];
 
@@ -131,8 +126,6 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
         setLinkedDocumentsByFamily,
         familyMemberEvents,
         setFamilyMemberEvents,
-        cardSelected,
-        setCardSelected,
       }}>
       {children}
     </CurrentUserContext.Provider>

@@ -1,15 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
+// import { members } from '../../data/Xcrew';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
-  const { familyMembers, cardSelected, setCardSelected } = useContext(CurrentUserContext);
+  const [cardSelected, setCardSelected] = useState<boolean[]>([]);
+  const { familyMembers } = useContext(CurrentUserContext);
   const { documents } = useContext(CurrentDataContext);
 
   useEffect(() => {
-    setCardSelected(familyMembers.map(() => true));
+    setCardSelected(familyMembers && familyMembers.map(() => true));
   }, [familyMembers]);
 
   // function to select only one member of the family with a map. If the key is egal to the index don't select the card else select it.

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { members } from '../../data/Xcrew';
 import IEvent from '../interfaces/IEvent';
 import EventCard from './EventCard';
 import FamilyMembers from './FamilyMembers';
@@ -15,6 +14,7 @@ interface BannerProps {
   bannerEvent?: boolean;
   bannerMember?: boolean;
   memberFilter?: boolean;
+  handleClick?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Banner = ({
@@ -26,6 +26,7 @@ const Banner = ({
   bannerMember = false,
   memberFilter = false,
   event,
+  handleClick,
 }: BannerProps) => {
   return (
     <div className={`banner ${nameBannerActivity}`}>
@@ -47,11 +48,16 @@ const Banner = ({
           </div>
         )}
         {bannerEvent && event && (
-          <div className="box__event">
+          <div
+            role="button"
+            className="box__event"
+            onClick={() => handleClick!(event.id)}
+            onKeyDown={() => handleClick!(event.id)}
+            tabIndex={0}>
             <EventCard event={event} bannerEvent={bannerEvent} />
           </div>
         )}
-        {bannerMember && members && (
+        {bannerMember && (
           <div className="box__members">
             <FamilyMembers />
           </div>
