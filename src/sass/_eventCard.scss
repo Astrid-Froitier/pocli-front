@@ -18,6 +18,11 @@
         p{
           font-size: $textSize;
         }
+        &__date-and-category{
+          &__family{
+            border: 1px solid $backGround-1;
+          }
+        }
       }
     }
   }
@@ -99,6 +104,12 @@
   flex-direction: column;
   &__participation, &__podcast{
     margin-top: 30px;
+  }
+  &__number-participants-max{
+    font-size: $smallTextSize;
+    color: $colorText-1;
+    font-weight: $fontExtraBold;
+    padding-top: 5px;
   }
   &__podcast{
     width: fit-content;

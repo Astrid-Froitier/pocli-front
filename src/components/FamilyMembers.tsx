@@ -19,8 +19,6 @@ const FamilyMembers = () => {
     setCardSelected(cardSelected.map((card, key) => (key === index ? !card : card)));
   }
 
-  console.log(documents);
-
   return (
     <div className="familyMembers">
       {/* map to show all members in the family */}
