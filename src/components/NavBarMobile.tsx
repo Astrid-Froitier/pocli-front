@@ -74,10 +74,12 @@ const NavBarMobile = () => {
                 : navLinks_topConnected.map((link) =>
                     link.id === 4 ? (
                       <NavLink
-                        className="navBarMobile__links__linksTop__a__liFamily"
+                        className="navBarMobile__links__linksTop__a"
                         key={link.id}
                         to={link.path}>
-                        <li className="">Famille {user.name}</li>
+                        <li className="navBarMobile__links__linksTop__a__liFamily">
+                          Famille {user.name}
+                        </li>
                       </NavLink>
                     ) : link.id === 5 ? (
                       <div
@@ -87,14 +89,19 @@ const NavBarMobile = () => {
                         className="navBarMobile__links__linksTop__a"
                         onClick={handleLogout}
                         key={link.id}>
-                        <li className="">
+                        <li className="navBarMobile__links__linksTop__a__li">
                           {link.title}
                           <Icon name="disconnection" height="30px" color="#af3d3d" />
                         </li>
                       </div>
                     ) : (
-                      <NavLink className="" key={link.id} to={link.path}>
-                        <li className="">{link.title}</li>
+                      <NavLink
+                        className="navBarMobile__links__linksTop__a"
+                        key={link.id}
+                        to={link.path}>
+                        <li className="navBarMobile__links__linksTop__a__li">
+                          {link.title}
+                        </li>
                       </NavLink>
                     ),
                   )}
