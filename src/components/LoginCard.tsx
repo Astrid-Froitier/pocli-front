@@ -148,6 +148,7 @@ const LoginCard = () => {
           {errorEmail && <p>{errorEmail}</p>}
         </div>
         <div className="loginCardContainer__password">
+          <div className='loginCardContainer__password__input'>
           <FormControl sx={{ width: '350px' }} variant="outlined">
             <InputLabel
               htmlFor="outlined-adornment-password"
@@ -197,6 +198,7 @@ const LoginCard = () => {
           </FormControl>
           {errorPassword && <p>{errorPassword}</p>}
           {accountNoExists && <p>{accountNoExists}</p>}
+          </div>
           <div className="loginCardContainer__stayConnected">
             <input
               id="stayConnected"
@@ -208,13 +210,13 @@ const LoginCard = () => {
               Rester connecté
             </label>
           </div>
-        </div>
-        <NavLink to="/contact">
-        <p className="loginCardContainer__passwordForgot">Mot de passe oublié ?</p>
+          <NavLink to="/contact">
+        <span className="loginCardContainer__passwordForgot">Mot de passe oublié ?</span>
         </NavLink>
         <button type="submit" className="loginCardContainer__submit">
           <Icon name="arrow-right" width="40px" height="40px" color="white" />
         </button>
+        </div>
       </form>
     </>
   );
