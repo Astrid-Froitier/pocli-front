@@ -7,13 +7,18 @@ import CurrentUserContext from '../contexts/CurrentUser';
 import ICommunication from '../interfaces/ICommunication';
 import ICommunicationMember from '../interfaces/ICommunicationMember';
 import Icon from './Icon';
+import { MessageMenuProps } from './Messaging';
 
-export interface MessageProps {
-  openedMessage: number;
-  setOpenedMessage: React.Dispatch<React.SetStateAction<number>>;
-}
-
-const MessagingMenu = ({ setOpenedMessage }: MessageProps) => {
+const MessagingMenu = ({
+  setOpenedMessage,
+  selectedMessage,
+  setSelectedMessage,
+  currentMenu,
+  setCurrentMenu,
+  selectedMenu,
+  setSelectedMenu,
+  trashCom,
+}: MessageMenuProps) => {
   const {
     communicationMembersByFamily,
     setCommunicationMembersByFamily,
@@ -22,11 +27,16 @@ const MessagingMenu = ({ setOpenedMessage }: MessageProps) => {
     user,
   } = useContext(CurrentUserContext);
 
-  const [selectedMessage, setSelectedMessage] = useState<number>(-1);
+  console.log(currentMenu, selectedMessage);
   const [unreadMessages, setUnreadMessages] = useState(0);
-  const [selectedMenu, setSelectedMenu] = useState(0);
-  const [currentMenu, setCurrentMenu] = useState<ICommunication[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [allCommunicationsFamily, setAllCommunicationsFamily] = useState<
+    ICommunication[]
+  >([]);
+  const [communicationsFamilyUnread, setCommunicationsFamilyUnread] = useState<
+    ICommunication[]
+  >([]);
+  const [trashCommunications, setTrashCommunications] = useState<ICommunication[]>([]);
 
   const handleSelectedMenu = (number: number) => {
     setSelectedMenu(number);
@@ -37,8 +47,6 @@ const MessagingMenu = ({ setOpenedMessage }: MessageProps) => {
       ? setCurrentMenu(allCommunicationsFamily)
       : number === 3 && setCurrentMenu(trashCommunications);
   };
-
-  // const handleTrash = (number: number) => {};
 
   useEffect(() => {
     let urls = [
@@ -55,26 +63,53 @@ const MessagingMenu = ({ setOpenedMessage }: MessageProps) => {
           console.error(err);
           console.log(errorMessage);
         });
-  }, []);
+  }, [selectedMessage, trashCom]);
+
+  console.log(`${trashCom} trashCom`);
+
+  useEffect(() => {
+    setAllCommunicationsFamily(
+      communicationMembersByFamily
+        .filter((com) => !com.isTrashed)
+        .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
+        .map((commun) => commun[0]),
+    );
+
+    setCommunicationsFamilyUnread(
+      communicationMembersByFamily
+        .filter((com) => com.isOpened === 0)
+        .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
+        .map((commun) => commun[0]),
+    );
+
+    setTrashCommunications(
+      communicationMembersByFamily
+        .filter((com) => com.isTrashed)
+        .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
+        .map((commun) => commun[0]),
+    );
+  }, [communicationMembersByFamily]);
+  const dataOpened = JSON.stringify({ isOpened: '1' });
 
   const putOpened = async (idCommunication: number) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
+    console.log('putOpened', idCommunication);
     try {
       await axios.put<ICommunicationMember>(
-        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
-        { isOpened: 1 },
+        `http://localhost:3001/api/communicationMembers/${idCommunication}`,
+        dataOpened,
         {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
-          withCredentials: true,
         },
       );
     } catch (err) {
       // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
       if (axios.isAxiosError(err)) {
         // pour gérer les erreurs de type axios
+        console.log('err');
         if (err.response?.status === 401) {
           setErrorMessage('Error 401');
         }
@@ -84,76 +119,6 @@ const MessagingMenu = ({ setOpenedMessage }: MessageProps) => {
       }
     }
   };
-
-  const putTrash = async (idCommunication: number) => {
-    // indispensable quand on veut utiliser async/await dans un useEffect
-    try {
-      await axios.put<ICommunicationMember>(
-        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
-        { isTrashed: 1 },
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-        },
-      );
-    } catch (err) {
-      // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
-      if (axios.isAxiosError(err)) {
-        // pour gérer les erreurs de type axios
-        if (err.response?.status === 401) {
-          setErrorMessage('Error 401');
-        }
-      } else {
-        // pour gérer les erreurs non axios
-        if (err instanceof Error) setErrorMessage(err.message);
-      }
-    }
-  };
-
-  const deleteCom = async (idCommunication: number) => {
-    // indispensable quand on veut utiliser async/await dans un useEffect
-    try {
-      await axios.delete<ICommunicationMember>(
-        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-        },
-      );
-    } catch (err) {
-      // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
-      if (axios.isAxiosError(err)) {
-        // pour gérer les erreurs de type axios
-        if (err.response?.status === 401) {
-          setErrorMessage('Error 401');
-        }
-      } else {
-        // pour gérer les erreurs non axios
-        if (err instanceof Error) setErrorMessage(err.message);
-      }
-    }
-  };
-
-  const allCommunicationsFamily = communicationMembersByFamily
-    .filter((com) => !com.isTrashed)
-    .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
-    .map((commun) => commun[0]);
-
-  const communicationsFamilyUnread = communicationMembersByFamily
-    .filter((com) => com.isOpened === 0)
-    .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
-    .map((commun) => commun[0]);
-
-  const trashCommunications = communicationMembersByFamily
-    .filter((com) => com.isTrashed)
-    .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
-    .map((commun) => commun[0]);
 
   const handleSelectedMessage = (number: number, idCommunication: number) => {
     setSelectedMessage(number);
@@ -161,51 +126,28 @@ const MessagingMenu = ({ setOpenedMessage }: MessageProps) => {
   };
 
   useEffect(() => {
-    communicationMembersByFamily.map(
-      (communication) =>
-        communication.isOpened === 0 && setUnreadMessages(unreadMessages + 1),
+    setUnreadMessages(
+      communicationMembersByFamily.filter((communication) => communication.isOpened === 0)
+        .length,
     );
-  }, []);
+  }, [communicationMembersByFamily]);
 
   useEffect(() => {
     selectedMessage !== -1 &&
+      currentMenu.length !== -1 &&
       communicationMembersByFamily.find(
         (com) => com.idCommunication === currentMenu[selectedMessage].id,
       )?.isOpened === 0 &&
       putOpened(
         communicationMembersByFamily.find(
           (com) => com.idCommunication === currentMenu[selectedMessage].id,
-        )?.idCommunication!,
+        )?.id!,
       );
-  }, []);
-
-  useEffect(() => {
-    selectedMessage !== -1 &&
-      communicationMembersByFamily.find(
-        (com) => com.idCommunication === currentMenu[selectedMessage].id,
-      )?.isTrashed === 0 &&
-      putTrash(
-        communicationMembersByFamily.find(
-          (com) => com.idCommunication === currentMenu[selectedMessage].id,
-        )?.idCommunication!,
-      );
-  }, []);
-
-  useEffect(() => {
-    selectedMessage !== -1 &&
-      communicationMembersByFamily.find(
-        (com) => com.idCommunication === currentMenu[selectedMessage].id,
-      )?.isTrashed === 1 &&
-      deleteCom(
-        communicationMembersByFamily.find(
-          (com) => com.idCommunication === currentMenu[selectedMessage].id,
-        )?.idCommunication!,
-      );
-  }, []);
+  }, [selectedMessage]);
 
   return (
     <div className="messagingMenuContainer">
-      {selectedMenu === 1 ? (
+      {selectedMenu === 1 && unreadMessages !== 0 ? (
         <div className="messagingMenuContainer__unreadMessagesDevelopped">
           <div
             role="button"
