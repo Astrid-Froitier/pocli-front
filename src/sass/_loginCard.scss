@@ -13,31 +13,23 @@
   }
   &__email,
   &__password {
-    width: 70%;
-    text-align: start;
     display: flex;
     flex-direction: column;
-    &__title {
-      color: white;
-      font-weight: $fontBold;
-      font-size: $textSize;
+    margin-bottom: 10px;
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus, 
+    input:-webkit-autofill:active{
+        -webkit-box-shadow: 0 0 0 50px #8bafcf inset !important;
+        box-shadow: 0 0 0 50px #8bafcf inset !important;
+        -webkit-text-fill-color: white !important;
     }
-    &__input {
-      width: 100%;
-      margin-bottom: 1rem;
-
+    p{
+      margin-top: 5px;
       font-size: 14px;
-      border-radius: 1rem;
-      padding: 0.5rem;
-      background-color: $backGround-2;
-      color: $colorText-2;
-      border: 1px solid $colorText-2;
-      border-radius: 0.25rem;
-    }
-  }
-  &__email {
-    &__input {
-      margin-bottom: 1rem;
+      font-weight: $fontExtraBold;
+      align-self: flex-start;
+      color: #d32f2f;
     }
   }
   &__stayConnected {
@@ -45,25 +37,26 @@
     justify-content: flex-start;
     align-items: center;
     text-align: start;
-    margin-bottom: 0.5rem;
-    gap: 0.5rem;
+    margin-top: 5px;
+    gap: 5px;
     &__title {
       color: white;
-      font-size: 0.75rem;
+      font-size: 14px;
+      font-weight: $fontBold;
     }
   }
-  p {
-    color: white;
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
-    text-decoration: underline;
-    &:hover {
-      cursor: pointer;
+  a{
+      color: #d32f2f;
     }
-  }
+  
+  // p {
+  //   color: white;
+  //   font-size: 0.75rem;
+  //   margin-bottom: 0.5rem;
+  // }
   &__submit {
     margin: 1rem 0 1rem 15rem;
-    background-color: $bluePocli;
+    background-color: $colorText-2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,9 +65,15 @@
     clip-path: circle(50%);
     padding: 0.5rem;
     border-radius: 100%;
+    border: 0px solid $colorText-2;
+    transition: all 200ms ease-out;
     &:hover {
       cursor: pointer;
-      background-color: $colorText-2;
+      background-color: $colorText-3;
+      transition: all 200ms ease-out;
+      .icon{
+        fill: $colorText-2;
+      }
     }
   }
   &__message {

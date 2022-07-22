@@ -144,7 +144,7 @@ const EventCard = ({
           {event.idActivity &&
           familyMembersIsActive.length &&
           event.numberParticipantsMax ? (
-            <div className="eventCard-modal__numberParticipantsMax">
+            <div className="eventCard-modal__number-participants-max">
               {availablePlaces ? <span>{`Place${availablePlaces > 1 ? "s" : ""} disponible${availablePlaces > 1 ? "s" : ""} : ${availablePlaces}`}</span> : <span>Toutes les places ont été prises !</span>}
             </div>
           ) : null}
