@@ -2,6 +2,7 @@
   // width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 60px;
   height: 500px;
@@ -12,6 +13,9 @@
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: min-content;
     gap: 20px;
+    a{
+      padding: 20px;
+    }
     img {
       height: 100px;
     }

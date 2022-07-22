@@ -11,20 +11,29 @@
     padding: 2rem;
     color: white;
   }
+  &__email {
+    margin-bottom: 10px;
+    height: 90px;
+  }
+  &__password {
+    &__input {
+      text-align: start;
+      height: 90px;
+    }
+  }
   &__email,
   &__password {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
     input:-webkit-autofill,
-    input:-webkit-autofill:hover, 
-    input:-webkit-autofill:focus, 
-    input:-webkit-autofill:active{
-        -webkit-box-shadow: 0 0 0 50px #8bafcf inset !important;
-        box-shadow: 0 0 0 50px #8bafcf inset !important;
-        -webkit-text-fill-color: white !important;
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 50px #8bafcf inset !important;
+      box-shadow: 0 0 0 50px #8bafcf inset !important;
+      -webkit-text-fill-color: white !important;
     }
-    p{
+    p {
       margin-top: 5px;
       font-size: 14px;
       font-weight: $fontExtraBold;
@@ -39,26 +48,35 @@
     text-align: start;
     margin-top: 5px;
     gap: 5px;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    input,
+    label {
+      cursor: pointer;
+    }
     &__title {
       color: white;
       font-size: 14px;
       font-weight: $fontBold;
     }
   }
-  a{
-      color: #d32f2f;
+  a {
+    align-self: flex-start;
+    margin-top: 20px;
+    :hover {
+      text-decoration: underline;
     }
-  
-  // p {
-  //   color: white;
-  //   font-size: 0.75rem;
-  //   margin-bottom: 0.5rem;
-  // }
+  }
+  &__passwordForgot {
+    color: $colorText-3;
+  }
   &__submit {
-    margin: 1rem 0 1rem 15rem;
     background-color: $colorText-2;
+    margin-bottom: 32px;
     display: flex;
     align-items: center;
+    align-self: flex-end;
     justify-content: center;
     width: 49px;
     height: 49px;
@@ -71,12 +89,9 @@
       cursor: pointer;
       background-color: $colorText-3;
       transition: all 200ms ease-out;
-      .icon{
+      .icon {
         fill: $colorText-2;
       }
     }
-  }
-  &__message {
-    color: red;
   }
 }
