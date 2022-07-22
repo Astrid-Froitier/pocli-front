@@ -24,12 +24,12 @@ type CurrentModalProps = { children: React.ReactNode };
 const dateToday = new Date().toLocaleDateString();
 
 const eventLoader = {
-  id: 1,
+  id: 0,
   date: `${dateToday}`,
   description: 'Chargement en cours. Veuillez patienter...',
   reservedAdherent: 0,
-  idPostType: 1,
-  idActivity: 1,
+  idPostType: 0,
+  idActivity: 0,
 };
 
 const eventsLoader = [eventLoader, eventLoader, eventLoader, eventLoader, eventLoader];
@@ -51,13 +51,13 @@ export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
   const [events, setEvents] = useState<IEvent[]>(eventsLoader);
   const [postTypes, setPostTypes] = useState<IPostType[]>([
     {
-      id: 1,
+      id: 0,
       name: 'Activité',
     },
   ]);
   const [activities, setActivities] = useState<IActivity[]>([
     {
-      id: 1,
+      id: 0,
       name: 'PoCLi',
       category: '',
       shortName: 'family',
@@ -65,16 +65,19 @@ export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
   ]);
   const [documents, setDocuments] = useState<IDocument[]>([
     {
-      id: 1,
+      id: 0,
       name: 'pocli',
-      url: 'assets/pocli.png',
+      url: 'assets/nopicture.png',
+      idDocumentType: 1,
     },
   ]);
   const [linkedDocuments, setLinkedDocuments] = useState<ILinkedDocument[]>([
     {
-      id: 1,
-      idEvent: 1,
-      idDocument: 1,
+      id: 0,
+      idEvent: 0,
+      idDocument: 0,
+      date: '2022-07-20T20:55:29.000Z',
+      isOpened: 0,
     },
   ]);
 

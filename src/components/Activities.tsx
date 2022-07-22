@@ -11,7 +11,7 @@ const Activities = () => {
   return (
     <div className="">
       <Banner
-        nameBannerActivity="activity sport"
+        nameBannerActivity="activity physical"
         title="Activités physiques et de Bien-Être"
         nameIcon="person-running"
         memberFilter={false}
@@ -164,12 +164,10 @@ const Activities = () => {
             <img src="/assets/pilate.png" alt="SportThemeImage4" />
           </div>
         </div>
-      </div>
-      <>
         <div className="activityContainer__comeBackHome">
           <ComeBackHome />
         </div>
-      </>
+      </div>
     </div>
   );
 };

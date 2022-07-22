@@ -11,7 +11,7 @@ const FamilyMembers = () => {
   const { documents } = useContext(CurrentDataContext);
 
   useEffect(() => {
-    setCardSelected(familyMembers.map(() => true));
+    setCardSelected(familyMembers && familyMembers.map(() => true));
   }, [familyMembers]);
 
   // function to select only one member of the family with a map. If the key is egal to the index don't select the card else select it.
@@ -19,19 +19,24 @@ const FamilyMembers = () => {
     setCardSelected(cardSelected.map((card, key) => (key === index ? !card : card)));
   }
 
+  console.log(documents);
+
   return (
     <div className="familyMembers">
       {/* map to show all members in the family */}
       {familyMembers &&
         familyMembers.map((familyMember, index) => (
           <div className="familyMembers__card" key={index}>
-            {familyMember.avatar && <img src={familyMember.avatar} alt="avatar" />}
-            {!familyMember.avatar && documents.length > 1 && (
-              <img src={documents[index].url} alt="avatar" />
-            )}
-            {!familyMember.avatar && documents.length === 1 && (
-              <img src="assets/nopicture.png" alt="avatar" />
-            )}
+            <img
+              src={
+                familyMember.avatar
+                  ? `${familyMember.avatar}`
+                  : !familyMember.avatar && documents && documents.length > 1
+                  ? `${documents[index].url}`
+                  : 'assets/nopicture.png'
+              }
+              alt="avatar"
+            />
             <div className="familyMembers__card__name">
               <p>{familyMember.firstname}</p>
               {/* button to select one member in family */}

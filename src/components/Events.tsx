@@ -30,7 +30,8 @@ const Events = () => {
 
   // useContext permettant de savoir si l'utilisateur est connecté ou non.
   // Permet d'afficher tous les évènements ou seulement ceux accessibles aux visiteurs
-  const { user } = useContext(CurrentUserContext);
+  const { user, setPaymentRecordsByFamily, setFamilyMembers, setFamilyMemberEvents } =
+    useContext(CurrentUserContext);
 
   // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
   const handleClick = (e: number) => {
@@ -51,15 +52,23 @@ const Events = () => {
       'https://wild-pocli.herokuapp.com/api/activities',
       'https://wild-pocli.herokuapp.com/api/documents',
       'https://wild-pocli.herokuapp.com/api/linkedDocuments',
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}/paymentRecords`,
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
+      `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
     ];
 
     getAllDataWithoutCredential(urls)
       .then((res) => {
+        // if (!res.map((response)=>response.success).includes(false)){
         setEvents(res[0].data);
         setPostTypes(res[1].data);
         setActivities(res[2].data);
         setDocuments(res[3].data);
         setLinkedDocuments(res[4].data);
+        setPaymentRecordsByFamily(res[5].data);
+        setFamilyMembers(res[6].data);
+        setFamilyMemberEvents(res[7].data);
+        // }
       })
       .catch((err) => {
         console.error(err);
