@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import Banner from './Banner';
 import Button from './Button';
+import Icon from './Icon';
 import LoginCard from './LoginCard';
 
 const Login = () => {
@@ -11,6 +12,10 @@ const Login = () => {
   }, []);
   return (
     <div>
+      <div className="loginBanner">
+        <h1>Me connecter à mon espace adhérent</h1>
+        <Icon name="user" color="#3d79af" />
+      </div>
       <Banner
         nameBannerActivity=""
         title="Me connecter à mon espace adhérent"
