@@ -10,43 +10,92 @@ import Icon from './Icon';
 import { MessageMenuProps } from './Messaging';
 
 const MessagingMenu = ({
-  setOpenedMessage,
   selectedMessage,
   setSelectedMessage,
-  currentMenu,
-  setCurrentMenu,
   selectedMenu,
   setSelectedMenu,
-  trashCom,
+  currentCommunication,
+  setCurrentCommunication,
+  setCurrentMenu,
 }: MessageMenuProps) => {
   const {
     communicationMembersByFamily,
     setCommunicationMembersByFamily,
     communications,
     setCommunications,
+    cardSelected,
+    familyMembers,
     user,
   } = useContext(CurrentUserContext);
 
-  console.log(currentMenu, selectedMessage);
   const [unreadMessages, setUnreadMessages] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [communicationsByMember, setCommunicationsByMember] = useState<
+    ICommunicationMember[][]
+  >([]);
   const [allCommunicationsFamily, setAllCommunicationsFamily] = useState<
-    ICommunication[]
+    ICommunicationMember[]
   >([]);
   const [communicationsFamilyUnread, setCommunicationsFamilyUnread] = useState<
-    ICommunication[]
+    ICommunicationMember[]
   >([]);
-  const [trashCommunications, setTrashCommunications] = useState<ICommunication[]>([]);
+  const [trashCommunications, setTrashCommunications] = useState<ICommunicationMember[]>(
+    [],
+  );
 
   const handleSelectedMenu = (number: number) => {
     setSelectedMenu(number);
-    setSelectedMessage(-1);
+    setSelectedMessage({
+      id: 0,
+      idFamilyMember: 0,
+      idFamily: 0,
+      idActivity: 0,
+      idCommunication: 0,
+      isOpened: 0,
+      isTrashed: 0,
+      isBanner: 0,
+    });
+    setCurrentCommunication({
+      id: 0,
+      object: '',
+      content: '',
+      date: '',
+      idAdmin: 1,
+    });
     number === 1
       ? setCurrentMenu(communicationsFamilyUnread)
       : number === 2
       ? setCurrentMenu(allCommunicationsFamily)
       : number === 3 && setCurrentMenu(trashCommunications);
   };
+
+  useEffect(() => {
+    setCommunicationsByMember(
+      familyMembers
+        .filter((member, index) => cardSelected[index])
+        .map((member) =>
+          communicationMembersByFamily.filter((com) => member.id === com.idFamilyMember),
+        )
+        .filter((member) => member.length),
+    );
+  }, [cardSelected]);
+
+  useEffect(() => {
+    let array: ICommunicationMember[] = [];
+    communicationsByMember.map((el) => el.map((com) => array.push(com)));
+    setAllCommunicationsFamily(array);
+    setCommunicationsFamilyUnread(array.filter((com) => !com.isOpened));
+    setTrashCommunications(array.filter((com) => com.isTrashed));
+  }, [communicationsByMember]);
+
+  useEffect(() => {
+    communications &&
+      setCurrentCommunication(
+        communications.filter(
+          (communication) => communication.id === selectedMessage.idCommunication,
+        )[0],
+      );
+  }, [selectedMessage, currentCommunication]);
 
   useEffect(() => {
     let urls = [
@@ -61,42 +110,29 @@ const MessagingMenu = ({
         })
         .catch((err) => {
           console.error(err);
-          console.log(errorMessage);
         });
-  }, [selectedMessage, trashCom]);
-
-  console.log(`${trashCom} trashCom`);
+  }, [currentCommunication]);
 
   useEffect(() => {
-    setAllCommunicationsFamily(
-      communicationMembersByFamily
-        .filter((com) => !com.isTrashed)
-        .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
-        .map((commun) => commun[0]),
-    );
+    !cardSelected.includes(false) &&
+      (setAllCommunicationsFamily(
+        communicationMembersByFamily.filter((com) => com.isTrashed === 0),
+      ),
+      setCommunicationsFamilyUnread(
+        allCommunicationsFamily.filter((com) => com.isOpened === 0),
+      ),
+      setTrashCommunications(
+        communicationMembersByFamily.filter((com) => com.isTrashed),
+      ));
+  }, [communicationMembersByFamily, cardSelected]);
 
-    setCommunicationsFamilyUnread(
-      communicationMembersByFamily
-        .filter((com) => com.isOpened === 0)
-        .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
-        .map((commun) => commun[0]),
-    );
-
-    setTrashCommunications(
-      communicationMembersByFamily
-        .filter((com) => com.isTrashed)
-        .map((com) => communications.filter((commu) => com.idCommunication === commu.id))
-        .map((commun) => commun[0]),
-    );
-  }, [communicationMembersByFamily]);
   const dataOpened = JSON.stringify({ isOpened: '1' });
 
   const putOpened = async (idCommunication: number) => {
     // indispensable quand on veut utiliser async/await dans un useEffect
-    console.log('putOpened', idCommunication);
     try {
       await axios.put<ICommunicationMember>(
-        `http://localhost:3001/api/communicationMembers/${idCommunication}`,
+        `http://localhost:3002/api/communicationMembers/${idCommunication}`,
         dataOpened,
         {
           method: 'PUT',
@@ -109,7 +145,6 @@ const MessagingMenu = ({
       // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
       if (axios.isAxiosError(err)) {
         // pour gérer les erreurs de type axios
-        console.log('err');
         if (err.response?.status === 401) {
           setErrorMessage('Error 401');
         }
@@ -120,34 +155,24 @@ const MessagingMenu = ({
     }
   };
 
-  const handleSelectedMessage = (number: number, idCommunication: number) => {
-    setSelectedMessage(number);
-    setOpenedMessage(idCommunication);
+  const handleSelectedMessage = (communicationMember: ICommunicationMember) => {
+    setSelectedMessage(communicationMember);
   };
 
   useEffect(() => {
     setUnreadMessages(
-      communicationMembersByFamily.filter((communication) => communication.isOpened === 0)
+      allCommunicationsFamily.filter((communication) => communication.isOpened === 0)
         .length,
     );
-  }, [communicationMembersByFamily]);
+  }, [allCommunicationsFamily]);
 
   useEffect(() => {
-    selectedMessage !== -1 &&
-      currentMenu.length !== -1 &&
-      communicationMembersByFamily.find(
-        (com) => com.idCommunication === currentMenu[selectedMessage].id,
-      )?.isOpened === 0 &&
-      putOpened(
-        communicationMembersByFamily.find(
-          (com) => com.idCommunication === currentMenu[selectedMessage].id,
-        )?.id!,
-      );
+    selectedMessage.id && putOpened(selectedMessage.id);
   }, [selectedMessage]);
 
   return (
     <div className="messagingMenuContainer">
-      {selectedMenu === 1 && unreadMessages !== 0 ? (
+      {selectedMenu === 1 && unreadMessages > 0 ? (
         <div className="messagingMenuContainer__unreadMessagesDevelopped">
           <div
             role="button"
@@ -162,20 +187,28 @@ const MessagingMenu = ({
             </p>
           </div>
           <div className="messagingMenuContainer__unreadMessagesDevelopped__messagesBox">
-            {communicationsFamilyUnread.map((com, index) => (
+            {communicationsFamilyUnread.map((comFamily, index) => (
               <div
-                onClick={() => handleSelectedMessage(index, com.id)}
+                onClick={() => handleSelectedMessage(comFamily)}
                 role="button"
-                onKeyDown={() => handleSelectedMessage(index, com.id)}
+                onKeyDown={() => handleSelectedMessage(comFamily)}
                 tabIndex={0}
                 key={index}
                 className={
-                  selectedMessage === index
+                  selectedMessage.id === comFamily.id
                     ? 'messagingMenuContainer__unreadMessagesDevelopped__messagesBox__messageSelected'
                     : 'messagingMenuContainer__unreadMessagesDevelopped__messagesBox__messages'
                 }>
-                <p>{`${transformDate(com.date)} - ${com.object}`}</p>
-                <p>Non lu</p>
+                {communications
+                  .filter(
+                    (communication) => communication.id === comFamily.idCommunication,
+                  )
+                  .map((com, index) => (
+                    <div key={index}>
+                      <p>{`${transformDate(com.date)} ${com.object}`}</p>
+                      <p>Non lu</p>
+                    </div>
+                  ))}
               </div>
             ))}
           </div>
@@ -210,35 +243,45 @@ const MessagingMenu = ({
               <div
                 key={index}
                 role="button"
-                onKeyDown={() => handleSelectedMessage(index, com.id)}
+                onKeyDown={() => handleSelectedMessage(com)}
                 tabIndex={0}
-                onClick={() => handleSelectedMessage(index, com.id)}
+                onClick={() => handleSelectedMessage(com)}
                 className={
-                  selectedMessage === index
+                  selectedMessage.id === com.id
                     ? 'messagingMenuContainer__allMessagesDevelopped__messagesBox__messageSelected'
                     : 'messagingMenuContainer__allMessagesDevelopped__messagesBox__messages'
                 }>
-                {communicationMembersByFamily.find(
-                  (comu) => comu.idCommunication === com.id,
-                )?.isOpened === 0 ? (
+                {com.isOpened === 0 ? (
                   <div
                     className={
-                      selectedMessage === index
+                      selectedMessage.id === com.id
                         ? 'messagingMenuContainer__allMessagesDevelopped__messagesBox__messageSelected__unreadMessage'
                         : 'messagingMenuContainer__allMessagesDevelopped__messagesBox__messages__unreadMessage'
                     }>
-                    <p>{`${transformDate(com.date)} - ${com.object}`}</p>
-                    <p>Non lu</p>
+                    {communications
+                      .filter((communication) => communication.id === com.idCommunication)
+                      .map((comu, index) => (
+                        <div key={index}>
+                          <p>{`${transformDate(comu.date)} ${comu.object}`}</p>
+                          <p>Non lu</p>
+                        </div>
+                      ))}
                   </div>
                 ) : (
                   <div
                     className={
-                      selectedMessage === index
+                      selectedMessage.id === com.id
                         ? 'messagingMenuContainer__allMessagesDevelopped__messagesBox__messageSelected__readedMessage'
                         : 'messagingMenuContainer__allMessagesDevelopped__messagesBox__messages__readedMessage'
                     }>
-                    <p>{`${transformDate(com.date)} - ${com.object}`}</p>
-                    <p>Lu</p>
+                    {communications
+                      .filter((communication) => communication.id === com.idCommunication)
+                      .map((comu, index) => (
+                        <div key={index}>
+                          <p>{`${transformDate(comu.date)} ${comu.object}`}</p>
+                          <p>Lu</p>
+                        </div>
+                      ))}
                   </div>
                 )}
               </div>
@@ -272,16 +315,22 @@ const MessagingMenu = ({
               <div
                 key={index}
                 role="button"
-                onKeyDown={() => handleSelectedMessage(index, commu.id)}
+                onKeyDown={() => handleSelectedMessage(commu)}
                 tabIndex={0}
-                onClick={() => handleSelectedMessage(index, commu.id)}
+                onClick={() => handleSelectedMessage(commu)}
                 className={
-                  selectedMessage === index
+                  selectedMessage.id === commu.id
                     ? 'messagingMenuContainer__trashDevelopped__messagesBox__messageSelected'
                     : 'messagingMenuContainer__trashDevelopped__messagesBox__messages'
                 }>
-                <p>{`${transformDate(commu.date)} - ${commu.object}`}</p>
-                <p>Lu</p>
+                {communications
+                  .filter((communication) => communication.id === commu.idCommunication)
+                  .map((com, index) => (
+                    <div key={index}>
+                      <p>{`${transformDate(com.date)} ${com.object}`}</p>
+                      <p>Lu</p>
+                    </div>
+                  ))}
               </div>
             ))}
           </div>
