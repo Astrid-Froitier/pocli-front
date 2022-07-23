@@ -4,39 +4,59 @@ import { getAllDataWithCredential } from '../../helpers/axios';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import ICommunication from '../interfaces/ICommunication';
+import ICommunicationMember from '../interfaces/ICommunicationMember';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 import MessagingCard from './MessagingCard';
 import MessagingMenu from './MessagingMenu';
 
 export interface MessageMenuProps {
-  setOpenedMessage: React.Dispatch<React.SetStateAction<number>>;
-  selectedMessage: number;
-  setSelectedMessage: React.Dispatch<React.SetStateAction<number>>;
+  selectedMessage: ICommunicationMember;
+  setSelectedMessage: React.Dispatch<React.SetStateAction<ICommunicationMember>>;
   selectedMenu: number;
   setSelectedMenu: React.Dispatch<React.SetStateAction<number>>;
-  currentMenu: ICommunication[];
-  setCurrentMenu: React.Dispatch<React.SetStateAction<ICommunication[]>>;
-  trashCom: number;
+  currentCommunication: ICommunication;
+  setCurrentCommunication: React.Dispatch<React.SetStateAction<ICommunication>>;
+  setCurrentMenu: React.Dispatch<React.SetStateAction<ICommunicationMember[]>>;
 }
 
 export interface MessageCardProps {
-  selectedMessage: number;
-  setSelectedMessage: React.Dispatch<React.SetStateAction<number>>;
-  currentMenu: ICommunication[];
-  trashCom: number;
-  setTrashCom: React.Dispatch<React.SetStateAction<number>>;
+  selectedMessage: ICommunicationMember;
+  setSelectedMessage: React.Dispatch<React.SetStateAction<ICommunicationMember>>;
+  currentCommunication: ICommunication;
+  setCurrentCommunication: React.Dispatch<React.SetStateAction<ICommunication>>;
+  currentMenu: ICommunicationMember[];
 }
 
 const Messaging = () => {
-  const [openedMessage, setOpenedMessage] = useState<number>(-1);
-  const [selectedMessage, setSelectedMessage] = useState<number>(-1);
-  const [selectedMenu, setSelectedMenu] = useState(0);
-  const [currentMenu, setCurrentMenu] = useState<ICommunication[]>([]);
-  const [trashCom, setTrashCom] = useState(0);
+  const [currentCommunication, setCurrentCommunication] = useState<ICommunication>({
+    id: 0,
+    object: '',
+    content: '',
+    date: '',
+    idAdmin: 1,
+  });
+  const [selectedMessage, setSelectedMessage] = useState<ICommunicationMember>({
+    id: 0,
+    idFamilyMember: 0,
+    idFamily: 0,
+    idActivity: 0,
+    idCommunication: 0,
+    isOpened: 0,
+    isTrashed: 0,
+    isBanner: 0,
+  });
+  const [currentMenu, setCurrentMenu] = useState<ICommunicationMember[]>([]);
+  const [selectedMenu, setSelectedMenu] = useState<number>(0);
 
-  const { user, setFamilyMembers, setCommunicationMembersByFamily, setCommunications } =
-    useContext(CurrentUserContext);
+  const {
+    user,
+    setFamilyMembers,
+    setCommunicationMembersByFamily,
+    setCommunications,
+    cardSelected,
+    familyMembers,
+  } = useContext(CurrentUserContext);
 
   const { setDocuments } = useContext(CurrentDataContext);
 
@@ -78,7 +98,20 @@ const Messaging = () => {
       <div className="messagingContainer">
         <div className="messagingContainer__header">
           <div className="messagingContainer__header__left">
-            <p>Filtre :</p>
+            {cardSelected.includes(false) ? (
+              <p>
+                Filtre :
+                {cardSelected.map((card, index) =>
+                  index !== 0 && card ? (
+                    <span key={index}>, {familyMembers[index].firstname}</span>
+                  ) : (
+                    card && <span key={index}> {familyMembers[index].firstname}</span>
+                  ),
+                )}
+              </p>
+            ) : (
+              <p>Filtre : Toute la famille</p>
+            )}
           </div>
           <div className="messagingContainer__header__right">
             <ComeBackHome link="/adherent-space" text="Revenir à l'espace adhérent" />
@@ -87,23 +120,22 @@ const Messaging = () => {
         <div className="messagingContainer__content">
           <div className="messagingContainer__content__left">
             <MessagingMenu
-              setOpenedMessage={setOpenedMessage}
               selectedMessage={selectedMessage}
               setSelectedMessage={setSelectedMessage}
-              currentMenu={currentMenu}
-              setCurrentMenu={setCurrentMenu}
               selectedMenu={selectedMenu}
               setSelectedMenu={setSelectedMenu}
-              trashCom={trashCom}
+              currentCommunication={currentCommunication}
+              setCurrentCommunication={setCurrentCommunication}
+              setCurrentMenu={setCurrentMenu}
             />
           </div>
           <div className="messagingContainer__content__right">
             <MessagingCard
               setSelectedMessage={setSelectedMessage}
               selectedMessage={selectedMessage}
+              currentCommunication={currentCommunication}
+              setCurrentCommunication={setCurrentCommunication}
               currentMenu={currentMenu}
-              setTrashCom={setTrashCom}
-              trashCom={trashCom}
             />
           </div>
         </div>

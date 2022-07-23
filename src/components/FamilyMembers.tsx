@@ -6,8 +6,7 @@ import CurrentUserContext from '../contexts/CurrentUser';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
-  const [cardSelected, setCardSelected] = useState<boolean[]>([]);
-  const { familyMembers } = useContext(CurrentUserContext);
+  const { familyMembers, cardSelected, setCardSelected } = useContext(CurrentUserContext);
   const { documents } = useContext(CurrentDataContext);
 
   useEffect(() => {
