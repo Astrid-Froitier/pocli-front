@@ -7,4 +7,5 @@ export default interface ILinkedDocument {
   idFamilyMember?: number;
   idFamily?: number;
   isOpened: number;
+  isTrashed: number;
 }
