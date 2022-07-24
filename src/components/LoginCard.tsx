@@ -1,3 +1,11 @@
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormControl from '@mui/material/FormControl';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
@@ -5,20 +13,11 @@ import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 import CurrentUserContext from '../contexts/CurrentUser';
 import IUserInfos from '../interfaces/IUserInfos';
 import Icon from './Icon';
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { styled } from '@mui/material/styles';
 
 const LoginCard = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [stayConnected, setStayConnected] = useState<boolean>(false);
+  // const [stayConnected, setStayConnected] = useState<boolean>(false);
   const [accountNoExists, setAccountNoExists] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
@@ -83,28 +82,6 @@ const LoginCard = () => {
     }
   };
 
-  const CssTextField = styled(TextField)({
-    '& label.Mui-focused': {
-      color: 'white',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'white',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'white',
-      },
-      '&:hover fieldset': {
-        borderColor: 'white',
-        borderWidth: '2px',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'white',
-        borderWidth: '2px',
-      },
-    },
-  });
-
   console.log(email);
 
   return (
@@ -148,62 +125,63 @@ const LoginCard = () => {
           {errorEmail && <p>{errorEmail}</p>}
         </div>
         <div className="loginCardContainer__password">
-          <div className='loginCardContainer__password__input'>
-          <FormControl sx={{ width: '350px' }} variant="outlined">
-            <InputLabel
-              htmlFor="outlined-adornment-password"
-              required
-              error={errorPassword ? true : false}
-              defaultValue="Error"
-              style={{ color: 'white' }}
-              sx={{
-                color: 'white',
-                fontFamily: 'Karla, sans-serif',
-                fontSize: '20px',
-                fontWeight: 800,
-              }}>
-              Mot de passe
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              required
-              error={errorPassword ? true : false}
-              sx={{
-                color: 'white',
-                fontFamily: 'Karla, sans-serif',
-                fontSize: '20px',
-                fontWeight: 800,
-              }}
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                setPassword(event.target.value)
-              }
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    style={{ color: 'white' }}
-                    aria-label="toggle password visibility"
-                    onClick={() => setShowPassword(!showPassword)}
-                    onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) =>
-                      event.preventDefault()
-                    }
-                    edge="end">
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Mot de passe"
-            />
-          </FormControl>
-          {errorPassword && <p>{errorPassword}</p>}
-          {accountNoExists && <p>{accountNoExists}</p>}
+          <div className="loginCardContainer__password__input">
+            <FormControl sx={{ width: '350px' }} variant="outlined">
+              <InputLabel
+                htmlFor="outlined-adornment-password"
+                required
+                error={errorPassword ? true : false}
+                defaultValue="Error"
+                style={{ color: 'white' }}
+                sx={{
+                  color: 'white',
+                  fontFamily: 'Karla, sans-serif',
+                  fontSize: '20px',
+                  fontWeight: 800,
+                }}>
+                Mot de passe
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                required
+                error={errorPassword ? true : false}
+                sx={{
+                  color: 'white',
+                  fontFamily: 'Karla, sans-serif',
+                  fontSize: '20px',
+                  fontWeight: 800,
+                }}
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setPassword(event.target.value)
+                }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      style={{ color: 'white' }}
+                      aria-label="toggle password visibility"
+                      onClick={() => setShowPassword(!showPassword)}
+                      onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) =>
+                        event.preventDefault()
+                      }
+                      edge="end">
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Mot de passe"
+              />
+            </FormControl>
+            {errorPassword && <p>{errorPassword}</p>}
+            {accountNoExists && <p>{accountNoExists}</p>}
           </div>
           <div className="loginCardContainer__stayConnected">
             <input
               id="stayConnected"
               type="checkbox"
-              onChange={(e) => setStayConnected(e.target.checked)}></input>
+              // onChange={(e) => setStayConnected(e.target.checked)}
+            ></input>
             <label
               htmlFor="stayConnected"
               className="loginCardContainer__stayConnected__title">
@@ -211,11 +189,13 @@ const LoginCard = () => {
             </label>
           </div>
           <NavLink to="/contact">
-        <span className="loginCardContainer__passwordForgot">Mot de passe oublié ?</span>
-        </NavLink>
-        <button type="submit" className="loginCardContainer__submit">
-          <Icon name="arrow-right" width="40px" height="40px" color="white" />
-        </button>
+            <span className="loginCardContainer__passwordForgot">
+              Mot de passe oublié ?
+            </span>
+          </NavLink>
+          <button type="submit" className="loginCardContainer__submit">
+            <Icon name="arrow-right" width="40px" height="40px" color="white" />
+          </button>
         </div>
       </form>
     </>

@@ -64,3 +64,28 @@
     }
   }
 }
+
+/////// RESPONSIVE ////////
+
+@media screen and (max-width: 400px) {
+  .messagingCardContainer {
+    // width: 90%;
+    &__header {
+      &__left {
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+    &__object {
+      p {
+        font-size: 16px;
+      }
+    }
+    &__message {
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}
