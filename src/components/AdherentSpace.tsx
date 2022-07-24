@@ -6,6 +6,8 @@ import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
+import dateNowToDate from '../../helpers/dateNowToDate';
+import compareDates from '../../helpers/compareDates';
 
 const AdherentSpace = () => {
   const {
@@ -22,7 +24,7 @@ const AdherentSpace = () => {
     setPaymentRecordsByFamily,
     // paymentMethods,
     setPaymentMethods,
-    // communicationMembersByFamily,
+    communicationMembersByFamily,
     setCommunicationMembersByFamily,
     // communications,
     setCommunications,
@@ -33,7 +35,10 @@ const AdherentSpace = () => {
     logout,
   } = useContext(CurrentUserContext);
 
+  const { events, setEvents } = useContext(CurrentDataContext);
+
   const { setDocuments } = useContext(CurrentDataContext);
+  const d = new Date(Date.now());
 
   useEffect(() => {
     let urls = [
@@ -48,6 +53,7 @@ const AdherentSpace = () => {
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
       `https://wild-pocli.herokuapp.com/api/documents`,
+      `https://wild-pocli.herokuapp.com/api/events`,
     ];
 
     getAllDataWithCredential(urls)
@@ -63,6 +69,7 @@ const AdherentSpace = () => {
         setLinkedDocumentsByFamily(res[8].data);
         setFamilyMemberEvents(res[9].data);
         setDocuments(res[10].data);
+        setEvents(res[11].data);
       })
       .catch((err) => {
         console.error(err);
@@ -72,6 +79,8 @@ const AdherentSpace = () => {
   const [modalOnOff, setModalOnOff] = useState<string>('');
   const [modalAdherentInfo, setModalAdherentInfo] = useState<boolean>(false);
   const [modalAdherentPwd, setModalAdherentPwd] = useState<boolean>(false);
+  const [unreadMessages, setUnreadMessages] = useState<number>(0);
+  const [newEvents, setNewEvents] = useState<number>(0);
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -99,6 +108,19 @@ const AdherentSpace = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    events[0].id !== 0 &&
+      events
+        .filter((event) => compareDates(dateNowToDate(d), event.date))
+        .map((event, index) => event && setNewEvents(index + 1));
+  }, [events]);
+
+  useEffect(() => {
+    communicationMembersByFamily
+      .filter((com) => !com.isOpened)
+      .map((com, index) => com && setUnreadMessages(index + 1));
+  }, [communicationMembersByFamily]);
+
   // useEffect permettant d'empêcher le scroll sur x suivant l'état de modalOnOff
   useEffect(() => {
     {
@@ -123,12 +145,12 @@ const AdherentSpace = () => {
             <h1>Tableau de bord</h1>
             <NavLink to="/my-events">
               <p>
-                Mes évènements - <span>2</span> à venir
+                Mes évènements - <span>{newEvents}</span> à venir
               </p>
             </NavLink>
             <NavLink to="/my-messaging">
               <p>
-                Mes messages - <span>3</span> non lu(s)
+                Mes messages - <span>{unreadMessages}</span> non lu(s)
               </p>
             </NavLink>
             <NavLink to="/my-documents">
