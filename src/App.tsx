@@ -22,6 +22,7 @@ import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
 import { CurrentDataContextProvider } from './contexts/CurrentData';
 import CurrentUserContext from './contexts/CurrentUser';
+import MyEvents from './components/MyEvents';
 
 function App() {
   const { user } = useContext(CurrentUserContext);
@@ -44,7 +45,7 @@ function App() {
                 <Route path="/adherent-space" element={<AdherentSpace />} />
                 <Route path="/my-messaging" element={<Messaging />} />
                 <Route path="/my-documents" element={<Documents />} />
-                <Route path="/my-events" element={<Events />} />
+                <Route path="/my-events" element={<MyEvents />} />
               </>
             )}
             <Route path="/login" element={<Login />} />
