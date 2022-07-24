@@ -34,7 +34,9 @@
     width: $pageContentWidth;
     margin: $marginBoxTopAndBottom;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     &__card {
       display: flex;
       flex-direction: column;
@@ -49,8 +51,11 @@
         flex-direction: column;
         justify-content: center;
         background-color: $backGround-2;
-        height: 60px;
+        height: 90px;
         border-radius: 0 0 20px 20px;
+        :nth-child(3){
+          padding-top: 10px;
+        }
       }
       p {
         font-size: $smallTextSize;
