@@ -1,12 +1,28 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { getAllDataWithCredential } from '../../helpers/axios';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
+import IDocument from '../interfaces/IDocument';
+import ILinkedDocument from '../interfaces/ILinkedDocument';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
-import DocumentsCard from './DocumentCard';
+import DocumentsCard from './DocumentsCard';
 import DocumentsMenu from './DocumentsMenu';
+
+export interface DocumentsMenuProps {
+  selectedDocument: ILinkedDocument;
+  setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
+  currentDocument: IDocument;
+  setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
+}
+
+export interface DocumentsCardProps {
+  selectedDocument: ILinkedDocument;
+  setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
+  currentDocument: IDocument;
+  setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
+}
 
 const Documents = () => {
   useEffect(() => {
@@ -21,7 +37,7 @@ const Documents = () => {
     setCities,
     // recipients,
     setRecipients,
-    // familyMembers,
+    familyMembers,
     setFamilyMembers,
     // paymentRecordsByFamily,
     setPaymentRecordsByFamily,
@@ -35,43 +51,47 @@ const Documents = () => {
     setLinkedDocumentsByFamily,
     // familyMemberEvents,
     setFamilyMemberEvents,
+    cardSelected,
   } = useContext(CurrentUserContext);
 
   const { setDocuments } = useContext(CurrentDataContext);
 
+  const [currentDocument, setCurrentDocument] = useState<IDocument>({
+    id: 0,
+    name: '',
+    url: '',
+    idDocumentType: 0,
+  });
+  const [selectedDocument, setSelectedDocument] = useState<ILinkedDocument>({
+    id: 0,
+    idDocument: 0,
+    date: '',
+    idActivity: 0,
+    idEvent: 0,
+    idFamilyMember: 0,
+    idFamily: 0,
+    isOpened: 0,
+    isTrashed: 0,
+  });
+  const [currentMenu, setCurrentMenu] = useState<ILinkedDocument[]>([]);
+  const [selectedMenu, setSelectedMenu] = useState<number>(0);
+
   useEffect(() => {
     let urls = [
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}`,
-      `https://wild-pocli.herokuapp.com/api/cities/`,
-      `https://wild-pocli.herokuapp.com/api/recipients/`,
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/paymentRecords`,
-      `https://wild-pocli.herokuapp.com/api/paymentMethods`,
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/communicationMembers`,
-      `https://wild-pocli.herokuapp.com/api/communications`,
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
       `https://wild-pocli.herokuapp.com/api/documents`,
-      `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
     ];
 
     getAllDataWithCredential(urls)
       .then((res) => {
-        setFamily(res[0].data);
-        setCities(res[1].data);
-        setRecipients(res[2].data);
-        setFamilyMembers(res[3].data);
-        setPaymentRecordsByFamily(res[4].data);
-        setPaymentMethods(res[5].data);
-        setCommunicationMembersByFamily(res[6].data);
-        setCommunications(res[7].data);
-        setLinkedDocumentsByFamily(res[8].data);
-        setDocuments(res[9].data);
-        setFamilyMemberEvents(res[10].data);
+        setLinkedDocumentsByFamily(res[0].data);
+        setDocuments(res[1].data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
+
   return (
     <div>
       <Banner
@@ -86,7 +106,20 @@ const Documents = () => {
       <div className="documentsContainer">
         <div className="documentsContainer__header">
           <div className="documentsContainer__header__left">
-            <p>Filtre :</p>
+            {cardSelected.includes(false) ? (
+              <p>
+                Filtre :
+                {cardSelected.map((card, index) =>
+                  index !== 0 && card ? (
+                    <span key={index}>, {familyMembers[index].firstname}</span>
+                  ) : (
+                    card && <span key={index}> {familyMembers[index].firstname}</span>
+                  ),
+                )}
+              </p>
+            ) : (
+              <p>Filtre : Toute la famille</p>
+            )}
           </div>
           <div className="documentsContainer__header__right">
             <ComeBackHome link="/adherent-space" text="Revenir à l'espace adhérent" />
@@ -94,7 +127,12 @@ const Documents = () => {
         </div>
         <div className="documentsContainer__content">
           <div className="documentsContainer__content__left">
-            <DocumentsMenu />
+            <DocumentsMenu
+              selectedDocument={selectedDocument}
+              setSelectedDocument={setSelectedDocument}
+              currentDocument={currentDocument}
+              setCurrentDocument={setCurrentDocument}
+            />
           </div>
           <div className="documentsContainer__content__right">
             <DocumentsCard />
