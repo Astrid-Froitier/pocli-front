@@ -15,7 +15,7 @@ import CurrentUserContext from '../contexts/CurrentUser';
 import IEvent from '../interfaces/IEvent';
 import IFamilyMember from '../interfaces/IFamilyMember';
 import IFamilyMemberEvent from '../interfaces/IFamilyMemberEvent';
-// test
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -37,17 +37,18 @@ const MultipleSelectCheckmarks = ({
   familyMembersIsActive,
   event,
 }: MultipleSelectCheckmarksProp) => {
+
   const { familyMemberEvents, setFamilyMemberEvents, familyMembers } =
     React.useContext(CurrentUserContext);
 
-  const [registeredFamilyMembers, setRegisteredFamilyMembers] = React.useState<
-    IFamilyMember[]
-  >([]);
+    const [registeredFamilyMembers, setRegisteredFamilyMembers] = React.useState<IFamilyMember[]>([]);
+
+    const familyMemberEventsByFamily = familyMembersIsActive.flatMap((familyMembersIsActive)=>familyMemberEvents.filter((familyMemberEvent)=> familyMemberEvent.idEvent === event.id && familyMemberEvent.idFamilyMember === familyMembersIsActive.id));
 
   React.useEffect(() => {
     setRegisteredFamilyMembers(
-      familyMemberEvents
-        .filter((familyMemberEvent) => familyMemberEvent.idEvent === event.id)
+      familyMemberEventsByFamily
+        .filter((familyMemberEventByFamily) => familyMemberEventByFamily.idEvent === event.id)
         .map(
           (familyMemberByEvent) =>
             familyMembers.filter(
@@ -57,8 +58,8 @@ const MultipleSelectCheckmarks = ({
     );
   }, [familyMemberEvents]);
 
-  const idEvent = event.id;
   const numberParticipantsMax = event.numberParticipantsMax;
+  const idEvent = event.id
 
   const handleChange = async (event: SelectChangeEvent<String[]>) => {
     const inputFirstnames = event.target.value as string[];
@@ -92,17 +93,6 @@ const MultipleSelectCheckmarks = ({
         getAllDataWithCredential(urls)
           .then((res) => {
             setFamilyMemberEvents(res[0].data);
-            setRegisteredFamilyMembers(
-              familyMemberEvents
-                .filter((familyMemberEvent) => familyMemberEvent.idEvent === idEvent)
-                .map(
-                  (familyMemberByEvent) =>
-                    familyMembers.filter(
-                      (familyMembers) =>
-                        familyMembers.id === familyMemberByEvent.idFamilyMember,
-                    )[0],
-                ),
-            );
           })
           .catch((err) => {
             console.error(err);
@@ -138,17 +128,6 @@ const MultipleSelectCheckmarks = ({
         getAllDataWithCredential(urls)
           .then((res) => {
             setFamilyMemberEvents(res[0].data);
-            setRegisteredFamilyMembers(
-              familyMemberEvents
-                .filter((familyMemberEvent) => familyMemberEvent.idEvent === idEvent)
-                .map(
-                  (familyMemberByEvent) =>
-                    familyMembers.filter(
-                      (familyMembers) =>
-                        familyMembers.id === familyMemberByEvent.idFamilyMember,
-                    )[0],
-                ),
-            );
           })
           .catch((err) => {
             console.error(err);

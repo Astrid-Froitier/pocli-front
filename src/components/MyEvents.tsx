@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { getAllDataWithoutCredential } from '../../helpers/axios';
+import { todaysDateLower } from '../../helpers/transformDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
+import IEvent from '../interfaces/IEvent';
+import IFamilyMemberEvent from '../interfaces/IFamilyMemberEvent';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 import EventCard from './EventCard';
@@ -19,7 +22,6 @@ const MyEvents = () => {
   // useContext pour la data
   const {
     events,
-    postTypes,
     activities,
     setEvents,
     setPostTypes,
@@ -30,8 +32,15 @@ const MyEvents = () => {
 
   // useContext permettant de savoir si l'utilisateur est connecté ou non.
   // Permet d'afficher tous les évènements ou seulement ceux accessibles aux visiteurs
-  const { user, setPaymentRecordsByFamily, familyMembers, setFamilyMembers, setFamilyMemberEvents } =
-    useContext(CurrentUserContext);
+  const {
+    user,
+    setPaymentRecordsByFamily,
+    cardSelected,
+    familyMembers,
+    setFamilyMembers,
+    familyMemberEvents,
+    setFamilyMemberEvents,
+  } = useContext(CurrentUserContext);
 
   // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
   const handleClick = (e: number) => {
@@ -59,7 +68,6 @@ const MyEvents = () => {
 
     getAllDataWithoutCredential(urls)
       .then((res) => {
-        // if (!res.map((response)=>response.success).includes(false)){
         setEvents(res[0].data);
         setPostTypes(res[1].data);
         setActivities(res[2].data);
@@ -68,7 +76,6 @@ const MyEvents = () => {
         setPaymentRecordsByFamily(res[5].data);
         setFamilyMembers(res[6].data);
         setFamilyMemberEvents(res[7].data);
-        // }
       })
       .catch((err) => {
         console.error(err);
@@ -82,75 +89,97 @@ const MyEvents = () => {
     }
   }, [modalOnOff]);
 
-//   const familyMembersSelected = familyMembers.filter((familyMember)=> )
+  //   Filtre permettant de récupérer l'id des membres sélectionnés
+  const familyMembersSelected = familyMembers.filter(
+    (familyMember, index) => cardSelected[index],
+  );
+
+  //   Filtre permettant de récupérer tous les familyMemberEvents auxquels les membres sélectionnés se sont inscrits
+  let familyMemberEventsFiltered: IFamilyMemberEvent[] = [];
+  familyMembersSelected
+    .map((familyMemberSelected) =>
+      familyMemberEvents.filter(
+        (familyMemberEvent) =>
+          familyMemberEvent.idFamilyMember === familyMemberSelected.id,
+      ),
+    )
+    .map((selectedMembersEvent) =>
+      selectedMembersEvent.map((event) => familyMemberEventsFiltered.push(event)),
+    );
+
+  //   Filtre permettant de récupérer tous les événements auxquels les membres sélectionnés se sont inscrits (sans doublon)
+  const membersEvents: IEvent[] = [];
+  familyMemberEventsFiltered
+    .map(
+      (familyMemberEventFiltered) =>
+        events.filter((event) => event.id === familyMemberEventFiltered.idEvent)[0],
+    )
+    .map(
+      (membersEvent) =>
+        !membersEvents.includes(membersEvent) && membersEvents.push(membersEvent),
+    );
 
   return (
     <>
-      <div className={`eventsContainer ${modalOnOff}`}>
-      <Banner
-        nameBannerActivity=""
-        title="Mes événements"
-        nameIcon=""
-        memberFilter={true}
-        bannerMember={true}
-      />
-      <div className="eventsContainer__header">
-        <div className="eventsContainer__header__filter-members">
-            
+      <div className={`myEventsContainer ${modalOnOff}`}>
+        <Banner
+          nameBannerActivity=""
+          title="Mes événements"
+          nameIcon=""
+          memberFilter={true}
+          bannerMember={true}
+        />
+        <div className="myEventsContainer__header">
+          <div className="myEventsContainer__header__filter-members">
+            {cardSelected.includes(false) ? (
+              <p>
+                {familyMembers.length === cardSelected.filter((card) => !card).length
+                  ? 'Filtre par membre : Aucun membre sélectionné'
+                  : `Filtre par membre : ${familyMembersSelected
+                      .map((familyMemberSelected) => familyMemberSelected.firstname)
+                      .join(', ')}`}
+              </p>
+            ) : (
+              <p>Filtre par membre : Toute la famille</p>
+            )}
             <ComeBackHome link="/adherent-space" text="Revenir à l'espace adhérent" />
+          </div>
+          <div className="myEventsContainer__header__filter-events">
+            <label htmlFor="eventsfilter">Filtre par événement :</label>
+            <select
+              name="events"
+              id="eventsFilter"
+              onChange={(e) => setFilteredEvent(e.target.value)}>
+              <option value="">Tous</option>
+              {/* Créer une <option> autant qu'il y a d'activités dans activities */}
+              {activities &&
+                activities.map((activity, index) => (
+                  <option key={index} value={activity.name}>
+                    {activity.name}
+                  </option>
+                ))}
+            </select>
+          </div>
         </div>
-        <div className="eventsContainer__header__filter-event">
-          <label htmlFor="eventsfilter">Filtre actif :</label>
-          <select
-            name="events"
-            id="eventsFilter"
-            onChange={(e) => setFilteredEvent(e.target.value)}>
-            <option value="">Tous</option>
-            {/* postTypes[0] correspond au type "Activité" : créer une <option> autant qu'il y a de types de poste dans postTypes excepté pour le type "Activité" */}
-            {postTypes &&
-              postTypes.map(
-                (postType, index) =>
-                  index > 0 && (
-                    <option key={index} value={postType.name}>
-                      {postType.name}
-                    </option>
-                  ),
-              )}
-            {/* Créer une <option> autant qu'il y a d'activités dans activities */}
-            {activities &&
-              activities.map((activity, index) => (
-                <option key={index} value={activity.name}>
-                  {activity.name}
-                </option>
-              ))}
-          </select>
-        </div>
-
-        </div>
-        <div className="eventsContainer__events">
-          <div className="eventsContainer__events__list">
+        <div className="myEventsContainer__events">
+          <div className="myEventsContainer__events__list">
             {/* Si filterEvent est vrai (soit la valeur du filtre n'est pas égale à "Tous"), renvoie les évènements correspondant à sélection */}
-            {filteredEvent
-              ? events &&
-                events
-                  .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
-                  .filter((event) =>
-                    // si le type de poste est une Activité
-                    event.idPostType === 1
-                      ? // Renvoie les évènements selon l'activité choisie
-                        activities
-                          .filter((activity) => activity.name === filteredEvent)
-                          .map((activity) => activity.id)[0] === event.idActivity
-                      : // Sinon, renvoie les évènements selon le type de poste choisi
-                        postTypes
-                          .filter((postType) => postType.name === filteredEvent)
-                          .map((postType) => postType.id)[0] === event.idPostType,
+            {filteredEvent && events
+              ? events
+                  .filter((event) => membersEvents.includes(event))
+                  .filter(
+                    (event) =>
+                      // Renvoie les évènements selon l'activité choisie
+                      activities
+                        .filter((activity) => activity.name === filteredEvent)
+                        .map((activity) => activity.id)[0] === event.idActivity,
                   )
+                  .filter((event) => todaysDateLower(event.date))
                   .map((event, index) => (
                     <div
                       role="button"
                       key={index}
-                      className="eventsContainer__events__list__card"
+                      className="myEventsContainer__events__list__card"
                       onClick={() => handleClick(event.id)}
                       onKeyDown={() => handleClick(event.id)}
                       tabIndex={0}>
@@ -160,12 +189,13 @@ const MyEvents = () => {
               : // Si la valeur du filtre est égale à "Tous", renvoie tous les évènements
                 events &&
                 events
-                  .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
+                  .filter((event) => membersEvents.includes(event))
+                  .filter((event) => todaysDateLower(event.date))
                   .map((event, index) => (
                     <div
                       role="button"
                       key={index}
-                      className="eventsContainer__events__list__card"
+                      className="myEventsContainer__events__list__card"
                       onClick={() => handleClick(event.id)}
                       onKeyDown={() => handleClick(event.id)}
                       tabIndex={0}>

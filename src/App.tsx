@@ -20,7 +20,6 @@ import NavBarMobile from './components/NavBarMobile';
 import PoliticConf from './components/PoliticConf';
 import PoliticCookies from './components/PoliticCookies';
 import Prevention from './components/Prevention';
-import { CurrentDataContextProvider } from './contexts/CurrentData';
 import CurrentUserContext from './contexts/CurrentUser';
 import MyEvents from './components/MyEvents';
 
@@ -29,7 +28,6 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <CurrentDataContextProvider>
           {/* <main> */}
           <NavBar />
           <NavBarMobile />
@@ -58,7 +56,6 @@ function App() {
           </Routes>
           {/* </main> */}
           <Footer />
-        </CurrentDataContextProvider>
       </Router>
     </div>
   );

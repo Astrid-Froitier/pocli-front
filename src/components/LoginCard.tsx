@@ -165,8 +165,6 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
   },
 }));
 
-// const classes = useStyles();
-
 const LoginCard = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -192,7 +190,7 @@ const LoginCard = () => {
     try {
       e.preventDefault();
       const { data } = await axios.post<IUserInfos>(
-        'http://localhost:3002/api/login',
+        'http://localhost:3001/api/login',
         { email, password },
         {
           method: 'POST',
@@ -234,8 +232,6 @@ const LoginCard = () => {
       }
     }
   };
-
-  console.log(email);
 
   return (
     <>

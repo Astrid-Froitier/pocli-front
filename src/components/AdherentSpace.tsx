@@ -113,7 +113,7 @@ const AdherentSpace = () => {
           nameBannerActivity=""
           title="Mon espace adhérent"
           nameIcon=""
-          memberFilter={true}
+          memberFilter={false}
           bannerAbout={false}
           bannerEvent={false}
           bannerMember={true}

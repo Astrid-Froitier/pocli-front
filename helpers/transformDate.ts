@@ -3,4 +3,11 @@ const transformDate = (date: string) => {
   return dateArray.sort((a, b) => dateArray.indexOf(b) - dateArray.indexOf(a)).join('/');
 };
 
-export default transformDate;
+const todaysDateLower = (dateToCompare: string) => {
+  const todaysDate = new Date();
+  const date = new Date(dateToCompare);
+
+  return todaysDate > date ? false : true;
+};
+
+export { transformDate, todaysDateLower };
