@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 
 import { getAllDataWithCredential } from '../../helpers/axios';
-import transformDate from '../../helpers/transformDate';
+import { transformDate } from '../../helpers/transformDate';
 import CurrentUserContext from '../contexts/CurrentUser';
 import ICommunication from '../interfaces/ICommunication';
 import ICommunicationMember from '../interfaces/ICommunicationMember';

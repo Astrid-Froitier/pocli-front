@@ -149,61 +149,58 @@
     background-image: url('/assets/banner-blue.png');
     background-size: cover;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     &__box {
-      &__newsrespons {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        p {
-          margin-right: 30px;
-        }
-      }
+      display: flex;
+      flex-direction: column;
       margin: 0 10px;
       width: $pageContentWidth;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 40px;
-      img {
-        width: 140px;
+      img{
+        width: 150px;
+      }
+      >span{
+        font-family: $fontFamily;
+        font-size: $categorySize;
+        font-weight: $fontExtraBold;
+        color: $colorText-2
       }
       p {
         font-weight: $fontExtraBold;
+        font-size: $smallTextSize;
+        color: #d32f2f
+        
       }
-      form {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        font-family: $fontFamily;
-        font-size: $textSize;
-        font-weight: $fontExtraBold;
-        color: $colorText-2;
-        div {
-          width: 100%;
+      &__form {
+        form{
           display: flex;
-          align-items: center;
+          width: 100%;
+          align-items: flex-start;
           justify-content: center;
-          gap: 20px;
-          p {
-            font-size: $smallTextSize;
-            font-weight: $fontBold;
-            color: $colorText-1;
+          gap: 30px;
+          button{
+            position: relative;
+            top: 6px
           }
         }
-        input {
-          width: 400px;
-          height: 40px;
-          border-radius: 5px;
-          border: 1px solid $colorText-2;
-          font-family: $fontFamily;
-          font-size: $textSize;
-          font-weight: $fontBold;
-          color: $colorText-2;
-          text-align: center;
+        &__email{
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          height: 90px;
+          input:-webkit-autofill,
+          input:-webkit-autofill:hover,
+          input:-webkit-autofill:focus,
+          input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 50px white inset !important;
+            box-shadow: 0 0 0 50px white inset !important;
+            -webkit-text-fill-color: $colorText-2 !important;
+          }
         }
       }
       button {
@@ -225,13 +222,15 @@
       width: 90%;
     }
     &__events {
-      width: 100%;
+      width: 90%;
       margin: 60px 0;
       display: flex;
       &__list {
-        display: flex;
         justify-content: center;
-        gap: 45px;
+        &__card{
+          width: 630px;
+          height: 220px;
+        }
       }
     }
     &__nonAdherent {
@@ -286,24 +285,11 @@
         }
       }
     }
-    &__newsletter {
-      &__box {
-        margin: 0 10px;
-        width: 95%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 40px;
-
-        p {
-          font-weight: 800;
-        }
-        &__newsrespons {
-          font-weight: 700;
-          flex-direction: column;
-          justify-content: space-around;
-          align-items: center;
-          gap: 60px;
+    &__newsletter{
+      &__box{
+        width: 90%;
+        >span{
+          font-size: $mediumTextSize;
         }
       }
     }
@@ -338,23 +324,18 @@
         }
       }
     }
-    &__newsletter {
-      &__box {
-        margin: 0 10px;
-        width: 95%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        gap: 40px;
-        &__card {
-          width: 275px;
-          height: 100%;
-          overflow: hidden;
-          border-radius: 40px;
+    &__newsletter{
+      &__box{
+        gap: 20px;
+        >span{
+          font-size: $smallTextSize;
         }
-        p {
-          font-weight: 800;
+        &__form{
+          form{
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+          }
         }
       }
     }
@@ -417,16 +398,6 @@
         &__card {
           width: 195px;
           height: 195px;
-        }
-      }
-    }
-    &__newsletter {
-      &__box {
-        &__newsrespons {
-          p {
-            font-size: 16px;
-            text-align: center;
-          }
         }
       }
     }

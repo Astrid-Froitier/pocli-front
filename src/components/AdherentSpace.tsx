@@ -8,6 +8,8 @@ import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
 import dateNowToDate from '../../helpers/dateNowToDate';
 import compareDates from '../../helpers/compareDates';
+import { todaysDateLower } from '../../helpers/transformDate';
+import IEvent from '../interfaces/IEvent';
 
 const AdherentSpace = () => {
   const {
@@ -18,7 +20,7 @@ const AdherentSpace = () => {
     setCities,
     // recipients,
     setRecipients,
-    // familyMembers,
+    familyMembers,
     setFamilyMembers,
     // paymentRecordsByFamily,
     setPaymentRecordsByFamily,
@@ -30,7 +32,7 @@ const AdherentSpace = () => {
     setCommunications,
     // linkedDocumentsByFamily,
     setLinkedDocumentsByFamily,
-    // familyMemberEvents,
+    familyMemberEvents,
     setFamilyMemberEvents,
     logout,
   } = useContext(CurrentUserContext);
@@ -121,12 +123,23 @@ const AdherentSpace = () => {
       .map((com, index) => com && setUnreadMessages(index + 1));
   }, [communicationMembersByFamily]);
 
-  // useEffect permettant d'empêcher le scroll sur x suivant l'état de modalOnOff
+  // useEffect permettant d'empêcher le scroll sur Y suivant l'état de modalOnOff
   useEffect(() => {
     {
       modalOnOff && document.documentElement.style.setProperty('overflow-y', 'hidden');
     }
   }, [modalOnOff]);
+
+const allFamilyMembersEvents = familyMembers.flatMap((familyMember)=> familyMemberEvents.filter((familyMemberEvent)=> familyMemberEvent.idFamilyMember === familyMember.id))
+
+const allUpcomingEvents = events.filter((event)=>todaysDateLower(event.date))
+
+const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap((allFamilyMembersEvent)=>allUpcomingEvents.filter((allUpcomingEvent)=> allUpcomingEvent.id === allFamilyMembersEvent.idEvent))
+
+const uniqueItems = [...new Set(allFamilyMembersUpcomingEvents)]
+
+console.log(uniqueItems);
+
 
   return (
     <>
@@ -135,7 +148,7 @@ const AdherentSpace = () => {
           nameBannerActivity=""
           title="Mon espace adhérent"
           nameIcon=""
-          memberFilter={true}
+          memberFilter={false}
           bannerAbout={false}
           bannerEvent={false}
           bannerMember={true}
@@ -145,7 +158,7 @@ const AdherentSpace = () => {
             <h1>Tableau de bord</h1>
             <NavLink to="/my-events">
               <p>
-                Mes évènements - <span>{newEvents}</span> à venir
+                Mes évènements - <span>{allFamilyMembersUpcomingEvents.length > 1 ? `${allFamilyMembersUpcomingEvents.length} participations`: `${allFamilyMembersUpcomingEvents.length} participation`}</span> à venir
               </p>
             </NavLink>
             <NavLink to="/my-messaging">
