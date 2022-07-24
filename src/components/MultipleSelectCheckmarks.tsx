@@ -139,7 +139,7 @@ const MultipleSelectCheckmarks = ({
 
     numberParticipantsMax
       ? inputFirstnames.length > registeredFamilyMembers.length &&
-        registeredFamilyMembers.length < numberParticipantsMax &&
+        familyMemberEvents.filter((familyMemberEvent)=>familyMemberEvent.idEvent === idEvent).length < numberParticipantsMax &&
         addFamilyMemberEvent()
       : inputFirstnames.length > registeredFamilyMembers.length && addFamilyMemberEvent();
     inputFirstnames.length < registeredFamilyMembers.length && deleteFamilyMemberEvent();
