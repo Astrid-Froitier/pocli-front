@@ -54,7 +54,7 @@ const CurrentDataContext = createContext<DataContent>({
   setDocuments: () => {},
   setLinkedDocuments: () => {},
   setPocliMembers: () => {},
-  setPartners: () => {}
+  setPartners: () => {},
 });
 
 export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
@@ -90,6 +90,7 @@ export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
       idDocument: 0,
       date: '2022-07-20T20:55:29.000Z',
       isOpened: 0,
+      isTrashed: 0,
     },
   ]);
 
@@ -109,7 +110,7 @@ export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
         setDocuments,
         setLinkedDocuments,
         setPocliMembers,
-        setPartners
+        setPartners,
       }}>
       {children}
     </CurrentDataContext.Provider>

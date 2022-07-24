@@ -8,7 +8,14 @@ import IAdmin from '../interfaces/IAdmin';
 import ICommunication from '../interfaces/ICommunication';
 import ICommunicationMember from '../interfaces/ICommunicationMember';
 import Icon from './Icon';
-import { MessageCardProps } from './Messaging';
+
+interface MessageCardProps {
+  selectedMessage: ICommunicationMember;
+  setSelectedMessage: React.Dispatch<React.SetStateAction<ICommunicationMember>>;
+  currentCommunication: ICommunication;
+  setCurrentCommunication: React.Dispatch<React.SetStateAction<ICommunication>>;
+  currentMenu: ICommunicationMember[];
+}
 
 const MessagingCard = ({
   setSelectedMessage,
