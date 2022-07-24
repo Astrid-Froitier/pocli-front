@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import transformDate from '../../helpers/transformDate';
+import { todaysDateLower, transformDate } from '../../helpers/transformDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import IEvent from '../interfaces/IEvent';
@@ -31,7 +31,7 @@ const EventCard = ({
   }, [event]);
 
   const documentsByEvent =
-    linkedDocuments &&
+    linkedDocuments && event &&
     linkedDocuments
       .filter((linkedDocument) => linkedDocument.idEvent === event.id)
       .map((linkedDocument) => linkedDocument.idDocument);
@@ -61,10 +61,12 @@ const EventCard = ({
         )[0],
     );
 
-    const availablePlaces = event.numberParticipantsMax && event.numberParticipantsMax -
-    familyMemberEvents.filter(
-      (familyMemberEvent) => familyMemberEvent.idEvent === event.id,
-    ).length
+  const availablePlaces =
+    event.numberParticipantsMax &&
+    event.numberParticipantsMax -
+      familyMemberEvents.filter(
+        (familyMemberEvent) => familyMemberEvent.idEvent === event.id,
+      ).length;
 
   return (
     <>
@@ -120,7 +122,15 @@ const EventCard = ({
                       .map((postType) => postType.name)[0]}
               </span>
             </div>
-            <p className="eventCard__preview__informations__text">{event.description}</p>
+            <div className="eventCard__preview__informations__text">
+              <p>
+                {modalEvent
+                  ? event.description.slice(0, 125)
+                  : `${event.description.slice(0, 125)}${
+                      event.description.length > 125 ? '...' : ''
+                    }`}
+              </p>
+            </div>
             {bannerEvent && (
               <div className="eventCard__preview__informations__arrow">
                 <div className="eventCard__preview__informations__arrow__box">
@@ -133,7 +143,9 @@ const EventCard = ({
       </div>
       {modalEvent && (
         <div className="eventCard-modal">
-          {event.idActivity && familyMembersIsActive.length ? (
+          {event.idActivity &&
+          familyMembersIsActive.length &&
+          todaysDateLower(event.date) ? (
             <div className="eventCard-modal__participation">
               <MultipleSelectCheckmarks
                 familyMembersIsActive={familyMembersIsActive}
@@ -143,9 +155,16 @@ const EventCard = ({
           ) : null}
           {event.idActivity &&
           familyMembersIsActive.length &&
+          todaysDateLower(event.date) &&
           event.numberParticipantsMax ? (
             <div className="eventCard-modal__number-participants-max">
-              {availablePlaces ? <span>{`Place${availablePlaces > 1 ? "s" : ""} disponible${availablePlaces > 1 ? "s" : ""} : ${availablePlaces}`}</span> : <span>Toutes les places ont été prises !</span>}
+              {availablePlaces ? (
+                <span>{`Place${availablePlaces > 1 ? 's' : ''} disponible${
+                  availablePlaces > 1 ? 's' : ''
+                } : ${availablePlaces}`}</span>
+              ) : (
+                <span>Toutes les places ont été prises !</span>
+              )}
             </div>
           ) : null}
           {event.podcastLink && (
