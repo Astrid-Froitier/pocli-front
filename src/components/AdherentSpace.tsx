@@ -109,11 +109,14 @@ const AdherentSpace = () => {
   return (
     <>
       <div>
+        <div className="adherentSpanceBanner">
+          <h1>Mon espace adhérent</h1>
+        </div>
         <Banner
           nameBannerActivity=""
           title="Mon espace adhérent"
           nameIcon=""
-          memberFilter={true}
+          memberFilter={false}
           bannerAbout={false}
           bannerEvent={false}
           bannerMember={true}

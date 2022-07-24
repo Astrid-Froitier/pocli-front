@@ -126,7 +126,47 @@
   }
 }
 
+@media screen and (min-width: 700px) {
+  .adherentSpanceBanner {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .adherentSpanceBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    gap: 8px;
+    h1 {
+      color: $colorText-2;
+      width: 300px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+
+  @media screen and (max-) {
+  }
+
+  .adherentSpaceContainer {
+    &__left {
+      h1 {
+        width: 100%;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 400px) {
+  .adherentSpanceBanner {
+    h1 {
+      font-size: $resTitleSize4;
+    }
+  }
   .adherentSpaceContainer {
     &__left {
       h1 {

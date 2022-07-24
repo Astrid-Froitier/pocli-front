@@ -28,7 +28,11 @@
 }
 
 ////// RESPONSIVE ////////
+@media screen and (max-width: 800px) {
+  // .messagingContainer {
 
+  // }
+}
 @media screen and (max-width: 800px) {
   .messagingContainer {
     display: flex;
@@ -55,6 +59,11 @@
         padding: 0;
       }
     }
+  }
+}
+@media screen and (max-width: 800px) {
+  .messagingBanner {
+    display: none;
   }
 }
 

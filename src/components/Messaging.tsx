@@ -86,6 +86,9 @@ const Messaging = () => {
 
   return (
     <div>
+      <div className="messagingBanner">
+        <h1>Ma messagerie</h1>
+      </div>
       <Banner
         nameBannerActivity=""
         title="Ma messagerie"

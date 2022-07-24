@@ -178,6 +178,25 @@
 @media screen and (max-width: 700px) {
   .banner {
     display: none;
+    h1 {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .banner {
+    .box {
+      overflow-y: scroll;
+    }
+    h1 {
+      color: $colorText-2;
+      font-size: 24px;
+      width: 300px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+    }
   }
 }
 
@@ -201,6 +220,7 @@
     opacity: 1;
   }
 }
+
 @keyframes slide-in-blurred-left {
   0% {
     -webkit-transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
