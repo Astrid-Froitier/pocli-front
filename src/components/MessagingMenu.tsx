@@ -7,7 +7,16 @@ import CurrentUserContext from '../contexts/CurrentUser';
 import ICommunication from '../interfaces/ICommunication';
 import ICommunicationMember from '../interfaces/ICommunicationMember';
 import Icon from './Icon';
-import { MessageMenuProps } from './Messaging';
+
+interface MessageMenuProps {
+  selectedMessage: ICommunicationMember;
+  setSelectedMessage: React.Dispatch<React.SetStateAction<ICommunicationMember>>;
+  selectedMenu: number;
+  setSelectedMenu: React.Dispatch<React.SetStateAction<number>>;
+  currentCommunication: ICommunication;
+  setCurrentCommunication: React.Dispatch<React.SetStateAction<ICommunication>>;
+  setCurrentMenu: React.Dispatch<React.SetStateAction<ICommunicationMember[]>>;
+}
 
 const MessagingMenu = ({
   selectedMessage,

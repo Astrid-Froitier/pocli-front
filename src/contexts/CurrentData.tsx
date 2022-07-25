@@ -54,7 +54,7 @@ const CurrentDataContext = createContext<DataContent>({
   setDocuments: () => {},
   setLinkedDocuments: () => {},
   setPocliMembers: () => {},
-  setPartners: () => {}
+  setPartners: () => {},
 });
 
 export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
@@ -110,7 +110,7 @@ export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
         setDocuments,
         setLinkedDocuments,
         setPocliMembers,
-        setPartners
+        setPartners,
       }}>
       {children}
     </CurrentDataContext.Provider>

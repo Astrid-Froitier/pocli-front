@@ -6,8 +6,6 @@ import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
-import dateNowToDate from '../../helpers/dateNowToDate';
-import compareDates from '../../helpers/compareDates';
 import { todaysDateLower } from '../../helpers/transformDate';
 import IEvent from '../interfaces/IEvent';
 
@@ -182,7 +180,7 @@ const AdherentSpace = () => {
             </span>
 
             <NavLink to="/contact">
-              <p>Nous contacter</p>
+              <p>J'ai une question</p>
             </NavLink>
             <span
               onKeyDown={handleLogout}
