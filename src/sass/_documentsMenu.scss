@@ -108,35 +108,33 @@
         margin-bottom: 1rem;
         &__unread {
           width: 100%;
-          div {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            width: 100%;
-            p {
-              color: $colorText-2;
-              font-weight: $fontBold;
-              padding: 0 1.5rem;
-              font-size: $mediumTextSize;
-              &:first-child {
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                &:hover {
-                  text-decoration: underline;
-                  cursor: pointer;
-                }
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          width: 100%;
+          p {
+            color: $colorText-2;
+            font-weight: $fontBold;
+            padding: 0 1.5rem;
+            font-size: $mediumTextSize;
+            &:first-child {
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              &:hover {
+                text-decoration: underline;
+                cursor: pointer;
               }
-              &:last-child {
-                width: 30%;
-                height: 100%;
-                display: flex;
-                justify-content: flex-end;
-              }
+            }
+            &:last-child {
+              width: 30%;
+              height: 100%;
+              display: flex;
+              justify-content: flex-end;
             }
           }
         }
-        &__readedDocument {
+        &__readed {
           width: 100%;
           div {
             width: 100%;

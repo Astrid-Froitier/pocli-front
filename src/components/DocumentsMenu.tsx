@@ -1,32 +1,62 @@
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { getAllDataWithCredential } from '../../helpers/axios';
 import dateNowToDate from '../../helpers/dateNowToDate';
-import {transformDate} from '../../helpers/transformDate';
+import { transformDate } from '../../helpers/transformDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import IDocument from '../interfaces/IDocument';
 import ILinkedDocument from '../interfaces/ILinkedDocument';
-import { DocumentsMenuProps } from './Documents';
-
 import Icon from './Icon';
-const d = new Date(Date.now());
+
+interface DocumentsMenuProps {
+  selectedDocument: ILinkedDocument;
+  setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
+  currentDocument: IDocument;
+  setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
+  setCurrentMenu: React.Dispatch<React.SetStateAction<ILinkedDocument[]>>;
+}
 const DocumentsMenu = ({
   selectedDocument,
   setSelectedDocument,
   currentDocument,
   setCurrentDocument,
+  setCurrentMenu,
 }: DocumentsMenuProps) => {
   const { linkedDocuments, setLinkedDocuments, documents, setDocuments } =
     useContext(CurrentDataContext);
-
+  const d = new Date(Date.now());
   const { user, cardSelected, communicationMembersByFamily } =
     useContext(CurrentUserContext);
 
   const [selectedMenu, setSelectedMenu] = useState(0);
+
   const handleSelectedMenu = (number: number) => {
     setSelectedMenu(number);
+    setSelectedDocument({
+      id: 0,
+      idFamilyMember: 0,
+      idFamily: 0,
+      date: '',
+      idActivity: 0,
+      idDocument: 0,
+      isOpened: 0,
+      isTrashed: 0,
+    });
+    setCurrentDocument({
+      id: 0,
+      name: '',
+      url: '',
+      idDocumentType: 0,
+    });
+    number === 1
+      ? setCurrentMenu(documentsFamilyUnread)
+      : number === 2
+      ? setCurrentMenu(allDocumentsFamily)
+      : number === 3 && setCurrentMenu(trashDocuments);
   };
   const [unreadDocuments, setUnreadDocuments] = useState<number>(0);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const [allDocumentsFamily, setAllDocumentsFamily] = useState<ILinkedDocument[]>([]);
   const [documentsFamilyUnread, setDocumentsFamilyUnread] = useState<ILinkedDocument[]>(
@@ -48,7 +78,47 @@ const DocumentsMenu = ({
         .catch((err) => {
           console.error(err);
         });
-  }, [user]);
+  }, [currentDocument]);
+
+  const dataOpened = JSON.stringify({ isOpened: '1' });
+
+  const putOpened = async (idCommunication: number) => {
+    // indispensable quand on veut utiliser async/await dans un useEffect
+    try {
+      await axios.put<ILinkedDocument>(
+        `http://localhost:3002/api/linkedDocuments/${idCommunication}`,
+        dataOpened,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+    } catch (err) {
+      // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
+      if (axios.isAxiosError(err)) {
+        // pour gérer les erreurs de type axios
+        if (err.response?.status === 401) {
+          setErrorMessage('Error 401');
+        }
+      } else {
+        // pour gérer les erreurs non axios
+        if (err instanceof Error) setErrorMessage(err.message);
+      }
+    }
+  };
+
+  useEffect(() => {
+    selectedDocument.id && putOpened(selectedDocument.id);
+  }, [selectedDocument]);
+
+  useEffect(() => {
+    documents &&
+      setCurrentDocument(
+        documents.filter((doc) => doc.id === selectedDocument.idDocument)[0],
+      );
+  }, [selectedDocument, currentDocument]);
 
   useEffect(() => {
     setAllDocumentsFamily(linkedDocuments.filter((doc) => doc.isTrashed === 0)),
@@ -61,13 +131,12 @@ const DocumentsMenu = ({
       linkedDocuments
         .filter((doc) => !doc.isOpened)
         .map((doc, index) => doc && setUnreadDocuments(index + 1));
-  }, [linkedDocuments]);
+  }, [linkedDocuments, selectedMenu]);
 
   const handleSelectedDocument = (document: ILinkedDocument) => {
     setSelectedDocument(document);
   };
 
-  console.log(allDocumentsFamily, documentsFamilyUnread, trashDocuments);
   return (
     <div className="documentsMenuContainer">
       {selectedMenu === 1 ? (
@@ -136,7 +205,53 @@ const DocumentsMenu = ({
             <Icon name="documents" width="40px" color="white" />
             <p>Tous les documents</p>
           </div>
-          <div className="documentsMenuContainer__allDocumentsDevelopped__documents"></div>
+          <div className="documentsMenuContainer__allDocumentsDevelopped__documentsBox">
+            {allDocumentsFamily.map((doc, index) => (
+              <div
+                key={index}
+                role="button"
+                onKeyDown={() => handleSelectedDocument(doc)}
+                tabIndex={0}
+                onClick={() => handleSelectedDocument(doc)}
+                className={
+                  selectedDocument.id === doc.id
+                    ? 'documentsMenuContainer__allDocumentsDevelopped__documentsBox__documentSelected'
+                    : 'documentsMenuContainer__allDocumentsDevelopped__documentsBox__documents'
+                }>
+                {doc.isOpened === 0 ? (
+                  <div
+                    className={
+                      selectedDocument.id === doc.id
+                        ? 'documentsMenuContainer__allDocumentsDevelopped__documentsBox__documentSelected__unread'
+                        : 'documentsMenuContainer__allDocumentsDevelopped__documentsBox__documents__unread'
+                    }>
+                    <p>{`${
+                      doc.date !== null ? transformDate(doc.date) : dateNowToDate(d)
+                    } ${documents
+                      .filter((document) => document.id === doc.idDocument)
+                      .map((doc) => doc.name)}`}</p>
+                    <p>Non lu</p>
+                  </div>
+                ) : (
+                  <div
+                    className={
+                      selectedDocument.id === doc.id
+                        ? 'documentsMenuContainer__allDocumentsDevelopped__documentsBox__documentSelected__readed'
+                        : 'documentsMenuContainer__allDocumentsDevelopped__documentsBox__documents__readed'
+                    }>
+                    <div key={index}>
+                      <p>{`${
+                        doc.date !== null ? transformDate(doc.date) : dateNowToDate(d)
+                      } ${documents
+                        .filter((document) => document.id === doc.idDocument)
+                        .map((doc) => doc.name)}`}</p>
+                      <p>Lu</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       ) : (
         <div
@@ -160,7 +275,30 @@ const DocumentsMenu = ({
             <Icon name="trash-can" width="40px" color="white" />
             <p>Corbeille</p>
           </div>
-          <div className="documentsMenuContainer__trashDevelopped__documents"></div>
+          <div className="documentsMenuContainer__trashDevelopped__documentsBox">
+            {trashDocuments.map((doc, index) => (
+              <div
+                key={index}
+                role="button"
+                onKeyDown={() => handleSelectedDocument(doc)}
+                tabIndex={0}
+                onClick={() => handleSelectedDocument(doc)}
+                className={
+                  selectedDocument.id === doc.id
+                    ? 'documentsMenuContainer__trashDevelopped__documentsBox__documentSelected'
+                    : 'documentsMenuContainer__trashDevelopped__documentsBox__documents'
+                }>
+                <div key={index}>
+                  <p>{`${
+                    doc.date !== null ? transformDate(doc.date) : dateNowToDate(d)
+                  } ${documents
+                    .filter((document) => document.id === doc.idDocument)
+                    .map((doc) => doc.name)}`}</p>
+                  <p>Lu</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       ) : (
         <div
