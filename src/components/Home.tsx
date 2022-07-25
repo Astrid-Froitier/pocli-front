@@ -1,8 +1,6 @@
-import { styled } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-// import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 import aboutNumbers from '../../data/aboutNumbers';
@@ -18,6 +16,8 @@ import EventCard from './EventCard';
 import Icon from './Icon';
 import ModalEvent from './ModalEvent';
 import PartnersList from './PartnersList';
+import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   [theme.breakpoints.down(500)]: {
@@ -283,12 +283,16 @@ const Home = () => {
               ))}
             </div>
             <div className="homeContainer__about__text">
-              <h1>La recette de PoCLi :</h1>
-              <p>Une louche de bienveillance</p>
-              <p>Une bonne dose de dynamisme</p>
-              <p>Un chaudron d&apos;idées</p>
-              <p>Le tout arrosé de convivialité</p>
-              <p>A servir avec le sourire</p>
+              <h1>PoCLi, c’est [accroche]</h1>
+              <p>Description succincte...</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
+                libero ipsa
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
+                libero ipsa
+              </p>
               <div className="homeContainer__about__text__button">
                 <Button text="QUI SOMMES-NOUS ?" link="/about" />
               </div>
