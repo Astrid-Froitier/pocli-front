@@ -1,6 +1,8 @@
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+// import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 import aboutNumbers from '../../data/aboutNumbers';
@@ -17,9 +19,85 @@ import Icon from './Icon';
 import ModalEvent from './ModalEvent';
 import PartnersList from './PartnersList';
 
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  [theme.breakpoints.down(500)]: {
+    width: '250px',
+    '& .MuiOutlinedInput-input': {
+      fontSize: '18px',
+    },
+    '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+      {
+        fontSize: '18px',
+      },
+    '& .MuiInputLabel-asterisk': {
+      fontSize: '18px',
+    },
+  },
+
+  [theme.breakpoints.up(500)]: {
+    width: '400px',
+    '& .MuiOutlinedInput-input': {
+      fontSize: '20px',
+    },
+    '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+      {
+        fontSize: '20px',
+      },
+    '& .MuiInputLabel-asterisk': {
+      fontSize: '20px',
+    },
+  },
+
+  '& .MuiOutlinedInput-input': {
+    color: '#3d79af',
+  },
+  '& .MuiInputLabel-root': {
+    color: '#3d79af',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+  '& .MuiInputLabel-asterisk': {
+    color: '#3d79af',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+  '& label.Mui-focused': {
+    color: '#3d79af',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#3d79af',
+    },
+    '&:hover fieldset': {
+      borderColor: '#3d79af',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#3d79af',
+    },
+  },
+  '& .MuiOutlinedInput-root.Mui-error': {
+    '& fieldset': {
+      borderColor: '#d32f2f',
+    },
+    '&:hover fieldset': {
+      borderColor: '#d32f2f',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#d32f2f',
+    },
+  },
+}));
+
 const Home = () => {
-  const [onClickNewsletter, setOnClickNewsletter] = useState(false);
-  const [emailNewsletter, setEmailNewsletter] = useState({});
+  const [emailNewsletter, setEmailNewsletter] = useState('');
+  const [emailSended, setEmailSended] = useState('');
+  const [errorEmailNewsletter, setErrorEmailNewsletter] = useState('');
 
   // useStates permettant de gérer la modale d'un évènement
   const [modalOnOff, setModalOnOff] = useState<string>('');
@@ -32,6 +110,7 @@ const Home = () => {
     setActivities,
     setDocuments,
     setLinkedDocuments,
+    setPartners,
   } = useContext(CurrentDataContext);
 
   const { user } = useContext(CurrentUserContext);
@@ -50,11 +129,12 @@ const Home = () => {
   // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
   useEffect(() => {
     let urls = [
-      'https://wild-pocli.herokuapp.com/api/events?sort="id,DESC"',
+      'https://wild-pocli.herokuapp.com/api/events',
       'https://wild-pocli.herokuapp.com/api/postTypes',
       'https://wild-pocli.herokuapp.com/api/activities',
       'https://wild-pocli.herokuapp.com/api/documents',
       'https://wild-pocli.herokuapp.com/api/linkedDocuments',
+      'https://wild-pocli.herokuapp.com/api/partners',
     ];
 
     getAllDataWithoutCredential(urls)
@@ -64,6 +144,7 @@ const Home = () => {
         setActivities(res[2].data);
         setDocuments(res[3].data);
         setLinkedDocuments(res[4].data);
+        setPartners(res[5].data);
       })
       .catch((err) => {
         console.error(err);
@@ -77,30 +158,50 @@ const Home = () => {
     }
   }, [modalOnOff]);
 
-  interface IFormInput {
-    email: String;
-  }
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const email = data.email;
-    try {
-      const { data } = await axios.post<INewsletter>(
-        'http://localhost:3001/api/newsletters',
-        { email },
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+  const regexEmail =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
+  const handleChangeNewsletter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailNewsletter(e.target.value);
+    regexEmail.exec(emailNewsletter) !== null && setErrorEmailNewsletter('');
+  };
+
+  const newsletter = async (e: React.FormEvent<HTMLFormElement>) => {
+    // indispensable quand on veut utiliser async/await dans un useEffect
+    const email = emailNewsletter;
+    if (email && regexEmail.exec(email) !== null) {
+      try {
+        e.preventDefault();
+        await axios.post<INewsletter>(
+          'http://localhost:3001/api/newsletters',
+          { email },
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            withCredentials: true,
           },
-        },
-      );
-      setEmailNewsletter(data);
-    } catch (err) {
-      console.error(err);
+        );
+        setEmailSended(
+          "Votre demande d'abonnement à notre newsletter a bien été prise en compte.",
+        );
+      } catch (err) {
+        // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
+        if (axios.isAxiosError(err)) {
+          // pour gérer les erreurs de type axios
+          console.error(err);
+        } else {
+          // pour gérer les erreurs non axios
+          if (err instanceof Error) {
+            console.error(err);
+          }
+        }
+      }
+    } else if (regexEmail.exec(emailNewsletter) === null) {
+      e.preventDefault();
+      setErrorEmailNewsletter('Email invalide');
     }
   };
 
@@ -216,40 +317,46 @@ const Home = () => {
         </div>
         <div className="homeContainer__newsletter">
           <div className="homeContainer__newsletter__box">
-            <img src="./assets/pocli.png" alt="logo" />
-            {!onClickNewsletter && (
-              <div className="homeContainer__newsletter__box__newsrespons">
-                <p>Pour rester informer sur les activités de PoCLi</p>
-                <button onClick={() => setOnClickNewsletter(true)}>
-                  <Button text="S'ABONNER À LA NEWSLETTER" />
-                </button>
-              </div>
-            )}
-            {onClickNewsletter &&
-              !Object.getOwnPropertyDescriptor(emailNewsletter, 'email') && (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div>
-                    <label htmlFor="email">E-mail :</label>
-                    <input
-                      {...register('email', {
-                        required: true,
-                        pattern:
-                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      })}
+            <img src="assets/pocli.png" alt="pocli" />
+            <span>
+              Vous pouvez suivre nos actualités en vous abonnant à notre newsletter
+            </span>
+            <div className="homeContainer__newsletter__box__form">
+              {!emailSended && (
+                <form
+                  onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                    newsletter(e);
+                  }}>
+                  <div className="homeContainer__newsletter__box__form__email">
+                    <StyledTextField
+                      error={errorEmailNewsletter ? true : false}
+                      required
+                      id="outlined-required"
+                      label="Email"
+                      value={emailNewsletter}
+                      onChange={handleChangeNewsletter}
+                      InputProps={{
+                        style: {
+                          fontFamily: 'Karla, sans-serif',
+                          fontWeight: 800,
+                        },
+                      }}
+                      InputLabelProps={{
+                        style: {
+                          fontFamily: 'Karla, sans-serif',
+                          fontWeight: 800,
+                        },
+                      }}
                     />
-                    {errors.email && <p>Champ invalide</p>}
+                    {errorEmailNewsletter && <p>{errorEmailNewsletter}</p>}
                   </div>
                   <button>
                     <Button text="ENVOYER" />
                   </button>
                 </form>
               )}
-            {Object.getOwnPropertyDescriptor(emailNewsletter, 'email') && (
-              <p>
-                Votre demande d&apos;abonnement à notre newsletter a bien été prise en
-                compte.
-              </p>
-            )}
+            </div>
+            {emailSended && <p>{emailSended}</p>}
           </div>
         </div>
         <div className="homeContainer__partners">
