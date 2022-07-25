@@ -90,6 +90,7 @@ export const CurrentDataContextProvider = ({ children }: CurrentModalProps) => {
       idDocument: 0,
       date: '2022-07-20T20:55:29.000Z',
       isOpened: 0,
+      isTrashed: 0,
     },
   ]);
 

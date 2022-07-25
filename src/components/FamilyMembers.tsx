@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-// import { members } from '../../data/Xcrew';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Icon from './Icon';

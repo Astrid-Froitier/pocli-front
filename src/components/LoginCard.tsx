@@ -14,6 +14,156 @@ import CurrentUserContext from '../contexts/CurrentUser';
 import IUserInfos from '../interfaces/IUserInfos';
 import Icon from './Icon';
 
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  [theme.breakpoints.down(500)]: {
+    width: '250px',
+    '& .MuiOutlinedInput-input': {
+      fontSize: '18px',
+    },
+    '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+      {
+        fontSize: '18px',
+      },
+    '& .MuiInputLabel-asterisk': {
+      fontSize: '18px',
+    },
+  },
+
+  [theme.breakpoints.up(500)]: {
+    width: '350px',
+    '& .MuiOutlinedInput-input': {
+      fontSize: '20px',
+    },
+    '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+      {
+        fontSize: '20px',
+      },
+    '& .MuiInputLabel-asterisk': {
+      fontSize: '20px',
+    },
+  },
+
+  '& .MuiOutlinedInput-input': {
+    color: 'white',
+  },
+  '& .MuiInputLabel-root': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+  '& .MuiInputLabel-asterisk': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+  '& label.Mui-focused': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'white',
+    },
+    '&:hover fieldset': {
+      borderColor: 'white',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'white',
+    },
+  },
+  '& .MuiOutlinedInput-root.Mui-error': {
+    '& fieldset': {
+      borderColor: '#d32f2f',
+    },
+    '&:hover fieldset': {
+      borderColor: '#d32f2f',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#d32f2f',
+    },
+  },
+}));
+
+const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  [theme.breakpoints.down(500)]: {
+    width: '250px',
+    '& .MuiOutlinedInput-input': {
+      fontSize: '18px',
+    },
+    '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-2z5swh-MuiFormLabel-root-MuiInputLabel-root':
+      {
+        fontSize: '18px',
+      },
+    '& .MuiInputLabel-asterisk': {
+      fontSize: '18px',
+    },
+  },
+
+  [theme.breakpoints.up(500)]: {
+    width: '350px',
+    '& .MuiOutlinedInput-input': {
+      fontSize: '20px',
+    },
+    '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-2z5swh-MuiFormLabel-root-MuiInputLabel-root':
+      {
+        fontSize: '20px',
+      },
+    '& .MuiInputLabel-asterisk': {
+      fontSize: '20px',
+    },
+  },
+
+  '& .MuiOutlinedInput-input': {
+    color: 'white',
+  },
+  '& .MuiInputLabel-root': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+  '& .MuiInputLabel-asterisk': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+  '& label.Mui-focused': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'white',
+    },
+    '&:hover fieldset': {
+      borderColor: 'white',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'white',
+    },
+  },
+  '& .MuiOutlinedInput-root.Mui-error': {
+    '& fieldset': {
+      borderColor: '#d32f2f',
+    },
+    '&:hover fieldset': {
+      borderColor: '#d32f2f',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#d32f2f',
+    },
+  },
+}));
+
 const LoginCard = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -39,7 +189,7 @@ const LoginCard = () => {
     try {
       e.preventDefault();
       const { data } = await axios.post<IUserInfos>(
-        'http://localhost:3002/api/login',
+        'http://localhost:3001/api/login',
         { email, password },
         {
           method: 'POST',
@@ -82,8 +232,6 @@ const LoginCard = () => {
     }
   };
 
-  console.log(email);
-
   return (
     <>
       <form
@@ -93,50 +241,40 @@ const LoginCard = () => {
         }}>
         <h1>S&apos;identifier</h1>
         <div className="loginCardContainer__email">
-          <TextField
+          <StyledTextField
             error={errorEmail ? true : false}
             required
             id="outlined-required"
             label="Email"
             value={email}
-            sx={{ width: '350px' }}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setEmail(event.target.value);
             }}
             InputProps={{
               style: {
                 fontFamily: 'Karla, sans-serif',
-                fontSize: '20px',
                 fontWeight: 800,
-                color: 'white',
-                borderColor: 'white',
               },
             }}
             InputLabelProps={{
               style: {
                 fontFamily: 'Karla, sans-serif',
-                fontSize: '20px',
                 fontWeight: 800,
-                color: 'white',
               },
             }}
-            style={{ color: 'white' }}
           />
           {errorEmail && <p>{errorEmail}</p>}
         </div>
         <div className="loginCardContainer__password">
           <div className="loginCardContainer__password__input">
-            <FormControl sx={{ width: '350px' }} variant="outlined">
+            <StyledFormControl sx={{ width: '350px' }} variant="outlined">
               <InputLabel
                 htmlFor="outlined-adornment-password"
                 required
                 error={errorPassword ? true : false}
                 defaultValue="Error"
-                style={{ color: 'white' }}
                 sx={{
-                  color: 'white',
                   fontFamily: 'Karla, sans-serif',
-                  fontSize: '20px',
                   fontWeight: 800,
                 }}>
                 Mot de passe
@@ -146,9 +284,7 @@ const LoginCard = () => {
                 required
                 error={errorPassword ? true : false}
                 sx={{
-                  color: 'white',
                   fontFamily: 'Karla, sans-serif',
-                  fontSize: '20px',
                   fontWeight: 800,
                 }}
                 type={showPassword ? 'text' : 'password'}
@@ -172,7 +308,7 @@ const LoginCard = () => {
                 }
                 label="Mot de passe"
               />
-            </FormControl>
+            </StyledFormControl>
             {errorPassword && <p>{errorPassword}</p>}
             {accountNoExists && <p>{accountNoExists}</p>}
           </div>
