@@ -9,6 +9,8 @@
   padding: 2rem 0;
   width: 100%;
   height: 550px;
+  -webkit-user-select: none;
+  user-select: none;
   &__header {
     display: flex;
     justify-content: space-between;
@@ -22,6 +24,9 @@
       p {
         font-size: $mediumTextSize;
         font-weight: $fontBold;
+        span {
+          font-weight: 400;
+        }
       }
     }
     &__right {
@@ -38,10 +43,13 @@
     justify-content: flex-start;
     align-items: center;
     width: 80%;
-    margin: 3rem 0;
+    margin: 2.5rem 0;
     p {
       font-size: $mediumTextSize;
       font-weight: $fontBold;
+      span {
+        font-weight: 400;
+      }
     }
   }
   &__message {
@@ -50,17 +58,24 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 80%;
+    margin-right: 2rem;
+    color: #3d79af;
     p {
       font-size: $mediumTextSize;
       font-weight: $fontBold;
-      padding: 1rem 0;
+      padding: 1rem 1rem;
     }
     &__content {
+      overflow-y: auto;
+      height: 300px;
       height: 340px;
       width: 100%;
       border-radius: 0.5rem;
       border: 1px solid #3d79af;
       background-color: $colorText-3;
+      padding: 1rem;
+      font-size: $mediumTextSize;
+      text-align: left;
     }
   }
 }
