@@ -5,11 +5,11 @@ const aboutNumbers = [
   },
   {
     number: 14,
-    text: 'Heures d&#039activités hebdomadaire',
+    text: "Heures d'activités hebdomadaire",
   },
   {
     number: 25,
-    text: 'Partenaires d&#039activités',
+    text: "Partenaires d'activités",
   },
   {
     number: 12,
