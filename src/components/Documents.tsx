@@ -15,6 +15,7 @@ export interface DocumentsMenuProps {
   setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
   currentDocument: IDocument;
   setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
+  setCurrentMenu: React.Dispatch<React.SetStateAction<ILinkedDocument[]>>;
 }
 
 export interface DocumentsCardProps {
@@ -22,6 +23,7 @@ export interface DocumentsCardProps {
   setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
   currentDocument: IDocument;
   setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
+  currentMenu: ILinkedDocument[];
 }
 
 const Documents = () => {
@@ -74,18 +76,21 @@ const Documents = () => {
     isTrashed: 0,
   });
   const [currentMenu, setCurrentMenu] = useState<ILinkedDocument[]>([]);
+
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
 
   useEffect(() => {
     let urls = [
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
       `https://wild-pocli.herokuapp.com/api/documents`,
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
     ];
 
     getAllDataWithCredential(urls)
       .then((res) => {
         setLinkedDocumentsByFamily(res[0].data);
         setDocuments(res[1].data);
+        setFamilyMembers(res[2].data);
       })
       .catch((err) => {
         console.error(err);
@@ -132,10 +137,17 @@ const Documents = () => {
               setSelectedDocument={setSelectedDocument}
               currentDocument={currentDocument}
               setCurrentDocument={setCurrentDocument}
+              setCurrentMenu={setCurrentMenu}
             />
           </div>
           <div className="documentsContainer__content__right">
-            <DocumentsCard />
+            <DocumentsCard
+              setSelectedDocument={setSelectedDocument}
+              selectedDocument={selectedDocument}
+              currentDocument={currentDocument}
+              setCurrentDocument={setCurrentDocument}
+              currentMenu={currentMenu}
+            />
           </div>
         </div>
       </div>

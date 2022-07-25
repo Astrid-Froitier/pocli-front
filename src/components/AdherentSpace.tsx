@@ -9,7 +9,6 @@ import ModalAdherent from './ModalAdherent';
 import dateNowToDate from '../../helpers/dateNowToDate';
 import compareDates from '../../helpers/compareDates';
 import { todaysDateLower } from '../../helpers/transformDate';
-import IEvent from '../interfaces/IEvent';
 
 const AdherentSpace = () => {
   const {
@@ -35,11 +34,11 @@ const AdherentSpace = () => {
     familyMemberEvents,
     setFamilyMemberEvents,
     logout,
+    cardSelected,
   } = useContext(CurrentUserContext);
 
-  const { events, setEvents } = useContext(CurrentDataContext);
+  const { events, setEvents, setDocuments } = useContext(CurrentDataContext);
 
-  const { setDocuments } = useContext(CurrentDataContext);
   const d = new Date(Date.now());
 
   useEffect(() => {
@@ -111,13 +110,6 @@ const AdherentSpace = () => {
   }, []);
 
   useEffect(() => {
-    events[0].id !== 0 &&
-      events
-        .filter((event) => compareDates(dateNowToDate(d), event.date))
-        .map((event, index) => event && setNewEvents(index + 1));
-  }, [events]);
-
-  useEffect(() => {
     communicationMembersByFamily
       .filter((com) => !com.isOpened)
       .map((com, index) => com && setUnreadMessages(index + 1));
@@ -130,16 +122,24 @@ const AdherentSpace = () => {
     }
   }, [modalOnOff]);
 
-const allFamilyMembersEvents = familyMembers.flatMap((familyMember)=> familyMemberEvents.filter((familyMemberEvent)=> familyMemberEvent.idFamilyMember === familyMember.id))
+  const allFamilyMembersEvents = familyMembers.flatMap((familyMember) =>
+    familyMemberEvents.filter(
+      (familyMemberEvent) => familyMemberEvent.idFamilyMember === familyMember.id,
+    ),
+  );
 
-const allUpcomingEvents = events.filter((event)=>todaysDateLower(event.date))
+  const allUpcomingEvents = events.filter((event) => todaysDateLower(event.date));
 
-const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap((allFamilyMembersEvent)=>allUpcomingEvents.filter((allUpcomingEvent)=> allUpcomingEvent.id === allFamilyMembersEvent.idEvent))
+  const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap(
+    (allFamilyMembersEvent) =>
+      allUpcomingEvents.filter(
+        (allUpcomingEvent) => allUpcomingEvent.id === allFamilyMembersEvent.idEvent,
+      ),
+  );
 
-const uniqueItems = [...new Set(allFamilyMembersUpcomingEvents)]
+  const uniqueItems = [...new Set(allFamilyMembersUpcomingEvents)];
 
-console.log(uniqueItems);
-
+  console.log(uniqueItems);
 
   return (
     <>
@@ -161,7 +161,13 @@ console.log(uniqueItems);
             <h1>Tableau de bord</h1>
             <NavLink to="/my-events">
               <p>
-                Mes évènements - <span>{allFamilyMembersUpcomingEvents.length > 1 ? `${allFamilyMembersUpcomingEvents.length} participations`: `${allFamilyMembersUpcomingEvents.length} participation`}</span> à venir
+                Mes évènements -{' '}
+                <span>
+                  {allFamilyMembersUpcomingEvents.length > 1
+                    ? `${allFamilyMembersUpcomingEvents.length} participations`
+                    : `${allFamilyMembersUpcomingEvents.length} participation`}
+                </span>{' '}
+                à venir
               </p>
             </NavLink>
             <NavLink to="/my-messaging">

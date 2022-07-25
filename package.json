@@ -22,7 +22,8 @@
     "react-hook-form": "^7.32.2",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.2.1",
-    "sass": "^1.52.1"
+    "sass": "^1.52.1",
+    "@fancyapps/ui": "4.0.0-beta.3"
   },
   "devDependencies": {
     "@types/react": "^17.0.14",
