@@ -6,8 +6,7 @@ import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
-import dateNowToDate from '../../helpers/dateNowToDate';
-import compareDates from '../../helpers/compareDates';
+
 import { todaysDateLower } from '../../helpers/transformDate';
 
 const AdherentSpace = () => {
@@ -29,7 +28,7 @@ const AdherentSpace = () => {
     setCommunicationMembersByFamily,
     // communications,
     setCommunications,
-    // linkedDocumentsByFamily,
+    linkedDocumentsByFamily,
     setLinkedDocumentsByFamily,
     familyMemberEvents,
     setFamilyMemberEvents,
@@ -174,7 +173,11 @@ const AdherentSpace = () => {
             </NavLink>
             <NavLink to="/my-documents">
               <p>
-                Mes documents - <span>0</span> non lu(s)
+                Mes documents -{' '}
+                <span>
+                  {linkedDocumentsByFamily.filter((doc) => !doc.isOpened).length}
+                </span>{' '}
+                non lu(s)
               </p>
             </NavLink>
           </div>

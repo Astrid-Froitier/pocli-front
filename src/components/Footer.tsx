@@ -42,7 +42,9 @@ const Footer = () => {
         </div>
         <div className="footerContainer__footerLinks__logo">
           <h4>Retrouvez nous sur:</h4>
-          <Icon name="facebook" width="50px" height="40px" color="white" />
+          <a href="https://www.facebook.com/Pocli-250879415353500/?ti=as" target="_blank">
+            <Icon name="facebook" width="50px" height="40px" color="white" />
+          </a>
         </div>
       </div>
 

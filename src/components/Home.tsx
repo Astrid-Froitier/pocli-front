@@ -38,7 +38,6 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     width: '400px',
     '& .MuiOutlinedInput-input': {
       fontSize: '20px',
-      
     },
     '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
       {
@@ -185,7 +184,9 @@ const Home = () => {
             withCredentials: true,
           },
         );
-        setEmailSended('Votre demande d\'abonnement à notre newsletter a bien été prise en compte.')
+        setEmailSended(
+          "Votre demande d'abonnement à notre newsletter a bien été prise en compte.",
+        );
       } catch (err) {
         // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
         if (axios.isAxiosError(err)) {
@@ -282,16 +283,12 @@ const Home = () => {
               ))}
             </div>
             <div className="homeContainer__about__text">
-              <h1>PoCLi, c’est [accroche]</h1>
-              <p>Description succincte...</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
-                libero ipsa
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
-                libero ipsa
-              </p>
+              <h1>La recette de PoCLi </h1>
+              <p>Une louche de bienveillance</p>
+              <p>Une bonne dose de dynamisme</p>
+              <p>Un chaudron d&apos;idées</p>
+              <p>Le tout arrosé de convivialité</p>
+              <p>A servir avec le sourire</p>
               <div className="homeContainer__about__text__button">
                 <Button text="QUI SOMMES-NOUS ?" link="/about" />
               </div>
@@ -317,39 +314,43 @@ const Home = () => {
         <div className="homeContainer__newsletter">
           <div className="homeContainer__newsletter__box">
             <img src="assets/pocli.png" alt="pocli" />
-          <span>Vous pouvez suivre nos actualités en vous abonnant à notre newsletter</span>
+            <span>
+              Vous pouvez suivre nos actualités en vous abonnant à notre newsletter
+            </span>
             <div className="homeContainer__newsletter__box__form">
-              {!emailSended && <form
-                onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-                  newsletter(e);
-                }}>
-                <div className="homeContainer__newsletter__box__form__email">
-                  <StyledTextField
-                    error={errorEmailNewsletter ? true : false}
-                    required
-                    id="outlined-required"
-                    label="Email"
-                    value={emailNewsletter}
-                    onChange={handleChangeNewsletter}
-                    InputProps={{
-                      style: {
-                        fontFamily: 'Karla, sans-serif',
-                        fontWeight: 800,
-                      },
-                    }}
-                    InputLabelProps={{
-                      style: {
-                        fontFamily: 'Karla, sans-serif',
-                        fontWeight: 800,
-                      },
-                    }}
-                  />
-                  {errorEmailNewsletter && <p>{errorEmailNewsletter}</p>}
-                </div>
-                <button>
-                  <Button text="ENVOYER" />
-                </button>
-              </form>}
+              {!emailSended && (
+                <form
+                  onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                    newsletter(e);
+                  }}>
+                  <div className="homeContainer__newsletter__box__form__email">
+                    <StyledTextField
+                      error={errorEmailNewsletter ? true : false}
+                      required
+                      id="outlined-required"
+                      label="Email"
+                      value={emailNewsletter}
+                      onChange={handleChangeNewsletter}
+                      InputProps={{
+                        style: {
+                          fontFamily: 'Karla, sans-serif',
+                          fontWeight: 800,
+                        },
+                      }}
+                      InputLabelProps={{
+                        style: {
+                          fontFamily: 'Karla, sans-serif',
+                          fontWeight: 800,
+                        },
+                      }}
+                    />
+                    {errorEmailNewsletter && <p>{errorEmailNewsletter}</p>}
+                  </div>
+                  <button>
+                    <Button text="ENVOYER" />
+                  </button>
+                </form>
+              )}
             </div>
             {emailSended && <p>{emailSended}</p>}
           </div>
