@@ -6,9 +6,9 @@ import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
-import dateNowToDate from '../../helpers/dateNowToDate';
-import compareDates from '../../helpers/compareDates';
+
 import { todaysDateLower } from '../../helpers/transformDate';
+import IEvent from '../interfaces/IEvent';
 
 const AdherentSpace = () => {
   const {
@@ -29,17 +29,15 @@ const AdherentSpace = () => {
     setCommunicationMembersByFamily,
     // communications,
     setCommunications,
-    // linkedDocumentsByFamily,
+    linkedDocumentsByFamily,
     setLinkedDocumentsByFamily,
     familyMemberEvents,
     setFamilyMemberEvents,
     logout,
-    cardSelected,
+    cardSelected
   } = useContext(CurrentUserContext);
 
   const { events, setEvents, setDocuments } = useContext(CurrentDataContext);
-
-  const d = new Date(Date.now());
 
   useEffect(() => {
     let urls = [
@@ -81,7 +79,7 @@ const AdherentSpace = () => {
   const [modalAdherentInfo, setModalAdherentInfo] = useState<boolean>(false);
   const [modalAdherentPwd, setModalAdherentPwd] = useState<boolean>(false);
   const [unreadMessages, setUnreadMessages] = useState<number>(0);
-  const [newEvents, setNewEvents] = useState<number>(0);
+  const [newEvents, setNewEvents] = useState<IEvent[]>([]);
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -110,6 +108,17 @@ const AdherentSpace = () => {
   }, []);
 
   useEffect(() => {
+    const allFamilyMembersEvents = familyMembers.flatMap((familyMember)=> familyMemberEvents.filter((familyMemberEvent)=> familyMemberEvent.idFamilyMember === familyMember.id))
+
+    const allUpcomingEvents = events.filter((event)=>todaysDateLower(event.date))
+    
+    const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap((allFamilyMembersEvent)=>allUpcomingEvents.filter((allUpcomingEvent)=> allUpcomingEvent.id === allFamilyMembersEvent.idEvent))
+  
+    setNewEvents([...new Set(allFamilyMembersUpcomingEvents)])
+
+  }, [events]);
+
+  useEffect(() => {
     communicationMembersByFamily
       .filter((com) => !com.isOpened)
       .map((com, index) => com && setUnreadMessages(index + 1));
@@ -122,31 +131,15 @@ const AdherentSpace = () => {
     }
   }, [modalOnOff]);
 
-  const allFamilyMembersEvents = familyMembers.flatMap((familyMember) =>
-    familyMemberEvents.filter(
-      (familyMemberEvent) => familyMemberEvent.idFamilyMember === familyMember.id,
-    ),
-  );
-
-  const allUpcomingEvents = events.filter((event) => todaysDateLower(event.date));
-
-  const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap(
-    (allFamilyMembersEvent) =>
-      allUpcomingEvents.filter(
-        (allUpcomingEvent) => allUpcomingEvent.id === allFamilyMembersEvent.idEvent,
-      ),
-  );
-
-  const uniqueItems = [...new Set(allFamilyMembersUpcomingEvents)];
-
-  console.log(uniqueItems);
-
   return (
     <>
+
       <div>
         <div className="adherentSpanceBanner">
           <h1>Mon espace adhérent</h1>
         </div>
+
+      <div className={`adherentSpaceContainer ${modalOnOff}`}>
         <Banner
           nameBannerActivity=""
           title="Mon espace adhérent"
@@ -156,18 +149,12 @@ const AdherentSpace = () => {
           bannerEvent={false}
           bannerMember={true}
         />
-        <div className={`adherentSpaceContainer ${modalOnOff}`}>
-          <div className="adherentSpaceContainer__left">
+        <div className="adherentSpaceContainer__box">
+          <div className="adherentSpaceContainer__box__left">
             <h1>Tableau de bord</h1>
             <NavLink to="/my-events">
               <p>
-                Mes évènements -{' '}
-                <span>
-                  {allFamilyMembersUpcomingEvents.length > 1
-                    ? `${allFamilyMembersUpcomingEvents.length} participations`
-                    : `${allFamilyMembersUpcomingEvents.length} participation`}
-                </span>{' '}
-                à venir
+                Mes évènements - <span>{newEvents.length}</span> à venir
               </p>
             </NavLink>
             <NavLink to="/my-messaging">
@@ -177,11 +164,15 @@ const AdherentSpace = () => {
             </NavLink>
             <NavLink to="/my-documents">
               <p>
-                Mes documents - <span>0</span> non lu(s)
+                Mes documents -{' '}
+                <span>
+                  {linkedDocumentsByFamily.filter((doc) => !doc.isOpened).length}
+                </span>{' '}
+                non lu(s)
               </p>
             </NavLink>
           </div>
-          <div className="adherentSpaceContainer__right">
+          <div className="adherentSpaceContainer__box__right">
             <h1>Mon compte</h1>
             <span
               onKeyDown={handleClickInfo}
@@ -200,7 +191,7 @@ const AdherentSpace = () => {
             </span>
 
             <NavLink to="/contact">
-              <p>Nous contacter</p>
+              <p>J'ai une question</p>
             </NavLink>
             <span
               onKeyDown={handleLogout}
@@ -214,10 +205,6 @@ const AdherentSpace = () => {
       </div>
       {modalOnOff && (
         <ModalAdherent
-          setModalAdherentInfo={setModalAdherentInfo}
-          setModalAdherentPwd={setModalAdherentPwd}
-          modalAdherentInfo={modalAdherentInfo}
-          modalAdherentPwd={modalAdherentPwd}
           setModalOnOff={setModalOnOff}
         />
       )}

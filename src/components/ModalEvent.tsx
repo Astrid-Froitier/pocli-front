@@ -4,12 +4,12 @@ import IEvent from '../interfaces/IEvent';
 import EventCard from './EventCard';
 import Icon from './Icon';
 
-interface BannerProps {
+interface ModalEventProps {
   event: IEvent;
   setModalOnOff: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ModalEvent = ({ event, setModalOnOff }: BannerProps) => {
+const ModalEvent = ({ event, setModalOnOff }: ModalEventProps) => {
   // useEffect permettant de libérer le scroll sur Y lorsque le composant se démonte (en cas de changement de page avec la modale ouverte)
   useEffect(() => {
     return () => {

@@ -1,78 +1,81 @@
 .adherentSpaceContainer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  margin: $marginBoxTopAndBottom;
+
   &.modal {
     filter: blur(4px);
   }
-  &__left {
+  &__box{
     display: flex;
-    flex-direction: column;
-    width: 450px;
-    padding-right: 64px;
-    a {
-      width: fit-content;
-    }
-    p {
-      margin-bottom: 1rem;
-      width: fit-content;
-      cursor: pointer;
-      span {
-        font-weight: $fontBold;
-      }
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-    h1 {
-      margin: 0 0 2rem 0;
-      font-size: $titleSize;
-    }
-  }
-  &__right {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border-left: 1px solid $colorText-2;
-    padding-left: 65px;
-    height: 100%;
-    width: 450px;
-    p {
-      margin-left: 140px;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
+    width: 100%;
+    margin: $marginBoxTopAndBottom;
+    &__left {
+      display: flex;
+      flex-direction: column;
+      width: 450px;
+      padding-right: 64px;
+      a {
+        width: fit-content;
+      }
+      p {
+        margin-bottom: 1rem;
+        width: fit-content;
+        cursor: pointer;
+        span {
+          font-weight: $fontBold;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      h1 {
+        margin: 0 0 2rem 0;
+        font-size: $titleSize;
       }
     }
-    span {
-      margin-left: 140px;
-      margin-bottom: 1rem;
-      font-size: $textSize;
-      color: $colorText-2;
-      font-weight: $fontRegular;
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
+    &__right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      border-left: 1px solid $colorText-2;
+      padding-left: 65px;
+      height: 100%;
+      width: 450px;
+      p {
+        margin-left: 140px;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
-    }
-    a {
-      &:nth-child(4) {
-        padding-bottom: 3rem;
+      span {
+        margin-left: 140px;
+        margin-bottom: 1rem;
+        font-size: $textSize;
+        color: $colorText-2;
+        font-weight: $fontRegular;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
-    }
-    h1 {
-      margin: 0 0 2rem 140px;
-      font-size: $titleSize;
-    }
-    &__disconnection {
-      margin-top: 3rem;
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
+      a {
+        &:nth-child(4) {
+          padding-bottom: 3rem;
+        }
+      }
+      h1 {
+        margin: 0 0 2rem 140px;
+        font-size: $titleSize;
+      }
+      &__disconnection {
+        margin-top: 3rem;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
