@@ -18,6 +18,7 @@ import ModalEvent from './ModalEvent';
 import PartnersList from './PartnersList';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
+import dateNowToDate from '../../helpers/dateNowToDate';
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   [theme.breakpoints.down(500)]: {
@@ -129,7 +130,7 @@ const Home = () => {
   // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
   useEffect(() => {
     let urls = [
-      'https://wild-pocli.herokuapp.com/api/events',
+      'https://wild-pocli.herokuapp.com/api/events?sort="date,DESC"',
       'https://wild-pocli.herokuapp.com/api/postTypes',
       'https://wild-pocli.herokuapp.com/api/activities',
       'https://wild-pocli.herokuapp.com/api/documents',
