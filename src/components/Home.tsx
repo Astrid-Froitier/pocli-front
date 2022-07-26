@@ -284,16 +284,12 @@ const Home = () => {
               ))}
             </div>
             <div className="homeContainer__about__text">
-              <h1>PoCLi, c’est [accroche]</h1>
-              <p>Description succincte...</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
-                libero ipsa
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non perferendis
-                libero ipsa
-              </p>
+              <h1>La recette de PoCLi </h1>
+              <p>Une louche de bienveillance</p>
+              <p>Une bonne dose de dynamisme</p>
+              <p>Un chaudron d&apos;idées</p>
+              <p>Le tout arrosé de convivialité</p>
+              <p>A servir avec le sourire</p>
               <div className="homeContainer__about__text__button">
                 <Button text="QUI SOMMES-NOUS ?" link="/about" />
               </div>

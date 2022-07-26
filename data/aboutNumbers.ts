@@ -1,19 +1,19 @@
 const aboutNumbers = [
   {
-    number: 10,
-    text: 'Text chiffre clé',
+    number: 90,
+    text: 'Familles adhérentes',
   },
   {
-    number: 10,
-    text: 'Text chiffre clé',
+    number: 14,
+    text: "Heures d'activités hebdomadaire",
   },
   {
-    number: 10,
-    text: 'Text chiffre clé',
+    number: 25,
+    text: "Partenaires d'activités",
   },
   {
-    number: 10,
-    text: 'Text chiffre clé',
+    number: 12,
+    text: 'Partenaires financiers',
   },
 ];
 

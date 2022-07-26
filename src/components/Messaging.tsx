@@ -10,24 +10,6 @@ import ComeBackHome from './ComeBackHome';
 import MessagingCard from './MessagingCard';
 import MessagingMenu from './MessagingMenu';
 
-export interface MessageMenuProps {
-  selectedMessage: ICommunicationMember;
-  setSelectedMessage: React.Dispatch<React.SetStateAction<ICommunicationMember>>;
-  selectedMenu: number;
-  setSelectedMenu: React.Dispatch<React.SetStateAction<number>>;
-  currentCommunication: ICommunication;
-  setCurrentCommunication: React.Dispatch<React.SetStateAction<ICommunication>>;
-  setCurrentMenu: React.Dispatch<React.SetStateAction<ICommunicationMember[]>>;
-}
-
-export interface MessageCardProps {
-  selectedMessage: ICommunicationMember;
-  setSelectedMessage: React.Dispatch<React.SetStateAction<ICommunicationMember>>;
-  currentCommunication: ICommunication;
-  setCurrentCommunication: React.Dispatch<React.SetStateAction<ICommunication>>;
-  currentMenu: ICommunicationMember[];
-}
-
 const Messaging = () => {
   const [currentCommunication, setCurrentCommunication] = useState<ICommunication>({
     id: 0,
@@ -86,6 +68,9 @@ const Messaging = () => {
 
   return (
     <div>
+      <div className="messagingBanner">
+        <h1>Ma messagerie</h1>
+      </div>
       <Banner
         nameBannerActivity=""
         title="Ma messagerie"
