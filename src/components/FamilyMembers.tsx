@@ -8,7 +8,7 @@ interface FamilyMembersProps {
   filter?: boolean;
 }
 
-const FamilyMembers = ({filter = true}:FamilyMembersProps) => {
+const FamilyMembers = ({ filter = true }: FamilyMembersProps) => {
   const { familyMembers, cardSelected, setCardSelected } = useContext(CurrentUserContext);
   const { documents } = useContext(CurrentDataContext);
 
@@ -45,11 +45,23 @@ const FamilyMembers = ({filter = true}:FamilyMembersProps) => {
                 className="familyMembers__card__name__square"
                 onClick={() => selectMember(index)}
                 aria-hidden="true">
-                {cardSelected[index] ? filter && (
-                  <Icon name="square-check" width="20px" height="20px" color="white" />
-                ) : filter && (
-                  <Icon name="square-nocheck" width="20px" height="20px" color="white" />
-                )}
+                {cardSelected[index]
+                  ? filter && (
+                      <Icon
+                        name="square-check"
+                        width="20px"
+                        height="20px"
+                        color="white"
+                      />
+                    )
+                  : filter && (
+                      <Icon
+                        name="square-nocheck"
+                        width="20px"
+                        height="20px"
+                        color="white"
+                      />
+                    )}
               </div>
             </div>
           </div>

@@ -59,7 +59,7 @@ const Banner = ({
         )}
         {bannerMember && (
           <div className="box__members">
-            <FamilyMembers filter={memberFilter}/>
+            <FamilyMembers filter={memberFilter} />
           </div>
         )}
       </div>

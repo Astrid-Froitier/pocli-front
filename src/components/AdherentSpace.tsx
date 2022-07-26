@@ -36,7 +36,7 @@ const AdherentSpace = () => {
     cardSelected
   } = useContext(CurrentUserContext);
 
-  const { events, setEvents, setDocuments } = useContext(CurrentDataContext);
+  const { events, setEvents, setDocuments, setActivities } = useContext(CurrentDataContext);
 
   useEffect(() => {
     let urls = [
@@ -52,6 +52,7 @@ const AdherentSpace = () => {
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
       `https://wild-pocli.herokuapp.com/api/documents`,
       `https://wild-pocli.herokuapp.com/api/events`,
+      `https://wild-pocli.herokuapp.com/api/activities`,
     ];
 
     getAllDataWithCredential(urls)
@@ -68,6 +69,7 @@ const AdherentSpace = () => {
         setFamilyMemberEvents(res[9].data);
         setDocuments(res[10].data);
         setEvents(res[11].data);
+        setActivities(res[12].data);
       })
       .catch((err) => {
         console.error(err);
@@ -84,11 +86,11 @@ const AdherentSpace = () => {
 
   // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
   const handleClickInfo = () => {
-    setModalAdherentInfo(!modalAdherentInfo);
+    setModalAdherentInfo(true);
     setModalOnOff('modal');
   };
   const handleClickPwd = () => {
-    setModalAdherentPwd(!modalAdherentPwd);
+    setModalAdherentPwd(true);
     setModalOnOff('modal');
   };
 
@@ -129,6 +131,11 @@ const AdherentSpace = () => {
       modalOnOff && document.documentElement.style.setProperty('overflow-y', 'hidden');
     }
   }, [modalOnOff]);
+
+  console.log(modalAdherentInfo);
+  console.log(modalAdherentPwd);
+  
+  
 
   return (
     <>
@@ -195,6 +202,10 @@ const AdherentSpace = () => {
       {modalOnOff && (
         <ModalAdherent
           setModalOnOff={setModalOnOff}
+          modalAdherentInfo={modalAdherentInfo}
+          modalAdherentPwd={modalAdherentPwd}
+          setModalAdherentInfo={setModalAdherentInfo}
+          setModalAdherentPwd={setModalAdherentPwd}
         />
       )}
     </>

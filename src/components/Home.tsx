@@ -1,3 +1,5 @@
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -6,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 import aboutNumbers from '../../data/aboutNumbers';
 import { navLinks_bottom } from '../../data/links';
 import { getAllDataWithoutCredential } from '../../helpers/axios';
+import dateNowToDate from '../../helpers/dateNowToDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import INewsletter from '../interfaces/INewsletter';
@@ -16,9 +19,6 @@ import EventCard from './EventCard';
 import Icon from './Icon';
 import ModalEvent from './ModalEvent';
 import PartnersList from './PartnersList';
-import TextField from '@mui/material/TextField';
-import { styled } from '@mui/material/styles';
-import dateNowToDate from '../../helpers/dateNowToDate';
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   [theme.breakpoints.down(500)]: {
@@ -39,7 +39,6 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     width: '400px',
     '& .MuiOutlinedInput-input': {
       fontSize: '20px',
-      
     },
     '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
       {
@@ -186,7 +185,9 @@ const Home = () => {
             withCredentials: true,
           },
         );
-        setEmailSended('Votre demande d\'abonnement à notre newsletter a bien été prise en compte.')
+        setEmailSended(
+          "Votre demande d'abonnement à notre newsletter a bien été prise en compte.",
+        );
       } catch (err) {
         // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
         if (axios.isAxiosError(err)) {
@@ -318,39 +319,43 @@ const Home = () => {
         <div className="homeContainer__newsletter">
           <div className="homeContainer__newsletter__box">
             <img src="assets/pocli.png" alt="pocli" />
-          <span>Vous pouvez suivre nos actualités en vous abonnant à notre newsletter</span>
+            <span>
+              Vous pouvez suivre nos actualités en vous abonnant à notre newsletter
+            </span>
             <div className="homeContainer__newsletter__box__form">
-              {!emailSended && <form
-                onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-                  newsletter(e);
-                }}>
-                <div className="homeContainer__newsletter__box__form__email">
-                  <StyledTextField
-                    error={errorEmailNewsletter ? true : false}
-                    required
-                    id="outlined-required"
-                    label="Email"
-                    value={emailNewsletter}
-                    onChange={handleChangeNewsletter}
-                    InputProps={{
-                      style: {
-                        fontFamily: 'Karla, sans-serif',
-                        fontWeight: 800,
-                      },
-                    }}
-                    InputLabelProps={{
-                      style: {
-                        fontFamily: 'Karla, sans-serif',
-                        fontWeight: 800,
-                      },
-                    }}
-                  />
-                  {errorEmailNewsletter && <p>{errorEmailNewsletter}</p>}
-                </div>
-                <button>
-                  <Button text="ENVOYER" />
-                </button>
-              </form>}
+              {!emailSended && (
+                <form
+                  onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                    newsletter(e);
+                  }}>
+                  <div className="homeContainer__newsletter__box__form__email">
+                    <StyledTextField
+                      error={errorEmailNewsletter ? true : false}
+                      required
+                      id="outlined-required"
+                      label="Email"
+                      value={emailNewsletter}
+                      onChange={handleChangeNewsletter}
+                      InputProps={{
+                        style: {
+                          fontFamily: 'Karla, sans-serif',
+                          fontWeight: 800,
+                        },
+                      }}
+                      InputLabelProps={{
+                        style: {
+                          fontFamily: 'Karla, sans-serif',
+                          fontWeight: 800,
+                        },
+                      }}
+                    />
+                    {errorEmailNewsletter && <p>{errorEmailNewsletter}</p>}
+                  </div>
+                  <button>
+                    <Button text="ENVOYER" />
+                  </button>
+                </form>
+              )}
             </div>
             {emailSended && <p>{emailSended}</p>}
           </div>
