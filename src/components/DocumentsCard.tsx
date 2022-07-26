@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+
 import IDocument from '../interfaces/IDocument';
 import ILinkedDocument from '../interfaces/ILinkedDocument';
-import Icon from './Icon';
 import Fancybox from './Fancybox';
+import Icon from './Icon';
 
 interface DocumentsCardProps {
   selectedDocument: ILinkedDocument;

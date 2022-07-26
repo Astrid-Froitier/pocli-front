@@ -70,3 +70,23 @@
     }
   }
 }
+
+@media screen and (max-width: 400px) {
+  .loginContainer {
+    &__left {
+      width: 90%;
+    }
+    &__right {
+      width: 90%;
+      // padding: 0 10px;
+
+      h1 {
+        font-size: $resTitleSize4;
+      }
+      p {
+        font-size: $resTextSize4;
+        text-align: justify;
+      }
+    }
+  }
+}

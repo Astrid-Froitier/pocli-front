@@ -133,6 +133,12 @@ const AdherentSpace = () => {
 
   return (
     <>
+
+      <div>
+        <div className="adherentSpanceBanner">
+          <h1>Mon espace adhérent</h1>
+        </div>
+
       <div className={`adherentSpaceContainer ${modalOnOff}`}>
         <Banner
           nameBannerActivity=""

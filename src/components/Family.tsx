@@ -10,6 +10,10 @@ const Family = () => {
   }, []);
   return (
     <div>
+      <div className="familyBanner">
+        <h1 className="familyBanner__title">Activités physiques et de Bien-Être</h1>
+        <Icon name="users" color="#fff" width="40px" height="40px" />
+      </div>
       <Banner
         nameBannerActivity="activity family"
         title="Famille - Parentalité"

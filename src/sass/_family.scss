@@ -110,7 +110,36 @@
     }
   }
 }
+
+@media screen and (min-width: 700pxs) {
+  .familyBanner {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 700px) {
+  .familyBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #3373c7;
+    opacity: 60%;
+    height: 150px;
+    color: $colorText-3;
+    gap: 8px;
+
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      width: 300px;
+      display: flex;
+      text-align: center;
+    }
+    .icon {
+      width: 40px;
+    }
+  }
   .familyContainer {
     &__workshop {
       &__pictures {
@@ -126,10 +155,10 @@
 @media screen and (max-width: 400px) {
   .familyContainer {
     h1 {
-      font-size: 28px;
+      font-size: $resTitleSize4;
     }
     p {
-      font-size: 16px;
+      font-size: $resTextSize4;
     }
     &__workshop {
       &__pictures {
@@ -141,7 +170,7 @@
     &__parentsThemes {
       ul {
         li {
-          font-size: 16px;
+          font-size: $resTextSize4;
           margin-bottom: 2%;
         }
       }
