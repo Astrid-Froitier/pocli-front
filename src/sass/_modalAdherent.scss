@@ -23,7 +23,7 @@
     top: calc(50% + 75px);
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $backGround-2;
+    background-color: $colorText-3;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
     border-radius: 20px;
     overflow-y: scroll;
@@ -53,11 +53,19 @@
           }
         }
         span.active {
-          color: $colorText-2;
+          color: $colorText-3;
           margin: 0 10px;
           padding: 10px 15px;
           font-weight: $fontExtraBold;
           background-color: rgb(181, 232, 181);
+          border-radius: 10px;
+        }
+        span.inactive {
+          color: $colorText-3;
+          margin: 0 10px;
+          padding: 10px 15px;
+          font-weight: $fontExtraBold;
+          background-color: rgb(232, 181, 181);
           border-radius: 10px;
         }
       }
@@ -92,7 +100,7 @@
               margin: 5px 30px;
             }
             .family {
-              border: 1px solid $backGround-1;
+              background-color: $blueLightPocli;
               border-radius: 20px;
             }
             .physical {
@@ -150,7 +158,7 @@
       justify-content: center;
       align-items: center;
       &__login{
-        width: 70%;
+        width: 50%;
       }
       &__change{
         display: flex;

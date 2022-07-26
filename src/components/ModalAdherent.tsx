@@ -376,7 +376,7 @@ const ModalAdherent = ({
                 onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
                   changePassword(e);
                 }}>
-                  <h1>Entrez votre nouveau mot de passe</h1>
+                <h1>Entrez votre nouveau mot de passe</h1>
                 <StyledFormControl sx={{ width: '350px' }} variant="outlined">
                   <InputLabel
                     htmlFor="outlined-adornment-password"
@@ -419,17 +419,24 @@ const ModalAdherent = ({
                     label="Mot de passe"
                   />
                 </StyledFormControl>
-                <div className="modalAdherent__box__change-my-password__change__error">{errorNewPassword && <p>{errorNewPassword}</p>}</div>
+                <div className="modalAdherent__box__change-my-password__change__error">
+                  {errorNewPassword && <p>{errorNewPassword}</p>}
+                </div>
                 <div className="modalAdherent__box__change-my-password__change__submit">
-                <button
-                  type="submit"
-                  className="modalAdherent__box__change-my-password__change__submit__button">
-                  <Icon name="arrow-right" width="40px" height="40px" color="white" />
-                </button>
+                  <button
+                    type="submit"
+                    className="modalAdherent__box__change-my-password__change__submit__button">
+                    <Icon name="arrow-right" width="40px" height="40px" color="white" />
+                  </button>
                 </div>
               </form>
             )}
-            {passwordChanged && <div className="modalAdherent__box__change-my-password__pwd-changed"><h1>Votre mot de passe a bien été changé !</h1><Icon name={'square-check'} width={'80px'} color={'#3d79af'} /></div>}
+            {passwordChanged && (
+              <div className="modalAdherent__box__change-my-password__pwd-changed">
+                <h1>Votre mot de passe a bien été changé !</h1>
+                <Icon name={'square-check'} width={'80px'} color={'#3d79af'} />
+              </div>
+            )}
           </div>
         )}
       </div>
