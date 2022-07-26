@@ -190,7 +190,7 @@ const LoginCard = () => {
     try {
       e.preventDefault();
       const { data } = await axios.post<IUserInfos>(
-        'http://localhost:3001/api/login',
+        'http://localhost:3002/api/login',
         { email, password },
         {
           method: 'POST',
