@@ -87,7 +87,7 @@ const DocumentsMenu = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ILinkedDocument>(
-        `http://localhost:3002/api/linkedDocuments/${idCommunication}`,
+        `http://localhost:3001/api/linkedDocuments/${idCommunication}`,
         dataOpened,
         {
           method: 'PUT',

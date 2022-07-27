@@ -37,7 +37,7 @@ const MessagingCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ICommunicationMember>(
-        `http://localhost:3002/api/communicationMembers/${idCommunication}`,
+        `http://localhost:3001/api/communicationMembers/${idCommunication}`,
         dataTrash,
         {
           method: 'PUT',
@@ -66,7 +66,7 @@ const MessagingCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.delete<ICommunicationMember>(
-        `http://localhost:3002/api/communicationMembers/${idCommunication}`,
+        `http://localhost:3001/api/communicationMembers/${idCommunication}`,
         {
           method: 'DELETE',
           headers: {

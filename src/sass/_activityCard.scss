@@ -140,6 +140,10 @@
   .activityCard {
     flex-direction: column;
     justify-content: space-around;
+    h2{
+      font-size: $smallTextSize;
+      margin: 0 5px;
+    }
     &__iconTop,
     &__iconBottom {
       margin: 20px;

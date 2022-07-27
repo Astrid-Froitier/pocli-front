@@ -34,10 +34,11 @@ const AdherentSpace = () => {
     familyMemberEvents,
     setFamilyMemberEvents,
     logout,
-    cardSelected
+    cardSelected,
   } = useContext(CurrentUserContext);
 
-  const { events, setEvents, setDocuments, setActivities } = useContext(CurrentDataContext);
+  const { events, setEvents, setDocuments, setActivities } =
+    useContext(CurrentDataContext);
 
   useEffect(() => {
     let urls = [
@@ -110,14 +111,22 @@ const AdherentSpace = () => {
   }, []);
 
   useEffect(() => {
-    const allFamilyMembersEvents = familyMembers.flatMap((familyMember)=> familyMemberEvents.filter((familyMemberEvent)=> familyMemberEvent.idFamilyMember === familyMember.id))
+    const allFamilyMembersEvents = familyMembers.flatMap((familyMember) =>
+      familyMemberEvents.filter(
+        (familyMemberEvent) => familyMemberEvent.idFamilyMember === familyMember.id,
+      ),
+    );
 
-    const allUpcomingEvents = events.filter((event)=>todaysDateLower(event.date))
-    
-    const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap((allFamilyMembersEvent)=>allUpcomingEvents.filter((allUpcomingEvent)=> allUpcomingEvent.id === allFamilyMembersEvent.idEvent))
-  
-    setNewEvents([...new Set(allFamilyMembersUpcomingEvents)])
+    const allUpcomingEvents = events.filter((event) => todaysDateLower(event.date));
 
+    const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap(
+      (allFamilyMembersEvent) =>
+        allUpcomingEvents.filter(
+          (allUpcomingEvent) => allUpcomingEvent.id === allFamilyMembersEvent.idEvent,
+        ),
+    );
+
+    setNewEvents([...new Set(allFamilyMembersUpcomingEvents)]);
   }, [events]);
 
   useEffect(() => {
@@ -133,18 +142,11 @@ const AdherentSpace = () => {
     }
   }, [modalOnOff]);
 
-  console.log(modalAdherentInfo);
-  console.log(modalAdherentPwd);
-  
-  
-
   return (
     <>
-
-      <div>
-        <div className="adherentSpanceBanner">
-          <h1>Mon espace adhérent</h1>
-        </div>
+      <div className="adherentSpanceBanner">
+        <h1>Mon espace adhérent</h1>
+      </div>
 
       <div className={`adherentSpaceContainer ${modalOnOff}`}>
         <Banner

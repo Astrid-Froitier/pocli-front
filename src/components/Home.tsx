@@ -244,6 +244,25 @@ const Home = () => {
                     ),
                 )}
           </div>
+          <div className="homeContainer__events__list-response">
+            {events &&
+              events
+                .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
+                .map(
+                  (event, index) =>
+                    index < 4 && (
+                      <div
+                        role="button"
+                        key={index}
+                        className="homeContainer__events__list-response__card"
+                        onClick={() => handleClick(event.id)}
+                        onKeyDown={() => handleClick(event.id)}
+                        tabIndex={0}>
+                        <EventCard event={event} />
+                      </div>
+                    ),
+                )}
+          </div>
           <Button text="TOUS LES ÉVÈNEMENTS" link="/events" />
         </div>
         {!user.id && (
