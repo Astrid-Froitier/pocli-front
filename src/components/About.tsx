@@ -11,12 +11,12 @@ const about = () => {
     window.scrollTo(0, 0);
   }, []);
 
-const { pocliMembers, setPocliMembers, setPartners } = useContext(CurrentDataContext)
+  const { pocliMembers, setPocliMembers, setPartners } = useContext(CurrentDataContext);
 
   useEffect(() => {
     let urls = [
       'https://wild-pocli.herokuapp.com/api/pocliMembers',
-      'https://wild-pocli.herokuapp.com/api/partners'
+      'https://wild-pocli.herokuapp.com/api/partners',
     ];
 
     getAllDataWithoutCredential(urls)
@@ -88,23 +88,24 @@ const { pocliMembers, setPocliMembers, setPartners } = useContext(CurrentDataCon
         </div>
         {/* balise pour rajouter directement les membres de l'association */}
         <div className="aboutContainer__associationMembers">
-          {pocliMembers && pocliMembers.map(
-            (pocliMembers, index) =>
-              pocliMembers.url && (
-                <div className="aboutContainer__associationMembers__card" key={index}>
-                  <img
-                    className="aboutContainer__associationMembers__card__img"
-                    src={pocliMembers.url}
-                    alt="Members"
-                  />
-                  <div className="aboutContainer__associationMembers__card__name">
-                    <p>{pocliMembers.firstname}</p>
-                    <p>{pocliMembers.lastname}</p>
-                    <p>{pocliMembers.function}</p>
+          {pocliMembers &&
+            pocliMembers.map(
+              (pocliMembers, index) =>
+                pocliMembers.url && (
+                  <div className="aboutContainer__associationMembers__card" key={index}>
+                    <img
+                      className="aboutContainer__associationMembers__card__img"
+                      src={pocliMembers.url}
+                      alt="Members"
+                    />
+                    <div className="aboutContainer__associationMembers__card__name">
+                      <p>{pocliMembers.firstname}</p>
+                      <p>{pocliMembers.lastname}</p>
+                      <p>{pocliMembers.function}</p>
+                    </div>
                   </div>
-                </div>
-              ),
-          )}
+                ),
+            )}
         </div>
         <div className="aboutContainer__partners">
           <PartnersList />

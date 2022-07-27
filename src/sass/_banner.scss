@@ -12,6 +12,8 @@
   h1 {
     margin-top: 30px;
     text-align: center;
+    font-size: $titleSize;
+    white-space: nowrap;
   }
   .box {
     width: $pageContentWidth;
@@ -83,6 +85,8 @@
     }
     h1 {
       color: $colorText-3;
+      font-size: $titleSize;
+      white-space: nowrap;
     }
     .box {
       .icon {
@@ -180,22 +184,6 @@
     display: none;
     h1 {
       font-size: 20px;
-    }
-  }
-}
-
-@media screen and (min-width: 700px) {
-  .banner {
-    .box {
-      overflow-y: scroll;
-    }
-    h1 {
-      color: $colorText-2;
-      font-size: 24px;
-      width: 300px;
-      display: flex;
-      text-align: center;
-      justify-content: center;
     }
   }
 }

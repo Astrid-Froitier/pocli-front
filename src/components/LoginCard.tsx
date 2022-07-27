@@ -1,3 +1,12 @@
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormControl from '@mui/material/FormControl';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
@@ -5,15 +14,6 @@ import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 import CurrentUserContext from '../contexts/CurrentUser';
 import IUserInfos from '../interfaces/IUserInfos';
 import Icon from './Icon';
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { styled } from '@mui/material/styles';
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   [theme.breakpoints.down(500)]: {
@@ -165,7 +165,12 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
   },
 }));
 
-const LoginCard = () => {
+interface LoginCardProps {
+  modalAdherentPwd?: boolean;
+  setIsAuth?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LoginCard = ({ modalAdherentPwd = false, setIsAuth }: LoginCardProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [stayConnected, setStayConnected] = useState<boolean>(false);
@@ -173,6 +178,7 @@ const LoginCard = () => {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  console.log(stayConnected);
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -190,7 +196,7 @@ const LoginCard = () => {
     try {
       e.preventDefault();
       const { data } = await axios.post<IUserInfos>(
-        'http://localhost:3002/api/login',
+        'https://wild-pocli.herokuapp.com/api/login',
         { email, password },
         {
           method: 'POST',
@@ -202,7 +208,8 @@ const LoginCard = () => {
       );
       localStorage.setItem('userInfos', JSON.stringify({ id: data.id, name: data.name }));
       setUser({ id: data.id, name: data.name });
-      redirectAdherentSpace();
+      !modalAdherentPwd && redirectAdherentSpace();
+      setIsAuth && setIsAuth(true);
     } catch (err) {
       // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
       if (axios.isAxiosError(err)) {
@@ -313,22 +320,26 @@ const LoginCard = () => {
             {errorPassword && <p>{errorPassword}</p>}
             {accountNoExists && <p>{accountNoExists}</p>}
           </div>
-          <div className="loginCardContainer__stayConnected">
-            <input
-              id="stayConnected"
-              type="checkbox"
-              onChange={(e) => setStayConnected(e.target.checked)}></input>
-            <label
-              htmlFor="stayConnected"
-              className="loginCardContainer__stayConnected__title">
-              Rester connecté
-            </label>
-          </div>
-          <NavLink to="/contact">
-            <span className="loginCardContainer__passwordForgot">
-              Mot de passe oublié ?
-            </span>
-          </NavLink>
+          {!modalAdherentPwd && (
+            <div className="loginCardContainer__stayConnected">
+              <input
+                id="stayConnected"
+                type="checkbox"
+                onChange={(e) => setStayConnected(e.target.checked)}></input>
+              <label
+                htmlFor="stayConnected"
+                className="loginCardContainer__stayConnected__title">
+                Rester connecté
+              </label>
+            </div>
+          )}
+          {!modalAdherentPwd && (
+            <NavLink to="/contact">
+              <span className="loginCardContainer__passwordForgot">
+                Mot de passe oublié ?
+              </span>
+            </NavLink>
+          )}
           <button type="submit" className="loginCardContainer__submit">
             <Icon name="arrow-right" width="40px" height="40px" color="white" />
           </button>

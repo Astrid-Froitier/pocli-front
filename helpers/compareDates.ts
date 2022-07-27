@@ -1,4 +1,4 @@
-import {transformDate} from './transformDate';
+import { transformDate } from './transformDate';
 const compareDates = (actualDate: string, dateToCompare: string) => {
   const firstDate = actualDate.split('/').map((date) => parseInt(date));
   const secondDate = transformDate(dateToCompare)

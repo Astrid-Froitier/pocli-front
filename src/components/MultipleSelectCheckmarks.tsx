@@ -37,18 +37,28 @@ const MultipleSelectCheckmarks = ({
   familyMembersIsActive,
   event,
 }: MultipleSelectCheckmarksProp) => {
-
   const { familyMemberEvents, setFamilyMemberEvents, familyMembers } =
     React.useContext(CurrentUserContext);
 
-    const [registeredFamilyMembers, setRegisteredFamilyMembers] = React.useState<IFamilyMember[]>([]);
+  const [registeredFamilyMembers, setRegisteredFamilyMembers] = React.useState<
+    IFamilyMember[]
+  >([]);
 
-    const familyMemberEventsByFamily = familyMembersIsActive.flatMap((familyMembersIsActive)=>familyMemberEvents.filter((familyMemberEvent)=> familyMemberEvent.idEvent === event.id && familyMemberEvent.idFamilyMember === familyMembersIsActive.id));
+  const familyMemberEventsByFamily = familyMembersIsActive.flatMap(
+    (familyMembersIsActive) =>
+      familyMemberEvents.filter(
+        (familyMemberEvent) =>
+          familyMemberEvent.idEvent === event.id &&
+          familyMemberEvent.idFamilyMember === familyMembersIsActive.id,
+      ),
+  );
 
   React.useEffect(() => {
     setRegisteredFamilyMembers(
       familyMemberEventsByFamily
-        .filter((familyMemberEventByFamily) => familyMemberEventByFamily.idEvent === event.id)
+        .filter(
+          (familyMemberEventByFamily) => familyMemberEventByFamily.idEvent === event.id,
+        )
         .map(
           (familyMemberByEvent) =>
             familyMembers.filter(
@@ -59,7 +69,7 @@ const MultipleSelectCheckmarks = ({
   }, [familyMemberEvents]);
 
   const numberParticipantsMax = event.numberParticipantsMax;
-  const idEvent = event.id
+  const idEvent = event.id;
 
   const handleChange = async (event: SelectChangeEvent<String[]>) => {
     const inputFirstnames = event.target.value as string[];
@@ -78,7 +88,7 @@ const MultipleSelectCheckmarks = ({
 
       try {
         await axios.post<IFamilyMemberEvent>(
-          'http://localhost:3001/api/familyMemberEvents',
+          'https://wild-pocli.herokuapp.com/api/familyMemberEvents',
           { idFamilyMember, idEvent },
           {
             method: 'POST',
@@ -114,7 +124,7 @@ const MultipleSelectCheckmarks = ({
 
       try {
         await axios.delete<IFamilyMemberEvent>(
-          `http://localhost:3001/api/familyMemberEvents/${idFamilyMemberEvent}`,
+          `https://wild-pocli.herokuapp.com/api/familyMemberEvents/${idFamilyMemberEvent}`,
           {
             method: 'DELETE',
             headers: {
@@ -139,7 +149,9 @@ const MultipleSelectCheckmarks = ({
 
     numberParticipantsMax
       ? inputFirstnames.length > registeredFamilyMembers.length &&
-        familyMemberEvents.filter((familyMemberEvent)=>familyMemberEvent.idEvent === idEvent).length < numberParticipantsMax &&
+        familyMemberEvents.filter(
+          (familyMemberEvent) => familyMemberEvent.idEvent === idEvent,
+        ).length < numberParticipantsMax &&
         addFamilyMemberEvent()
       : inputFirstnames.length > registeredFamilyMembers.length && addFamilyMemberEvent();
     inputFirstnames.length < registeredFamilyMembers.length && deleteFamilyMemberEvent();

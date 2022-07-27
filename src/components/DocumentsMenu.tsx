@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
+
 import { getAllDataWithCredential } from '../../helpers/axios';
 import dateNowToDate from '../../helpers/dateNowToDate';
 import { transformDate } from '../../helpers/transformDate';
@@ -26,8 +27,7 @@ const DocumentsMenu = ({
   const { linkedDocuments, setLinkedDocuments, documents, setDocuments } =
     useContext(CurrentDataContext);
   const d = new Date(Date.now());
-  const { user, cardSelected, communicationMembersByFamily } =
-    useContext(CurrentUserContext);
+  const { user } = useContext(CurrentUserContext);
 
   const [selectedMenu, setSelectedMenu] = useState(0);
 
@@ -57,6 +57,7 @@ const DocumentsMenu = ({
   };
   const [unreadDocuments, setUnreadDocuments] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  console.log(errorMessage);
 
   const [allDocumentsFamily, setAllDocumentsFamily] = useState<ILinkedDocument[]>([]);
   const [documentsFamilyUnread, setDocumentsFamilyUnread] = useState<ILinkedDocument[]>(
@@ -86,7 +87,7 @@ const DocumentsMenu = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ILinkedDocument>(
-        `http://localhost:3002/api/linkedDocuments/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idCommunication}`,
         dataOpened,
         {
           method: 'PUT',

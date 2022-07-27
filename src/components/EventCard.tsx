@@ -31,7 +31,8 @@ const EventCard = ({
   }, [event]);
 
   const documentsByEvent =
-    linkedDocuments && event &&
+    linkedDocuments &&
+    event &&
     linkedDocuments
       .filter((linkedDocument) => linkedDocument.idEvent === event.id)
       .map((linkedDocument) => linkedDocument.idDocument);

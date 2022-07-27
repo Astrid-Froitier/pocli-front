@@ -33,26 +33,9 @@ const Documents = () => {
 
   const {
     user,
-    // family,
-    setFamily,
-    // cities,
-    setCities,
-    // recipients,
-    setRecipients,
     familyMembers,
     setFamilyMembers,
-    // paymentRecordsByFamily,
-    setPaymentRecordsByFamily,
-    // paymentMethods,
-    setPaymentMethods,
-    // communicationMembersByFamily,
-    setCommunicationMembersByFamily,
-    // communications,
-    setCommunications,
-    // linkedDocumentsByFamily,
     setLinkedDocumentsByFamily,
-    // familyMemberEvents,
-    setFamilyMemberEvents,
     cardSelected,
   } = useContext(CurrentUserContext);
 
@@ -77,7 +60,7 @@ const Documents = () => {
   });
   const [currentMenu, setCurrentMenu] = useState<ILinkedDocument[]>([]);
 
-  const [selectedMenu, setSelectedMenu] = useState<number>(0);
+  // const [selectedMenu, setSelectedMenu] = useState<number>(0);
 
   useEffect(() => {
     let urls = [

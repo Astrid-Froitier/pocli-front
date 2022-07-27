@@ -23,6 +23,7 @@ const DocumentsCard = ({
 }: DocumentsCardProps) => {
   const [document, setDocument] = useState<IDocument>();
   const [errorMessage, setErrorMessage] = useState<string>('');
+  console.log(document);
 
   const handleselectedDocument = (direction: string) => {
     selectedDocument && direction === 'left' && currentMenu[0] !== selectedDocument
@@ -45,7 +46,7 @@ const DocumentsCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ILinkedDocument>(
-        `http://localhost:3002/api/linkedDocuments/${idDocument}`,
+        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idDocument}`,
         dataTrash,
         {
           method: 'PUT',
@@ -74,7 +75,7 @@ const DocumentsCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.delete<ILinkedDocument>(
-        `http://localhost:3002/api/linkedDocuments/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idCommunication}`,
         {
           method: 'DELETE',
           headers: {
@@ -102,7 +103,12 @@ const DocumentsCard = ({
       currentDocument &&
       currentDocument.idDocumentType !== 11 && (
         <Fancybox>
-          <a data-fancybox="gallery" href={currentDocument.url}></a>
+          <a
+            data-fancybox="gallery"
+            href={currentDocument.url}
+            aria-label={currentDocument.name}>
+            {' '}
+          </a>
         </Fancybox>
       );
   };
@@ -128,10 +134,18 @@ const DocumentsCard = ({
     <div className="documentsCardContainer">
       <div className="documentsCardContainer__header">
         <div className="documentsCardContainer__header__arrows">
-          <div onClick={() => handleselectedDocument('left')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleselectedDocument('left')}
+            onKeyDown={() => handleselectedDocument('left')}>
             <Icon name="arrow-left" width="20px" color="white" />
           </div>
-          <div onClick={() => handleselectedDocument('right')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleselectedDocument('right')}
+            onKeyDown={() => handleselectedDocument('right')}>
             <Icon name="arrow-right" width="20px" color="white" />
           </div>
         </div>
@@ -142,7 +156,10 @@ const DocumentsCard = ({
               <Fancybox>
                 <a data-fancybox="gallery" href={currentDocument.url}>
                   <div
+                    tabIndex={0}
+                    role="button"
                     onClick={() => handleBigger()}
+                    onKeyDown={() => handleBigger()}
                     className="documentsCardContainer__header__right__bigger">
                     <Icon name="upper-size" width="20px" color="white" />
                   </div>
@@ -150,8 +167,11 @@ const DocumentsCard = ({
               </Fancybox>
             )}
           <div
+            tabIndex={0}
+            role="button"
             className="documentsCardContainer__header__right__trash"
-            onClick={() => handleTrash()}>
+            onClick={() => handleTrash()}
+            onKeyDown={() => handleTrash()}>
             <Icon name="trash-can" width="20px" color="white" />
           </div>
         </div>

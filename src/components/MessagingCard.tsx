@@ -24,8 +24,7 @@ const MessagingCard = ({
   setCurrentCommunication,
   currentMenu,
 }: MessageCardProps) => {
-  const { communicationMembersByFamily, communications, family, user } =
-    useContext(CurrentUserContext);
+  const { communications } = useContext(CurrentUserContext);
   const [idAdmin, setIdAdmin] = useState<number>();
   const [admin, setAdmin] = useState<IAdmin>();
   const [message, setMessage] = useState<ICommunication>();
@@ -37,7 +36,7 @@ const MessagingCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ICommunicationMember>(
-        `http://localhost:3002/api/communicationMembers/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
         dataTrash,
         {
           method: 'PUT',
@@ -66,7 +65,7 @@ const MessagingCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.delete<ICommunicationMember>(
-        `http://localhost:3002/api/communicationMembers/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
         {
           method: 'DELETE',
           headers: {
@@ -166,13 +165,25 @@ const MessagingCard = ({
           </p>
         </div>
         <div className="messagingCardContainer__header__right">
-          <div onClick={() => handleSelectedMessage('left')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleSelectedMessage('left')}
+            onKeyDown={() => handleSelectedMessage('left')}>
             <Icon name="arrow-left" width="20px" color="#3D79AF" />
           </div>
-          <div onClick={() => handleSelectedMessage('right')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleSelectedMessage('right')}
+            onKeyDown={() => handleSelectedMessage('right')}>
             <Icon name="arrow-right" width="20px" color="#3D79AF" />
           </div>
-          <div onClick={() => handleTrash()}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleTrash()}
+            onKeyDown={() => handleTrash()}>
             <Icon name="trash-can" width="20px" color="#3D79AF" />
           </div>
         </div>

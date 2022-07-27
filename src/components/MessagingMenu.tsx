@@ -39,6 +39,8 @@ const MessagingMenu = ({
 
   const [unreadMessages, setUnreadMessages] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  console.log(errorMessage);
+
   const [communicationsByMember, setCommunicationsByMember] = useState<
     ICommunicationMember[][]
   >([]);
@@ -141,7 +143,7 @@ const MessagingMenu = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ICommunicationMember>(
-        `http://localhost:3002/api/communicationMembers/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
         dataOpened,
         {
           method: 'PUT',

@@ -2,13 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 
 import { getAllDataWithCredential } from '../../helpers/axios';
+import { todaysDateLower } from '../../helpers/transformDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
+import IEvent from '../interfaces/IEvent';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
-
-import { todaysDateLower } from '../../helpers/transformDate';
-import IEvent from '../interfaces/IEvent';
 
 const AdherentSpace = () => {
   const {
@@ -34,10 +33,10 @@ const AdherentSpace = () => {
     familyMemberEvents,
     setFamilyMemberEvents,
     logout,
-    cardSelected
   } = useContext(CurrentUserContext);
 
-  const { events, setEvents, setDocuments } = useContext(CurrentDataContext);
+  const { events, setEvents, setDocuments, setActivities } =
+    useContext(CurrentDataContext);
 
   useEffect(() => {
     let urls = [
@@ -53,6 +52,7 @@ const AdherentSpace = () => {
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
       `https://wild-pocli.herokuapp.com/api/documents`,
       `https://wild-pocli.herokuapp.com/api/events`,
+      `https://wild-pocli.herokuapp.com/api/activities`,
     ];
 
     getAllDataWithCredential(urls)
@@ -69,6 +69,7 @@ const AdherentSpace = () => {
         setFamilyMemberEvents(res[9].data);
         setDocuments(res[10].data);
         setEvents(res[11].data);
+        setActivities(res[12].data);
       })
       .catch((err) => {
         console.error(err);
@@ -85,11 +86,11 @@ const AdherentSpace = () => {
 
   // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
   const handleClickInfo = () => {
-    setModalAdherentInfo(!modalAdherentInfo);
+    setModalAdherentInfo(true);
     setModalOnOff('modal');
   };
   const handleClickPwd = () => {
-    setModalAdherentPwd(!modalAdherentPwd);
+    setModalAdherentPwd(true);
     setModalOnOff('modal');
   };
 
@@ -108,14 +109,22 @@ const AdherentSpace = () => {
   }, []);
 
   useEffect(() => {
-    const allFamilyMembersEvents = familyMembers.flatMap((familyMember)=> familyMemberEvents.filter((familyMemberEvent)=> familyMemberEvent.idFamilyMember === familyMember.id))
+    const allFamilyMembersEvents = familyMembers.flatMap((familyMember) =>
+      familyMemberEvents.filter(
+        (familyMemberEvent) => familyMemberEvent.idFamilyMember === familyMember.id,
+      ),
+    );
 
-    const allUpcomingEvents = events.filter((event)=>todaysDateLower(event.date))
-    
-    const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap((allFamilyMembersEvent)=>allUpcomingEvents.filter((allUpcomingEvent)=> allUpcomingEvent.id === allFamilyMembersEvent.idEvent))
-  
-    setNewEvents([...new Set(allFamilyMembersUpcomingEvents)])
+    const allUpcomingEvents = events.filter((event) => todaysDateLower(event.date));
 
+    const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap(
+      (allFamilyMembersEvent) =>
+        allUpcomingEvents.filter(
+          (allUpcomingEvent) => allUpcomingEvent.id === allFamilyMembersEvent.idEvent,
+        ),
+    );
+
+    setNewEvents([...new Set(allFamilyMembersUpcomingEvents)]);
   }, [events]);
 
   useEffect(() => {
@@ -133,11 +142,9 @@ const AdherentSpace = () => {
 
   return (
     <>
-
-      <div>
-        <div className="adherentSpanceBanner">
-          <h1>Mon espace adhérent</h1>
-        </div>
+      <div className="adherentSpanceBanner">
+        <h1>Mon espace adhérent</h1>
+      </div>
 
       <div className={`adherentSpaceContainer ${modalOnOff}`}>
         <Banner
@@ -191,7 +198,7 @@ const AdherentSpace = () => {
             </span>
 
             <NavLink to="/contact">
-              <p>J'ai une question</p>
+              <p>J&apos;ai une question</p>
             </NavLink>
             <span
               onKeyDown={handleLogout}
@@ -206,6 +213,10 @@ const AdherentSpace = () => {
       {modalOnOff && (
         <ModalAdherent
           setModalOnOff={setModalOnOff}
+          modalAdherentInfo={modalAdherentInfo}
+          modalAdherentPwd={modalAdherentPwd}
+          setModalAdherentInfo={setModalAdherentInfo}
+          setModalAdherentPwd={setModalAdherentPwd}
         />
       )}
     </>
