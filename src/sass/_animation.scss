@@ -99,10 +99,10 @@
     &__sentenceList,
     &__list {
       h1 {
-        font-size: 20px;
+        font-size: $resTitleSize4;
       }
       p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
       .icon {
         width: 25px;

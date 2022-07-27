@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-import { theCrew } from '../../data/Xcrew';
+import { getAllDataWithoutCredential } from '../../helpers/axios';
+import CurrentDataContext from '../contexts/CurrentData';
 import Banner from './Banner';
 import ComeBackHome from './ComeBackHome';
 import PartnersList from './PartnersList';
@@ -9,6 +10,25 @@ const about = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const { pocliMembers, setPocliMembers, setPartners } = useContext(CurrentDataContext);
+
+  useEffect(() => {
+    let urls = [
+      'https://wild-pocli.herokuapp.com/api/pocliMembers',
+      'https://wild-pocli.herokuapp.com/api/partners',
+    ];
+
+    getAllDataWithoutCredential(urls)
+      .then((res) => {
+        setPocliMembers(res[0].data);
+        setPartners(res[1].data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   return (
     <>
       <div className="aboutBanner">
@@ -68,23 +88,24 @@ const about = () => {
         </div>
         {/* balise pour rajouter directement les membres de l'association */}
         <div className="aboutContainer__associationMembers">
-          {theCrew.map(
-            (crew, index) =>
-              crew.image && (
-                <div className="aboutContainer__associationMembers__card" key={index}>
-                  <img
-                    className="aboutContainer__associationMembers__card__img"
-                    src={crew.image}
-                    key={index}
-                    alt="Members"
-                  />
-                  <div className="aboutContainer__associationMembers__card__name">
-                    <p>{crew.firstName}</p>
-                    <p>{crew.lastName}</p>
+          {pocliMembers &&
+            pocliMembers.map(
+              (pocliMembers, index) =>
+                pocliMembers.url && (
+                  <div className="aboutContainer__associationMembers__card" key={index}>
+                    <img
+                      className="aboutContainer__associationMembers__card__img"
+                      src={pocliMembers.url}
+                      alt="Members"
+                    />
+                    <div className="aboutContainer__associationMembers__card__name">
+                      <p>{pocliMembers.firstname}</p>
+                      <p>{pocliMembers.lastname}</p>
+                      <p>{pocliMembers.function}</p>
+                    </div>
                   </div>
-                </div>
-              ),
-          )}
+                ),
+            )}
         </div>
         <div className="aboutContainer__partners">
           <PartnersList />

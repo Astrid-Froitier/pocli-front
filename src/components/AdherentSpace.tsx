@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 
 import { getAllDataWithCredential } from '../../helpers/axios';
+import { todaysDateLower } from '../../helpers/transformDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
+import IEvent from '../interfaces/IEvent';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
 
@@ -16,24 +18,25 @@ const AdherentSpace = () => {
     setCities,
     // recipients,
     setRecipients,
-    // familyMembers,
+    familyMembers,
     setFamilyMembers,
     // paymentRecordsByFamily,
     setPaymentRecordsByFamily,
     // paymentMethods,
     setPaymentMethods,
-    // communicationMembersByFamily,
+    communicationMembersByFamily,
     setCommunicationMembersByFamily,
     // communications,
     setCommunications,
-    // linkedDocumentsByFamily,
+    linkedDocumentsByFamily,
     setLinkedDocumentsByFamily,
-    // familyMemberEvents,
+    familyMemberEvents,
     setFamilyMemberEvents,
     logout,
   } = useContext(CurrentUserContext);
 
-  const { setDocuments } = useContext(CurrentDataContext);
+  const { events, setEvents, setDocuments, setActivities } =
+    useContext(CurrentDataContext);
 
   useEffect(() => {
     let urls = [
@@ -48,6 +51,8 @@ const AdherentSpace = () => {
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
       `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
       `https://wild-pocli.herokuapp.com/api/documents`,
+      `https://wild-pocli.herokuapp.com/api/events`,
+      `https://wild-pocli.herokuapp.com/api/activities`,
     ];
 
     getAllDataWithCredential(urls)
@@ -63,6 +68,8 @@ const AdherentSpace = () => {
         setLinkedDocumentsByFamily(res[8].data);
         setFamilyMemberEvents(res[9].data);
         setDocuments(res[10].data);
+        setEvents(res[11].data);
+        setActivities(res[12].data);
       })
       .catch((err) => {
         console.error(err);
@@ -72,16 +79,18 @@ const AdherentSpace = () => {
   const [modalOnOff, setModalOnOff] = useState<string>('');
   const [modalAdherentInfo, setModalAdherentInfo] = useState<boolean>(false);
   const [modalAdherentPwd, setModalAdherentPwd] = useState<boolean>(false);
+  const [unreadMessages, setUnreadMessages] = useState<number>(0);
+  const [newEvents, setNewEvents] = useState<IEvent[]>([]);
 
   const navigate: NavigateFunction = useNavigate();
 
   // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
   const handleClickInfo = () => {
-    setModalAdherentInfo(!modalAdherentInfo);
+    setModalAdherentInfo(true);
     setModalOnOff('modal');
   };
   const handleClickPwd = () => {
-    setModalAdherentPwd(!modalAdherentPwd);
+    setModalAdherentPwd(true);
     setModalOnOff('modal');
   };
 
@@ -99,7 +108,32 @@ const AdherentSpace = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // useEffect permettant d'empêcher le scroll sur x suivant l'état de modalOnOff
+  useEffect(() => {
+    const allFamilyMembersEvents = familyMembers.flatMap((familyMember) =>
+      familyMemberEvents.filter(
+        (familyMemberEvent) => familyMemberEvent.idFamilyMember === familyMember.id,
+      ),
+    );
+
+    const allUpcomingEvents = events.filter((event) => todaysDateLower(event.date));
+
+    const allFamilyMembersUpcomingEvents = allFamilyMembersEvents.flatMap(
+      (allFamilyMembersEvent) =>
+        allUpcomingEvents.filter(
+          (allUpcomingEvent) => allUpcomingEvent.id === allFamilyMembersEvent.idEvent,
+        ),
+    );
+
+    setNewEvents([...new Set(allFamilyMembersUpcomingEvents)]);
+  }, [events]);
+
+  useEffect(() => {
+    communicationMembersByFamily
+      .filter((com) => !com.isOpened)
+      .map((com, index) => com && setUnreadMessages(index + 1));
+  }, [communicationMembersByFamily]);
+
+  // useEffect permettant d'empêcher le scroll sur Y suivant l'état de modalOnOff
   useEffect(() => {
     {
       modalOnOff && document.documentElement.style.setProperty('overflow-y', 'hidden');
@@ -108,36 +142,44 @@ const AdherentSpace = () => {
 
   return (
     <>
-      <div>
+      <div className="adherentSpanceBanner">
+        <h1>Mon espace adhérent</h1>
+      </div>
+
+      <div className={`adherentSpaceContainer ${modalOnOff}`}>
         <Banner
           nameBannerActivity=""
           title="Mon espace adhérent"
           nameIcon=""
-          memberFilter={true}
+          memberFilter={false}
           bannerAbout={false}
           bannerEvent={false}
           bannerMember={true}
         />
-        <div className={`adherentSpaceContainer ${modalOnOff}`}>
-          <div className="adherentSpaceContainer__left">
+        <div className="adherentSpaceContainer__box">
+          <div className="adherentSpaceContainer__box__left">
             <h1>Tableau de bord</h1>
             <NavLink to="/my-events">
               <p>
-                Mes évènements - <span>2</span> à venir
+                Mes évènements - <span>{newEvents.length}</span> à venir
               </p>
             </NavLink>
             <NavLink to="/my-messaging">
               <p>
-                Mes messages - <span>3</span> non lu(s)
+                Mes messages - <span>{unreadMessages}</span> non lu(s)
               </p>
             </NavLink>
             <NavLink to="/my-documents">
               <p>
-                Mes documents - <span>0</span> non lu(s)
+                Mes documents -{' '}
+                <span>
+                  {linkedDocumentsByFamily.filter((doc) => !doc.isOpened).length}
+                </span>{' '}
+                non lu(s)
               </p>
             </NavLink>
           </div>
-          <div className="adherentSpaceContainer__right">
+          <div className="adherentSpaceContainer__box__right">
             <h1>Mon compte</h1>
             <span
               onKeyDown={handleClickInfo}
@@ -156,7 +198,7 @@ const AdherentSpace = () => {
             </span>
 
             <NavLink to="/contact">
-              <p>Nous contacter</p>
+              <p>J&apos;ai une question</p>
             </NavLink>
             <span
               onKeyDown={handleLogout}
@@ -170,11 +212,11 @@ const AdherentSpace = () => {
       </div>
       {modalOnOff && (
         <ModalAdherent
-          setModalAdherentInfo={setModalAdherentInfo}
-          setModalAdherentPwd={setModalAdherentPwd}
+          setModalOnOff={setModalOnOff}
           modalAdherentInfo={modalAdherentInfo}
           modalAdherentPwd={modalAdherentPwd}
-          setModalOnOff={setModalOnOff}
+          setModalAdherentInfo={setModalAdherentInfo}
+          setModalAdherentPwd={setModalAdherentPwd}
         />
       )}
     </>

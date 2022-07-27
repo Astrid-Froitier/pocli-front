@@ -59,82 +59,81 @@
       width: 480px;
       height: 380px;
       padding: 1rem 0;
+      overflow-y: auto;
       background-color: $backGround-2;
-      &__messages {
+      &__messages,
+      &__messageSelected {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 44px;
+        height: 30px;
+        margin-bottom: 1rem;
         &__unreadMessage {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
           width: 100%;
-          p {
-            color: $colorText-2;
-            font-weight: $fontBold;
-            padding: 0 1.5rem;
-            &:first-child {
-              &:hover {
-                text-decoration: underline;
-                cursor: pointer;
+          div {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+            p {
+              color: $colorText-2;
+              font-weight: $fontBold;
+              padding: 0 1.5rem;
+              font-size: $mediumTextSize;
+              &:first-child {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                &:hover {
+                  text-decoration: underline;
+                  cursor: pointer;
+                }
+              }
+              &:last-child {
+                width: 30%;
+                height: 100%;
+                display: flex;
+                justify-content: flex-end;
               }
             }
           }
         }
         &__readedMessage {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
           width: 100%;
-          p {
-            color: $colorText-2;
-            padding: 0 1.5rem;
-            &:first-child {
-              &:hover {
-                text-decoration: underline;
-                cursor: pointer;
+          div {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            p {
+              color: $colorText-2;
+              padding: 0 1.5rem;
+              font-size: $mediumTextSize;
+              &:first-child {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                &:hover {
+                  text-decoration: underline;
+                  cursor: pointer;
+                }
+              }
+              &:last-child {
+                width: 30%;
+                height: 100%;
+                display: flex;
+                justify-content: flex-end;
               }
             }
           }
         }
       }
       &__messageSelected {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         border-left: 0.5rem solid $colorText-2;
-        height: 44px;
         &__unreadMessage {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          p {
-            color: $colorText-2;
-            font-weight: $fontBold;
-            padding: 0 1.5rem;
-            text-decoration: underline;
-            &:first-child {
-              &:hover {
-                cursor: pointer;
-              }
-            }
-          }
-        }
-        &__readedMessage {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          p {
-            color: $colorText-2;
-            padding: 0 1.5rem;
-            text-decoration: underline;
-            &:first-child {
-              &:hover {
-                cursor: pointer;
-              }
+          div {
+            p {
+              padding: 0 1.5rem;
             }
           }
         }
@@ -175,39 +174,46 @@
       width: 480px;
       height: 380px;
       padding: 1rem 0;
+      overflow-y: auto;
       background-color: $backGround-2;
-      &__messages {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 44px;
-        p {
-          color: $colorText-2;
-          font-weight: $fontBold;
-          padding: 0 1.5rem;
-          &:first-child {
-            &:hover {
-              text-decoration: underline;
-              cursor: pointer;
+      &__messages,
+      &__messageSelected {
+        width: 100%;
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 30px;
+          margin-bottom: 1rem;
+          p {
+            color: $colorText-2;
+            font-weight: $fontBold;
+            padding: 0 1.5rem;
+            font-size: $mediumTextSize;
+            &:first-child {
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+              }
+            }
+            &:last-child {
+              width: 30%;
+              height: 100%;
+              display: flex;
+              justify-content: flex-end;
             }
           }
         }
-      }
-      &__messageSelected {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-left: 0.5rem solid $colorText-2;
-        height: 44px;
-        p {
-          color: $colorText-2;
-          font-weight: $fontBold;
-          padding: 0 1rem;
-          text-decoration: underline;
-          &:first-child {
-            &:hover {
-              text-decoration: underline;
-              cursor: pointer;
+        &__messageSelected {
+          border-left: 0.5rem solid $colorText-2;
+          &__unreadMessage {
+            div {
+              p {
+                padding: 0 1.5rem;
+              }
             }
           }
         }
@@ -248,39 +254,167 @@
       width: 480px;
       height: 380px;
       padding: 1rem 0;
+      overflow-y: auto;
       background-color: $backGround-2;
       &__messages {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 44px;
-        p {
-          color: $colorText-2;
-          padding: 0 1.5rem;
-          &:first-child {
-            &:hover {
-              text-decoration: underline;
-              cursor: pointer;
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 30px;
+          margin-bottom: 1rem;
+          p {
+            color: $colorText-2;
+            font-size: $mediumTextSize;
+            padding: 0 1.5rem;
+            &:first-child {
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+              }
+            }
+            &:last-child {
+              padding-top: 0.5rem;
+              width: 30%;
+              height: 100%;
+              display: flex;
+              justify-content: flex-end;
             }
           }
         }
       }
       &__messageSelected {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-left: 0.5rem solid $colorText-2;
-        height: 44px;
-        p {
-          color: $colorText-2;
-          padding: 0 1rem;
-          text-decoration: underline;
-          &:first-child {
-            &:hover {
-              text-decoration: underline;
-              cursor: pointer;
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 30px;
+          margin-bottom: 1rem;
+          border-left: 0.5rem solid $colorText-2;
+          p {
+            color: $colorText-2;
+            padding: 0 1.5rem;
+            font-size: $mediumTextSize;
+            &:first-child {
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              &:hover {
+                text-decoration: underline;
+                cursor: pointer;
+              }
+            }
+            &:last-child {
+              padding-top: 0.5rem;
+              width: 30%;
+              height: 100%;
+              display: flex;
+              justify-content: flex-end;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .messagingMenuContainer {
+    // &__content {
+    //   display: flex;
+    //   justify-content: center;
+    // }
+    &__unreadMessagesDevelopped {
+      &__messagesBox {
+        p {
+          font-size: $resTextSize4;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .messagingMenuContainer {
+    margin-bottom: 32px;
+    &__unreadMessages,
+    &__allMessages,
+    &__trash {
+      p {
+        font-size: $resTextSize4;
+      }
+      .icon {
+        width: 30px;
+      }
+    }
+    &__unreadMessagesDevelopped {
+      width: 100%;
+
+      &__title {
+        width: 100%;
+        font-size: $resTextSize4;
+      }
+      .icon {
+        width: 30px;
+      }
+      p {
+        font-size: $resTextSize4;
+      }
+      &__messagesBox {
+        width: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        &__messages {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          align-items: unset;
+          height: 55px;
+        }
+      }
+    }
+    &__allMessagesDevelopped {
+      width: 100%;
+      &__title {
+        width: 100%;
+        font-size: $resTextSize4;
+      }
+      .icon {
+        width: 30px;
+      }
+      p {
+        font-size: $resTextSize4;
+      }
+      &__messagesBox {
+        width: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+      }
+    }
+    &__trashDevelopped {
+      width: 100%;
+      &__title {
+        width: 100%;
+        font-size: $resTextSize4;
+      }
+      .icon {
+        width: 30px;
+      }
+      .icon {
+        width: 30px;
+      }
+      p {
+        font-size: $resTextSize4;
+      }
+      &__messagesBox {
+        width: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        &__messages {
+          align-items: unset;
+          height: 55px;
         }
       }
     }

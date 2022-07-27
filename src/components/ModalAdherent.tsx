@@ -1,34 +1,190 @@
-import React, { useEffect } from 'react';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormControl from '@mui/material/FormControl';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { styled } from '@mui/material/styles';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+
+import {
+  differenceWithTodaysDate,
+  todaysDateLower,
+  transformDate,
+} from '../../helpers/transformDate';
+import CurrentDataContext from '../contexts/CurrentData';
+import CurrentUserContext from '../contexts/CurrentUser';
+import IUserInfos from '../interfaces/IUserInfos';
+import Icon from './Icon';
+import LoginCard from './LoginCard';
 
 interface ModalAdherentProps {
-  modalAdherentInfo: boolean;
-  modalAdherentPwd: boolean;
-  setModalAdherentInfo: React.Dispatch<React.SetStateAction<boolean>>;
-  setModalAdherentPwd: React.Dispatch<React.SetStateAction<boolean>>;
   setModalOnOff: React.Dispatch<React.SetStateAction<string>>;
+  modalAdherentInfo: boolean;
+  setModalAdherentInfo: React.Dispatch<React.SetStateAction<boolean>>;
+  modalAdherentPwd: boolean;
+  setModalAdherentPwd: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  [theme.breakpoints.down(500)]: {
+    width: '250px',
+    '& .MuiOutlinedInput-input': {
+      fontSize: '18px',
+    },
+    '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-2z5swh-MuiFormLabel-root-MuiInputLabel-root':
+      {
+        fontSize: '18px',
+      },
+    '& .MuiInputLabel-asterisk': {
+      fontSize: '18px',
+    },
+  },
+
+  [theme.breakpoints.up(500)]: {
+    width: '350px',
+    '& .MuiOutlinedInput-input': {
+      fontSize: '20px',
+    },
+    '& .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.Mui-required.css-2z5swh-MuiFormLabel-root-MuiInputLabel-root':
+      {
+        fontSize: '20px',
+      },
+    '& .MuiInputLabel-asterisk': {
+      fontSize: '20px',
+    },
+  },
+
+  '& .MuiOutlinedInput-input': {
+    color: 'white',
+  },
+  '& .MuiInputLabel-root': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+  '& .MuiInputLabel-asterisk': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+  '& label.Mui-focused': {
+    color: 'white',
+    '&.Mui-error': {
+      color: '#d32f2f',
+    },
+  },
+
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'white',
+    },
+    '&:hover fieldset': {
+      borderColor: 'white',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'white',
+    },
+  },
+  '& .MuiOutlinedInput-root.Mui-error': {
+    '& fieldset': {
+      borderColor: '#d32f2f',
+    },
+    '&:hover fieldset': {
+      borderColor: '#d32f2f',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#d32f2f',
+    },
+  },
+}));
+
 const ModalAdherent = ({
-  setModalAdherentPwd,
-  setModalAdherentInfo,
   setModalOnOff,
   modalAdherentInfo,
   modalAdherentPwd,
+  setModalAdherentInfo,
+  setModalAdherentPwd,
 }: ModalAdherentProps) => {
-  // handleClick permettant d'afficher l'évènement cliqué sous forme de modale
+  const { user, family, cities, familyMembers, paymentRecordsByFamily } =
+    useContext(CurrentUserContext);
+
+  const { activities } = useContext(CurrentDataContext);
+
+  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [newPasswordFirstEntry, setNewPasswordFirstEntry] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [passwordChanged, setPasswordChanged] = useState<number>(0);
+  const [errorNewPassword, setErrorNewPassword] = useState<string>('');
+
   const handleClick = () => {
+    setModalAdherentPwd(false);
+    setModalAdherentInfo(false);
     setModalOnOff('');
   };
 
-  // useEffect permettant de libérer le scroll sur x lorsque le composant se démonte (en cas de changement de page avec la modale ouverte)
+  // useEffect permettant de libérer le scroll sur Y lorsque le composant se démonte (en cas de changement de page avec la modale ouverte)
   useEffect(() => {
     return () => {
       document.documentElement.style.setProperty('overflow-y', 'scroll');
-      setModalAdherentInfo(false);
-      setModalAdherentPwd(false);
     };
   }, []);
 
+  const lastPaymentRecordFamily = paymentRecordsByFamily
+    .filter(
+      (paymentRecordByFamily) =>
+        paymentRecordByFamily.idFamily === family.id &&
+        paymentRecordByFamily.idActivity === null,
+    )
+    .sort((a, b) => b.id - a.id)[0];
+
+  const lastPaymentsRecordMembers = paymentRecordsByFamily
+    .filter((paymentRecordByFamily) => paymentRecordByFamily.idActivity !== null)
+    .filter((paymentRecordByFamily) => todaysDateLower(paymentRecordByFamily.dateEnd));
+
+  const changePassword = async (e: React.FormEvent<HTMLFormElement>) => {
+    // indispensable quand on veut utiliser async/await dans un useEffect
+    e.preventDefault();
+    const password = newPassword;
+    if (newPassword.length < 8) {
+      setErrorNewPassword('Minimum de 8 caractères');
+      setNewPassword('');
+    } else if (newPassword.length > 15) {
+      setErrorNewPassword('Maximum de 15 caractères');
+      setNewPassword('');
+    } else if (!passwordChanged) {
+      setNewPasswordFirstEntry(newPassword);
+      setPasswordChanged(passwordChanged + 1);
+      setNewPassword('');
+    } else if (newPasswordFirstEntry && newPasswordFirstEntry !== newPassword) {
+      setErrorNewPassword('Vos mots de passes sont différents !');
+      setPasswordChanged(0);
+      setNewPassword('');
+    } else if (newPasswordFirstEntry === newPassword) {
+      try {
+        await axios.put<IUserInfos>(
+          `https://wild-pocli.herokuapp.com/api/families/${user.id}`,
+          { password },
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            withCredentials: true,
+          },
+        );
+        setPasswordChanged(passwordChanged + 1);
+      } catch (err) {
+        // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
+        console.error(err);
+      }
+    }
+  };
   return (
     <div className="modalAdherent">
       <div
@@ -38,55 +194,229 @@ const ModalAdherent = ({
         role="button"
         tabIndex={0}></div>
       <div className="modalAdherent__box">
+        <div className="modalAdherent__box__header">
+          <div
+            className="modalAdherent__box__header__x-mark"
+            role="button"
+            onClick={handleClick}
+            onKeyDown={handleClick}
+            tabIndex={0}>
+            <Icon name={'xmark'} width={'25px'} color={'white'} />
+          </div>
+        </div>
         {modalAdherentInfo && (
-          <div className="modalAdherent__box__infos">
-            <div className="modalAdherent__box__infos__family">
-              <h1>Nom de famille:</h1>
-              <h2>Mon Mirail de Fontainebleau</h2>
-              <div className="modalAdherent__box__infos__family__address">
-                <h2>Addresse:</h2>
+          <div className="modalAdherent__box__my-informations">
+            <span>A propos de la famille</span>
+            <div className="modalAdherent__box__my-informations__family">
+              {family && lastPaymentRecordFamily && (
                 <ul>
-                  <li>168 route du hameau</li>
-                  <li>92000 Chatenây Malabry</li>
+                  <li>
+                    <span>Nom de famille : </span>
+                    {family.name}
+                  </li>
+                  <li>
+                    <span>Adresse : </span>
+                    {`${family.streetNumber} ${family.address}, ${
+                      cities.filter((city) => city.id === family.idCity)[0].zipCode
+                    } ${cities.filter((city) => city.id === family.idCity)[0].name}`}
+                  </li>
+                  <li>
+                    <span>Téléphone : </span>
+                    {family.phoneNumber}
+                  </li>
+                  <li>
+                    <span>Email : </span>
+                    {family.email}
+                  </li>
+                  <li>
+                    <span>Date d&apos;adhésion : </span>
+                    {transformDate(lastPaymentRecordFamily.dateStart)}
+                  </li>
+                  {differenceWithTodaysDate(lastPaymentRecordFamily.dateEnd) >= 0 ? (
+                    <li>
+                      <span>Fin d&apos;adhésion : </span>
+                      {transformDate(lastPaymentRecordFamily.dateEnd)}
+                    </li>
+                  ) : null}
+                  {differenceWithTodaysDate(lastPaymentRecordFamily.dateEnd) >= 0 ? (
+                    <li>
+                      <span>Statut :</span>
+                      <span className="active">Compte actif</span>
+                      {`Il vous reste ${differenceWithTodaysDate(
+                        lastPaymentRecordFamily.dateEnd,
+                      )} ${
+                        differenceWithTodaysDate(lastPaymentRecordFamily.dateEnd) > 1
+                          ? ' jours'
+                          : ' jour'
+                      } avant la fin de votre adhésion`}
+                    </li>
+                  ) : (
+                    <li>
+                      <span>Statut :</span>
+                      <span className="inactive">Compte inactif</span>Vous êtes arrivé au
+                      terme de votre adhésion. Vos accès sont limités.
+                    </li>
+                  )}
                 </ul>
-              </div>
-              <div className="modalAdherent__box__infos__family__mail">
-                <h2>Email:</h2>
-                <p className="modalAdherent__box__infos__family__mail__p">
-                  monmiraildeboisdebou@gmail.com
-                </p>
-              </div>
-              <div className="modalAdherent__box__infos__family__recipient">
-                <h2>Régime sociale:</h2>
-                <p>CAF</p>
-              </div>
-              <div className="modalAdherent__box__infos__family__isActived">
-                <h2>Compte actif:</h2>
-                <input type="checkbox" name="check" value="{isActived = true}" />
-              </div>
+              )}
             </div>
-            <div className="modalAdherent__box__infos__hr"></div>
-            <div className="modalAdherent__box__infos__familyMembers">
-              <div className="modalAdherent__box__infos__familyMembers__firstname">
-                <h2>Prénom:</h2>
-                <p>Gaudefrois</p>
-              </div>
-              <div className="modalAdherent__box__infos__familyMembers__birthday">
-                <h2>Date anniversaire:</h2>
-                <p>1859</p>
-              </div>
-              <div className="modalAdherent__box__infos__familyMembers__activities">
-                <h2>Activités Souscrite:</h2>
-                <ul>
-                  {/* avec un map qui recupère les activités souscrite */}
-                  <li>idFamilyMemberActivity</li>
-                </ul>
-              </div>
+            <div className="modalAdherent__box__my-informations__members">
+              <span>A propos des membres</span>
+              {familyMembers &&
+                familyMembers.map((familyMember, index) => (
+                  <div
+                    className="modalAdherent__box__my-informations__members__card"
+                    key={index}>
+                    <div className="modalAdherent__box__my-informations__members__card__account">
+                      <ul>
+                        <li>
+                          <span>Prénom : </span>
+                          {familyMember.firstname}
+                        </li>
+                        <li>
+                          <span>Date d&apos;anniversaire : </span>
+                          {transformDate(familyMember.birthday)}
+                        </li>
+                      </ul>
+                    </div>
+                    {lastPaymentsRecordMembers && activities && activities[0].id !== 0 && (
+                      <div className="modalAdherent__box__my-informations__members__card__payment-records">
+                        {lastPaymentsRecordMembers
+                          .filter(
+                            (lastPaymentsRecordMember) =>
+                              lastPaymentsRecordMember.idFamilyMember === familyMember.id,
+                          )
+                          .map((lastPaymentsRecordMember, index) => (
+                            <ul
+                              key={index}
+                              className={`${
+                                activities
+                                  .filter(
+                                    (activity) =>
+                                      activity.id === lastPaymentsRecordMember.idActivity,
+                                  )
+                                  .map((activity) => activity)[0].shortName
+                              }`}>
+                              <li>
+                                <span>Activité : </span>
+                                {
+                                  activities
+                                    .filter(
+                                      (activity) =>
+                                        activity.id ===
+                                        lastPaymentsRecordMember.idActivity,
+                                    )
+                                    .map((activity) => activity)[0].name
+                                }
+                              </li>
+                              <li>
+                                <span>Date d&apos;adhésion : </span>
+                                {transformDate(lastPaymentsRecordMember.dateStart)}
+                              </li>
+                              <li>
+                                <span>Fin d&apos;adhésion : </span>
+                                {transformDate(lastPaymentsRecordMember.dateEnd)}
+                              </li>
+                              <li>
+                                <span>Nombre de jours restants : </span>
+                                {`Votre adhésion à cette activité se terminera dans ${differenceWithTodaysDate(
+                                  lastPaymentsRecordMember.dateEnd,
+                                )} ${
+                                  differenceWithTodaysDate(
+                                    lastPaymentsRecordMember.dateEnd,
+                                  ) > 1
+                                    ? ' jours'
+                                    : ' jour'
+                                }`}
+                              </li>
+                            </ul>
+                          ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
             </div>
           </div>
         )}
         {modalAdherentPwd && (
-          <div className="modalAdherent__box__password">Password:</div>
+          <div className="modalAdherent__box__change-my-password">
+            {!isAuth && (
+              <div className="modalAdherent__box__change-my-password__login">
+                <LoginCard modalAdherentPwd={modalAdherentPwd} setIsAuth={setIsAuth} />
+              </div>
+            )}
+            {isAuth && passwordChanged < 2 && (
+              <form
+                className="modalAdherent__box__change-my-password__change"
+                onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                  changePassword(e);
+                }}>
+                <h1>
+                  {passwordChanged !== 1
+                    ? 'Entrez votre nouveau mot de passe'
+                    : 'Saisissez à nouveau votre mot de passe'}
+                </h1>
+                <StyledFormControl sx={{ width: '350px' }} variant="outlined">
+                  <InputLabel
+                    htmlFor="outlined-adornment-password"
+                    required
+                    error={errorNewPassword ? true : false}
+                    defaultValue="Error"
+                    sx={{
+                      fontFamily: 'Karla, sans-serif',
+                      fontWeight: 800,
+                    }}>
+                    Mot de passe
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    required
+                    error={errorNewPassword ? true : false}
+                    sx={{
+                      fontFamily: 'Karla, sans-serif',
+                      fontWeight: 800,
+                    }}
+                    type={showPassword ? 'text' : 'password'}
+                    value={newPassword}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                      setNewPassword(event.target.value)
+                    }
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          style={{ color: 'white' }}
+                          aria-label="toggle password visibility"
+                          onClick={() => setShowPassword(!showPassword)}
+                          onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) =>
+                            event.preventDefault()
+                          }
+                          edge="end">
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Mot de passe"
+                  />
+                </StyledFormControl>
+                <div className="modalAdherent__box__change-my-password__change__error">
+                  {errorNewPassword && <p>{errorNewPassword}</p>}
+                </div>
+                <div className="modalAdherent__box__change-my-password__change__submit">
+                  <button
+                    type="submit"
+                    className="modalAdherent__box__change-my-password__change__submit__button">
+                    <Icon name="arrow-right" width="40px" height="40px" color="white" />
+                  </button>
+                </div>
+              </form>
+            )}
+            {passwordChanged === 2 && (
+              <div className="modalAdherent__box__change-my-password__pwd-changed">
+                <h1>Votre mot de passe a bien été changé !</h1>
+                <Icon name={'square-check'} width={'80px'} color={'#3d79af'} />
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>

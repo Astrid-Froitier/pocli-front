@@ -21,8 +21,8 @@ type UserContent = {
   user: IUserInfos;
   setUser: React.Dispatch<React.SetStateAction<IUserInfos>>;
   logout: () => void;
-  family: IFamily[];
-  setFamily: React.Dispatch<React.SetStateAction<IFamily[]>>;
+  family: IFamily;
+  setFamily: React.Dispatch<React.SetStateAction<IFamily>>;
   cities: ICity[];
   setCities: React.Dispatch<React.SetStateAction<ICity[]>>;
   recipients: IRecipient[];
@@ -43,6 +43,8 @@ type UserContent = {
   setLinkedDocumentsByFamily: React.Dispatch<React.SetStateAction<ILinkedDocument[]>>;
   familyMemberEvents: IFamilyMemberEvent[];
   setFamilyMemberEvents: React.Dispatch<React.SetStateAction<IFamilyMemberEvent[]>>;
+  cardSelected: boolean[];
+  setCardSelected: React.Dispatch<React.SetStateAction<boolean[]>>;
 };
 
 type Props = { children: React.ReactNode };
@@ -51,7 +53,17 @@ const CurrentUserContext = createContext<UserContent>({
   user: userLog,
   setUser: () => {},
   logout: () => {},
-  family: [],
+  family: {
+    id: 0,
+    name: '',
+    streetNumber: 0,
+    address: '',
+    phoneNumber: 0,
+    email: '',
+    password: '',
+    idCity: 0,
+    idRecipient: 0,
+  },
   setFamily: () => {},
   cities: [],
   setCities: () => {},
@@ -71,11 +83,23 @@ const CurrentUserContext = createContext<UserContent>({
   setLinkedDocumentsByFamily: () => {},
   familyMemberEvents: [],
   setFamilyMemberEvents: () => {},
+  cardSelected: [],
+  setCardSelected: () => {},
 });
 
 export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<IUserInfos>(userLog);
-  const [family, setFamily] = useState<IFamily[]>([]);
+  const [family, setFamily] = useState<IFamily>({
+    id: 0,
+    name: '',
+    streetNumber: 0,
+    address: '',
+    phoneNumber: 0,
+    email: '',
+    password: '',
+    idCity: 0,
+    idRecipient: 0,
+  });
   const [cities, setCities] = useState<ICity[]>([]);
   const [recipients, setRecipients] = useState<IRecipient[]>([]);
   const [familyMembers, setFamilyMembers] = useState<IFamilyMember[]>([]);
@@ -91,6 +115,7 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
     ILinkedDocument[]
   >([]);
   const [familyMemberEvents, setFamilyMemberEvents] = useState<IFamilyMemberEvent[]>([]);
+  const [cardSelected, setCardSelected] = useState<boolean[]>([]);
 
   const removeCookie = useCookies(['user_token'])[2];
 
@@ -126,6 +151,8 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
         setLinkedDocumentsByFamily,
         familyMemberEvents,
         setFamilyMemberEvents,
+        cardSelected,
+        setCardSelected,
       }}>
       {children}
     </CurrentUserContext.Provider>

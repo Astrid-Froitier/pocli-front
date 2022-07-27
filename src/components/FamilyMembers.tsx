@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-// import { members } from '../../data/Xcrew';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import Icon from './Icon';
 
-const FamilyMembers = () => {
-  const [cardSelected, setCardSelected] = useState<boolean[]>([]);
-  const { familyMembers } = useContext(CurrentUserContext);
+interface FamilyMembersProps {
+  filter?: boolean;
+}
+
+const FamilyMembers = ({ filter = true }: FamilyMembersProps) => {
+  const { familyMembers, cardSelected, setCardSelected } = useContext(CurrentUserContext);
   const { documents } = useContext(CurrentDataContext);
 
   useEffect(() => {
@@ -43,11 +45,23 @@ const FamilyMembers = () => {
                 className="familyMembers__card__name__square"
                 onClick={() => selectMember(index)}
                 aria-hidden="true">
-                {cardSelected[index] ? (
-                  <Icon name="square-check" width="20px" height="20px" color="white" />
-                ) : (
-                  <Icon name="square-nocheck" width="20px" height="20px" color="white" />
-                )}
+                {cardSelected[index]
+                  ? filter && (
+                      <Icon
+                        name="square-check"
+                        width="20px"
+                        height="20px"
+                        color="white"
+                      />
+                    )
+                  : filter && (
+                      <Icon
+                        name="square-nocheck"
+                        width="20px"
+                        height="20px"
+                        color="white"
+                      />
+                    )}
               </div>
             </div>
           </div>

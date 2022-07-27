@@ -235,18 +235,18 @@
     &__preambulContainer {
       width: 90%;
       h1 {
-        font-size: 20px;
+        font-size: $resTitleSize4;
       }
       p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
     }
     &__pilateContainer {
       h1 {
-        font-size: 20px;
+        font-size: $resTitleSize4;
       }
       p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
       .icon {
         width: 25px;
@@ -255,15 +255,15 @@
       width: 90%;
       &__pilateContainerBloc1 p,
       &__pilateContainerBloc2 p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
     }
     &__gymSeniorContainer {
       h1 {
-        font-size: 20px;
+        font-size: $resTitleSize4;
       }
       p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
       .icon {
         width: 25px;
@@ -271,15 +271,15 @@
       }
       width: 90%;
       &__gymSeniorContainerBloc1 p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
     }
     &__gymSoftContainer {
       h1 {
-        font-size: 20px;
+        font-size: $resTitleSize4;
       }
       p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
       .icon {
         width: 25px;
@@ -287,15 +287,15 @@
       }
       width: 90%;
       &__gymSoftContainerBloc1 p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
     }
     &__welfareDuoContainer {
       h1 {
-        font-size: 20px;
+        font-size: $resTitleSize4;
       }
       &__welfareDuoContainerBloc1 p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
       .icon {
         width: 25px;
@@ -305,7 +305,7 @@
     }
     &__welfareContainer {
       h1 {
-        font-size: 20px;
+        font-size: $resTitleSize4;
       }
       .icon {
         width: 25px;
@@ -314,7 +314,7 @@
       width: 90%;
       &__welfareContainerBloc1 p,
       &__welfareContainerBloc2 p {
-        font-size: $smallTextSize;
+        font-size: $resTextSize4;
       }
     }
 

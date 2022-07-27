@@ -15,7 +15,7 @@ import CurrentUserContext from '../contexts/CurrentUser';
 import IEvent from '../interfaces/IEvent';
 import IFamilyMember from '../interfaces/IFamilyMember';
 import IFamilyMemberEvent from '../interfaces/IFamilyMemberEvent';
-// test
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -44,10 +44,21 @@ const MultipleSelectCheckmarks = ({
     IFamilyMember[]
   >([]);
 
+  const familyMemberEventsByFamily = familyMembersIsActive.flatMap(
+    (familyMembersIsActive) =>
+      familyMemberEvents.filter(
+        (familyMemberEvent) =>
+          familyMemberEvent.idEvent === event.id &&
+          familyMemberEvent.idFamilyMember === familyMembersIsActive.id,
+      ),
+  );
+
   React.useEffect(() => {
     setRegisteredFamilyMembers(
-      familyMemberEvents
-        .filter((familyMemberEvent) => familyMemberEvent.idEvent === event.id)
+      familyMemberEventsByFamily
+        .filter(
+          (familyMemberEventByFamily) => familyMemberEventByFamily.idEvent === event.id,
+        )
         .map(
           (familyMemberByEvent) =>
             familyMembers.filter(
@@ -57,8 +68,8 @@ const MultipleSelectCheckmarks = ({
     );
   }, [familyMemberEvents]);
 
-  const idEvent = event.id;
   const numberParticipantsMax = event.numberParticipantsMax;
+  const idEvent = event.id;
 
   const handleChange = async (event: SelectChangeEvent<String[]>) => {
     const inputFirstnames = event.target.value as string[];
@@ -77,7 +88,7 @@ const MultipleSelectCheckmarks = ({
 
       try {
         await axios.post<IFamilyMemberEvent>(
-          'http://localhost:3001/api/familyMemberEvents',
+          'https://wild-pocli.herokuapp.com/api/familyMemberEvents',
           { idFamilyMember, idEvent },
           {
             method: 'POST',
@@ -92,17 +103,6 @@ const MultipleSelectCheckmarks = ({
         getAllDataWithCredential(urls)
           .then((res) => {
             setFamilyMemberEvents(res[0].data);
-            setRegisteredFamilyMembers(
-              familyMemberEvents
-                .filter((familyMemberEvent) => familyMemberEvent.idEvent === idEvent)
-                .map(
-                  (familyMemberByEvent) =>
-                    familyMembers.filter(
-                      (familyMembers) =>
-                        familyMembers.id === familyMemberByEvent.idFamilyMember,
-                    )[0],
-                ),
-            );
           })
           .catch((err) => {
             console.error(err);
@@ -124,7 +124,7 @@ const MultipleSelectCheckmarks = ({
 
       try {
         await axios.delete<IFamilyMemberEvent>(
-          `http://localhost:3001/api/familyMemberEvents/${idFamilyMemberEvent}`,
+          `https://wild-pocli.herokuapp.com/api/familyMemberEvents/${idFamilyMemberEvent}`,
           {
             method: 'DELETE',
             headers: {
@@ -138,17 +138,6 @@ const MultipleSelectCheckmarks = ({
         getAllDataWithCredential(urls)
           .then((res) => {
             setFamilyMemberEvents(res[0].data);
-            setRegisteredFamilyMembers(
-              familyMemberEvents
-                .filter((familyMemberEvent) => familyMemberEvent.idEvent === idEvent)
-                .map(
-                  (familyMemberByEvent) =>
-                    familyMembers.filter(
-                      (familyMembers) =>
-                        familyMembers.id === familyMemberByEvent.idFamilyMember,
-                    )[0],
-                ),
-            );
           })
           .catch((err) => {
             console.error(err);
@@ -160,7 +149,9 @@ const MultipleSelectCheckmarks = ({
 
     numberParticipantsMax
       ? inputFirstnames.length > registeredFamilyMembers.length &&
-        registeredFamilyMembers.length < numberParticipantsMax &&
+        familyMemberEvents.filter(
+          (familyMemberEvent) => familyMemberEvent.idEvent === idEvent,
+        ).length < numberParticipantsMax &&
         addFamilyMemberEvent()
       : inputFirstnames.length > registeredFamilyMembers.length && addFamilyMemberEvent();
     inputFirstnames.length < registeredFamilyMembers.length && deleteFamilyMemberEvent();

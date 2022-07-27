@@ -2,28 +2,29 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 
 import { getAllDataWithCredential } from '../../helpers/axios';
-import transformDate from '../../helpers/transformDate';
+import { transformDate } from '../../helpers/transformDate';
 import CurrentUserContext from '../contexts/CurrentUser';
 import IAdmin from '../interfaces/IAdmin';
 import ICommunication from '../interfaces/ICommunication';
 import ICommunicationMember from '../interfaces/ICommunicationMember';
 import Icon from './Icon';
-import { MessageCardProps } from './Messaging';
+
+interface MessageCardProps {
+  selectedMessage: ICommunicationMember;
+  setSelectedMessage: React.Dispatch<React.SetStateAction<ICommunicationMember>>;
+  currentCommunication: ICommunication;
+  setCurrentCommunication: React.Dispatch<React.SetStateAction<ICommunication>>;
+  currentMenu: ICommunicationMember[];
+}
 
 const MessagingCard = ({
   setSelectedMessage,
   selectedMessage,
+  currentCommunication,
+  setCurrentCommunication,
   currentMenu,
-  trashCom,
-  setTrashCom,
 }: MessageCardProps) => {
-  const {
-    communicationMembersByFamily,
-    setCommunicationMembersByFamily,
-    communications,
-    setCommunications,
-    user,
-  } = useContext(CurrentUserContext);
+  const { communications } = useContext(CurrentUserContext);
   const [idAdmin, setIdAdmin] = useState<number>();
   const [admin, setAdmin] = useState<IAdmin>();
   const [message, setMessage] = useState<ICommunication>();
@@ -73,7 +74,6 @@ const MessagingCard = ({
           withCredentials: true,
         },
       );
-      setTrashCom(trashCom + 1);
     } catch (err) {
       // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
       if (axios.isAxiosError(err)) {
@@ -89,16 +89,15 @@ const MessagingCard = ({
   };
 
   useEffect(() => {
-    currentMenu.length !== -1 &&
-      selectedMessage !== -1 &&
+    selectedMessage &&
       setMessage(
-        communications.find((com) => com.id === currentMenu[selectedMessage].id),
+        communications.find((com) => com.id === selectedMessage.idCommunication),
       );
   }, [selectedMessage]);
 
   useEffect(() => {
-    setIdAdmin(message && message.idAdmin);
-  }, [message]);
+    setIdAdmin(currentCommunication && currentCommunication.idAdmin);
+  }, [currentCommunication]);
 
   useEffect(() => {
     let url = [`https://wild-pocli.herokuapp.com/api/admins/${idAdmin}`];
@@ -110,68 +109,88 @@ const MessagingCard = ({
         .catch((err) => {
           console.error(err);
         });
-  }, [idAdmin]);
+  }, [currentCommunication]);
 
   const handleSelectedMessage = (direction: string) => {
-    selectedMessage > 0 && direction === 'left'
-      ? setSelectedMessage(selectedMessage - 1)
-      : selectedMessage >= 0 &&
-        selectedMessage < currentMenu.length - 1 &&
+    selectedMessage && direction === 'left' && currentMenu[0] !== selectedMessage
+      ? currentMenu.map(
+          (com, index) =>
+            com.id === selectedMessage.id && setSelectedMessage(currentMenu[index - 1]),
+        )
+      : selectedMessage &&
         direction === 'right' &&
-        setSelectedMessage(selectedMessage + 1);
+        currentMenu[currentMenu.length - 1] !== selectedMessage &&
+        currentMenu.map(
+          (com, index) =>
+            com.id === selectedMessage.id && setSelectedMessage(currentMenu[index + 1]),
+        );
   };
 
   const handleTrash = () => {
-    setTrashCom(trashCom + 1);
-    currentMenu.length !== -1 &&
-    selectedMessage !== -1 &&
-    communicationMembersByFamily.find(
-      (com) => com.idCommunication === currentMenu[selectedMessage].id,
-    )?.isTrashed === 0
-      ? putTrash(
-          communicationMembersByFamily.find(
-            (com) => com.idCommunication === currentMenu[selectedMessage].id,
-          )?.id!,
-        )
-      : deleteCom(
-          communicationMembersByFamily.find(
-            (com) => com.idCommunication === currentMenu[selectedMessage].id,
-          )?.id!,
-        );
+    setCurrentCommunication({
+      id: 0,
+      object: '',
+      content: '',
+      date: '',
+      idAdmin: 1,
+    });
+    setMessage({
+      id: 0,
+      object: '',
+      content: '',
+      date: '',
+      idAdmin: 1,
+    });
+    selectedMessage && selectedMessage.isTrashed === 0
+      ? putTrash(selectedMessage.id)
+      : deleteCom(selectedMessage.id);
   };
 
   return (
     <div className="messagingCardContainer">
       <div className="messagingCardContainer__header">
         <div className="messagingCardContainer__header__left">
-          <p>
-            {admin ? (
+          {message?.content ? (
+            <p>
+              De :{' '}
               <span>
-                De : {admin.firstname} {admin.lastname}
+                {admin?.firstname} {admin?.lastname}
               </span>
-            ) : (
-              <span>De : </span>
-            )}
-          </p>
+            </p>
+          ) : (
+            <p>De :</p>
+          )}
           <p>
-            <span>Envoyé le : {message && transformDate(message?.date)}</span>
+            Envoyé le : <span>{message && transformDate(message?.date)}</span>
           </p>
         </div>
         <div className="messagingCardContainer__header__right">
-          <div onClick={() => handleSelectedMessage('left')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleSelectedMessage('left')}
+            onKeyDown={() => handleSelectedMessage('left')}>
             <Icon name="arrow-left" width="20px" color="#3D79AF" />
           </div>
-          <div onClick={() => handleSelectedMessage('right')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleSelectedMessage('right')}
+            onKeyDown={() => handleSelectedMessage('right')}>
             <Icon name="arrow-right" width="20px" color="#3D79AF" />
           </div>
-          <div onClick={() => handleTrash()}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleTrash()}
+            onKeyDown={() => handleTrash()}>
             <Icon name="trash-can" width="20px" color="#3D79AF" />
           </div>
         </div>
       </div>
       <div className="messagingCardContainer__object">
         <p>
-          <span>Objet : {message && message.object}</span>
+          Objet : <span>{message && message.object}</span>
         </p>
       </div>
       <div className="messagingCardContainer__message">

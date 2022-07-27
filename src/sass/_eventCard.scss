@@ -3,23 +3,23 @@
   height: 100%;
   display: flex;
   gap: 10px;
-  &.modal{
+  &.modal {
     height: fit-content;
-    .eventCard__preview{
+    .eventCard__preview {
       flex-direction: column;
       gap: 20px;
-      &__image{
+      &__image {
         width: 84%;
         height: 250px;
       }
-      &__informations{
+      &__informations {
         width: 80%;
         gap: 20px;
-        p{
+        p {
           font-size: $textSize;
         }
-        &__date-and-category{
-          &__family{
+        &__date-and-category {
+          &__family {
             border: 1px solid $backGround-1;
           }
         }
@@ -32,7 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 10px;
+    gap: 20px;
     &__image {
       width: 45%;
       height: 100%;
@@ -84,8 +84,8 @@
       // FOR BANNER
       &__arrow {
         display: flex;
-        height: 100%;
-        &__box{
+        height: 100px;
+        &__box {
           display: flex;
           justify-content: center;
           width: 49px;
@@ -98,20 +98,21 @@
   }
 }
 
-.eventCard-modal{
+.eventCard-modal {
   width: 100%;
   display: flex;
   flex-direction: column;
-  &__participation, &__podcast{
+  &__participation,
+  &__podcast {
     margin-top: 30px;
   }
-  &__number-participants-max{
+  &__number-participants-max {
     font-size: $smallTextSize;
     color: $colorText-1;
     font-weight: $fontExtraBold;
     padding-top: 5px;
   }
-  &__podcast{
+  &__podcast {
     width: fit-content;
     font-family: $fontFamily;
     font-size: $textSize;
@@ -122,7 +123,7 @@
     padding: 10px 15px;
     border-radius: 5px;
     transition: all 200ms ease-out;
-    &:hover{
+    &:hover {
       color: $colorText-3;
       background-color: $backGround-1;
       transition: all 200ms ease-in;
@@ -130,32 +131,51 @@
   }
   &__paragraph {
     padding: 5px 0;
-    &:first-of-type{
+    &:first-of-type {
       margin-top: 30px;
     }
   }
-  &__images{
+  &__images {
     margin-top: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    >img{
+    > img {
       width: 100%;
     }
   }
+}
 
 @media screen and (max-width: 400px) {
   .eventCard {
     &__preview {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      margin-left: 2%;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 90%;
+      &__informations {
+        width: 65%;
+        height: 80%;
+        p {
+          font-size: 12px;
+        }
+        &__date-and-category {
+          font-size: 10px;
+          width: 100%;
+          white-space: nowrap;
+          &__physical {
+            :last-child {
+              padding: 6px 2px;
+            }
+          }
+        }
+      }
       &__image {
-        width: 175px;
+        width: 120px;
+        height: 125px;
       }
     }
   }
-}
 }
