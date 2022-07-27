@@ -178,6 +178,7 @@ const LoginCard = ({ modalAdherentPwd = false, setIsAuth }: LoginCardProps) => {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  console.log(stayConnected);
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -195,7 +196,7 @@ const LoginCard = ({ modalAdherentPwd = false, setIsAuth }: LoginCardProps) => {
     try {
       e.preventDefault();
       const { data } = await axios.post<IUserInfos>(
-        'http://localhost:3001/api/login',
+        'https://wild-pocli.herokuapp.com/api/login',
         { email, password },
         {
           method: 'POST',

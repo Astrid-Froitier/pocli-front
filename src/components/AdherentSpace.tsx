@@ -2,13 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 
 import { getAllDataWithCredential } from '../../helpers/axios';
+import { todaysDateLower } from '../../helpers/transformDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
+import IEvent from '../interfaces/IEvent';
 import Banner from './Banner';
 import ModalAdherent from './ModalAdherent';
-
-import { todaysDateLower } from '../../helpers/transformDate';
-import IEvent from '../interfaces/IEvent';
 
 const AdherentSpace = () => {
   const {
@@ -34,7 +33,6 @@ const AdherentSpace = () => {
     familyMemberEvents,
     setFamilyMemberEvents,
     logout,
-    cardSelected,
   } = useContext(CurrentUserContext);
 
   const { events, setEvents, setDocuments, setActivities } =
@@ -200,7 +198,7 @@ const AdherentSpace = () => {
             </span>
 
             <NavLink to="/contact">
-              <p>J'ai une question</p>
+              <p>J&apos;ai une question</p>
             </NavLink>
             <span
               onKeyDown={handleLogout}

@@ -9,7 +9,6 @@ import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 
-import { getAllDataWithCredential } from '../../helpers/axios';
 import {
   differenceWithTodaysDate,
   todaysDateLower,
@@ -118,8 +117,9 @@ const ModalAdherent = ({
 
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [newPassword, setNewPassword] = useState<string>('');
+  const [newPasswordFirstEntry, setNewPasswordFirstEntry] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [passwordChanged, setPasswordChanged] = useState<boolean>(false);
+  const [passwordChanged, setPasswordChanged] = useState<number>(0);
   const [errorNewPassword, setErrorNewPassword] = useState<string>('');
 
   const handleClick = () => {
@@ -127,42 +127,6 @@ const ModalAdherent = ({
     setModalAdherentInfo(false);
     setModalOnOff('');
   };
-
-  // useEffect(() => {
-  //   let urls = [
-  //     `https://wild-pocli.herokuapp.com/api/families/${user.id}`,
-  //     `https://wild-pocli.herokuapp.com/api/cities/`,
-  //     `https://wild-pocli.herokuapp.com/api/recipients/`,
-  //     `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
-  //     `https://wild-pocli.herokuapp.com/api/families/${user.id}/paymentRecords`,
-  //     `https://wild-pocli.herokuapp.com/api/paymentMethods`,
-  //     `https://wild-pocli.herokuapp.com/api/families/${user.id}/communicationMembers`,
-  //     `https://wild-pocli.herokuapp.com/api/communications`,
-  //     `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
-  //     `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
-  //     `https://wild-pocli.herokuapp.com/api/documents`,
-  //     `https://wild-pocli.herokuapp.com/api/events`,
-  //   ];
-
-  //   getAllDataWithCredential(urls)
-  //     .then((res) => {
-  //       setFamily(res[0].data);
-  //       setCities(res[1].data);
-  //       setRecipients(res[2].data);
-  //       setFamilyMembers(res[3].data);
-  //       setPaymentRecordsByFamily(res[4].data);
-  //       setPaymentMethods(res[5].data);
-  //       setCommunicationMembersByFamily(res[6].data);
-  //       setCommunications(res[7].data);
-  //       setLinkedDocumentsByFamily(res[8].data);
-  //       setFamilyMemberEvents(res[9].data);
-  //       setDocuments(res[10].data);
-  //       setEvents(res[11].data);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, []);
 
   // useEffect permettant de libérer le scroll sur Y lorsque le composant se démonte (en cas de changement de page avec la modale ouverte)
   useEffect(() => {
@@ -189,9 +153,19 @@ const ModalAdherent = ({
     const password = newPassword;
     if (newPassword.length < 8) {
       setErrorNewPassword('Minimum de 8 caractères');
+      setNewPassword('');
     } else if (newPassword.length > 15) {
       setErrorNewPassword('Maximum de 15 caractères');
-    } else {
+      setNewPassword('');
+    } else if (!passwordChanged) {
+      setNewPasswordFirstEntry(newPassword);
+      setPasswordChanged(passwordChanged + 1);
+      setNewPassword('');
+    } else if (newPasswordFirstEntry && newPasswordFirstEntry !== newPassword) {
+      setErrorNewPassword('Vos mots de passes sont différents !');
+      setPasswordChanged(0);
+      setNewPassword('');
+    } else if (newPasswordFirstEntry === newPassword) {
       try {
         await axios.put<IUserInfos>(
           `https://wild-pocli.herokuapp.com/api/families/${user.id}`,
@@ -204,7 +178,7 @@ const ModalAdherent = ({
             withCredentials: true,
           },
         );
-        setPasswordChanged(true);
+        setPasswordChanged(passwordChanged + 1);
       } catch (err) {
         // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
         console.error(err);
@@ -255,12 +229,12 @@ const ModalAdherent = ({
                     {family.email}
                   </li>
                   <li>
-                    <span>Date d'adhésion : </span>
+                    <span>Date d&apos;adhésion : </span>
                     {transformDate(lastPaymentRecordFamily.dateStart)}
                   </li>
                   {differenceWithTodaysDate(lastPaymentRecordFamily.dateEnd) >= 0 ? (
                     <li>
-                      <span>Fin d'adhésion : </span>
+                      <span>Fin d&apos;adhésion : </span>
                       {transformDate(lastPaymentRecordFamily.dateEnd)}
                     </li>
                   ) : null}
@@ -300,7 +274,7 @@ const ModalAdherent = ({
                           {familyMember.firstname}
                         </li>
                         <li>
-                          <span>Date d'anniversaire : </span>
+                          <span>Date d&apos;anniversaire : </span>
                           {transformDate(familyMember.birthday)}
                         </li>
                       </ul>
@@ -312,8 +286,9 @@ const ModalAdherent = ({
                             (lastPaymentsRecordMember) =>
                               lastPaymentsRecordMember.idFamilyMember === familyMember.id,
                           )
-                          .map((lastPaymentsRecordMember) => (
+                          .map((lastPaymentsRecordMember, index) => (
                             <ul
+                              key={index}
                               className={`${
                                 activities
                                   .filter(
@@ -335,11 +310,11 @@ const ModalAdherent = ({
                                 }
                               </li>
                               <li>
-                                <span>Date d'adhésion : </span>
+                                <span>Date d&apos;adhésion : </span>
                                 {transformDate(lastPaymentsRecordMember.dateStart)}
                               </li>
                               <li>
-                                <span>Fin d'adhésion : </span>
+                                <span>Fin d&apos;adhésion : </span>
                                 {transformDate(lastPaymentsRecordMember.dateEnd)}
                               </li>
                               <li>
@@ -370,13 +345,17 @@ const ModalAdherent = ({
                 <LoginCard modalAdherentPwd={modalAdherentPwd} setIsAuth={setIsAuth} />
               </div>
             )}
-            {isAuth && !passwordChanged && (
+            {isAuth && passwordChanged < 2 && (
               <form
                 className="modalAdherent__box__change-my-password__change"
                 onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
                   changePassword(e);
                 }}>
-                <h1>Entrez votre nouveau mot de passe</h1>
+                <h1>
+                  {passwordChanged !== 1
+                    ? 'Entrez votre nouveau mot de passe'
+                    : 'Saisissez à nouveau votre mot de passe'}
+                </h1>
                 <StyledFormControl sx={{ width: '350px' }} variant="outlined">
                   <InputLabel
                     htmlFor="outlined-adornment-password"
@@ -431,7 +410,7 @@ const ModalAdherent = ({
                 </div>
               </form>
             )}
-            {passwordChanged && (
+            {passwordChanged === 2 && (
               <div className="modalAdherent__box__change-my-password__pwd-changed">
                 <h1>Votre mot de passe a bien été changé !</h1>
                 <Icon name={'square-check'} width={'80px'} color={'#3d79af'} />

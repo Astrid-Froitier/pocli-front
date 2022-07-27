@@ -88,7 +88,7 @@ const MultipleSelectCheckmarks = ({
 
       try {
         await axios.post<IFamilyMemberEvent>(
-          'http://localhost:3001/api/familyMemberEvents',
+          'https://wild-pocli.herokuapp.com/api/familyMemberEvents',
           { idFamilyMember, idEvent },
           {
             method: 'POST',
@@ -124,7 +124,7 @@ const MultipleSelectCheckmarks = ({
 
       try {
         await axios.delete<IFamilyMemberEvent>(
-          `http://localhost:3001/api/familyMemberEvents/${idFamilyMemberEvent}`,
+          `https://wild-pocli.herokuapp.com/api/familyMemberEvents/${idFamilyMemberEvent}`,
           {
             method: 'DELETE',
             headers: {

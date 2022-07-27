@@ -2,13 +2,11 @@ import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 import aboutNumbers from '../../data/aboutNumbers';
 import { navLinks_bottom } from '../../data/links';
 import { getAllDataWithoutCredential } from '../../helpers/axios';
-import dateNowToDate from '../../helpers/dateNowToDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import INewsletter from '../interfaces/INewsletter';
@@ -175,7 +173,7 @@ const Home = () => {
       try {
         e.preventDefault();
         await axios.post<INewsletter>(
-          'http://localhost:3001/api/newsletters',
+          'https://wild-pocli.herokuapp.com/api/newsletters',
           { email },
           {
             method: 'POST',
