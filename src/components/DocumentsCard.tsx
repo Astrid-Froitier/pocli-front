@@ -44,7 +44,7 @@ const DocumentsCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ILinkedDocument>(
-        `http://localhost:3002/api/linkedDocuments/${idDocument}`,
+        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idDocument}`,
         dataTrash,
         {
           method: 'PUT',
@@ -73,7 +73,7 @@ const DocumentsCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.delete<ILinkedDocument>(
-        `http://localhost:3002/api/linkedDocuments/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idCommunication}`,
         {
           method: 'DELETE',
           headers: {
@@ -172,19 +172,24 @@ const DocumentsCard = ({
             src={currentDocument.url}
             width="400"
             height="300"></embed>
-        ) : (
-          selectedDocument.id !== 0 &&
+        ) : selectedDocument.id !== 0 &&
           currentDocument &&
-          currentDocument.idDocumentType === 21 && (
-            <Fancybox>
-              <a data-fancybox="gallery" href={currentDocument.url}>
-                <embed
-                  type="video/webm"
-                  src={currentDocument.url}
-                  width="400"
-                  height="550"></embed>
-              </a>
-            </Fancybox>
+          currentDocument.idDocumentType === 21 ? (
+          <Fancybox>
+            <a data-fancybox="gallery" href={currentDocument.url}>
+              <embed
+                type="video/webm"
+                src={currentDocument.url}
+                width="400"
+                height="550"></embed>
+            </a>
+          </Fancybox>
+        ) : (
+          selectedDocument.id === 0 && (
+            <div className="documentsCardContainer__viewer__none">
+              <Icon name="file-exclamation" width="150px" color="#3D79AF" />
+              <h1>Vous n’avez pas encore sélectionné de document</h1>
+            </div>
           )
         )}
       </div>

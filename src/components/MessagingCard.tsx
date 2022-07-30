@@ -37,7 +37,7 @@ const MessagingCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ICommunicationMember>(
-        `http://localhost:3002/api/communicationMembers/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
         dataTrash,
         {
           method: 'PUT',
@@ -66,7 +66,7 @@ const MessagingCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.delete<ICommunicationMember>(
-        `http://localhost:3002/api/communicationMembers/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
         {
           method: 'DELETE',
           headers: {
@@ -184,9 +184,16 @@ const MessagingCard = ({
       </div>
       <div className="messagingCardContainer__message">
         <p>Message :</p>
-        <div className="messagingCardContainer__message__content">
-          {message && message.content}
-        </div>
+        {message ? (
+          <div className="messagingCardContainer__message__content">
+            {message.content}
+          </div>
+        ) : (
+          <div className="messagingCardContainer__message__contentNone">
+            <Icon name="envelope-exclamation" width="150px" color="#3D79AF" />
+            <h1>Vous n’avez pas encore sélectionné de message</h1>
+          </div>
+        )}
       </div>
     </div>
   );

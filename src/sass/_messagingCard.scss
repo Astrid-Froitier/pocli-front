@@ -76,5 +76,24 @@
       font-size: $mediumTextSize;
       text-align: left;
     }
+    &__contentNone {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #3d79af;
+      border-radius: 0.5rem;
+      padding: 1rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding-left: 1rem;
+      h1 {
+        text-align: center;
+        font-size: $categorySize;
+        padding: 0 2rem;
+      }
+    }
   }
 }

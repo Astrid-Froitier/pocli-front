@@ -1,21 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { getAllDataWithCredential } from '../../helpers/axios';
 
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
+import IFamilyMember from '../interfaces/IFamilyMember';
 import Icon from './Icon';
 
 const FamilyMembers = () => {
-  const { familyMembers, cardSelected, setCardSelected } = useContext(CurrentUserContext);
+  const {
+    familyMembers,
+    cardSelected,
+    setCardSelected,
+    setSelectedMembers,
+    selectedMembers,
+  } = useContext(CurrentUserContext);
   const { documents } = useContext(CurrentDataContext);
-
-  useEffect(() => {
-    setCardSelected(familyMembers && familyMembers.map(() => true));
-  }, [familyMembers]);
 
   // function to select only one member of the family with a map. If the key is egal to the index don't select the card else select it.
   function selectMember(index: number) {
     setCardSelected(cardSelected.map((card, key) => (key === index ? !card : card)));
   }
+
+  useEffect(() => {
+    const membersSelected: IFamilyMember[] = [];
+    cardSelected && localStorage.setItem('cardSelected', JSON.stringify(cardSelected));
+    cardSelected.map((card, index) => card && membersSelected.push(familyMembers[index]));
+    setSelectedMembers(membersSelected);
+  }, [cardSelected, familyMembers]);
 
   return (
     <div className="familyMembers">

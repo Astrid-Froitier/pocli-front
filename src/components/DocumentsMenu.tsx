@@ -23,11 +23,15 @@ const DocumentsMenu = ({
   setCurrentDocument,
   setCurrentMenu,
 }: DocumentsMenuProps) => {
-  const { linkedDocuments, setLinkedDocuments, documents, setDocuments } =
-    useContext(CurrentDataContext);
+  const { documents, setDocuments } = useContext(CurrentDataContext);
   const d = new Date(Date.now());
-  const { user, cardSelected, communicationMembersByFamily } =
-    useContext(CurrentUserContext);
+  const {
+    user,
+    setLinkedDocumentsByFamily,
+    linkedDocumentsByFamily,
+    cardSelected,
+    communicationMembersByFamily,
+  } = useContext(CurrentUserContext);
 
   const [selectedMenu, setSelectedMenu] = useState(0);
 
@@ -72,7 +76,7 @@ const DocumentsMenu = ({
     documents &&
       getAllDataWithCredential(urls)
         .then((res) => {
-          setLinkedDocuments(res[0].data);
+          setLinkedDocumentsByFamily(res[0].data);
           setDocuments(res[1].data);
         })
         .catch((err) => {
@@ -86,7 +90,7 @@ const DocumentsMenu = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ILinkedDocument>(
-        `http://localhost:3002/api/linkedDocuments/${idCommunication}`,
+        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idCommunication}`,
         dataOpened,
         {
           method: 'PUT',
@@ -121,17 +125,18 @@ const DocumentsMenu = ({
   }, [selectedDocument, currentDocument]);
 
   useEffect(() => {
-    setAllDocumentsFamily(linkedDocuments.filter((doc) => doc.isTrashed === 0)),
-      setDocumentsFamilyUnread(linkedDocuments.filter((doc) => doc.isOpened === 0)),
-      setTrashDocuments(linkedDocuments.filter((doc) => doc.isTrashed));
-  }, [linkedDocuments]);
+    setAllDocumentsFamily(linkedDocumentsByFamily.filter((doc) => doc.isTrashed === 0)),
+      setDocumentsFamilyUnread(
+        linkedDocumentsByFamily.filter((doc) => doc.isOpened === 0),
+      ),
+      setTrashDocuments(linkedDocumentsByFamily.filter((doc) => doc.isTrashed));
+  }, [linkedDocumentsByFamily]);
 
   useEffect(() => {
-    linkedDocuments[0].id &&
-      linkedDocuments
-        .filter((doc) => !doc.isOpened)
-        .map((doc, index) => doc && setUnreadDocuments(index + 1));
-  }, [linkedDocuments, selectedMenu]);
+    linkedDocumentsByFamily
+      .filter((doc) => doc.isOpened === 0)
+      .map((doc, index) => doc && setUnreadDocuments(index + 1));
+  }, [linkedDocumentsByFamily, selectedMenu]);
 
   const handleSelectedDocument = (document: ILinkedDocument) => {
     setSelectedDocument(document);
@@ -139,7 +144,7 @@ const DocumentsMenu = ({
 
   return (
     <div className="documentsMenuContainer">
-      {selectedMenu === 1 ? (
+      {selectedMenu === 1 && unreadDocuments > 0 ? (
         <div className="documentsMenuContainer__unreadDocumentsDevelopped">
           <div
             role="button"

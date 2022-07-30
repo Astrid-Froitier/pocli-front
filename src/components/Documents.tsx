@@ -10,22 +10,6 @@ import ComeBackHome from './ComeBackHome';
 import DocumentsCard from './DocumentsCard';
 import DocumentsMenu from './DocumentsMenu';
 
-export interface DocumentsMenuProps {
-  selectedDocument: ILinkedDocument;
-  setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
-  currentDocument: IDocument;
-  setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
-  setCurrentMenu: React.Dispatch<React.SetStateAction<ILinkedDocument[]>>;
-}
-
-export interface DocumentsCardProps {
-  selectedDocument: ILinkedDocument;
-  setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
-  currentDocument: IDocument;
-  setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
-  currentMenu: ILinkedDocument[];
-}
-
 const Documents = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,8 +23,7 @@ const Documents = () => {
     setCities,
     // recipients,
     setRecipients,
-    familyMembers,
-    setFamilyMembers,
+    selectedMembers,
     // paymentRecordsByFamily,
     setPaymentRecordsByFamily,
     // paymentMethods,
@@ -83,19 +66,19 @@ const Documents = () => {
     let urls = [
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
       `https://wild-pocli.herokuapp.com/api/documents`,
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
     ];
 
     getAllDataWithCredential(urls)
       .then((res) => {
         setLinkedDocumentsByFamily(res[0].data);
         setDocuments(res[1].data);
-        setFamilyMembers(res[2].data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
+
+  console.log(selectedDocument);
 
   return (
     <div>
@@ -111,19 +94,21 @@ const Documents = () => {
       <div className="documentsContainer">
         <div className="documentsContainer__header">
           <div className="documentsContainer__header__left">
-            {cardSelected.includes(false) ? (
+            {!cardSelected.includes(true) && <p>Aucun membre sélectionné</p>}
+            {cardSelected.includes(false) && cardSelected.includes(true) ? (
               <p>
                 Filtre :
-                {cardSelected.map((card, index) =>
-                  index !== 0 && card ? (
-                    <span key={index}>, {familyMembers[index].firstname}</span>
-                  ) : (
-                    card && <span key={index}> {familyMembers[index].firstname}</span>
-                  ),
-                )}
+                {selectedMembers[0] !== undefined &&
+                  selectedMembers.map((member, index) =>
+                    index !== selectedMembers.length - 1 ? (
+                      <span key={index}> {member.firstname},</span>
+                    ) : (
+                      <span key={index}> {member.firstname}</span>
+                    ),
+                  )}
               </p>
             ) : (
-              <p>Filtre : Toute la famille</p>
+              !cardSelected.includes(false) && <p>Filtre : Toute la famille</p>
             )}
           </div>
           <div className="documentsContainer__header__right">

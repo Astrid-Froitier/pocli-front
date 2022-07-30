@@ -138,8 +138,6 @@ const AdherentSpace = () => {
 
   const uniqueItems = [...new Set(allFamilyMembersUpcomingEvents)];
 
-  console.log(uniqueItems);
-
   return (
     <>
       <div>

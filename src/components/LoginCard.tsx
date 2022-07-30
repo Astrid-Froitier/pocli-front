@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 
 import CurrentUserContext from '../contexts/CurrentUser';
@@ -14,6 +14,7 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
+import { getAllDataWithCredential } from '../../helpers/axios';
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   [theme.breakpoints.down(500)]: {
@@ -168,7 +169,6 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
 const LoginCard = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [stayConnected, setStayConnected] = useState<boolean>(false);
   const [accountNoExists, setAccountNoExists] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
@@ -179,7 +179,15 @@ const LoginCard = () => {
   const regexEmail =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const { setUser } = useContext(CurrentUserContext);
+  const {
+    setUser,
+    setCardSelected,
+    familyMembers,
+    setFamilyMembers,
+    cardSelected,
+    stayConnected,
+    setStayConnected,
+  } = useContext(CurrentUserContext);
 
   function redirectAdherentSpace() {
     navigate('/adherent-space');
@@ -190,7 +198,7 @@ const LoginCard = () => {
     try {
       e.preventDefault();
       const { data } = await axios.post<IUserInfos>(
-        'http://localhost:3002/api/login',
+        'https://wild-pocli.herokuapp.com/api/login',
         { email, password },
         {
           method: 'POST',
@@ -200,8 +208,24 @@ const LoginCard = () => {
           withCredentials: true,
         },
       );
-      localStorage.setItem('userInfos', JSON.stringify({ id: data.id, name: data.name }));
+      stayConnected
+        ? (localStorage.setItem(
+            'userInfos',
+            JSON.stringify({ id: data.id, name: data.name }),
+          ),
+          localStorage.setItem('cardSelected', JSON.stringify(cardSelected)))
+        : (sessionStorage.setItem(
+            'userInfos',
+            JSON.stringify({ id: data.id, name: data.name }),
+          ),
+          sessionStorage.setItem('cardSelected', JSON.stringify(cardSelected)));
       setUser({ id: data.id, name: data.name });
+      getAllDataWithCredential([
+        `https://wild-pocli.herokuapp.com/api/families/${data.id}/familyMembers`,
+      ]).then((res) => {
+        setFamilyMembers(res[0].data);
+      });
+      setCardSelected(familyMembers && familyMembers.map(() => true));
       redirectAdherentSpace();
     } catch (err) {
       // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
