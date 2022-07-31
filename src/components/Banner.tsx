@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import CurrentUserContext from '../contexts/CurrentUser';
 
+import CurrentUserContext from '../contexts/CurrentUser';
 import IEvent from '../interfaces/IEvent';
 import EventCard from './EventCard';
 import FamilyMembers from './FamilyMembers';

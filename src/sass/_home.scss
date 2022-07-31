@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 60px;
     &__list {
       width: 100%;
@@ -20,14 +21,14 @@
       justify-content: space-between;
       gap: 40px;
       &__card {
-        width: 430px;
+        width: 480px;
         height: 150px;
         cursor: pointer;
         -webkit-animation: slide-in-blurred-right 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
         animation: slide-in-blurred-right 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
       }
     }
-    &__list-response{
+    &__list-responsive{
       display: none;
     }
   }
@@ -41,7 +42,7 @@
     background-color: $backGround-2;
     &__box {
       width: $pageContentWidth;
-      height: 500px;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -52,6 +53,9 @@
         }
         p {
           margin-bottom: 24px;
+          &:last-of-type{
+            margin-bottom: 60px;
+          }
         }
       }
       &__arrow {
@@ -71,21 +75,20 @@
   &__about {
     width: $pageContentWidth;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     margin: $marginBoxTopAndBottom;
     &__numbers {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
-      grid-column-gap: 131px;
-      grid-row-gap: 70px;
-      margin-right: 145px;
+      gap: 60px;
       &__box,
       p {
         font-family: $fontFamily;
         font-weight: $fontExtraBold;
         text-align: center;
-        width: 135px;
+        width: 150px;
         &__digit {
           color: $colorText-1;
           font-size: calc($titleSize * 2);
@@ -98,10 +101,8 @@
       }
       p {
         margin-bottom: 24px;
-      }
-      &__button {
-        div {
-          margin-top: 38px;
+        &:last-of-type{
+          margin-bottom: 60px;
         }
       }
     }
@@ -119,8 +120,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
-      grid-column-gap: 128px;
-      grid-row-gap: 128px;
+      gap: 128px;
       &__card {
         width: 450px;
         height: 450px;
@@ -171,13 +171,23 @@
         font-family: $fontFamily;
         font-size: $categorySize;
         font-weight: $fontExtraBold;
-        color: $colorText-2
+        color: $colorText-2;
+        text-align: center;
       }
-      p {
-        font-weight: $fontExtraBold;
-        font-size: $smallTextSize;
-        color: #d32f2f
-        
+      >p{
+          font-weight: $fontExtraBold;
+          font-size: $smallTextSize;
+          text-align: center;
+          background-color: $backGround-1;
+          padding: 10px;
+          color: $colorText-3;
+          border-radius: 10px;
+      }
+      &__form__email{
+        p {
+          font-weight: $fontExtraBold;
+          color: #d32f2f
+        }
       }
       &__form {
         form{
@@ -221,7 +231,6 @@
 @media screen and (max-width: 1100px) {
   .homeContainer {
     &__partners {
-      margin: $marginBoxTopAndBottom;
       width: 90%;
     }
     &__events {
@@ -230,16 +239,15 @@
       display: flex;
       &__list {
         justify-content: center;
-        &__card{
-          width: 630px;
-          height: 220px;
-        }
       }
     }
     &__nonAdherent {
+      height: 100%;
       align-items: center;
-      margin: 60px 0;
+      margin: $marginBoxTopAndBottom;
+      padding: 60px 0;
       background-color: #e8f2fe;
+
       &__box {
         justify-content: space-around;
         flex-direction: column;
@@ -259,8 +267,8 @@
       width: 90%;
       text-align: center;
       &__numbers {
-        margin-right: 0%;
-        margin-bottom: 10%;
+        margin-right: 0;
+        margin-bottom: 60px;
       }
       &__text {
         display: flex;
@@ -276,11 +284,7 @@
     &__activities {
       width: 100%;
       &__box {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 6%;
-        grid-row-gap: 6%;
+        gap: 40px;
         &__card {
           width: 275px;
           height: 275px;
@@ -301,33 +305,92 @@
 
 @media screen and (max-width: 700px) {
   .homeContainer {
+    &__events {
+      width: 100%;
+      margin: $marginBoxTopAndBottomResponsive;
+      gap: 30px;
+      &__list {
+        display: none;
+      }
+      &__list-responsive {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+        h1{
+          text-align: center;
+          width: 90%;
+        }
+        &__card {
+          width: 390px;
+          height: 132px;
+          cursor: pointer;
+          -webkit-animation: slide-in-blurred-right 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+          animation: slide-in-blurred-right 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+      }
+    }
+    &__nonAdherent {
+      margin: $marginBoxTopAndBottomResponsive;
+      padding: 30px 0;
+      &__box{
+        &__text{
+          p:last-of-type{
+            margin-bottom: 30px;
+          }
+        }
+      }
+    }
+    &__about{
+      margin: $marginBoxTopAndBottomResponsive;
+      &__numbers{
+        margin-bottom: 30px;
+      }
+    }
     &__activities {
       width: 100%;
+      margin: $marginBoxTopAndBottomResponsive;
+      h1{
+        margin-bottom: 30px;
+        width: 90%;
+        text-align: center;
+      }
       &__box {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        grid-column-gap: 6%;
-        grid-row-gap: 6%;
-
-        &__card {
-          margin-bottom: 5%;
-        }
+        gap: 30px;
       }
     }
     &__about {
       &__numbers {
         grid-column-gap: 50px;
         grid-row-gap: 35px;
+        &__box{
+          &__digit{
+            font-size: $categorySize;
+          }
+          p{
+            font-size: $mediumTextSize;
+            font-weight: $fontBold;
+          }
+        }
       }
       &__text {
         h1 {
           font-size: 30px;
+          margin-bottom: 30px;
+        }
+        p:last-of-type{
+          margin-bottom: 30px;
         }
       }
     }
     &__newsletter{
+      margin: $marginBoxTopAndBottomResponsive;
       &__box{
         gap: 20px;
         >span{
@@ -342,74 +405,32 @@
         }
       }
     }
+    &__partners{
+      margin: $marginBoxTopAndBottomResponsive;
+      h1{
+        text-align: center;
+        width: 90%;
+      }
+    }
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 410px) {
   .homeContainer {
     &__events {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      &__list {
-        display: none;
-      }
-      &__list-response {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 30px;
-        width: 100%;
-        &card {
-          width: 100%;
-          height: 175px;
+      &__list-responsive {
+        &__card {
+          width: 260px;
+          height: 100px;
         }
       }
     }
     &__about {
       &__numbers {
-        grid-column-gap: 15px;
-        grid-row-gap: 10px;
-        &__box {
-          &__digit {
-            font-size: 50px;
-          }
-          &__text {
-            font-size: 28px;
-          }
-        }
-      }
-      &__text {
-        h1 {
-          font-size: 28px;
-        }
-        p {
-          font-size: 16px;
-        }
-      }
-    }
-    &__nonAdherent {
-      &__box {
-        &__text {
-          h1 {
-            font-size: 28px;
-          }
-          p {
-            font-size: 16px;
-          }
-        }
+        gap: 10px;
       }
     }
     &__activities {
-      width: 100%;
-      h1 {
-        text-align: center;
-        margin-bottom: 80px;
-        font-size: 28px;
-      }
       &__box {
         &__card {
           width: 195px;

@@ -51,7 +51,6 @@
         border-bottom: 1px solid;
         border-color: $colorText-2;
         &__a {
-          text-decoration: none;
           color: $colorText-1;
           font-weight: $fontBold;
           font-family: $fontFamily;
@@ -156,7 +155,7 @@
       }
     }
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     display: none;
   }
 }
