@@ -10,22 +10,6 @@ import ComeBackHome from './ComeBackHome';
 import DocumentsCard from './DocumentsCard';
 import DocumentsMenu from './DocumentsMenu';
 
-export interface DocumentsMenuProps {
-  selectedDocument: ILinkedDocument;
-  setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
-  currentDocument: IDocument;
-  setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
-  setCurrentMenu: React.Dispatch<React.SetStateAction<ILinkedDocument[]>>;
-}
-
-export interface DocumentsCardProps {
-  selectedDocument: ILinkedDocument;
-  setSelectedDocument: React.Dispatch<React.SetStateAction<ILinkedDocument>>;
-  currentDocument: IDocument;
-  setCurrentDocument: React.Dispatch<React.SetStateAction<IDocument>>;
-  currentMenu: ILinkedDocument[];
-}
-
 const Documents = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,10 +17,10 @@ const Documents = () => {
 
   const {
     user,
-    familyMembers,
-    setFamilyMembers,
+    selectedMembers,
     setLinkedDocumentsByFamily,
     cardSelected,
+    setFamilyMembers,
   } = useContext(CurrentUserContext);
 
   const { setDocuments } = useContext(CurrentDataContext);
@@ -60,7 +44,7 @@ const Documents = () => {
   });
   const [currentMenu, setCurrentMenu] = useState<ILinkedDocument[]>([]);
 
-  // const [selectedMenu, setSelectedMenu] = useState<number>(0);
+  const [selectedMenu, setSelectedMenu] = useState<number>(0);
 
   useEffect(() => {
     let urls = [
@@ -94,19 +78,21 @@ const Documents = () => {
       <div className="documentsContainer">
         <div className="documentsContainer__header">
           <div className="documentsContainer__header__left">
-            {cardSelected.includes(false) ? (
+            {!cardSelected.includes(true) && <p>Aucun membre sélectionné</p>}
+            {cardSelected.includes(false) && cardSelected.includes(true) ? (
               <p>
                 Filtre :
-                {cardSelected.map((card, index) =>
-                  index !== 0 && card ? (
-                    <span key={index}>, {familyMembers[index].firstname}</span>
-                  ) : (
-                    card && <span key={index}> {familyMembers[index].firstname}</span>
-                  ),
-                )}
+                {selectedMembers[0] !== undefined &&
+                  selectedMembers.map((member, index) =>
+                    index !== selectedMembers.length - 1 ? (
+                      <span key={index}> {member.firstname},</span>
+                    ) : (
+                      <span key={index}> {member.firstname}</span>
+                    ),
+                  )}
               </p>
             ) : (
-              <p>Filtre : Toute la famille</p>
+              !cardSelected.includes(false) && <p>Filtre : Toute la famille</p>
             )}
           </div>
           <div className="documentsContainer__header__right">

@@ -24,10 +24,10 @@ const DocumentsMenu = ({
   setCurrentDocument,
   setCurrentMenu,
 }: DocumentsMenuProps) => {
-  const { linkedDocuments, setLinkedDocuments, documents, setDocuments } =
-    useContext(CurrentDataContext);
+  const { documents, setDocuments } = useContext(CurrentDataContext);
   const d = new Date(Date.now());
-  const { user } = useContext(CurrentUserContext);
+  const { user, setLinkedDocumentsByFamily, linkedDocumentsByFamily } =
+    useContext(CurrentUserContext);
 
   const [selectedMenu, setSelectedMenu] = useState(0);
 
@@ -57,7 +57,6 @@ const DocumentsMenu = ({
   };
   const [unreadDocuments, setUnreadDocuments] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
-  console.log(errorMessage);
 
   const [allDocumentsFamily, setAllDocumentsFamily] = useState<ILinkedDocument[]>([]);
   const [documentsFamilyUnread, setDocumentsFamilyUnread] = useState<ILinkedDocument[]>(
@@ -73,7 +72,7 @@ const DocumentsMenu = ({
     documents &&
       getAllDataWithCredential(urls)
         .then((res) => {
-          setLinkedDocuments(res[0].data);
+          setLinkedDocumentsByFamily(res[0].data);
           setDocuments(res[1].data);
         })
         .catch((err) => {
@@ -122,17 +121,18 @@ const DocumentsMenu = ({
   }, [selectedDocument, currentDocument]);
 
   useEffect(() => {
-    setAllDocumentsFamily(linkedDocuments.filter((doc) => doc.isTrashed === 0)),
-      setDocumentsFamilyUnread(linkedDocuments.filter((doc) => doc.isOpened === 0)),
-      setTrashDocuments(linkedDocuments.filter((doc) => doc.isTrashed));
-  }, [linkedDocuments]);
+    setAllDocumentsFamily(linkedDocumentsByFamily.filter((doc) => doc.isTrashed === 0)),
+      setDocumentsFamilyUnread(
+        linkedDocumentsByFamily.filter((doc) => doc.isOpened === 0),
+      ),
+      setTrashDocuments(linkedDocumentsByFamily.filter((doc) => doc.isTrashed));
+  }, [linkedDocumentsByFamily]);
 
   useEffect(() => {
-    linkedDocuments[0].id &&
-      linkedDocuments
-        .filter((doc) => !doc.isOpened)
-        .map((doc, index) => doc && setUnreadDocuments(index + 1));
-  }, [linkedDocuments, selectedMenu]);
+    linkedDocumentsByFamily
+      .filter((doc) => doc.isOpened === 0)
+      .map((doc, index) => doc && setUnreadDocuments(index + 1));
+  }, [linkedDocumentsByFamily, selectedMenu]);
 
   const handleSelectedDocument = (document: ILinkedDocument) => {
     setSelectedDocument(document);
@@ -140,7 +140,7 @@ const DocumentsMenu = ({
 
   return (
     <div className="documentsMenuContainer">
-      {selectedMenu === 1 ? (
+      {selectedMenu === 1 && unreadDocuments > 0 ? (
         <div className="documentsMenuContainer__unreadDocumentsDevelopped">
           <div
             role="button"

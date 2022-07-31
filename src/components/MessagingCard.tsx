@@ -24,7 +24,7 @@ const MessagingCard = ({
   setCurrentCommunication,
   currentMenu,
 }: MessageCardProps) => {
-  const { communications } = useContext(CurrentUserContext);
+  const { communications, selectedMembers } = useContext(CurrentUserContext);
   const [idAdmin, setIdAdmin] = useState<number>();
   const [admin, setAdmin] = useState<IAdmin>();
   const [message, setMessage] = useState<ICommunication>();
@@ -112,14 +112,18 @@ const MessagingCard = ({
   }, [currentCommunication]);
 
   const handleSelectedMessage = (direction: string) => {
-    selectedMessage && direction === 'left' && currentMenu[0] !== selectedMessage
+    currentMenu[0] !== undefined &&
+    selectedMessage !== undefined &&
+    direction === 'left' &&
+    currentMenu[0].id !== selectedMessage.id
       ? currentMenu.map(
           (com, index) =>
             com.id === selectedMessage.id && setSelectedMessage(currentMenu[index - 1]),
         )
-      : selectedMessage &&
+      : currentMenu[0] !== undefined &&
+        selectedMessage !== undefined &&
         direction === 'right' &&
-        currentMenu[currentMenu.length - 1] !== selectedMessage &&
+        currentMenu[currentMenu.length - 1].id !== selectedMessage.id &&
         currentMenu.map(
           (com, index) =>
             com.id === selectedMessage.id && setSelectedMessage(currentMenu[index + 1]),
@@ -163,6 +167,20 @@ const MessagingCard = ({
           <p>
             Envoyé le : <span>{message && transformDate(message?.date)}</span>
           </p>
+          <p>
+            A :
+            {selectedMessage &&
+            selectedMembers[0] !== undefined &&
+            selectedMessage.idFamilyMember !== null ? (
+              selectedMembers
+                .filter((member) => selectedMessage.idFamilyMember === member.id)
+                .map((memberSelected, index) => (
+                  <span key={index}> {memberSelected.firstname}</span>
+                ))
+            ) : (
+              <span style={{ color: '#519642' }}> La famille</span>
+            )}
+          </p>
         </div>
         <div className="messagingCardContainer__header__right">
           <div
@@ -195,9 +213,16 @@ const MessagingCard = ({
       </div>
       <div className="messagingCardContainer__message">
         <p>Message :</p>
-        <div className="messagingCardContainer__message__content">
-          {message && message.content}
-        </div>
+        {message ? (
+          <div className="messagingCardContainer__message__content">
+            {message.content}
+          </div>
+        ) : (
+          <div className="messagingCardContainer__message__contentNone">
+            <Icon name="envelope-exclamation" width="150px" color="#3D79AF" />
+            <h1>Vous n’avez pas encore sélectionné de message</h1>
+          </div>
+        )}
       </div>
     </div>
   );
