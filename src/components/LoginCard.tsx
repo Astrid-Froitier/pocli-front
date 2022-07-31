@@ -8,8 +8,9 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
+import { getAllDataWithCredential } from '../../helpers/axios';
 
 import CurrentUserContext from '../contexts/CurrentUser';
 import IUserInfos from '../interfaces/IUserInfos';
@@ -173,19 +174,25 @@ interface LoginCardProps {
 const LoginCard = ({ modalAdherentPwd = false, setIsAuth }: LoginCardProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [stayConnected, setStayConnected] = useState<boolean>(false);
   const [accountNoExists, setAccountNoExists] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  console.log(stayConnected);
 
   const navigate: NavigateFunction = useNavigate();
 
   const regexEmail =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const { setUser } = useContext(CurrentUserContext);
+  const {
+    setUser,
+    setCardSelected,
+    familyMembers,
+    setFamilyMembers,
+    cardSelected,
+    stayConnected,
+    setStayConnected,
+  } = useContext(CurrentUserContext);
 
   function redirectAdherentSpace() {
     navigate('/adherent-space');
@@ -206,8 +213,25 @@ const LoginCard = ({ modalAdherentPwd = false, setIsAuth }: LoginCardProps) => {
           withCredentials: true,
         },
       );
-      localStorage.setItem('userInfos', JSON.stringify({ id: data.id, name: data.name }));
+      stayConnected
+        ? (localStorage.setItem(
+            'userInfos',
+            JSON.stringify({ id: data.id, name: data.name }),
+          ),
+          localStorage.setItem('cardSelected', JSON.stringify(cardSelected)))
+        : (sessionStorage.setItem(
+            'userInfos',
+            JSON.stringify({ id: data.id, name: data.name }),
+          ),
+          sessionStorage.setItem('cardSelected', JSON.stringify(cardSelected)));
       setUser({ id: data.id, name: data.name });
+      getAllDataWithCredential([
+        `https://wild-pocli.herokuapp.com/api/families/${data.id}/familyMembers`,
+      ]).then((res) => {
+        setFamilyMembers(res[0].data);
+      });
+      setCardSelected(familyMembers && familyMembers.map(() => true));
+      redirectAdherentSpace();
       !modalAdherentPwd && redirectAdherentSpace();
       setIsAuth && setIsAuth(true);
     } catch (err) {
