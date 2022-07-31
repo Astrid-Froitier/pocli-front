@@ -24,8 +24,7 @@ const MessagingCard = ({
   setCurrentCommunication,
   currentMenu,
 }: MessageCardProps) => {
-  const { communicationMembersByFamily, communications, family, user } =
-    useContext(CurrentUserContext);
+  const { communications, selectedMembers } = useContext(CurrentUserContext);
   const [idAdmin, setIdAdmin] = useState<number>();
   const [admin, setAdmin] = useState<IAdmin>();
   const [message, setMessage] = useState<ICommunication>();
@@ -113,14 +112,18 @@ const MessagingCard = ({
   }, [currentCommunication]);
 
   const handleSelectedMessage = (direction: string) => {
-    selectedMessage && direction === 'left' && currentMenu[0] !== selectedMessage
+    currentMenu[0] !== undefined &&
+    selectedMessage !== undefined &&
+    direction === 'left' &&
+    currentMenu[0].id !== selectedMessage.id
       ? currentMenu.map(
           (com, index) =>
             com.id === selectedMessage.id && setSelectedMessage(currentMenu[index - 1]),
         )
-      : selectedMessage &&
+      : currentMenu[0] !== undefined &&
+        selectedMessage !== undefined &&
         direction === 'right' &&
-        currentMenu[currentMenu.length - 1] !== selectedMessage &&
+        currentMenu[currentMenu.length - 1].id !== selectedMessage.id &&
         currentMenu.map(
           (com, index) =>
             com.id === selectedMessage.id && setSelectedMessage(currentMenu[index + 1]),
@@ -164,15 +167,41 @@ const MessagingCard = ({
           <p>
             Envoyé le : <span>{message && transformDate(message?.date)}</span>
           </p>
+          <p>
+            A :
+            {selectedMessage &&
+            selectedMembers[0] !== undefined &&
+            selectedMessage.idFamilyMember !== null ? (
+              selectedMembers
+                .filter((member) => selectedMessage.idFamilyMember === member.id)
+                .map((memberSelected, index) => (
+                  <span key={index}> {memberSelected.firstname}</span>
+                ))
+            ) : (
+              <span style={{ color: '#519642' }}> La famille</span>
+            )}
+          </p>
         </div>
         <div className="messagingCardContainer__header__right">
-          <div onClick={() => handleSelectedMessage('left')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleSelectedMessage('left')}
+            onKeyDown={() => handleSelectedMessage('left')}>
             <Icon name="arrow-left" width="20px" color="#3D79AF" />
           </div>
-          <div onClick={() => handleSelectedMessage('right')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleSelectedMessage('right')}
+            onKeyDown={() => handleSelectedMessage('right')}>
             <Icon name="arrow-right" width="20px" color="#3D79AF" />
           </div>
-          <div onClick={() => handleTrash()}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleTrash()}
+            onKeyDown={() => handleTrash()}>
             <Icon name="trash-can" width="20px" color="#3D79AF" />
           </div>
         </div>

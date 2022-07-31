@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+
 import IDocument from '../interfaces/IDocument';
 import ILinkedDocument from '../interfaces/ILinkedDocument';
-import Icon from './Icon';
 import Fancybox from './Fancybox';
+import Icon from './Icon';
 
 interface DocumentsCardProps {
   selectedDocument: ILinkedDocument;
@@ -101,7 +102,12 @@ const DocumentsCard = ({
       currentDocument &&
       currentDocument.idDocumentType !== 11 && (
         <Fancybox>
-          <a data-fancybox="gallery" href={currentDocument.url}></a>
+          <a
+            data-fancybox="gallery"
+            href={currentDocument.url}
+            aria-label={currentDocument.name}>
+            {' '}
+          </a>
         </Fancybox>
       );
   };
@@ -127,10 +133,18 @@ const DocumentsCard = ({
     <div className="documentsCardContainer">
       <div className="documentsCardContainer__header">
         <div className="documentsCardContainer__header__arrows">
-          <div onClick={() => handleselectedDocument('left')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleselectedDocument('left')}
+            onKeyDown={() => handleselectedDocument('left')}>
             <Icon name="arrow-left" width="20px" color="white" />
           </div>
-          <div onClick={() => handleselectedDocument('right')}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => handleselectedDocument('right')}
+            onKeyDown={() => handleselectedDocument('right')}>
             <Icon name="arrow-right" width="20px" color="white" />
           </div>
         </div>
@@ -141,7 +155,10 @@ const DocumentsCard = ({
               <Fancybox>
                 <a data-fancybox="gallery" href={currentDocument.url}>
                   <div
+                    tabIndex={0}
+                    role="button"
                     onClick={() => handleBigger()}
+                    onKeyDown={() => handleBigger()}
                     className="documentsCardContainer__header__right__bigger">
                     <Icon name="upper-size" width="20px" color="white" />
                   </div>
@@ -149,8 +166,11 @@ const DocumentsCard = ({
               </Fancybox>
             )}
           <div
+            tabIndex={0}
+            role="button"
             className="documentsCardContainer__header__right__trash"
-            onClick={() => handleTrash()}>
+            onClick={() => handleTrash()}
+            onKeyDown={() => handleTrash()}>
             <Icon name="trash-can" width="20px" color="white" />
           </div>
         </div>

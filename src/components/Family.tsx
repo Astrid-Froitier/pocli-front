@@ -9,7 +9,11 @@ const Family = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div>
+    <>
+      <div className="familyBanner">
+        <h1 className="familyBanner__title">Activités physiques et de Bien-Être</h1>
+        <Icon name="users" color="#fff" width="40px" height="40px" />
+      </div>
       <Banner
         nameBannerActivity="activity family"
         title="Famille - Parentalité"
@@ -109,7 +113,7 @@ const Family = () => {
           <ComeBackHome />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

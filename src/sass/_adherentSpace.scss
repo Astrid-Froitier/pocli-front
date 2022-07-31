@@ -1,78 +1,193 @@
 .adherentSpaceContainer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  margin: $marginBoxTopAndBottom;
+
   &.modal {
     filter: blur(4px);
   }
-  &__left {
+  &__box{
     display: flex;
-    flex-direction: column;
-    width: 450px;
-    padding-right: 64px;
-    a {
-      width: fit-content;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: $marginBoxTopAndBottom;
+    &__left {
+      display: flex;
+      flex-direction: column;
+      width: 450px;
+      padding-right: 64px;
+      a {
+        width: fit-content;
+      }
+      p {
+        margin-bottom: 1rem;
+        width: fit-content;
+        cursor: pointer;
+        span {
+          font-weight: $fontBold;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      h1 {
+        margin: 0 0 2rem 0;
+        font-size: $titleSize;
+      }
     }
-    p {
-      margin-bottom: 1rem;
-      width: fit-content;
-      cursor: pointer;
+    &__right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      border-left: 1px solid $colorText-2;
+      padding-left: 65px;
+      height: 100%;
+      width: 450px;
+      p {
+        margin-left: 140px;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       span {
-        font-weight: $fontBold;
+        margin-left: 140px;
+        margin-bottom: 1rem;
+        font-size: $textSize;
+        color: $colorText-2;
+        font-weight: $fontRegular;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
       }
-      &:hover {
-        text-decoration: underline;
+      a {
+        &:nth-child(4) {
+          padding-bottom: 3rem;
+        }
       }
-    }
-    h1 {
-      margin: 0 0 2rem 0;
-      font-size: $titleSize;
+      h1 {
+        margin: 0 0 2rem 140px;
+        font-size: $titleSize;
+      }
+      &__disconnection {
+        margin-top: 3rem;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
-  &__right {
+}
+
+/////// RESPONSIVE /////////
+
+@media screen and (max-width: 1100px) {
+  .adherentSpaceContainer {
+    display: flex;
+    flex-direction: column;
+
+    &__left {
+      width: 100%;
+      padding: 0 0 48px 0;
+      text-align: center;
+      a {
+        display: flex;
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    &__right {
+      width: 100%;
+      padding: 0;
+      margin-left: 0;
+      h1 {
+        width: 100%;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+      }
+      span {
+        display: flex;
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+      }
+      a {
+        display: flex;
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+      }
+      p {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .adherentSpanceBanner {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .adherentSpanceBanner {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    border-left: 1px solid $colorText-2;
-    padding-left: 65px;
-    height: 100%;
-    width: 450px;
-    p {
-      margin-left: 140px;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-    span {
-      margin-left: 140px;
-      margin-bottom: 1rem;
-      font-size: $textSize;
-      color: $colorText-2;
-      font-weight: $fontRegular;
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-    a {
-      &:nth-child(4) {
-        padding-bottom: 3rem;
-      }
-    }
+    align-items: center;
+    height: 150px;
+    gap: 8px;
     h1 {
-      margin: 0 0 2rem 140px;
-      font-size: $titleSize;
+      color: $colorText-2;
+      width: 300px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
     }
-    &__disconnection {
-      margin-top: 3rem;
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
+  }
+
+  @media screen and (max-) {
+  }
+
+  .adherentSpaceContainer {
+    &__left {
+      h1 {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .adherentSpanceBanner {
+    h1 {
+      font-size: $resTitleSize4;
+    }
+  }
+  .adherentSpaceContainer {
+    &__left {
+      h1 {
+        font-size: $resTitleSize4;
+      }
+      p {
+        font-size: $resTextSize4;
+      }
+    }
+    &__right {
+      h1 {
+        font-size: $resTitleSize4;
+      }
+      p {
+        font-size: $resTextSize4;
+      }
+      span {
+        font-size: $resTextSize4;
       }
     }
   }

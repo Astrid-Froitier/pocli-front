@@ -46,8 +46,10 @@ const Banner = ({
   };
 
   useEffect(() => {
-    cardSelected.includes(false) && setSelectAll(false);
-    cardSelected.includes(true) && setSelectNobody(false);
+    cardSelected &&
+      cardSelected[0] !== undefined &&
+      (cardSelected.includes(false) && setSelectAll(false),
+      cardSelected.includes(true) && setSelectNobody(false));
   }, [cardSelected]);
 
   return (
@@ -81,7 +83,7 @@ const Banner = ({
         )}
         {bannerMember && (
           <div className="box__members">
-            <FamilyMembers />
+            <FamilyMembers filter={memberFilter} />
           </div>
         )}
       </div>

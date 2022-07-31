@@ -320,3 +320,103 @@
     }
   }
 }
+
+@media screen and (max-width: 700px) {
+  .messagingMenuContainer {
+    // &__content {
+    //   display: flex;
+    //   justify-content: center;
+    // }
+    &__unreadMessagesDevelopped {
+      &__messagesBox {
+        p {
+          font-size: $resTextSize4;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .messagingMenuContainer {
+    margin-bottom: 32px;
+    &__unreadMessages,
+    &__allMessages,
+    &__trash {
+      p {
+        font-size: $resTextSize4;
+      }
+      .icon {
+        width: 30px;
+      }
+    }
+    &__unreadMessagesDevelopped {
+      width: 100%;
+
+      &__title {
+        width: 100%;
+        font-size: $resTextSize4;
+      }
+      .icon {
+        width: 30px;
+      }
+      p {
+        font-size: $resTextSize4;
+      }
+      &__messagesBox {
+        width: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        &__messages {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          align-items: unset;
+          height: 55px;
+        }
+      }
+    }
+    &__allMessagesDevelopped {
+      width: 100%;
+      &__title {
+        width: 100%;
+        font-size: $resTextSize4;
+      }
+      .icon {
+        width: 30px;
+      }
+      p {
+        font-size: $resTextSize4;
+      }
+      &__messagesBox {
+        width: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+      }
+    }
+    &__trashDevelopped {
+      width: 100%;
+      &__title {
+        width: 100%;
+        font-size: $resTextSize4;
+      }
+      .icon {
+        width: 30px;
+      }
+      .icon {
+        width: 30px;
+      }
+      p {
+        font-size: $resTextSize4;
+      }
+      &__messagesBox {
+        width: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        &__messages {
+          align-items: unset;
+          height: 55px;
+        }
+      }
+    }
+  }
+}

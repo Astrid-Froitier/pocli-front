@@ -1,6 +1,7 @@
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 import aboutNumbers from '../../data/aboutNumbers';
@@ -16,8 +17,6 @@ import EventCard from './EventCard';
 import Icon from './Icon';
 import ModalEvent from './ModalEvent';
 import PartnersList from './PartnersList';
-import TextField from '@mui/material/TextField';
-import { styled } from '@mui/material/styles';
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   [theme.breakpoints.down(500)]: {
@@ -129,7 +128,7 @@ const Home = () => {
   // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
   useEffect(() => {
     let urls = [
-      'https://wild-pocli.herokuapp.com/api/events',
+      'https://wild-pocli.herokuapp.com/api/events?sort="date,DESC"',
       'https://wild-pocli.herokuapp.com/api/postTypes',
       'https://wild-pocli.herokuapp.com/api/activities',
       'https://wild-pocli.herokuapp.com/api/documents',
@@ -174,7 +173,7 @@ const Home = () => {
       try {
         e.preventDefault();
         await axios.post<INewsletter>(
-          'http://localhost:3001/api/newsletters',
+          'https://wild-pocli.herokuapp.com/api/newsletters',
           { email },
           {
             method: 'POST',
@@ -235,6 +234,25 @@ const Home = () => {
                         role="button"
                         key={index}
                         className="homeContainer__events__list__card"
+                        onClick={() => handleClick(event.id)}
+                        onKeyDown={() => handleClick(event.id)}
+                        tabIndex={0}>
+                        <EventCard event={event} />
+                      </div>
+                    ),
+                )}
+          </div>
+          <div className="homeContainer__events__list-response">
+            {events &&
+              events
+                .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
+                .map(
+                  (event, index) =>
+                    index < 4 && (
+                      <div
+                        role="button"
+                        key={index}
+                        className="homeContainer__events__list-response__card"
                         onClick={() => handleClick(event.id)}
                         onKeyDown={() => handleClick(event.id)}
                         tabIndex={0}>

@@ -26,3 +26,58 @@
     }
   }
 }
+
+////// RESPONSIVE ////////
+@media screen and (max-width: 800px) {
+  // .messagingContainer {
+
+  // }
+}
+@media screen and (max-width: 800px) {
+  .messagingContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    &__header {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 15px;
+      width: 90%;
+
+      &__left {
+        width: 100%;
+        margin-top: 32px;
+      }
+    }
+    &__content {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      &__right {
+        border: 0;
+        width: 100%;
+        padding: 0;
+      }
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .messagingBanner {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .messagingContainer {
+    &__content {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      height: 100%;
+
+      &__right {
+        border: 0;
+      }
+    }
+  }
+}

@@ -32,16 +32,13 @@ const MessagingMenu = ({
     setCommunicationMembersByFamily,
     communications,
     setCommunications,
-    cardSelected,
-    familyMembers,
     user,
+    selectedMembers,
   } = useContext(CurrentUserContext);
 
   const [unreadMessages, setUnreadMessages] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [communicationsByMember, setCommunicationsByMember] = useState<
-    ICommunicationMember[][]
-  >([]);
+
   const [allCommunicationsFamily, setAllCommunicationsFamily] = useState<
     ICommunicationMember[]
   >([]);
@@ -71,31 +68,20 @@ const MessagingMenu = ({
       date: '',
       idAdmin: 1,
     });
-    number === 1
-      ? setCurrentMenu(communicationsFamilyUnread)
-      : number === 2
-      ? setCurrentMenu(allCommunicationsFamily)
-      : number === 3 && setCurrentMenu(trashCommunications);
   };
 
   useEffect(() => {
-    setCommunicationsByMember(
-      familyMembers
-        .filter((member, index) => cardSelected[index])
-        .map((member) =>
-          communicationMembersByFamily.filter((com) => member.id === com.idFamilyMember),
-        )
-        .filter((member) => member.length),
-    );
-  }, [cardSelected]);
-
-  useEffect(() => {
-    let array: ICommunicationMember[] = [];
-    communicationsByMember.map((el) => el.map((com) => array.push(com)));
-    setAllCommunicationsFamily(array);
-    setCommunicationsFamilyUnread(array.filter((com) => !com.isOpened));
-    setTrashCommunications(array.filter((com) => com.isTrashed));
-  }, [communicationsByMember]);
+    selectedMenu === 1
+      ? setCurrentMenu(communicationsFamilyUnread)
+      : selectedMenu === 2
+      ? setCurrentMenu(allCommunicationsFamily)
+      : selectedMenu === 3 && setCurrentMenu(trashCommunications);
+  }, [
+    selectedMenu,
+    communicationsFamilyUnread,
+    allCommunicationsFamily,
+    trashCommunications,
+  ]);
 
   useEffect(() => {
     communications &&
@@ -123,17 +109,57 @@ const MessagingMenu = ({
   }, [currentCommunication]);
 
   useEffect(() => {
-    !cardSelected.includes(false) &&
-      (setAllCommunicationsFamily(
-        communicationMembersByFamily.filter((com) => com.isTrashed === 0),
-      ),
-      setCommunicationsFamilyUnread(
-        allCommunicationsFamily.filter((com) => com.isOpened === 0),
-      ),
-      setTrashCommunications(
-        communicationMembersByFamily.filter((com) => com.isTrashed),
-      ));
-  }, [communicationMembersByFamily, cardSelected]);
+    selectedMembers.length === 0
+      ? (setAllCommunicationsFamily(
+          communicationMembersByFamily.filter(
+            (com) => com.idFamilyMember === null && !com.isTrashed,
+          ),
+        ),
+        setCommunicationsFamilyUnread(
+          communicationMembersByFamily.filter(
+            (com) => com.idFamilyMember === null && !com.isOpened,
+          ),
+        ),
+        setTrashCommunications(
+          communicationMembersByFamily.filter(
+            (com) => com.isTrashed && com.idFamilyMember === null,
+          ),
+        ))
+      : selectedMembers[0] !== undefined &&
+        (setAllCommunicationsFamily([
+          ...new Set(
+            selectedMembers.flatMap((member) =>
+              communicationMembersByFamily.filter(
+                (com) =>
+                  (member.id === com.idFamilyMember && !com.isTrashed) ||
+                  (com.idFamilyMember === null && !com.isTrashed),
+              ),
+            ),
+          ),
+        ]),
+        setCommunicationsFamilyUnread([
+          ...new Set(
+            selectedMembers.flatMap((member) =>
+              communicationMembersByFamily.filter(
+                (com) =>
+                  (member.id === com.idFamilyMember && !com.isOpened) ||
+                  (com.idFamilyMember === null && !com.isOpened),
+              ),
+            ),
+          ),
+        ]),
+        setTrashCommunications([
+          ...new Set(
+            selectedMembers.flatMap((member) =>
+              communicationMembersByFamily.filter(
+                (com) =>
+                  (member.id === com.idFamilyMember && com.isTrashed) ||
+                  (com.idFamilyMember === null && com.isTrashed),
+              ),
+            ),
+          ),
+        ]));
+  }, [communicationMembersByFamily, selectedMembers]);
 
   const dataOpened = JSON.stringify({ isOpened: '1' });
 
@@ -178,7 +204,6 @@ const MessagingMenu = ({
   useEffect(() => {
     selectedMessage.id && putOpened(selectedMessage.id);
   }, [selectedMessage]);
-
   return (
     <div className="messagingMenuContainer">
       {selectedMenu === 1 && unreadMessages > 0 ? (
@@ -214,7 +239,13 @@ const MessagingMenu = ({
                   )
                   .map((com, index) => (
                     <div key={index}>
-                      <p>{`${transformDate(com.date)} ${com.object}`}</p>
+                      {comFamily.idFamilyMember !== null ? (
+                        <p>{`${transformDate(com.date)} ${com.object}`}</p>
+                      ) : (
+                        <p style={{ color: '#519642' }}>{`${transformDate(com.date)} ${
+                          com.object
+                        }`}</p>
+                      )}
                       <p>Non lu</p>
                     </div>
                   ))}
@@ -271,7 +302,13 @@ const MessagingMenu = ({
                       .filter((communication) => communication.id === com.idCommunication)
                       .map((comu, index) => (
                         <div key={index}>
-                          <p>{`${transformDate(comu.date)} ${comu.object}`}</p>
+                          {com.idFamilyMember !== null ? (
+                            <p>{`${transformDate(comu.date)} ${comu.object}`}</p>
+                          ) : (
+                            <p style={{ color: '#519642' }}>{`${transformDate(
+                              comu.date,
+                            )} ${comu.object}`}</p>
+                          )}
                           <p>Non lu</p>
                         </div>
                       ))}
@@ -287,7 +324,13 @@ const MessagingMenu = ({
                       .filter((communication) => communication.id === com.idCommunication)
                       .map((comu, index) => (
                         <div key={index}>
-                          <p>{`${transformDate(comu.date)} ${comu.object}`}</p>
+                          {com.idFamilyMember !== null ? (
+                            <p>{`${transformDate(comu.date)} ${comu.object}`}</p>
+                          ) : (
+                            <p style={{ color: '#519642' }}>{`${transformDate(
+                              comu.date,
+                            )} ${comu.object}`}</p>
+                          )}
                           <p>Lu</p>
                         </div>
                       ))}
@@ -336,7 +379,13 @@ const MessagingMenu = ({
                   .filter((communication) => communication.id === commu.idCommunication)
                   .map((com, index) => (
                     <div key={index}>
-                      <p>{`${transformDate(com.date)} ${com.object}`}</p>
+                      {commu.idFamilyMember !== null ? (
+                        <p>{`${transformDate(com.date)} ${com.object}`}</p>
+                      ) : (
+                        <p style={{ color: '#519642' }}>{`${transformDate(com.date)} ${
+                          com.object
+                        }`}</p>
+                      )}
                       <p>Lu</p>
                     </div>
                   ))}

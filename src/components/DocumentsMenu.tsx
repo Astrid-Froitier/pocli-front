@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
+
 import { getAllDataWithCredential } from '../../helpers/axios';
 import dateNowToDate from '../../helpers/dateNowToDate';
 import { transformDate } from '../../helpers/transformDate';
@@ -25,13 +26,8 @@ const DocumentsMenu = ({
 }: DocumentsMenuProps) => {
   const { documents, setDocuments } = useContext(CurrentDataContext);
   const d = new Date(Date.now());
-  const {
-    user,
-    setLinkedDocumentsByFamily,
-    linkedDocumentsByFamily,
-    cardSelected,
-    communicationMembersByFamily,
-  } = useContext(CurrentUserContext);
+  const { user, setLinkedDocumentsByFamily, linkedDocumentsByFamily } =
+    useContext(CurrentUserContext);
 
   const [selectedMenu, setSelectedMenu] = useState(0);
 

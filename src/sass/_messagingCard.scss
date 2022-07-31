@@ -43,7 +43,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 80%;
-    margin: 2.5rem 0;
+    margin: 1.5rem 0;
     p {
       font-size: $mediumTextSize;
       font-weight: $fontBold;
@@ -68,6 +68,7 @@
     &__content {
       overflow-y: auto;
       height: 300px;
+      height: 340px;
       width: 100%;
       border-radius: 0.5rem;
       border: 1px solid #3d79af;
@@ -93,6 +94,38 @@
         text-align: center;
         font-size: $categorySize;
         padding: 0 2rem;
+      }
+    }
+  }
+}
+
+/////// RESPONSIVE ////////
+
+// @media screen and (max-width:800px) {
+//   .messagingCardContainer(
+
+//   )
+
+// }
+
+@media screen and (max-width: 400px) {
+  .messagingCardContainer {
+    // width: 90%;
+    &__header {
+      &__left {
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+    &__object {
+      p {
+        font-size: 16px;
+      }
+    }
+    &__message {
+      p {
+        font-size: 16px;
       }
     }
   }

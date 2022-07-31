@@ -17,26 +17,10 @@ const Documents = () => {
 
   const {
     user,
-    // family,
-    setFamily,
-    // cities,
-    setCities,
-    // recipients,
-    setRecipients,
     selectedMembers,
-    // paymentRecordsByFamily,
-    setPaymentRecordsByFamily,
-    // paymentMethods,
-    setPaymentMethods,
-    // communicationMembersByFamily,
-    setCommunicationMembersByFamily,
-    // communications,
-    setCommunications,
-    // linkedDocumentsByFamily,
     setLinkedDocumentsByFamily,
-    // familyMemberEvents,
-    setFamilyMemberEvents,
     cardSelected,
+    setFamilyMembers,
   } = useContext(CurrentUserContext);
 
   const { setDocuments } = useContext(CurrentDataContext);
@@ -66,19 +50,19 @@ const Documents = () => {
     let urls = [
       `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
       `https://wild-pocli.herokuapp.com/api/documents`,
+      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
     ];
 
     getAllDataWithCredential(urls)
       .then((res) => {
         setLinkedDocumentsByFamily(res[0].data);
         setDocuments(res[1].data);
+        setFamilyMembers(res[2].data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
-
-  console.log(selectedDocument);
 
   return (
     <div>

@@ -18,8 +18,8 @@ type UserContent = {
   user: IUserInfos;
   setUser: React.Dispatch<React.SetStateAction<IUserInfos>>;
   logout: () => void;
-  family: IFamily[];
-  setFamily: React.Dispatch<React.SetStateAction<IFamily[]>>;
+  family: IFamily;
+  setFamily: React.Dispatch<React.SetStateAction<IFamily>>;
   cities: ICity[];
   setCities: React.Dispatch<React.SetStateAction<ICity[]>>;
   recipients: IRecipient[];
@@ -54,7 +54,17 @@ const CurrentUserContext = createContext<UserContent>({
   user: { id: 0, name: '' },
   setUser: () => {},
   logout: () => {},
-  family: [],
+  family: {
+    id: 0,
+    name: '',
+    streetNumber: 0,
+    address: '',
+    phoneNumber: 0,
+    email: '',
+    password: '',
+    idCity: 0,
+    idRecipient: 0,
+  },
   setFamily: () => {},
   cities: [],
   setCities: () => {},
@@ -84,7 +94,17 @@ const CurrentUserContext = createContext<UserContent>({
 
 export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<IUserInfos>({ id: 0, name: '' });
-  const [family, setFamily] = useState<IFamily[]>([]);
+  const [family, setFamily] = useState<IFamily>({
+    id: 0,
+    name: '',
+    streetNumber: 0,
+    address: '',
+    phoneNumber: 0,
+    email: '',
+    password: '',
+    idCity: 0,
+    idRecipient: 0,
+  });
   const [cities, setCities] = useState<ICity[]>([]);
   const [recipients, setRecipients] = useState<IRecipient[]>([]);
   const [familyMembers, setFamilyMembers] = useState<IFamilyMember[]>([]);
@@ -100,21 +120,22 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
     ILinkedDocument[]
   >([]);
   const [familyMemberEvents, setFamilyMemberEvents] = useState<IFamilyMemberEvent[]>([]);
-  const [cardSelected, setCardSelected] = useState<boolean[]>(
-    user.id !== 0 ? JSON.parse(localStorage.getItem('cardSelected') || '{}') : [],
-  );
+  const [cardSelected, setCardSelected] = useState<boolean[]>([]);
   const [selectedMembers, setSelectedMembers] = useState<IFamilyMember[]>([]);
   const [stayConnected, setStayConnected] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.length > 0
-      ? setUser(JSON.parse(localStorage.getItem('userInfos') || '{"id":0,"name":""}'))
+      ? (setUser(JSON.parse(localStorage.getItem('userInfos') || '{"id":0,"name":""}')),
+        setCardSelected(JSON.parse(localStorage.getItem('cardSelected') || '{}')))
       : sessionStorage.length > 0 &&
-        setUser(JSON.parse(sessionStorage.getItem('userInfos') || '{"id":0,"name":""}'));
+        (setUser(JSON.parse(sessionStorage.getItem('userInfos') || '{"id":0,"name":""}')),
+        setCardSelected(JSON.parse(sessionStorage.getItem('cardSelected') || '{}')));
   }, [localStorage, sessionStorage]);
 
   useEffect(() => {
-    familyMembers[0] === undefined &&
+    user.id !== 0 &&
+      familyMembers[0] === undefined &&
       getAllDataWithCredential([
         `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
       ]).then((res) => {

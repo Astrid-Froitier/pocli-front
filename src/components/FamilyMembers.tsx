@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { getAllDataWithCredential } from '../../helpers/axios';
+import React, { useContext, useEffect } from 'react';
 
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import IFamilyMember from '../interfaces/IFamilyMember';
 import Icon from './Icon';
 
-const FamilyMembers = () => {
-  const {
-    familyMembers,
-    cardSelected,
-    setCardSelected,
-    setSelectedMembers,
-    selectedMembers,
-  } = useContext(CurrentUserContext);
+interface FamilyMembersProps {
+  filter?: boolean;
+}
+
+const FamilyMembers = ({ filter = true }: FamilyMembersProps) => {
+  const { familyMembers, cardSelected, setCardSelected, setSelectedMembers } =
+    useContext(CurrentUserContext);
   const { documents } = useContext(CurrentDataContext);
 
   // function to select only one member of the family with a map. If the key is egal to the index don't select the card else select it.
@@ -23,7 +21,11 @@ const FamilyMembers = () => {
 
   useEffect(() => {
     const membersSelected: IFamilyMember[] = [];
-    cardSelected && localStorage.setItem('cardSelected', JSON.stringify(cardSelected));
+    cardSelected && localStorage.length > 0
+      ? localStorage.setItem('cardSelected', JSON.stringify(cardSelected))
+      : cardSelected &&
+        sessionStorage.length > 0 &&
+        sessionStorage.setItem('cardSelected', JSON.stringify(cardSelected));
     cardSelected.map((card, index) => card && membersSelected.push(familyMembers[index]));
     setSelectedMembers(membersSelected);
   }, [cardSelected, familyMembers]);
@@ -52,11 +54,23 @@ const FamilyMembers = () => {
                 className="familyMembers__card__name__square"
                 onClick={() => selectMember(index)}
                 aria-hidden="true">
-                {cardSelected[index] ? (
-                  <Icon name="square-check" width="20px" height="20px" color="white" />
-                ) : (
-                  <Icon name="square-nocheck" width="20px" height="20px" color="white" />
-                )}
+                {cardSelected[index]
+                  ? filter && (
+                      <Icon
+                        name="square-check"
+                        width="20px"
+                        height="20px"
+                        color="white"
+                      />
+                    )
+                  : filter && (
+                      <Icon
+                        name="square-nocheck"
+                        width="20px"
+                        height="20px"
+                        color="white"
+                      />
+                    )}
               </div>
             </div>
           </div>
