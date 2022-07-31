@@ -23,7 +23,6 @@ const DocumentsCard = ({
 }: DocumentsCardProps) => {
   const [document, setDocument] = useState<IDocument>();
   const [errorMessage, setErrorMessage] = useState<string>('');
-  console.log(document);
 
   const handleselectedDocument = (direction: string) => {
     selectedDocument && direction === 'left' && currentMenu[0] !== selectedDocument
@@ -193,19 +192,24 @@ const DocumentsCard = ({
             src={currentDocument.url}
             width="400"
             height="300"></embed>
-        ) : (
-          selectedDocument.id !== 0 &&
+        ) : selectedDocument.id !== 0 &&
           currentDocument &&
-          currentDocument.idDocumentType === 21 && (
-            <Fancybox>
-              <a data-fancybox="gallery" href={currentDocument.url}>
-                <embed
-                  type="video/webm"
-                  src={currentDocument.url}
-                  width="400"
-                  height="550"></embed>
-              </a>
-            </Fancybox>
+          currentDocument.idDocumentType === 21 ? (
+          <Fancybox>
+            <a data-fancybox="gallery" href={currentDocument.url}>
+              <embed
+                type="video/webm"
+                src={currentDocument.url}
+                width="400"
+                height="550"></embed>
+            </a>
+          </Fancybox>
+        ) : (
+          selectedDocument.id === 0 && (
+            <div className="documentsCardContainer__viewer__none">
+              <Icon name="file-exclamation" width="150px" color="#3D79AF" />
+              <h1>Vous n’avez pas encore sélectionné de document</h1>
+            </div>
           )
         )}
       </div>

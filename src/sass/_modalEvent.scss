@@ -63,3 +63,30 @@
     }
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .modalEvent{
+    &__box{
+      height: calc(100vh - 250px);
+      top: calc(50% + 50px);
+      width: 70%;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .modalEvent{
+    &__box{
+      height: calc(100vh - 200px);
+      top: calc(50% + 50px);
+      width: 90%;
+      padding: 50px;
+      &__header{
+        &__x-mark{
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+  }
+}

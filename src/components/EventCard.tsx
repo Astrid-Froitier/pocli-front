@@ -132,6 +132,15 @@ const EventCard = ({
                     }`}
               </p>
             </div>
+            <div className="eventCard__preview__informations__text-responsive">
+              <p>
+                {modalEvent
+                  ? event.description.slice(0, 80)
+                  : `${event.description.slice(0, 80)}${
+                      event.description.length > 80 ? '...' : ''
+                    }`}
+              </p>
+            </div>
             {bannerEvent && (
               <div className="eventCard__preview__informations__arrow">
                 <div className="eventCard__preview__informations__arrow__box">

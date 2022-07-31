@@ -1,6 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 
 import { navLinks_bottom, navLinks_top, navLinks_topConnected } from '../../data/links';
@@ -20,33 +18,51 @@ const NavBarMobile = () => {
   const handleLogout = () => {
     logout();
     redirectHome();
+    setIsOpen(!isOpen);
   };
-  // debug
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // useEffect permettant d'empêcher le scroll sur Y suivant l'état de modalOnOff
+  useEffect(() => {
+    {
+      isOpen
+        ? document.documentElement.style.setProperty('overflow-y', 'hidden')
+        : document.documentElement.style.setProperty('overflow-y', 'scroll');
+    }
+  }, [isOpen]);
 
   return (
     <div className="navBarMobile">
       {isOpen ? (
         <div className="navBarMobile">
           <div className="navBarMobile__banner">
-            <NavLink to="/" className="navBarMobile__banner__img">
-              <img src="/assets/pocli.png" alt="logo pocli" width={90} height={60} />
+            <NavLink
+              to="/"
+              className="navBarMobile__banner__img"
+              onClick={handleClick}
+              onKeyDown={handleClick}
+              role="button"
+              tabIndex={0}>
+              <img src="/assets/pocli.png" alt="logo pocli" />
             </NavLink>
-            {isOpen ? (
-              <AiOutlineClose
-                className="navBarMobile__banner__button"
-                onClick={() => setIsOpen(!isOpen)}
-                onKeyDown={() => setIsOpen(!isOpen)}
-                role="presentation"
-                area-hidden="true"
-              />
-            ) : (
-              ''
-            )}
+            <div
+              className="navBarMobile__banner__button"
+              onClick={handleClick}
+              onKeyDown={handleClick}
+              role="button"
+              tabIndex={0}>
+              <Icon name="xmark" width="25px" color="#3d79af" />
+            </div>
           </div>
           <div className="navBarMobile__links">
             <div className="navBarMobile__links__linksBottom">
               {navLinks_bottom.map((link) => (
                 <NavLink
+                  onClick={handleClick}
+                  onKeyDown={handleClick}
                   className="navBarMobile__links__linksBottom__a"
                   key={link.id}
                   to={link.path}>
@@ -60,6 +76,8 @@ const NavBarMobile = () => {
               {user.id === 0
                 ? navLinks_top.map((link) => (
                     <NavLink
+                      onClick={handleClick}
+                      onKeyDown={handleClick}
                       className="navBarMobile__links__linksTop__a"
                       key={link.id}
                       to={link.path}>
@@ -74,6 +92,8 @@ const NavBarMobile = () => {
                 : navLinks_topConnected.map((link) =>
                     link.id === 4 ? (
                       <NavLink
+                        onClick={handleClick}
+                        onKeyDown={handleClick}
                         className="navBarMobile__links__linksTop__a"
                         key={link.id}
                         to={link.path}>
@@ -96,6 +116,8 @@ const NavBarMobile = () => {
                       </div>
                     ) : (
                       <NavLink
+                        onClick={handleClick}
+                        onKeyDown={handleClick}
                         className="navBarMobile__links__linksTop__a"
                         key={link.id}
                         to={link.path}>
@@ -115,13 +137,14 @@ const NavBarMobile = () => {
               <img src="/assets/pocli.png" alt="logo pocli" width={90} height={60} />
             </NavLink>
           </div>
-          <GiHamburgerMenu
+          <div
             className="navBarMobile__banner__button"
-            onClick={() => setIsOpen(!isOpen)}
-            onKeyDown={() => setIsOpen(!isOpen)}
-            role="presentation"
-            area-hidden="true"
-          />
+            onClick={handleClick}
+            onKeyDown={handleClick}
+            role="button"
+            tabIndex={0}>
+            <Icon name="bars" width="25px" color="#3d79af" />
+          </div>
         </div>
       )}
     </div>

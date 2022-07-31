@@ -37,7 +37,7 @@ const Messaging = () => {
     setCommunicationMembersByFamily,
     setCommunications,
     cardSelected,
-    familyMembers,
+    selectedMembers,
   } = useContext(CurrentUserContext);
 
   const { setDocuments } = useContext(CurrentDataContext);
@@ -83,19 +83,21 @@ const Messaging = () => {
       <div className="messagingContainer">
         <div className="messagingContainer__header">
           <div className="messagingContainer__header__left">
-            {cardSelected.includes(false) ? (
+            {!cardSelected.includes(true) && <p>Aucun membre sélectionné</p>}
+            {cardSelected.includes(false) && cardSelected.includes(true) ? (
               <p>
                 Filtre :
-                {cardSelected.map((card, index) =>
-                  index !== 0 && card ? (
-                    <span key={index}>, {familyMembers[index].firstname}</span>
-                  ) : (
-                    card && <span key={index}> {familyMembers[index].firstname}</span>
-                  ),
-                )}
+                {selectedMembers[0] !== undefined &&
+                  selectedMembers.map((member, index) =>
+                    index !== selectedMembers.length - 1 ? (
+                      <span key={index}> {member.firstname},</span>
+                    ) : (
+                      <span key={index}> {member.firstname}</span>
+                    ),
+                  )}
               </p>
             ) : (
-              <p>Filtre : Toute la famille</p>
+              !cardSelected.includes(false) && <p>Filtre : Toute la famille</p>
             )}
           </div>
           <div className="messagingContainer__header__right">

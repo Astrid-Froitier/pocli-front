@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
+import CurrentUserContext from '../contexts/CurrentUser';
 import IEvent from '../interfaces/IEvent';
 import EventCard from './EventCard';
 import FamilyMembers from './FamilyMembers';
@@ -28,6 +29,29 @@ const Banner = ({
   event,
   handleClick,
 }: BannerProps) => {
+  const { setCardSelected, familyMembers, cardSelected } = useContext(CurrentUserContext);
+
+  const [selectAll, setSelectAll] = useState<boolean>(false);
+  const [selectNobody, setSelectNobody] = useState<boolean>(false);
+
+  const handleSelectAll = () => {
+    setSelectNobody(false);
+    setSelectAll(true);
+    setCardSelected(familyMembers.map((member) => member && true));
+  };
+  const handleSelectNobody = () => {
+    setSelectAll(false);
+    setSelectNobody(true);
+    setCardSelected(familyMembers.map((member) => member && false));
+  };
+
+  useEffect(() => {
+    cardSelected &&
+      cardSelected[0] !== undefined &&
+      (cardSelected.includes(false) && setSelectAll(false),
+      cardSelected.includes(true) && setSelectNobody(false));
+  }, [cardSelected]);
+
   return (
     <div className={`banner ${nameBannerActivity}`}>
       {title && <h1>{title}</h1>}
@@ -63,6 +87,26 @@ const Banner = ({
           </div>
         )}
       </div>
+      {bannerMember && (
+        <div className="banner__select">
+          <div className="banner__select__all">
+            <label htmlFor="checkbox">Tout sélectionner : </label>
+            <input
+              type="checkbox"
+              onChange={() => handleSelectAll()}
+              checked={selectAll}
+            />
+          </div>
+          <div className="banner__select__nobody">
+            <label htmlFor="checkbox">Tout désélectionner : </label>
+            <input
+              type="checkbox"
+              onChange={() => handleSelectNobody()}
+              checked={selectNobody}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
