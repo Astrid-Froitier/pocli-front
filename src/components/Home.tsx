@@ -184,7 +184,7 @@ const Home = () => {
           },
         );
         setEmailSended(
-          "Votre demande d'abonnement à notre newsletter a bien été prise en compte.",
+          "Votre demande d'abonnement à notre newsletter a bien été prise en compte",
         );
       } catch (err) {
         // err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
@@ -242,7 +242,8 @@ const Home = () => {
                     ),
                 )}
           </div>
-          <div className="homeContainer__events__list-response">
+          <div className="homeContainer__events__list-responsive">
+            <h1>Les derniers événements</h1>
             {events &&
               events
                 .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
@@ -252,7 +253,7 @@ const Home = () => {
                       <div
                         role="button"
                         key={index}
-                        className="homeContainer__events__list-response__card"
+                        className="homeContainer__events__list-responsive__card"
                         onClick={() => handleClick(event.id)}
                         onKeyDown={() => handleClick(event.id)}
                         tabIndex={0}>
@@ -261,7 +262,7 @@ const Home = () => {
                     ),
                 )}
           </div>
-          <Button text="TOUS LES ÉVÈNEMENTS" link="/events" />
+          <Button text="TOUS LES ÉVÉNEMENTS" link="/events" />
         </div>
         {!user.id && (
           <div className="homeContainer__nonAdherent">

@@ -27,6 +27,7 @@
     &__description {
       &__firstPoint,
       &__secondPoint {
+        width: 100%;
         gap: 1rem;
         display: flex;
         align-content: center;
@@ -34,7 +35,7 @@
         margin-bottom: 1.5rem;
       }
       p {
-        width: fit-content;
+        width: 100%;
       }
     }
   }
@@ -111,18 +112,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #af3d3d;
+    background-color: $redPocli;
     opacity: 60%;
     height: 150px;
     color: $colorText-3;
     gap: 8px;
 
     h1 {
+      width: 90%;
       color: #fff;
       font-size: 24px;
-      width: 300px;
       display: flex;
       text-align: center;
+      justify-content: center;
     }
     .icon {
       width: 40px;

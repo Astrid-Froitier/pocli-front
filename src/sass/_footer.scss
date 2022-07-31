@@ -1,91 +1,101 @@
 .footerContainer {
-  justify-content: center;
-  background-color: #8bafcf;
-  color: white;
-  bottom: 0;
+  width: 100%;
+  height: 500px;
+  background-color: $backGround-1;
+  color: $colorText-3;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  &__footerLinks {
+  justify-content: center;
+  a,
+  li {
+    text-decoration: none;
+    list-style: none;
+    font-family: $fontFamily;
+    color: $colorText-3;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+  &__footerNav {
+    height: calc(400% / 5);
+    width: $pageContentWidth;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    width: 1028px;
-    padding: 6% 0 6% 0;
-    &__footerLinksTop h4 {
-      padding-bottom: 1rem;
-    }
-
-    &__footerLinksTop__a {
-      text-decoration: none;
-
-      &__li {
-        color: white;
-        font-family: $typoNav;
-        font-weight: 400;
-        font-size: 16px;
-        list-style: none;
-        padding-bottom: 0.5rem;
-      }
-    }
-
-    &__footerLinksBottom {
-      margin-bottom: 16px;
-    }
-
-    &__footerLinksBottom h4 {
-      padding-bottom: 1rem;
-    }
-
-    &__footerLinksBottom__a {
-      text-decoration: none;
-
-      &__li {
-        color: white;
-        font-family: $typoNav;
-        font-weight: 400;
-        font-size: 16px;
-        list-style: none;
-        padding-bottom: 0.5rem;
-      }
-    }
-  }
-
-  &__footerLinks__logo {
-    margin-bottom: 5.5rem;
-
-    & h4 {
-      margin-bottom: 1rem;
-    }
-  }
-
-  &__mention {
-    width: 1028px;
-    margin-bottom: 5%;
-    &__h6 {
+    border-bottom: 1px solid $colorText-3;
+    &__box {
+      width: 100%;
       display: flex;
-      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      li{
+        margin: 12px 0;
+        font-size: $textSize;
+      }
+      span {
+        font-weight: $fontExtraBold;
+        font-size: $textSize;
+      }
+      &__footerLinksTop {
+        a:first-of-type{
+          li{
+            margin-top: 30px;
+          }
+        }
+        a:last-of-type{
+          li{
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      &__footerLinksBottom {
+        a:first-of-type{
+          li{
+            margin-top: 30px;
+          }
+        }
+        a:last-of-type{
+          li{
+            margin-bottom: 0;
+          }
+        }
+      }
+      &__social {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        gap: 30px;
+      }
+    }
+  }
+
+  &__legalInformations {
+    height: calc(100% / 5);
+    width: $pageContentWidth;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    &__box{
+      width: 100%;
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid;
-      padding-top: 2%;
-      width: 1028px;
-      p {
-        color: white;
-        font-size: 12px;
-      }
-
-      &__list {
+      &__pocli{
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 12px;
-        width: 28%;
-
-        li {
-          list-style: none;
-          color: $colorText-3;
+        gap: 30px;
+        span{
+          font-weight: $fontExtraBold;
+        }
+      }
+      &__privacy{
+        display: flex;
+        gap: 30px;
+        a:hover {
+          text-decoration: underline;
         }
       }
     }
@@ -94,50 +104,26 @@
 
 @media screen and (max-width: 1100px) {
   .footerContainer {
-    &__footerLinks {
-      flex-direction: row;
-      width: 100%;
-      &__footerLinksTop {
-        margin-bottom: 4%;
-        padding: 6% 0 0 10%;
-      }
-      &__footerLinksBottom {
-        margin-bottom: 4%;
-        padding: 6% 0 0 10%;
-        h4 {
-          padding-bottom: 1rem;
+    width: 100%;
+    height: 400px;
+    &__footerNav {
+      width: 90%;
+      &__box {
+        li{
+          font-size: $smallTextSize;
         }
-      }
-      &__logo {
-        padding: 6% 0 0 10%;
+        span {
+          font-size: $smallTextSize;
+        }
       }
     }
-    &__mention {
-      width: 80%;
-      text-align: center;
-      &__h6 {
+    &__legalInformations {
+      width: 90%;
+      &__box{
         width: 100%;
         flex-direction: column;
-        h6 {
-          margin-bottom: 2%;
-          font-size: 16px;
-        }
-        p {
-          font-size: 16px;
-        }
-        &__list {
-          width: 100%;
-          margin-top: 2%;
-          display: flex;
-          justify-content: space-around;
-          flex-direction: row;
-          align-items: center;
-          font-size: 25px;
-          li {
-            text-decoration: underline white;
-            font-size: 16px;
-          }
-        }
+        justify-content: center;
+        gap: 6px;
       }
     }
   }
@@ -145,32 +131,45 @@
 
 @media screen and (max-width: 700px) {
   .footerContainer {
-    &__footerLinks {
-      display: flex;
-      justify-content: space-around;
-      align-items: flex-start;
-      flex-direction: column;
-      width: 100%;
-      &__footerLinksTop {
-        margin-bottom: 10%;
-      }
-      &__footerLinksBottom {
-        margin-bottom: 10%;
-      }
-      &__logo {
-        margin-bottom: 10%;
+    height: 100%;
+    &__footerNav {
+      &__box {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 30px;
+        padding: 30px 0;
       }
     }
-    &__mention {
-      &__h6 {
-        h6 {
-          margin: 4% 0 10% 0;
-        }
-        &__list {
-          flex-direction: column;
-          li {
-            margin: 4% 0 4% 0;
+  
+    &__legalInformations {
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 0;
+      gap: 8px;
+      &__box{
+        gap: 8px;
+        &__pocli{
+          display: flex;
+          gap: 30px;
+          span{
+            text-align: center;
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .footerContainer {
+    &__legalInformations {
+      &__box{
+        &__privacy{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
         }
       }
     }

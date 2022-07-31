@@ -7,7 +7,7 @@ const navLinks_top = [
   {
     id: 2,
     path: '/events',
-    title: 'Evènements',
+    title: 'Evénements',
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const navLinks_topConnected = [
   {
     id: 2,
     path: '/events',
-    title: 'Evènements',
+    title: 'Evénements',
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ const navLinks_bottom = [
   {
     id: 2,
     path: '/activities',
-    title: 'Activités physiques et de Bien-Être',
+    title: 'Activités Physiques et de Bien-Être',
     icon: 'person-running',
   },
   {
@@ -89,7 +89,7 @@ const footerLinks_pocli = [
   {
     id: 3,
     path: '/events',
-    title: 'Evènements',
+    title: 'Evénements',
   },
   {
     id: 4,

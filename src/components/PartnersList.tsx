@@ -4,7 +4,6 @@ import CurrentDataContext from '../contexts/CurrentData';
 
 const PartnersList = () => {
   const { partners } = useContext(CurrentDataContext);
-  console.log(partners);
 
   return (
     <div className="partnersContainer">

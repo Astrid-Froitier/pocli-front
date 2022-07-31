@@ -29,36 +29,24 @@ const Activities = () => {
           <p>
             Vous pratiquerez des activités physiques dans une ambiance détendue et
             conviviale : pilates, gym douce, gym seniors.
-            <p>
-              Vous renforcerez vos relations avec vos enfants lors de séances de bien être
-              duo parents/enfants : méditation, yoga, massage, balade sensorielle.
-            </p>
-            <p>
-              Vous prendrez du temps pour vous : activités et sorties bien-être solo
-              (méditation, yoga), soirées papote autour d’un verre, …
-            </p>
+          </p>
+          <p>
+            Vous renforcerez vos relations avec vos enfants lors de séances de bien être
+            duo parents/enfants : méditation, yoga, massage, balade sensorielle.
+          </p>
+          <p>
+            Vous prendrez du temps pour vous : activités et sorties bien-être solo
+            (méditation, yoga), soirées papote autour d’un verre, …
           </p>
         </div>
         <div className="activityContainer__pilateContainer">
           <h1>Pilates</h1>
           <div className="activityContainer__pilateContainer__pilateContainerBloc1">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
+            <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
             <p>Renforcement musculaire en douceur allié à une respiration profonde.</p>
           </div>
           <div className="activityContainer__pilateContainer__pilateContainerBloc2">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
+            <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
             <p>
               Travail essentiellement au sol, avec ou sans matériel (élastiques, ballon…).
             </p>
@@ -71,13 +59,7 @@ const Activities = () => {
         <div className="activityContainer__gymSeniorContainer">
           <h1>Gym Seniors</h1>
           <div className="activityContainer__gymSeniorContainer__gymSeniorContainerBloc1">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
+            <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
             <p>
               Renforcement et étirement musculaire, équilibre dynamique, stimulation de la
               fonction cardia-respiratoire, assouplissement de la colonne vertébrale.
@@ -91,13 +73,7 @@ const Activities = () => {
         <div className="activityContainer__gymSoftContainer">
           <h1>Gym Douce</h1>
           <div className="activityContainer__gymSoftContainer__gymSoftContainerBloc1">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
+            <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
             <p>
               Travail de respiration, équilibre dynamique, stretching, sens du rythme,
               coordination, relaxation.
@@ -111,24 +87,12 @@ const Activities = () => {
         <div className="activityContainer__welfareContainer">
           <h1>Bien-Être Solo</h1>
           <div className="activityContainer__welfareContainer__welfareContainerBloc1">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
+            <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
             <p>Cycles de découvertes d’activités relaxantes : méditation, yoga.</p>
           </div>
           <div className="activityContainer__welfareContainer__welfareContainerBloc2">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
-            <p>Sorties bien-être : Calicéo, balade nature, …</p>
+            <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
+            <p>Sorties bien-être : Calicéo, balade nature…</p>
           </div>
         </div>
         <div className="activityContainer__welfareDuoContainer">

@@ -123,18 +123,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #3373c7;
+    background-color: $bluePocli;
     opacity: 60%;
     height: 150px;
     color: $colorText-3;
     gap: 8px;
 
     h1 {
+      width: 90%;
       color: #fff;
       font-size: 24px;
-      width: 300px;
       display: flex;
       text-align: center;
+      justify-content: center;
     }
     .icon {
       width: 40px;

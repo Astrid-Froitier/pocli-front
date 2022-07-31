@@ -11,7 +11,7 @@ const Family = () => {
   return (
     <>
       <div className="familyBanner">
-        <h1 className="familyBanner__title">Activités physiques et de Bien-Être</h1>
+        <h1 className="familyBanner__title">Famille - Parentalité</h1>
         <Icon name="users" color="#fff" width="40px" height="40px" />
       </div>
       <Banner
