@@ -29,8 +29,8 @@ const NavBarMobile = () => {
   useEffect(() => {
     {
       isOpen
-        ? document.documentElement.style.setProperty('overflow', 'hidden')
-        : document.documentElement.style.setProperty('overflow', 'scroll');
+        ? document.body.style.setProperty('overflow', 'hidden')
+        : document.body.style.setProperty('overflow', 'scroll');
     }
   }, [isOpen]);
 
