@@ -32,7 +32,7 @@ const about = () => {
   return (
     <>
       <div className="aboutBanner">
-        <h1>Qui sommes-nous ?</h1>
+        <h1>Qui sommes-nous&nbsp;?</h1>
       </div>
       <Banner
         nameBannerActivity=""
@@ -54,15 +54,15 @@ const about = () => {
             <span>du&nbsp;</span>
             <span className="aboutContainer__header__slogan__red-pocli-text">LI</span>
             <span>en,&nbsp;</span>
-            <span>voilà l’essence même de l’association !</span>
-            <h1>
+            <span>voilà l’essence même de l’association&nbsp;!</span>
+            <p>
               PoCLi est un Espace de Vie Sociale, un lieu de rencontres, de partages et
               d’échanges.
-            </h1>
+            </p>
           </div>
 
           <div className="aboutContainer__header__firstText">
-            <p>Nos objectifs associatifs découlent de notre sigle :</p>
+            <p>Nos objectifs associatifs découlent de notre sigle&nbsp;:</p>
             <p> – Créer du lien entre les personnes,</p>
             <p> – Favoriser l’intégration des habitants sur le territoire,</p>
             <p> – Permettre l’épanouissement individuel et collectif,</p>
@@ -71,12 +71,11 @@ const about = () => {
             <p> – Animer le territoire.</p>
           </div>
           <div className="aboutContainer__header__secondText">
-            <p>Nos activités s’articulent autour 4 pôles d’activités :</p>
-            <p>
-              – la famille et la parentalité, – les activités sportives et le bien-être,
-            </p>
-            <p>– la prévention et l’action sociale,</p>
-            <p>– l’animation du territoire.</p>
+            <p>Nos activités s’articulent autour 4 pôles d’activités&nbsp;:</p>
+            <p>– La famille et la parentalité,</p>
+            <p>– Les activités physiques et le bien-être,</p>
+            <p>– La prévention et l’action sociale,</p>
+            <p>– L’animation du territoire.</p>
           </div>
           <div className="aboutContainer__header__association">
             <p>

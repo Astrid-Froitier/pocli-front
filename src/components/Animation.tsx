@@ -24,47 +24,21 @@ const Animation = () => {
         bannerMember={false}
       />
       <div className="animationContainer">
-        <p className="animationContainer__sentenceList">
-          Un lieu pour sortir sur le territoire.
-        </p>
+        <p>Un lieu pour sortir sur le territoire.</p>
         <div className="animationContainer__list">
-          <Icon
-            name="arrow-right"
-            width="40px"
-            height="40px"
-            color="#f5c342"
-            opacity={0.6}
-          />
+          <Icon name="arrow-right" height="40px" color="#f5c342" opacity={0.6} />
           <p>A l’occasion de nos bourses aux vêtements et jouets.</p>
         </div>
         <div className="animationContainer__list">
-          <Icon
-            name="arrow-right"
-            width="40px"
-            height="40px"
-            color="#f5c342"
-            opacity={0.6}
-          />
+          <Icon name="arrow-right" height="40px" color="#f5c342" opacity={0.6} />
           <p>Pour la fête de la musique à St Quentin de Baron.</p>
         </div>
         <div className="animationContainer__list">
-          <Icon
-            name="arrow-right"
-            width="40px"
-            height="40px"
-            color="#f5c342"
-            opacity={0.6}
-          />
+          <Icon name="arrow-right" height="40px" color="#f5c342" opacity={0.6} />
           <p>Pour les semaines petite enfance.</p>
         </div>
         <div className="animationContainer__list">
-          <Icon
-            name="arrow-right"
-            width="40px"
-            height="40px"
-            color="#f5c342"
-            opacity={0.6}
-          />
+          <Icon name="arrow-right" height="40px" color="#f5c342" opacity={0.6} />
           <p>Lors des cinés débats à la médiathèque de Branne.</p>
         </div>
         <div className="animationContainer__pictures">

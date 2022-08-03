@@ -4,61 +4,52 @@
   align-items: center;
   margin: $marginBoxTopAndBottom;
   width: 100%;
-  &__sentenceList {
+  > p {
     width: $pageContentWidth;
-    font-size: $textSize;
     font-weight: $fontBold;
     font-style: italic;
-    margin: 0 0 2rem 0;
-    p {
-      width: fit-content;
-    }
+    margin-bottom: 30px;
   }
   &__list {
-    width: 100%;
-    margin: 1rem;
+    margin-bottom: 24px;
     width: $pageContentWidth;
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 16px;
+    &:nth-child(5) {
+      margin-bottom: 0;
+    }
     p {
       width: 100%;
     }
   }
   &__pictures {
     width: $pageContentWidth;
-    margin: 4rem 0;
+    margin: $marginBoxTopAndBottom;
     display: flex;
-    justify-content: space-between;
-    img {
-      border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    :nth-child(1),
+    :nth-child(2),
+    :nth-child(3) {
+      width: calc(100% / 3 - 20px);
+      object-fit: cover;
     }
   }
   &__comeBackHome {
     width: $pageContentWidth;
-    display: flex;
-    justify-content: flex-end;
   }
 }
 //////// RESPONSIVE ///////////
 
 @media screen and (max-width: 1100px) {
   .animationContainer {
-    &__sentenceList,
-    &__list {
-      width: 90%;
-    }
+    > p,
+    &__list,
+    &__pictures,
     &__comeBackHome {
       width: 90%;
-    }
-    &__pictures {
-      width: 90%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      gap: 20px;
-      img {
-        width: 300px;
-      }
     }
   }
 }
@@ -78,37 +69,38 @@
     background-color: $yellowPocli;
     opacity: 60%;
     height: 150px;
-    color: $colorText-3;
-    gap: 8px;
-
+    gap: 16px;
     h1 {
       width: 90%;
-      color: #fff;
-      font-size: 24px;
-      display: flex;
+      color: $colorText-3;
+      font-size: $textSize;
       text-align: center;
-      justify-content: center;
     }
     .icon {
       width: 40px;
     }
   }
-}
-
-@media screen and (max-width: 400px) {
   .animationContainer {
-    &__sentenceList,
+    margin: $marginBoxTopAndBottomResponsive;
+    > p {
+      margin-bottom: 15px;
+    }
     &__list {
-      h1 {
-        font-size: $resTitleSize4;
+      margin-bottom: 16px;
+    }
+    &__pictures {
+      margin: $marginBoxTopAndBottomResponsive;
+      flex-direction: column;
+      gap: 15px;
+      :nth-child(1),
+      :nth-child(2),
+      :nth-child(3) {
+        width: 100%;
+        max-width: 400px;
       }
-      p {
-        font-size: $resTextSize4;
-      }
-      .icon {
-        width: 25px;
-        height: 20px;
-      }
+    }
+    .icon {
+      height: 30px;
     }
   }
 }
