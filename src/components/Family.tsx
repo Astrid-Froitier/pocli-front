@@ -25,11 +25,11 @@ const Family = () => {
       />
       <div className="familyContainer">
         <div className="familyContainer__header">
-          <h1>Un lieu de partage et de rencontres pour les parents et les enfants.</h1>
+          <p>Un lieu de partage et de rencontres pour les parents et les enfants.</p>
           <p className="familyContainer__header__firstParagraph">
             Les activités proposées vous permettent, parents et grands-parents, de
-            partager un moment avec vos enfants et petits enfants de 0 à 12 ans : activité
-            manuelle, cuisine, motricité, éveil musical, balades, ….
+            partager un moment avec vos enfants et petits enfants de 0 à 12 ans&nbsp;:
+            Activité manuelle, cuisine, motricité, éveil musical, balades...
           </p>
           <p className="familyContainer__header__secondParagraph">
             Lors des temps de partage d’expériences et de discussions, vous aborderez des
@@ -40,26 +40,15 @@ const Family = () => {
           <h1>Les Ateliers Part’Ages</h1>
           <div className="familyContainer__workshop__description">
             <div className="familyContainer__workshop__description__firstPoint">
-              <Icon
-                name="arrow-right"
-                width="50px"
-                height="40px"
-                color="#8bafcf"
-                opacity={0.6}
-              />
+              <Icon name="arrow-right" height="40px" color="#8bafcf" opacity={0.6} />
               <p className="familyContainer__workshop__description__firstPoint__text">
-                Moment convivial autour d’une activité partagée : découverte sensorielle,
-                motricité, éveil musical, contes, activité manuelle, sortie nature, …
+                Moment convivial autour d’une activité partagée&nbsp;: découverte
+                sensorielle, motricité, éveil musical, contes, activité manuelle, sortie
+                nature...
               </p>
             </div>
             <div className="familyContainer__workshop__description__secondPoint">
-              <Icon
-                name="arrow-right"
-                width="40px"
-                height="40px"
-                color="#8bafcf"
-                opacity={0.6}
-              />
+              <Icon name="arrow-right" height="40px" color="#8bafcf" opacity={0.6} />
               <p className="familyContainer__workshop__description__secondPoint__text">
                 Temps de rencontres intergénérationnelles pour les enfants de 0 à 12 ans
                 et leurs parents et/ou grands parents.
@@ -68,16 +57,17 @@ const Family = () => {
           </div>
           <div className="familyContainer__workshop__hourly">
             <div className="familyContainer__workshop__hourly__hollydaysOff">
-              <p>Hors vacances scolaires :</p>
+              <p>Hors vacances scolaires&nbsp;:</p>
               <p>
-                Lundi, mardi et jeudi : 9h-11h, salle des fêtes de St Quentin de Baron.
+                Lundi, mardi et jeudi&nbsp;: 9h-11h, salle des fêtes de St Quentin de
+                Baron.
               </p>
-              <p>Mercredi : 9h30-11h30, salle des fêtes d’Espiet.</p>
+              <p>Mercredi&nbsp;: 9h30-11h30, salle des fêtes d’Espiet.</p>
             </div>
             <div className="familyContainer__workshop__hourly__hollydaysOn">
-              <p>Vacances scolaires :</p>
-              <p>Lundi, mercredi et jeudi : 9h30-11h30, salle des fêtes d’Espiet.</p>
-              <p>Mardi : 9h-11h, salle des fêtes de St Quentin de Baron.</p>
+              <p>Vacances scolaires&nbsp;:</p>
+              <p>Lundi, mercredi et jeudi&nbsp;: 9h30-11h30, salle des fêtes d’Espiet.</p>
+              <p>Mardi&nbsp;: 9h-11h, salle des fêtes de St Quentin de Baron.</p>
               <p>Une fois par mois le samedi de 10h à 12h (lieu variable).</p>
             </div>
           </div>
@@ -90,15 +80,17 @@ const Family = () => {
           <h1 className="familyContainer__parentsThemes__title">Les Parents Thèmes</h1>
           <p className="familyContainer__parentsThemes__sentenceList">
             Temps de parole entre parents et professionnels pour aborder des questions de
-            parentalité :
+            parentalité&nbsp;:
           </p>
           <ul className="familyContainer__parentsThemes__list">
-            <li>« Comment gérer les conflits dans la fratrie ? »</li>
+            <li>«&nbsp;Comment gérer les conflits dans la fratrie&nbsp;?&nbsp;»</li>
             <li>
-              « Pourquoi mon enfant est plus difficile avec moi qu’avec les autres ? »
+              «&nbsp;Pourquoi mon enfant est plus difficile avec moi qu’avec les
+              autres&nbsp;?&nbsp;»
             </li>
             <li>
-              « Comment prévenir les troubles du sommeil de enfants et des adolescents ? »
+              «&nbsp;Comment prévenir les troubles du sommeil de enfants et des
+              adolescents&nbsp;?&nbsp;»
             </li>
             <li>9 rencontres par an.</li>
             <li>Le vendredi de 19h à 21h à la mairie de Nérigean.</li>

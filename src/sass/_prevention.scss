@@ -6,33 +6,32 @@
   width: 100%;
   &__header {
     width: $pageContentWidth;
-    h1 {
-      font-size: $textSize;
+    p:first-of-type {
       font-weight: $fontBold;
       font-style: italic;
-      margin: 0 0 2rem;
+      margin-bottom: 30px;
     }
   }
   &__visit {
-    margin-top: 4rem;
+    margin-top: 60px;
     width: $pageContentWidth;
     h1 {
       font-size: $categorySize;
-      font-weight: $fontExtraBold;
-      margin-bottom: 2rem;
+      margin-bottom: 30px;
     }
-    p {
-      margin: 0 0 1.5rem 0;
+    > p {
+      margin-bottom: 24px;
     }
     &__description {
       &__firstPoint,
       &__secondPoint {
         width: 100%;
-        gap: 1rem;
+        gap: 16px;
         display: flex;
-        align-content: center;
-        flex-direction: row;
-        margin-bottom: 1.5rem;
+        align-items: center;
+      }
+      &__firstPoint {
+        margin-bottom: 24px;
       }
       p {
         width: 100%;
@@ -40,38 +39,46 @@
     }
   }
   &__meeting {
-    margin-top: 4rem;
+    margin-top: 60px;
     width: $pageContentWidth;
     h1 {
       font-size: $categorySize;
-      font-weight: $fontExtraBold;
-      margin-bottom: 2rem;
+      margin-bottom: 30px;
     }
-    p {
-      margin: 0 0 1.5rem 0;
-      width: fit-content;
+    > p {
+      margin-bottom: 24px;
     }
     &__description {
       &__firstPoint,
       &__secondPoint {
-        gap: 1rem;
+        width: 100%;
+        gap: 16px;
         display: flex;
-        align-content: center;
-        flex-direction: row;
-        margin-bottom: 1.5rem;
+        align-items: center;
+      }
+      &__firstPoint {
+        margin-bottom: 24px;
+      }
+      p {
+        width: 100%;
       }
     }
   }
   &__pictures {
-    width: $pageContentWidth;
-    margin: 4rem 0;
+    margin: $marginBoxTopAndBottom;
     display: flex;
-    justify-content: space-between;
+    gap: 30px;
+    :nth-child(1) {
+      width: calc(34% - 15px);
+      object-fit: cover;
+    }
+    :nth-child(2) {
+      width: calc(66% - 15px);
+      object-fit: cover;
+    }
   }
   &__comeBackHome {
-    display: flex;
     width: $pageContentWidth;
-    justify-content: flex-end;
   }
 }
 
@@ -81,21 +88,10 @@
   .preventionContainer {
     &__header,
     &__visit,
-    &__meeting {
-      width: 90%;
-    }
+    &__meeting,
+    &__pictures,
     &__comeBackHome {
       width: 90%;
-    }
-    &__pictures {
-      width: 90%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      gap: 20px;
-      img {
-        width: 300px;
-      }
     }
   }
 }
@@ -115,39 +111,68 @@
     background-color: $redPocli;
     opacity: 60%;
     height: 150px;
-    color: $colorText-3;
-    gap: 8px;
+    gap: 16px;
 
     h1 {
       width: 90%;
-      color: #fff;
-      font-size: 24px;
-      display: flex;
+      color: $colorText-3;
+      font-size: $textSize;
       text-align: center;
-      justify-content: center;
     }
     .icon {
       width: 40px;
     }
   }
-}
-
-@media screen and (max-width: 400px) {
   .preventionContainer {
-    &__header,
-    &__visit,
-    &__meeting {
-      margin-top: 2rem;
+    margin: $marginBoxTopAndBottomResponsive;
+    &__header {
+      p:first-of-type {
+        margin-bottom: 15px;
+      }
+    }
+    &__visit {
+      margin-top: 30px;
       h1 {
-        font-size: $resTitleSize4;
+        font-size: $textSize;
+        margin-bottom: 15px;
       }
-      p {
-        font-size: $resTextSize4;
+      > p {
+        margin-bottom: 16px;
       }
-      .icon {
-        width: 25px;
-        height: 20px;
+      &__description {
+        &__firstPoint {
+          margin-bottom: 16px;
+        }
       }
+    }
+    &__meeting {
+      margin-top: 30px;
+      h1 {
+        font-size: $textSize;
+        margin-bottom: 15px;
+      }
+      > p {
+        margin-bottom: 16px;
+      }
+      &__description {
+        &__firstPoint {
+          margin-bottom: 16px;
+        }
+      }
+    }
+    &__pictures {
+      flex-direction: column;
+      margin: $marginBoxTopAndBottomResponsive;
+      gap: 15px;
+      :nth-child(1) {
+        width: 100%;
+      }
+      :nth-child(2) {
+        width: 100%;
+      }
+    }
+    .icon {
+      height: 30px;
     }
   }
 }

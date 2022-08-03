@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { todaysDateLower, transformDate } from '../../helpers/transformDate';
+import {
+  differenceWithTodaysDate,
+  todaysDateLower,
+  transformDate,
+} from '../../helpers/transformDate';
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import IEvent from '../interfaces/IEvent';
@@ -37,8 +41,6 @@ const EventCard = ({
       .filter((linkedDocument) => linkedDocument.idEvent === event.id)
       .map((linkedDocument) => linkedDocument.idDocument);
 
-  const dateToday = new Date().toLocaleDateString();
-
   // Permet de filtrer tous les paiements des membres au sein d'une même famille en fonction de l'idActivity
   // et de l'échéance du paiement (permet de déterminer si l'abonnement du membre est cours ou s'il est arrivé à son terme).
   // Les adhésions arrivées à échéance seront donc exclues du résultat.
@@ -46,7 +48,7 @@ const EventCard = ({
     paymentRecordsByFamily &&
     paymentRecordsByFamily.filter(
       (paymentRecordByFamily) =>
-        transformDate(paymentRecordByFamily.dateEnd) > dateToday &&
+        differenceWithTodaysDate(paymentRecordByFamily.dateEnd) > 0 &&
         paymentRecordByFamily.idActivity === event.idActivity,
     );
 

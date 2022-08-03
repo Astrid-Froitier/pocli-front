@@ -25,7 +25,7 @@ const Activities = () => {
       </div>
       <div className="activityContainer">
         <div className="activityContainer__preambulContainer">
-          <h1>Un lieu d’épanouissement individuel et collectif.</h1>
+          <p>Un lieu d’épanouissement individuel et collectif.</p>
           <p>
             Vous pratiquerez des activités physiques dans une ambiance détendue et
             conviviale : pilates, gym douce, gym seniors.
@@ -36,7 +36,7 @@ const Activities = () => {
           </p>
           <p>
             Vous prendrez du temps pour vous : activités et sorties bien-être solo
-            (méditation, yoga), soirées papote autour d’un verre, …
+            (méditation, yoga), soirées papote autour d’un verre...
           </p>
         </div>
         <div className="activityContainer__pilateContainer">
@@ -88,34 +88,22 @@ const Activities = () => {
           <h1>Bien-Être Solo</h1>
           <div className="activityContainer__welfareContainer__welfareContainerBloc1">
             <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
-            <p>Cycles de découvertes d’activités relaxantes : méditation, yoga.</p>
+            <p>Cycles de découvertes d’activités relaxantes&nbsp;: Méditation, yoga.</p>
           </div>
           <div className="activityContainer__welfareContainer__welfareContainerBloc2">
             <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
-            <p>Sorties bien-être : Calicéo, balade nature…</p>
+            <p>Sorties bien-être&nbsp;: Calicéo, balade nature…</p>
           </div>
         </div>
         <div className="activityContainer__welfareDuoContainer">
           <h1>Bien-Être Duo</h1>
           <div className="activityContainer__welfareDuoContainer__welfareDuoContainerBloc1">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
+            <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
             <p>Partager un moment de bien être avec son enfant.</p>
           </div>
-          <div className="activityContainer__welfareDuoContainer__welfareDuoContainerBloc1">
-            <Icon
-              name="arrow-right"
-              width="50px"
-              height="40px"
-              color="#8FBF69"
-              opacity={0.6}
-            />
-            <p>Massage bébé, yoga famille, méditation, sortie nature, …</p>
+          <div className="activityContainer__welfareDuoContainer__welfareDuoContainerBloc2">
+            <Icon name="arrow-right" height="40px" color="#8FBF69" opacity={0.6} />
+            <p>Massage bébé, yoga famille, méditation, sortie nature...</p>
           </div>
         </div>
         <div className="activityContainer__activityPictures">

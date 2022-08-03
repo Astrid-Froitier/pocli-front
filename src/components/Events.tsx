@@ -85,9 +85,12 @@ const Events = () => {
   return (
     <>
       <div className={`eventsContainer ${modalOnOff}`}>
+        <div className="eventsContainer__eventsBanner">
+          <h1>Tous les événements</h1>
+        </div>
         <Banner
           // nameBannerActivity={''}
-          title="Evénements"
+          title="Tous les événements"
           nameIcon="calendar"
           // bannerContact={false}
           // bannerMember={false}
