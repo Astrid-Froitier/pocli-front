@@ -23,13 +23,13 @@ const NavBarMobile = () => {
 
   const showDialog = () => {
     const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
-    const screenHeight = screen.height
-    const finalScroll = parseInt(scrollY) - screenHeight + 100
-    console.log(finalScroll);
+    // const screenHeight = screen.height
+    // const finalScroll = parseInt(scrollY) - screenHeight + 100
+    // console.log(finalScroll);
     
     const body = document.body;
     body.style.position = 'fixed';
-    body.style.top = `-${finalScroll}px`;
+    body.style.top = `-${scrollY}`;
   };
   const closeDialog = () => {
     const body = document.body;
