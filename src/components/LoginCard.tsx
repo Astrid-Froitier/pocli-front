@@ -31,6 +31,10 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     },
   },
 
+  [theme.breakpoints.down(340)]: {
+    width: '220px',
+  },
+
   [theme.breakpoints.up(500)]: {
     width: '350px',
     '& .MuiOutlinedInput-input': {
@@ -104,6 +108,10 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
     '& .MuiInputLabel-asterisk': {
       fontSize: '18px',
     },
+  },
+
+  [theme.breakpoints.down(340)]: {
+    width: '220px',
   },
 
   [theme.breakpoints.up(500)]: {

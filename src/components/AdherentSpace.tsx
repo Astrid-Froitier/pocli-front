@@ -7,6 +7,7 @@ import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
 import IEvent from '../interfaces/IEvent';
 import Banner from './Banner';
+import FamilyMembers from './FamilyMembers';
 import ModalAdherent from './ModalAdherent';
 
 const AdherentSpace = () => {
@@ -161,6 +162,9 @@ const AdherentSpace = () => {
           bannerMember={true}
         />
         <div className="adherentSpaceContainer__box">
+          <div className="adherentSpaceContainer__box__familyMembers">
+            <FamilyMembers filter={true} />
+          </div>
           <div className="adherentSpaceContainer__box__left">
             <h1>Tableau de bord</h1>
             <NavLink to="/my-events">
