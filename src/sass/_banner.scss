@@ -72,27 +72,6 @@
       color: $colorText-3;
     }
   }
-  &__select {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5rem;
-    margin-bottom: 2rem;
-    &__all,
-    &__nobody {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      label {
-        color: $colorText-2;
-        font-weight: $fontBold;
-      }
-      input {
-        cursor: pointer;
-      }
-    }
-  }
 
   // THE STYLE ADAPTS TO THE ACTIVITY
   &.activity {
@@ -150,6 +129,11 @@
 @media screen and (max-width: 1100px) {
   .banner {
     height: 300px;
+    h1{
+      width: 90%;
+      white-space:inherit;
+      margin-top: 15px;
+    }
     .box {
       width: 90%;
       &__about {

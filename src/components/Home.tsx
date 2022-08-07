@@ -207,6 +207,9 @@ const Home = () => {
   return (
     <>
       <div className={`homeContainer ${modalOnOff}`}>
+        <div className="homeContainer__homeBannerResponsive">
+          <h1>Les derniers événements</h1>
+        </div>
         <Banner
           // nameBannerActivity={''}
           title={''}
@@ -243,7 +246,6 @@ const Home = () => {
                 )}
           </div>
           <div className="homeContainer__events__list-responsive">
-            <h1>Les derniers événements</h1>
             {events &&
               events
                 .filter((event) => (!user.id ? event.reservedAdherent === 0 : event))
