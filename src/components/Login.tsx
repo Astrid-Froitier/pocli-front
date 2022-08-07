@@ -12,7 +12,7 @@ const Login = () => {
   }, []);
   return (
     <div>
-      <div className="loginBanner">
+      <div className="loginBannerResponsive">
         <h1>Me connecter à mon espace adhérent</h1>
         <Icon name="user" color="#3d79af" />
       </div>
