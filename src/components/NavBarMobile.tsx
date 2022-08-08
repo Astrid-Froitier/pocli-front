@@ -21,13 +21,17 @@ const NavBarMobile = () => {
     setIsOpen(!isOpen);
   };
 
-  const showDialog = () => {
+  window.addEventListener('scroll', () => {
+    document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
+  });
+
+  const showNavList = () => {
     const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
     const body = document.body;
     body.style.position = 'fixed';
     body.style.top = `-${scrollY}`;
   };
-  const closeDialog = () => {
+  const closeNavList = () => {
     const body = document.body;
     const scrollY = body.style.top;
     body.style.position = '';
@@ -37,9 +41,6 @@ const NavBarMobile = () => {
 
   const handleClickButton = () => {
     setIsOpen(!isOpen);
-    window.addEventListener('scroll', () => {
-      document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
-    });
   };
 
   const handleClickLink = () => {
@@ -50,10 +51,10 @@ const NavBarMobile = () => {
   useEffect(() => {
     {
       isOpen
-        ? showDialog()
-        : closeDialog();
+        ? showNavList()
+        : closeNavList();
     }
-  }, [isOpen]);
+  }, [handleClickButton]);
 
   return (
     <div className="navBarMobile">
