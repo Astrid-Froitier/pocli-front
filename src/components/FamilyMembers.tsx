@@ -100,11 +100,11 @@ const FamilyMembers = ({ filter = true }: FamilyMembersProps) => {
         </div>
       <div className="familyMembers__select">
         <div className="familyMembers__select__all">
-          <label htmlFor="checkbox">Tout sélectionner : </label>
+          <label htmlFor="checkbox">Tout sélectionner&nbsp;:</label>
           <input type="checkbox" onChange={() => handleSelectAll()} checked={selectAll} />
         </div>
         <div className="familyMembers__select__nobody">
-          <label htmlFor="checkbox">Tout désélectionner : </label>
+          <label htmlFor="checkbox">Tout désélectionner&nbsp;:</label>
           <input
             type="checkbox"
             onChange={() => handleSelectNobody()}
