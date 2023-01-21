@@ -137,7 +137,7 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
     user.id !== 0 &&
       familyMembers[0] === undefined &&
       getAllDataWithCredential([
-        `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
+        `https://pocli-bd.herokuapp.com/api/families/${user.id}/familyMembers`,
       ]).then((res) => {
         setFamilyMembers(res[0].data);
       });

@@ -36,7 +36,7 @@ const MessagingCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ICommunicationMember>(
-        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
+        `https://pocli-bd.herokuapp.com/api/communicationMembers/${idCommunication}`,
         dataTrash,
         {
           method: 'PUT',
@@ -65,7 +65,7 @@ const MessagingCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.delete<ICommunicationMember>(
-        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
+        `https://pocli-bd.herokuapp.com/api/communicationMembers/${idCommunication}`,
         {
           method: 'DELETE',
           headers: {
@@ -100,7 +100,7 @@ const MessagingCard = ({
   }, [currentCommunication]);
 
   useEffect(() => {
-    let url = [`https://wild-pocli.herokuapp.com/api/admins/${idAdmin}`];
+    let url = [`https://pocli-bd.herokuapp.com/api/admins/${idAdmin}`];
     idAdmin &&
       getAllDataWithCredential(url)
         .then((res) => {

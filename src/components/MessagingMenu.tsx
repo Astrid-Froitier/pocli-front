@@ -94,8 +94,8 @@ const MessagingMenu = ({
 
   useEffect(() => {
     let urls = [
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/communicationMembers`,
-      `https://wild-pocli.herokuapp.com/api/communications`,
+      `https://pocli-bd.herokuapp.com/api/families/${user.id}/communicationMembers`,
+      `https://pocli-bd.herokuapp.com/api/communications`,
     ];
     communications &&
       getAllDataWithCredential(urls)
@@ -167,7 +167,7 @@ const MessagingMenu = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ICommunicationMember>(
-        `https://wild-pocli.herokuapp.com/api/communicationMembers/${idCommunication}`,
+        `https://pocli-bd.herokuapp.com/api/communicationMembers/${idCommunication}`,
         dataOpened,
         {
           method: 'PUT',

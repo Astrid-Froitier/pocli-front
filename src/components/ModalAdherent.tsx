@@ -168,7 +168,7 @@ const ModalAdherent = ({
     } else if (newPasswordFirstEntry === newPassword) {
       try {
         await axios.put<IUserInfos>(
-          `https://wild-pocli.herokuapp.com/api/families/${user.id}`,
+          `https://pocli-bd.herokuapp.com/api/families/${user.id}`,
           { password },
           {
             method: 'PUT',

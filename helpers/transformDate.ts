@@ -17,4 +17,4 @@ const differenceWithTodaysDate = (dateToCompare: string) => {
   return Math.floor((date - todaysDate) / (24 * 60 * 60000));
 };
 
-export { transformDate, todaysDateLower, differenceWithTodaysDate };
+export { differenceWithTodaysDate, todaysDateLower, transformDate };

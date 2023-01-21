@@ -48,9 +48,9 @@ const Documents = () => {
 
   useEffect(() => {
     let urls = [
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
-      `https://wild-pocli.herokuapp.com/api/documents`,
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
+      `https://pocli-bd.herokuapp.com/api/families/${user.id}/linkedDocuments`,
+      `https://pocli-bd.herokuapp.com/api/documents`,
+      `https://pocli-bd.herokuapp.com/api/families/${user.id}/familyMembers`,
     ];
 
     getAllDataWithCredential(urls)
