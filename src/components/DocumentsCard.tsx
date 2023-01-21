@@ -45,7 +45,7 @@ const DocumentsCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ILinkedDocument>(
-        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idDocument}`,
+        `https://pocli-bd.herokuapp.com/api/linkedDocuments/${idDocument}`,
         dataTrash,
         {
           method: 'PUT',
@@ -74,7 +74,7 @@ const DocumentsCard = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.delete<ILinkedDocument>(
-        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idCommunication}`,
+        `https://pocli-bd.herokuapp.com/api/linkedDocuments/${idCommunication}`,
         {
           method: 'DELETE',
           headers: {

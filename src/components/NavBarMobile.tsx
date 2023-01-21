@@ -23,10 +23,10 @@ const NavBarMobile = () => {
 
   const showDialog = () => {
     const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
-    const screenHeight = screen.height
-    const finalScroll = parseInt(scrollY) - screenHeight + 100
+    const screenHeight = screen.height;
+    const finalScroll = parseInt(scrollY) - screenHeight + 100;
     console.log(finalScroll);
-    
+
     const body = document.body;
     body.style.position = 'fixed';
     body.style.top = `-${finalScroll}px`;
@@ -37,7 +37,7 @@ const NavBarMobile = () => {
     body.style.position = '';
     body.style.top = '';
     window.scrollTo(0, parseInt(scrollY || '0') * -1);
-  }
+  };
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -49,9 +49,7 @@ const NavBarMobile = () => {
   // useEffect permettant d'empêcher le scroll sur Y suivant l'état de modalOnOff
   useEffect(() => {
     {
-      isOpen
-        ? showDialog()
-        : closeDialog();
+      isOpen ? showDialog() : closeDialog();
     }
   }, [isOpen]);
 

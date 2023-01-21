@@ -88,7 +88,7 @@ const MultipleSelectCheckmarks = ({
 
       try {
         await axios.post<IFamilyMemberEvent>(
-          'https://wild-pocli.herokuapp.com/api/familyMemberEvents',
+          'https://pocli-bd.herokuapp.com/api/familyMemberEvents',
           { idFamilyMember, idEvent },
           {
             method: 'POST',
@@ -98,7 +98,7 @@ const MultipleSelectCheckmarks = ({
             withCredentials: true,
           },
         );
-        let urls = [`https://wild-pocli.herokuapp.com/api/familyMemberEvents`];
+        let urls = [`https://pocli-bd.herokuapp.com/api/familyMemberEvents`];
 
         getAllDataWithCredential(urls)
           .then((res) => {
@@ -124,7 +124,7 @@ const MultipleSelectCheckmarks = ({
 
       try {
         await axios.delete<IFamilyMemberEvent>(
-          `https://wild-pocli.herokuapp.com/api/familyMemberEvents/${idFamilyMemberEvent}`,
+          `https://pocli-bd.herokuapp.com/api/familyMemberEvents/${idFamilyMemberEvent}`,
           {
             method: 'DELETE',
             headers: {
@@ -133,7 +133,7 @@ const MultipleSelectCheckmarks = ({
             withCredentials: true,
           },
         );
-        let urls = [`https://wild-pocli.herokuapp.com/api/familyMemberEvents`];
+        let urls = [`https://pocli-bd.herokuapp.com/api/familyMemberEvents`];
 
         getAllDataWithCredential(urls)
           .then((res) => {

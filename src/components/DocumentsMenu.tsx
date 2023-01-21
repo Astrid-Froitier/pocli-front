@@ -66,8 +66,8 @@ const DocumentsMenu = ({
 
   useEffect(() => {
     let urls = [
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/linkedDocuments`,
-      `https://wild-pocli.herokuapp.com/api/documents`,
+      `https://pocli-bd.herokuapp.com/api/families/${user.id}/linkedDocuments`,
+      `https://pocli-bd.herokuapp.com/api/documents`,
     ];
     documents &&
       getAllDataWithCredential(urls)
@@ -86,7 +86,7 @@ const DocumentsMenu = ({
     // indispensable quand on veut utiliser async/await dans un useEffect
     try {
       await axios.put<ILinkedDocument>(
-        `https://wild-pocli.herokuapp.com/api/linkedDocuments/${idCommunication}`,
+        `https://pocli-bd.herokuapp.com/api/linkedDocuments/${idCommunication}`,
         dataOpened,
         {
           method: 'PUT',

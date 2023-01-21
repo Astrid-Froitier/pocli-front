@@ -15,8 +15,8 @@ const about = () => {
 
   useEffect(() => {
     let urls = [
-      'https://wild-pocli.herokuapp.com/api/pocliMembers',
-      'https://wild-pocli.herokuapp.com/api/partners',
+      'https://pocli-bd.herokuapp.com/api/pocliMembers',
+      'https://pocli-bd.herokuapp.com/api/partners',
     ];
 
     getAllDataWithoutCredential(urls)
