@@ -21,7 +21,11 @@ const NavBarMobile = () => {
     setIsOpen(!isOpen);
   };
 
-  const showDialog = () => {
+  window.addEventListener('scroll', () => {
+    document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
+  });
+
+  const showNavList = () => {
     const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
     const screenHeight = screen.height;
     const finalScroll = parseInt(scrollY) - screenHeight + 100;
@@ -29,9 +33,9 @@ const NavBarMobile = () => {
 
     const body = document.body;
     body.style.position = 'fixed';
-    body.style.top = `-${finalScroll}px`;
+    body.style.top = `-${scrollY}`;
   };
-  const closeDialog = () => {
+  const closeNavList = () => {
     const body = document.body;
     const scrollY = body.style.top;
     body.style.position = '';
@@ -39,19 +43,22 @@ const NavBarMobile = () => {
     window.scrollTo(0, parseInt(scrollY || '0') * -1);
   };
 
-  const handleClick = () => {
+  const handleClickButton = () => {
     setIsOpen(!isOpen);
-    window.addEventListener('scroll', () => {
-      document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
-    });
   };
 
-  // useEffect permettant d'empêcher le scroll sur Y suivant l'état de modalOnOff
+  const handleClickLink = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // useEffect permettant d'empêcher le scroll sur Y suivant l'état de isOpen
   useEffect(() => {
     {
-      isOpen ? showDialog() : closeDialog();
+      isOpen
+        ? showNavList()
+        : closeNavList();
     }
-  }, [isOpen]);
+  }, [handleClickButton]);
 
   return (
     <div className="navBarMobile">
@@ -61,16 +68,16 @@ const NavBarMobile = () => {
             <NavLink
               to="/"
               className="navBarMobile__banner__img"
-              onClick={handleClick}
-              onKeyDown={handleClick}
+              onClick={handleClickLink}
+              onKeyDown={handleClickLink}
               role="button"
               tabIndex={0}>
               <img src="/assets/pocli.png" alt="logo pocli" />
             </NavLink>
             <div
               className="navBarMobile__banner__button"
-              onClick={handleClick}
-              onKeyDown={handleClick}
+              onClick={handleClickButton}
+              onKeyDown={handleClickButton}
               role="button"
               tabIndex={0}>
               <Icon name="xmark" width="25px" color="#3d79af" />
@@ -80,8 +87,8 @@ const NavBarMobile = () => {
             <div className="navBarMobile__links__linksBottom">
               {navLinks_bottom.map((link) => (
                 <NavLink
-                  onClick={handleClick}
-                  onKeyDown={handleClick}
+                  onClick={handleClickLink}
+                  onKeyDown={handleClickLink}
                   className="navBarMobile__links__linksBottom__a"
                   key={link.id}
                   to={link.path}>
@@ -95,8 +102,8 @@ const NavBarMobile = () => {
               {user.id === 0
                 ? navLinks_top.map((link) => (
                     <NavLink
-                      onClick={handleClick}
-                      onKeyDown={handleClick}
+                      onClick={handleClickLink}
+                      onKeyDown={handleClickLink}
                       className="navBarMobile__links__linksTop__a"
                       key={link.id}
                       to={link.path}>
@@ -111,8 +118,8 @@ const NavBarMobile = () => {
                 : navLinks_topConnected.map((link) =>
                     link.id === 4 ? (
                       <NavLink
-                        onClick={handleClick}
-                        onKeyDown={handleClick}
+                        onClick={handleClickLink}
+                        onKeyDown={handleClickLink}
                         className="navBarMobile__links__linksTop__a"
                         key={link.id}
                         to={link.path}>
@@ -135,8 +142,8 @@ const NavBarMobile = () => {
                       </div>
                     ) : (
                       <NavLink
-                        onClick={handleClick}
-                        onKeyDown={handleClick}
+                        onClick={handleClickLink}
+                        onKeyDown={handleClickLink}
                         className="navBarMobile__links__linksTop__a"
                         key={link.id}
                         to={link.path}>
@@ -158,8 +165,8 @@ const NavBarMobile = () => {
           </div>
           <div
             className="navBarMobile__banner__button"
-            onClick={handleClick}
-            onKeyDown={handleClick}
+            onClick={handleClickButton}
+            onKeyDown={handleClickButton}
             role="button"
             tabIndex={0}>
             <Icon name="bars" width="25px" color="#3d79af" />

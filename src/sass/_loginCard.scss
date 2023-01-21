@@ -7,9 +7,8 @@
   background-color: $backGround-1;
   border-radius: 1rem;
   h1 {
-    font-size: $titleSize;
     padding: 2rem;
-    color: white;
+    color: $colorText-3;
   }
   &__email {
     margin-bottom: 10px;
@@ -29,9 +28,9 @@
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
     input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 50px #8bafcf inset !important;
-      box-shadow: 0 0 0 50px #8bafcf inset !important;
-      -webkit-text-fill-color: white !important;
+      -webkit-box-shadow: 0 0 0 50px $backGround-1 inset !important;
+      box-shadow: 0 0 0 50px $backGround-1 inset !important;
+      -webkit-text-fill-color: $colorText-3 !important;
     }
     p {
       margin-top: 5px;
@@ -56,7 +55,7 @@
       cursor: pointer;
     }
     &__title {
-      color: white;
+      color: $colorText-3;
       font-size: 14px;
       font-weight: $fontBold;
     }
@@ -98,5 +97,109 @@
 
 ///////// RESPONSIVE ///////////
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 700px) {
+  .loginCardContainer {
+    h1 {
+      font-size: $textSize;
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .loginCardContainer {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: $fontFamily;
+    background-color: $backGround-1;
+    border-radius: 1rem;
+    h1 {
+      padding: 2rem;
+      color: $colorText-3;
+    }
+    &__email {
+      margin-bottom: 10px;
+      height: 90px;
+    }
+    &__password {
+      &__input {
+        text-align: start;
+        height: 90px;
+      }
+    }
+    &__email,
+    &__password {
+      display: flex;
+      flex-direction: column;
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 50px $backGround-1 inset !important;
+        box-shadow: 0 0 0 50px $backGround-1 inset !important;
+        -webkit-text-fill-color: $colorText-3 !important;
+      }
+      p {
+        margin-top: 5px;
+        font-size: 14px;
+        font-weight: $fontExtraBold;
+        align-self: flex-start;
+        color: #d32f2f;
+      }
+    }
+    &__stayConnected {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: start;
+      margin-top: 5px;
+      gap: 5px;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      input,
+      label {
+        cursor: pointer;
+      }
+      &__title {
+        color: $colorText-3;
+        font-size: 14px;
+        font-weight: $fontBold;
+      }
+    }
+    a {
+      align-self: flex-start;
+      margin-top: 20px;
+      :hover {
+        text-decoration: underline;
+      }
+    }
+    &__passwordForgot {
+      color: $colorText-3;
+    }
+    &__submit {
+      background-color: $colorText-2;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      align-self: flex-end;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      clip-path: circle(50%);
+      padding: 0.5rem;
+      border-radius: 100%;
+      border: 0px solid $colorText-2;
+      transition: all 200ms ease-out;
+      &:hover {
+        cursor: pointer;
+        background-color: $colorText-3;
+        transition: all 200ms ease-out;
+        .icon {
+          fill: $colorText-2;
+        }
+      }
+    }
+  }
 }
