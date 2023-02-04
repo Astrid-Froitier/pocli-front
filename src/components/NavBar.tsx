@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { NavigateFunction, NavLink, useNavigate } from 'react-router-dom';
 
 import { navLinks_bottom, navLinks_top, navLinks_topConnected } from '../../data/links';
 import CurrentUserContext from '../contexts/CurrentUser';
@@ -19,7 +18,6 @@ const NavBar = () => {
   };
   return (
     <div className="navBar">
-      <div className="navBar__alert">Message d&apos;alerte</div>
       <div className="navBar__box">
         <div className="navBar__box__logo">
           <NavLink to="/">
