@@ -47,14 +47,14 @@ const Events = () => {
   // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
   useEffect(() => {
     let urls = [
-      'https://wild-pocli.herokuapp.com/api/events',
-      'https://wild-pocli.herokuapp.com/api/postTypes',
-      'https://wild-pocli.herokuapp.com/api/activities',
-      'https://wild-pocli.herokuapp.com/api/documents',
-      'https://wild-pocli.herokuapp.com/api/linkedDocuments',
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/paymentRecords`,
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
-      `https://wild-pocli.herokuapp.com/api/familyMemberEvents`,
+      'https://pocli-bd.herokuapp.com/api/events',
+      'https://pocli-bd.herokuapp.com/api/postTypes',
+      'https://pocli-bd.herokuapp.com/api/activities',
+      'https://pocli-bd.herokuapp.com/api/documents',
+      'https://pocli-bd.herokuapp.com/api/linkedDocuments',
+      `https://pocli-bd.herokuapp.com/api/families/${user.id}/paymentRecords`,
+      `https://pocli-bd.herokuapp.com/api/families/${user.id}/familyMembers`,
+      `https://pocli-bd.herokuapp.com/api/familyMemberEvents`,
     ];
 
     getAllDataWithoutCredential(urls)

@@ -27,6 +27,10 @@ const NavBarMobile = () => {
 
   const showNavList = () => {
     const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
+    const screenHeight = screen.height;
+    const finalScroll = parseInt(scrollY) - screenHeight + 100;
+    console.log(finalScroll);
+
     const body = document.body;
     body.style.position = 'fixed';
     body.style.top = `-${scrollY}`;
@@ -37,7 +41,7 @@ const NavBarMobile = () => {
     body.style.position = '';
     body.style.top = '';
     window.scrollTo(0, parseInt(scrollY || '0') * -1);
-  }
+  };
 
   const handleClickButton = () => {
     setIsOpen(!isOpen);

@@ -32,4 +32,4 @@ const fetchDataWithCredential = async (url: String) => {
   }
 };
 
-export { getAllDataWithoutCredential, getAllDataWithCredential };
+export { getAllDataWithCredential, getAllDataWithoutCredential };

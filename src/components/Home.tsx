@@ -128,12 +128,12 @@ const Home = () => {
   // useEffect permettant de get l'ensemble des informations liées aux évènements (axios)
   useEffect(() => {
     let urls = [
-      'https://wild-pocli.herokuapp.com/api/events?sort="date,DESC"',
-      'https://wild-pocli.herokuapp.com/api/postTypes',
-      'https://wild-pocli.herokuapp.com/api/activities',
-      'https://wild-pocli.herokuapp.com/api/documents',
-      'https://wild-pocli.herokuapp.com/api/linkedDocuments',
-      'https://wild-pocli.herokuapp.com/api/partners',
+      'https://pocli-bd.herokuapp.com/api/events?sort="date,DESC"',
+      'https://pocli-bd.herokuapp.com/api/postTypes',
+      'https://pocli-bd.herokuapp.com/api/activities',
+      'https://pocli-bd.herokuapp.com/api/documents',
+      'https://pocli-bd.herokuapp.com/api/linkedDocuments',
+      'https://pocli-bd.herokuapp.com/api/partners',
     ];
 
     getAllDataWithoutCredential(urls)
@@ -173,7 +173,7 @@ const Home = () => {
       try {
         e.preventDefault();
         await axios.post<INewsletter>(
-          'https://wild-pocli.herokuapp.com/api/newsletters',
+          'https://pocli-bd.herokuapp.com/api/newsletters',
           { email },
           {
             method: 'POST',

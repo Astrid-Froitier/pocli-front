@@ -211,7 +211,7 @@ const LoginCard = ({ modalAdherentPwd = false, setIsAuth }: LoginCardProps) => {
     try {
       e.preventDefault();
       const { data } = await axios.post<IUserInfos>(
-        'https://wild-pocli.herokuapp.com/api/login',
+        'https://pocli-bd.herokuapp.com/api/login',
         { email, password },
         {
           method: 'POST',
@@ -234,7 +234,7 @@ const LoginCard = ({ modalAdherentPwd = false, setIsAuth }: LoginCardProps) => {
           sessionStorage.setItem('cardSelected', JSON.stringify(cardSelected)));
       setUser({ id: data.id, name: data.name });
       getAllDataWithCredential([
-        `https://wild-pocli.herokuapp.com/api/families/${data.id}/familyMembers`,
+        `https://pocli-bd.herokuapp.com/api/families/${data.id}/familyMembers`,
       ]).then((res) => {
         setFamilyMembers(res[0].data);
       });

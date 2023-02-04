@@ -44,10 +44,10 @@ const Messaging = () => {
 
   useEffect(() => {
     let urls = [
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/familyMembers`,
-      `https://wild-pocli.herokuapp.com/api/families/${user.id}/communicationMembers`,
-      `https://wild-pocli.herokuapp.com/api/communications`,
-      `https://wild-pocli.herokuapp.com/api/documents`,
+      `https://pocli-bd.herokuapp.com/api/families/${user.id}/familyMembers`,
+      `https://pocli-bd.herokuapp.com/api/families/${user.id}/communicationMembers`,
+      `https://pocli-bd.herokuapp.com/api/communications`,
+      `https://pocli-bd.herokuapp.com/api/documents`,
     ];
 
     getAllDataWithCredential(urls)
