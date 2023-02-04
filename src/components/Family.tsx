@@ -26,12 +26,12 @@ const Family = () => {
       <div className="familyContainer">
         <div className="familyContainer__header">
           <p>Un lieu de partage et de rencontres pour les parents et les enfants.</p>
-          <p className="familyContainer__header__firstParagraph">
+          <p>
             Les activités proposées vous permettent, parents et grands-parents, de
             partager un moment avec vos enfants et petits enfants de 0 à 12 ans&nbsp;:
             Activité manuelle, cuisine, motricité, éveil musical, balades...
           </p>
-          <p className="familyContainer__header__secondParagraph">
+          <p>
             Lors des temps de partage d’expériences et de discussions, vous aborderez des
             questions de parentalité et y trouverez des réponses.
           </p>
