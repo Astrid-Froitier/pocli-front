@@ -1,9 +1,8 @@
 .adherentSpaceContainer {
-
   &.modal {
     filter: blur(4px);
   }
-  &__box{
+  &__box {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -16,6 +15,11 @@
       padding-right: 64px;
       a {
         width: fit-content;
+        &:last-of-type {
+          p {
+            margin-bottom: 0;
+          }
+        }
       }
       p {
         margin-bottom: 1rem;
@@ -29,8 +33,7 @@
         }
       }
       h1 {
-        margin: 0 0 2rem 0;
-        font-size: $titleSize;
+        margin-bottom: 30px;
       }
     }
     &__right {
@@ -60,6 +63,9 @@
         &:hover {
           text-decoration: underline;
         }
+        &:last-of-type {
+          margin-bottom: 0;
+        }
       }
       a {
         &:nth-child(4) {
@@ -67,15 +73,7 @@
         }
       }
       h1 {
-        margin: 0 0 2rem 140px;
-        font-size: $titleSize;
-      }
-      &__disconnection {
-        margin-top: 3rem;
-        cursor: pointer;
-        &:hover {
-          text-decoration: underline;
-        }
+        margin: 0 0 30px 140px;
       }
     }
   }
@@ -87,50 +85,57 @@
   .adherentSpaceContainer {
     display: flex;
     flex-direction: column;
-
-    &__left {
-      width: 100%;
-      padding: 0 0 48px 0;
-      text-align: center;
-      a {
-        display: flex;
-        text-align: center;
-        width: 100%;
-        justify-content: center;
+    align-items: center;
+    &__box {
+      justify-content: space-between;
+      width: 90%;
+      &__left {
+        width: 50%;
+        height: 298.5px;
+        padding-right: 0;
+        border-right: 1px solid $colorText-2;
       }
-    }
-    &__right {
-      width: 100%;
-      padding: 0;
-      margin-left: 0;
-      h1 {
-        width: 100%;
-        margin-left: 0;
-        display: flex;
-        justify-content: center;
-      }
-      span {
-        display: flex;
-        text-align: center;
-        width: 100%;
-        justify-content: center;
-        margin-left: 0;
-      }
-      a {
-        display: flex;
-        text-align: center;
-        width: 100%;
-        justify-content: center;
-      }
-      p {
-        margin-left: 0;
+      &__right {
+        border-left: 0;
+        padding-left: 0;
+        width: fit-content;
+        p {
+          margin-left: 0;
+        }
+        span {
+          margin-left: 0;
+        }
+        h1 {
+          margin: 0 0 30px 0;
+        }
       }
     }
   }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (max-width: 800px) {
+  .adherentSpaceContainer {
+    &__box {
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+      &__left {
+        width: 320px;
+        height: fit-content;
+        border-right: 0;
+      }
+      &__right {
+        width: 320px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 701px) {
   .adherentSpanceBanner {
+    display: none;
+  }
+  .adherentSpaceContainer__box__familyMembers {
     display: none;
   }
 }
@@ -142,52 +147,38 @@
     justify-content: center;
     align-items: center;
     height: 150px;
-    gap: 8px;
+    gap: 16px;
     h1 {
-      color: $colorText-2;
-      width: 300px;
-      display: flex;
+      width: 90%;
+      font-size: $categorySize;
       text-align: center;
-      justify-content: center;
     }
-  }
-
-  @media screen and (max-) {
   }
 
   .adherentSpaceContainer {
-    &__left {
+    &__box {
+      margin: 0 0 30px 0;
+      gap: 30px;
       h1 {
-        width: 100%;
+        font-size: $textSize;
+        margin-bottom: 24px;
       }
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .adherentSpanceBanner {
-    h1 {
-      font-size: $resTitleSize4;
-    }
-  }
-  .adherentSpaceContainer {
-    &__left {
-      h1 {
-        font-size: $resTitleSize4;
+      &__left,
+      &__right {
+        width: 215px;
+        background-color: $backGround-2;
+        padding: 10px;
+        border-radius: 10px;
       }
-      p {
-        font-size: $resTextSize4;
-      }
-    }
-    &__right {
-      h1 {
-        font-size: $resTitleSize4;
-      }
-      p {
-        font-size: $resTextSize4;
-      }
-      span {
-        font-size: $resTextSize4;
+      &__right {
+        span {
+          font-size: $smallTextSize;
+        }
+        a {
+          &:nth-child(4) {
+            padding-bottom: 16px;
+          }
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import CurrentDataContext from '../contexts/CurrentData';
 import CurrentUserContext from '../contexts/CurrentUser';
@@ -30,12 +30,34 @@ const FamilyMembers = ({ filter = true }: FamilyMembersProps) => {
     setSelectedMembers(membersSelected);
   }, [cardSelected, familyMembers]);
 
+  const [selectAll, setSelectAll] = useState<boolean>(false);
+  const [selectNobody, setSelectNobody] = useState<boolean>(false);
+
+  const handleSelectAll = () => {
+    setSelectNobody(false);
+    setSelectAll(true);
+    setCardSelected(familyMembers.map((member) => member && true));
+  };
+  const handleSelectNobody = () => {
+    setSelectAll(false);
+    setSelectNobody(true);
+    setCardSelected(familyMembers.map((member) => member && false));
+  };
+
+  useEffect(() => {
+    cardSelected &&
+      cardSelected[0] !== undefined &&
+      (cardSelected.includes(false) && setSelectAll(false),
+      cardSelected.includes(true) && setSelectNobody(false));
+  }, [cardSelected]);
+
   return (
     <div className="familyMembers">
       {/* map to show all members in the family */}
+      <div className="familyMembers__list">
       {familyMembers &&
         familyMembers.map((familyMember, index) => (
-          <div className="familyMembers__card" key={index}>
+          <div className="familyMembers__list__card" key={index}>
             <img
               src={
                 familyMember.avatar
@@ -46,12 +68,12 @@ const FamilyMembers = ({ filter = true }: FamilyMembersProps) => {
               }
               alt="avatar"
             />
-            <div className="familyMembers__card__name">
+            <div className="familyMembers__list__card__name">
               <p>{familyMember.firstname}</p>
               {/* button to select one member in family */}
 
               <div
-                className="familyMembers__card__name__square"
+                className="familyMembers__list__card__name__square"
                 onClick={() => selectMember(index)}
                 aria-hidden="true">
                 {cardSelected[index]
@@ -75,6 +97,21 @@ const FamilyMembers = ({ filter = true }: FamilyMembersProps) => {
             </div>
           </div>
         ))}
+        </div>
+      <div className="familyMembers__select">
+        <div className="familyMembers__select__all">
+          <label htmlFor="checkbox">Tout sélectionner&nbsp;:</label>
+          <input type="checkbox" onChange={() => handleSelectAll()} checked={selectAll} />
+        </div>
+        <div className="familyMembers__select__nobody">
+          <label htmlFor="checkbox">Tout désélectionner&nbsp;:</label>
+          <input
+            type="checkbox"
+            onChange={() => handleSelectNobody()}
+            checked={selectNobody}
+          />
+        </div>
+      </div>
     </div>
   );
 };
